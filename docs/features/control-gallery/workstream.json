@@ -1,0 +1,68 @@
+{
+  "codename": "Control Gallery",
+  "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
+  "stage": "planned",
+  "position": "Decisions approved, all five milestones planned in detail (goals, packets, acceptance criteria). Nothing built yet: M1's done ledger is entirely UNTESTED, M2-M5 not started.",
+  "next": "Claim M1's first packet, CG-M1-01 (workspace setup — package.json, lockfile, workspace config, test config). It has no dependencies and is first in M1's own packet order.",
+  "label": "workstream:control-gallery",
+  "design": [
+    { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" }
+  ],
+  "milestones": [
+    {
+      "id": "M1",
+      "label": "M1",
+      "depth": 1,
+      "title": "Gallery foundation and test harness",
+      "status": "unplanned",
+      "plan": "milestones/m1.md",
+      "issue": null,
+      "pr": null,
+      "acceptance": { "kind": "demo-script", "record": null }
+    },
+    {
+      "id": "M2",
+      "label": "M2",
+      "depth": 2,
+      "title": "Foundations and field controls",
+      "status": "unplanned",
+      "plan": "milestones/m2.md",
+      "issue": null,
+      "pr": null,
+      "acceptance": { "kind": "demo-script", "record": null }
+    },
+    {
+      "id": "M3",
+      "label": "M3",
+      "depth": 3,
+      "title": "Actions, choices, search, and feedback",
+      "status": "unplanned",
+      "plan": "milestones/m3.md",
+      "issue": null,
+      "pr": null,
+      "acceptance": { "kind": "demo-script", "record": null }
+    },
+    {
+      "id": "M4",
+      "label": "M4",
+      "depth": 4,
+      "title": "Overlay and navigation controls",
+      "status": "unplanned",
+      "plan": "milestones/m4.md",
+      "issue": null,
+      "pr": null,
+      "acceptance": { "kind": "demo-script", "record": null }
+    },
+    {
+      "id": "M5",
+      "label": "M5",
+      "depth": 5,
+      "title": "Cross-control acceptance and release handoff",
+      "status": "unplanned",
+      "plan": "milestones/m5.md",
+      "issue": null,
+      "pr": null,
+      "acceptance": { "kind": "demo-script", "record": null }
+    }
+  ]
+}

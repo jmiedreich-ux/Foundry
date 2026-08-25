@@ -1,0 +1,65 @@
+name: Atlas
+
+# Decision 30: the site rebuilds on every push to the default branch and on a six-hourly
+# schedule, so it reflects both the records (which change on merge) and the open issues
+# (which change without any commit here at all).
+on:
+  # Only the records change what this site says, so only they are worth a rebuild. A commit that
+  # touches no record leaves the site correct, and the six-hourly run below still catches issues,
+  # which change without any commit here at all.
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'ROADMAP.md'
+      - 'atlas.config.json'
+      - '.atlas/**'
+      - '.github/workflows/atlas.yml'
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+# Least privilege. `contents` reads the records; `issues` reads each workstream's backlog.
+# Without `issues` the fetch 403s and Atlas degrades to empty buckets — the site would then
+# claim every workstream has no open work, which is worse than saying nothing.
+permissions:
+  contents: read
+  issues: read
+
+concurrency:
+  group: atlas-site
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Foundry
+        uses: actions/checkout@v4
+
+      # Atlas is a separate repository consumed as a versioned Action (decisions 39, 46).
+      # The version tags live in the Atlas repository; nothing here is tagged for it.
+      - name: Build the site
+        id: atlas
+        uses: jmiedreich-ux/Atlas@v1
+        with:
+          project-path: ${{ github.workspace }}
+          output-dir: .atlas-out
+          github-token: ${{ github.token }}
+
+      # Atlas decision 7: nothing on this site is anonymous. Foundry has no `.atlas/` override of
+      # its own yet (unlike Vennusign, which overrides the sign-in provider to GitHub) — the
+      # generator's own emitted staticwebapp.config.json ships as-is, which gates every route
+      # behind Static Web Apps' default Microsoft provider. Add a `.atlas/staticwebapp.config.json`
+      # and a merge step here (see jmiedreich-ux/Vennusign's own atlas.yml for the exact pattern)
+      # if Foundry ever needs a different identity provider.
+
+      - name: Publish to Foundry's Atlas site
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.ATLAS_SWA_DEPLOYMENT_TOKEN }}
+          action: upload
+          app_location: .atlas-out
+          api_location: ${{ steps.atlas.outputs.api-path }}
+          skip_app_build: true
+          skip_api_build: true
