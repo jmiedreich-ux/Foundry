@@ -1,0 +1,8 @@
+{
+  "project": "Foundry",
+  "repo": "jmiedreich-ux/Foundry",
+  "workflow": "atlas.yml",
+  "workstreams": [
+    "control-gallery"
+  ]
+}
