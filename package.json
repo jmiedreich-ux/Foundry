@@ -3,9 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "scripts": {
-    "check": "node --check apps/lab/src/main.js"
+  "engines": {
+    "node": ">=22 <23",
+    "npm": ">=10 <11"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "packageManager": "npm@10.9.8",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "check": "node --check apps/lab/src/main.js",
+    "dev": "npm run dev --workspace @foundry/lab",
+    "build": "npm run build --workspace @foundry/lab",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^22.17.2",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.5"
+  }
 }
