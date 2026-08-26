@@ -20,21 +20,45 @@
     },
     {
       "packet": "CG-M1-03.2",
-      "owner": "Local OpenCode qwen3-coder:30b gallery content beta agent",
+      "owner": "Local OpenCode qwen3.6:27b gallery content agent (supervised)",
       "paths": ["apps/lab/src/GalleryApp.tsx"],
-      "status": "rejected"
+      "status": "completed"
     },
     {
-      "packet": "CG-M1-03.3 through CG-M1-03.6",
-      "owner": "Local gallery beta agents, sequentially assigned after prior acceptance",
-      "paths": ["individually declared in docs/features/control-gallery/work-packets/m1.md"],
-      "status": "planned"
+      "packet": "CG-M1-03.3",
+      "owner": "Local OpenCode qwen3.6:27b gallery navigation agent (supervised)",
+      "paths": ["apps/lab/src/FamilyNavigation.tsx"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M1-03.4",
+      "owner": "Local OpenCode qwen3.6:27b motion-setting agent (supervised)",
+      "paths": ["apps/lab/src/MotionSetting.tsx"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M1-03.5",
+      "owner": "Local OpenCode qwen3.6:27b gallery-layout agent (supervised)",
+      "paths": ["apps/lab/src/GalleryLayout.tsx", "apps/lab/src/styles.css"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M1-03.6",
+      "owner": "Local OpenCode qwen3.6:27b example-frame agent (supervised)",
+      "paths": ["apps/lab/src/ExampleFrame.tsx"],
+      "status": "completed"
     },
     {
       "packet": "CG-M1-03.7",
       "owner": "Codex coordinator",
       "paths": ["apps/lab/src/GalleryApp.tsx"],
-      "status": "planned"
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M1-04",
+      "owner": "Local OpenCode qwen3.6:27b browser-specification agent (supervised)",
+      "paths": ["tests/**", "apps/lab/**/*.spec.*"],
+      "status": "completed"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
