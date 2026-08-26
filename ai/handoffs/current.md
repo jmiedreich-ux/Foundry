@@ -24,6 +24,7 @@
 - An owner-authorized throwaway Qwen 3.6 CG-M1-03.4 capability test began at `dd830b2`. It created only `MotionSetting.tsx`, passed the requested production build, and committed `b4d4afd`, but the coordinator's `npm exec tsc -- --noEmit` failed because it used `aria-pressed={String(reduced)}` instead of a type-correct ARIA value. The source cleanup logic preserves a pre-existing `document.body.reduce-motion` class, but the component cannot be accepted. Any supervised retry must run TypeScript checking as well as the production build; no M1 task status changed.
 - The owner authorized completion of M1. CG-M1-03.2 is now assigned to a supervised local OpenCode Qwen 3.6 agent on the M1 shell branch. Its acceptance gates are the declared path boundary, `npm exec tsc -- --noEmit`, `npm run build`, the required commit, and coordinator source review. CG-M1-03.3 remains blocked until that retry is accepted.
 - CG-M1-03.1 was restored onto the M1 shell branch from its accepted isolated commits (`f087cd9`, `5c5aa30`) after the coordinator found it absent from `main`; TypeScript and build passed. The supervised Qwen 3.6 CG-M1-03.2 retry then committed `c868457`, changing only `GalleryApp.tsx`. Coordinator verification passed the path boundary, TypeScript, `npm run check`, production build, single-root invariant, and content boundaries. CG-M1-03.3 is assigned next; CG-M1-03.4 remains blocked until it is accepted.
+- The supervised Qwen 3.6 CG-M1-03.3 packet committed `c4d8617`, changing only `FamilyNavigation.tsx`. Coordinator verification confirmed a labelled native-link navigation landmark with the five exact section targets, and passed the path boundary, TypeScript, static, and production-build gates. CG-M1-03.4 is now assigned; its prior rejected capability-test defect (`aria-pressed={String(reduced)}`) must be avoided.
 
 ## Deliberately deferred
 
@@ -32,4 +33,4 @@
 
 ## Exact next action
 
-Complete and verify the supervised Qwen 3.6 CG-M1-03.3 navigation packet. Do not dispatch CG-M1-03.4 until it is accepted.
+Complete and verify the supervised Qwen 3.6 CG-M1-03.4 motion-setting packet. Do not dispatch CG-M1-03.5 until it is accepted.
