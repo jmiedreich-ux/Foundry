@@ -13,6 +13,7 @@
 - `docs/features/control-gallery/assignments.md` marks the complete advance allocation: 16 bounded local-agent packets and 5 coordinator/specialist packets.
 - Every Control Gallery milestone now requires an actual agent-routing performance report, including the model used, elapsed time, rework, review, verification, and `UNTESTED` results.
 - GitHub issues #3–#7 now hold the approved packet checklists for Control Gallery milestones M1–M5; `docs/features/control-gallery/workstream.json` links each milestone to its issue.
+- CG-M1-01 is complete: Node 22.23.2 and npm 10.9.8 ran `npm install`, `npm run check`, `npm run build`, and a real Chromium gallery smoke successfully. The issue #3 task is checked; the first durable browser specification remains CG-M1-04 work.
 
 ## Deliberately deferred
 
@@ -21,4 +22,4 @@
 
 ## Exact next action
 
-Claim and execute `CG-M1-01`, then dispatch the non-overlapping M1 foundation and gallery packets under the ownership model.
+Claim and execute CG-M1-02: the coordinator-owned Control Base, default skin, Skin/Locale providers, English label catalog, registry, and shared example-state contracts.

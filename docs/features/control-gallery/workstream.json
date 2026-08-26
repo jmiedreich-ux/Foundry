@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "in_progress",
-  "position": "M1 is active. CG-M1-01 is claimed by the coordinator; the approved Control Base, skin, locale, catalog, and post-Core roadmap are recorded. M1-02 through M5 are not started.",
-  "next": "Execute CG-M1-01: establish and verify the reproducible React/TypeScript install, development, build, and real-browser-test commands.",
+  "position": "M1 is active. CG-M1-01 completed: Node 22.23.2 installed for this agent session; clean install, production build, and real Chromium gallery smoke passed. CG-M1-02 is next; M1-03 through M5 are not started.",
+  "next": "Claim and execute CG-M1-02: implement the coordinator-owned Control Base, default skin, Skin/Locale providers, English label catalog, registry, and example-state contracts.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" }

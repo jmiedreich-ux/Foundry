@@ -6,8 +6,8 @@ Use `PASS`, `N/A (reason)`, or `UNTESTED`. Do not leave cells blank at milestone
 
 | Check | Status | Evidence / reason |
 | --- | --- | --- |
-| Clean install and development command | UNTESTED | CG-M1-01 owns workspace setup. |
-| Production build | UNTESTED | CG-M1-01 owns workspace setup. |
+| Clean install and development command | PASS | CG-M1-01: Node 22.23.2 / npm 10.9.8; `npm install` and `npm run dev` passed. |
+| Production build | PASS | CG-M1-01: `npm run build` passed. |
 | Direct gallery load | UNTESTED | CG-M1-04 browser specification. |
 | Family navigation and visible focus | UNTESTED | CG-M1-03/04. |
 | Reduced-motion path | UNTESTED | CG-M1-03/04. |
