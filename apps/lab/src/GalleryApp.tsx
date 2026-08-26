@@ -5,7 +5,7 @@ export function GalleryApp() {
   return (
     <SkinProvider>
       <LocaleProvider>
-        <div id="root" />
+        <main aria-label="Gallery application" />
       </LocaleProvider>
     </SkinProvider>
   );
