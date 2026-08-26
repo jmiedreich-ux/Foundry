@@ -16,7 +16,8 @@
     "check": "node --check apps/lab/src/main.js",
     "dev": "npm run dev --workspace @foundry/lab",
     "build": "npm run build --workspace @foundry/lab",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "test:foundation": "vitest run packages/react/src/foundation"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",
@@ -25,6 +26,7 @@
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.2",
     "typescript": "^5.9.2",
-    "vite": "^7.1.5"
+    "vite": "^7.1.5",
+    "vitest": "^3.2.4"
   }
 }
