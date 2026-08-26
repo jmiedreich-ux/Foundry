@@ -6,7 +6,13 @@ This is the complete planned labor allocation. **Local** means a bounded packet 
 | --- | --- | --- | --- | --- | --- |
 | M1 | CG-M1-01 | Coordinator | Premium cloud coordinator | No | Workspace, package manifests, lockfile, build/test configuration. |
 | M1 | CG-M1-02 | Coordinator / foundation specialist | Premium cloud coordinator | No | Shared Control Base, tokens, default skin, providers, English catalog, registry, and example-state contracts. |
-| M1 | CG-M1-03 | Gallery agent | Local 24B–35B coding agent | Yes | React gallery shell and reusable example frame. |
+| M1 | CG-M1-03.1 | Gallery bootstrap agent | Local 24B–35B coding agent | Yes | React entry point and provider-backed gallery application render. |
+| M1 | CG-M1-03.2 | Gallery content agent | Local 9B–24B coding agent | Yes | Gallery title, description, and planned control-family sections. |
+| M1 | CG-M1-03.3 | Gallery navigation agent | Local 9B–24B coding agent | Yes | Keyboard-reachable family navigation only. |
+| M1 | CG-M1-03.4 | Motion-setting agent | Local 9B–24B coding agent | Yes | Reduced-motion setting only. |
+| M1 | CG-M1-03.5 | Gallery-layout agent | Local 24B–35B coding agent | Yes | Narrow/wide layout and visible keyboard focus only. |
+| M1 | CG-M1-03.6 | Example-frame agent | Local 9B–24B coding agent | Yes | Reusable empty example frame only. |
+| M1 | CG-M1-03.7 | Coordinator | Premium cloud coordinator | No | Assemble accepted M1-03 sub-packets and prepare test handoff. |
 | M1 | CG-M1-04 | Test agent | Local 9B–24B coding agent | Yes | Real-browser smoke specifications. |
 | M2 | CG-M2-01 | Coordinator / foundation specialist | Premium cloud coordinator | No | Shared Field, Group, and validation contracts. |
 | M2 | CG-M2-02 | Input-controls agent | Local 24B–35B coding agent | Yes | TextField and Select only. |
@@ -28,7 +34,7 @@ This is the complete planned labor allocation. **Local** means a bounded packet 
 
 ## Local-agent total
 
-**15 of 21 packets** are intended for local agents. The remaining six stay with the coordinator or a stronger specialist because they own shared contracts, project configuration, cross-control focus/layer rules, or final acceptance.
+**21 of 27 packets** are intended for local agents. The remaining six stay with the coordinator or a stronger specialist because they own shared contracts, project configuration, cross-control focus/layer rules, integration, or final acceptance.
 
 ## Execution limits
 
@@ -36,3 +42,4 @@ This is the complete planned labor allocation. **Local** means a bounded packet 
 - Within a milestone, local packets may run concurrently only after dependencies complete and only when their owned paths do not overlap.
 - Builds, browser tests, integration, review, tracker/status updates, and handoff are serialized by the coordinator.
 - The intended agent type is a routing hypothesis. The performance report records the actual model/agent used and informs later owner-approved routing changes.
+- The CG-M1-03 beta sub-packets run sequentially on one milestone branch. The coordinator accepts or rejects each returned diff before dispatching its successor. One independent review assesses the completed integrated M1-03 diff before it merges; a commit after that review requires a new review.

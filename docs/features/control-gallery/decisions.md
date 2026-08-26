@@ -32,6 +32,7 @@
 2. Shared contracts, package configuration, test harnesses, status, tracker, and handoff are coordinator-owned.
 3. Work is divided into bounded, non-overlapping packets. Every contributor follows `AGENTS.md`; packets do not create an exception to it.
 4. Browser verification and integration checks are serialized after implementation packets complete.
+5. After the initial M1-03 local-agent attempt returned no acceptable change, CG-M1-03 is divided into sequential, exact-path sub-packets. The coordinator accepts each returned diff before dispatching its successor. The completed integrated M1-03 diff receives one independent review before merge; a commit after that review requires a new review.
 
 ## Explicit non-goals
 

@@ -15,7 +15,7 @@
 - GitHub issues #3–#7 now hold the approved packet checklists for Control Gallery milestones M1–M5; `docs/features/control-gallery/workstream.json` links each milestone to its issue.
 - CG-M1-01 is complete: Node 22.23.2 and npm 10.9.8 ran `npm install`, `npm run check`, `npm run build`, and a real Chromium gallery smoke successfully. The issue #3 task is checked; the first durable browser specification remains CG-M1-04 work.
 - CG-M1-02 is complete: PR #13 merged at `57bc1d7` after an independent final review approved `bd73c6f`. The coordinator reran `npm run test:foundation` (7/7), `npm exec tsc -- --noEmit`, `npm run check`, `npm run build`, and `git diff --check`; all passed. Browser specifications remain CG-M1-04 work.
-- CG-M1-03 is claimed for the local OpenCode 1.18.21 agent using Ollama 0.32.15 and `qwen3-coder:30b` on the R9700. Ollama must run with `OLLAMA_MODELS=/home/jeremy/aibox-setup/ollama-models`; the default `~/.ollama/models` store is empty.
+- The original CG-M1-03 local OpenCode 1.18.21 / Ollama 0.32.15 `qwen3-coder:30b` attempt was stopped without an accepted change: its first attempt edited forbidden package configuration, and its single rework made no implementation commit. Its isolated worktrees remain unmerged as evidence. The M1-03 plan is now sequential sub-packets; only CG-M1-03.1 is active. Ollama must run with `OLLAMA_MODELS=/home/jeremy/aibox-setup/ollama-models`; the default `~/.ollama/models` store is empty.
 
 ## Deliberately deferred
 
@@ -24,4 +24,4 @@
 
 ## Exact next action
 
-Execute CG-M1-03: the local-agent-owned React gallery shell and reusable example frame, then collect its unedited evidence and perform serialized coordinator verification.
+Execute CG-M1-03.1 only: the local-agent-owned React bootstrap. Collect its unedited evidence and perform coordinator verification before dispatching CG-M1-03.2.
