@@ -8,6 +8,10 @@ The Control Gallery is Foundry's living acceptance surface. It demonstrates real
 
 `decisions.md` is the approved authority for this feature. This package and [`AGENTS.md`](../../../AGENTS.md) govern all milestone work.
 
+## Exploratory visual reference
+
+[Default skin reference](assets/default-skin-reference.png) is an exploratory visual example for the future default skin. It does not approve token values, replace the executable gallery, or expand the M1 scope; approved design decisions remain in `decisions.md`.
+
 ## Delivery sequence
 
 | Milestone | Outcome | Status |
