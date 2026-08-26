@@ -22,7 +22,7 @@
       "packet": "CG-M1-03.2",
       "owner": "Local OpenCode qwen3-coder:30b gallery content beta agent",
       "paths": ["apps/lab/src/GalleryApp.tsx"],
-      "status": "in_progress"
+      "status": "rejected"
     },
     {
       "packet": "CG-M1-03.3 through CG-M1-03.6",
