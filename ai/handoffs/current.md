@@ -18,6 +18,7 @@
 - The original CG-M1-03 local OpenCode 1.18.21 / Ollama 0.32.15 `qwen3-coder:30b` attempt was stopped without an accepted change: its first attempt edited forbidden package configuration, and its single rework made no implementation commit. Its isolated worktrees remain unmerged as evidence. The M1-03 plan is now sequential sub-packets; only CG-M1-03.1 is active. Ollama must run with `OLLAMA_MODELS=/home/jeremy/aibox-setup/ollama-models`; the default `~/.ollama/models` store is empty.
 - CG-M1-03.1 beta result: the same local agent committed a two-file React bootstrap (`e5e96d9`), which the coordinator rejected for a nested duplicate `#root`; one single-file correction (`ed492c0`) replaced it with an accessible `main`. The coordinator reran `npm run check`, `npm run build`, `git diff --check`, and the two-file boundary check; all passed. Browser smoke is `UNTESTED` because CG-M1-04 owns it. CG-M1-03.2 is the sole active sub-packet.
 - CG-M1-03.2 beta result: the same local agent produced the requested one-file family-section change and ran a passing build, but did not make the required commit. Its one permitted handoff-only correction stopped after a pseudo-tool call without running the check or committing. The uncommitted in-scope diff remains in `/home/jeremy/Development/Foundry-m1-03-1-beta` as evidence; it is not accepted. No later M1-03 sub-packet is active.
+- A normalized CG-M1-03.1 comparison ran every installed local model from `f59c1f9` with the same prompt and preinstalled dependencies. Devstral 24B stopped without a change; GPT-OSS 20B built and committed but omitted the rendered providers; Qwen 3.5 9B exceeded scope and did not hand off; Qwen3-Coder 30B built and committed but rendered a duplicate `#root`. The full evidence and timings are in `docs/features/control-gallery/performance-reports.md`. No model passed first-pass acceptance.
 
 ## Deliberately deferred
 
@@ -26,4 +27,4 @@
 
 ## Exact next action
 
-Obtain owner direction: retry CG-M1-03.2 with a different local model from the accepted CG-M1-03.1 branch, or authorize coordinator takeover of the remaining M1-03 work. Do not dispatch CG-M1-03.3.
+Obtain owner direction: authorize coordinator takeover of the remaining M1-03 work, or approve an enforcement wrapper before any local retry. Do not dispatch CG-M1-03.3.
