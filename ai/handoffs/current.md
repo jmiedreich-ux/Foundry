@@ -20,6 +20,7 @@
 - CG-M1-03.2 beta result: the same local agent produced the requested one-file family-section change and ran a passing build, but did not make the required commit. Its one permitted handoff-only correction stopped after a pseudo-tool call without running the check or committing. The uncommitted in-scope diff remains in `/home/jeremy/Development/Foundry-m1-03-1-beta` as evidence; it is not accepted. No later M1-03 sub-packet is active.
 - A normalized CG-M1-03.1 comparison ran every installed local model from `f59c1f9` with the same prompt and preinstalled dependencies. Devstral 24B stopped without a change; GPT-OSS 20B built and committed but omitted the rendered providers; Qwen 3.5 9B exceeded scope and did not hand off; Qwen3-Coder 30B built and committed but rendered a duplicate `#root`. The full evidence and timings are in `docs/features/control-gallery/performance-reports.md`. No model passed first-pass acceptance.
 - Qwen3-Coder 30B was rerun from the same starting commit after manual Ollama launch with `OLLAMA_CONTEXT_LENGTH=65536`; the captured `ollama ps` output in `performance-reports.md` confirms live 65,536 context. It completed in 77.3 s but deleted allowed `main.js`, created forbidden `main.tsx`, skipped the requested build, and rendered a duplicate `#root`. This single 65K rerun did not show a reliability improvement; it does not establish context length as the cause of the scope failure. The manual server was stopped; no `ollama.service` exists to persist the setting.
+- Qwen 3.6 27B was added to OpenCode's local Ollama model registry and tested from `f59c1f9` with Ollama manually running at a confirmed 65,536 context. It passed the unchanged original CG-M1-03.1 prompt in 88.5 s (`dd830b2`) and the explicit no-duplicate-`#root` variant in 99.4 s (`d8a9898`); the latter corrected one JSX-in-`.js` build error before its passing build and commit. The first explicit-variant setup attempt is excluded because dependencies were prepared in the wrong worktree; the agent stopped without installing them or committing. This evidence supports only an owner-approved supervised CG-M1-03.2 retry, not an automatic routing change.
 
 ## Deliberately deferred
 
@@ -28,4 +29,4 @@
 
 ## Exact next action
 
-Obtain owner direction: authorize coordinator takeover of the remaining M1-03 work, or approve an enforcement wrapper before any local retry. Do not dispatch CG-M1-03.3.
+Obtain owner direction: authorize coordinator takeover of the remaining M1-03 work, approve an enforcement wrapper, or approve a supervised Qwen 3.6 27B retry for CG-M1-03.2. Do not dispatch CG-M1-03.3.
