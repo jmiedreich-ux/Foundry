@@ -5,6 +5,12 @@
       "owner": "Codex coordinator",
       "paths": ["package.json", "lockfile", "workspace configuration", "packages/**/package.json", "test configuration"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M1-02",
+      "owner": "Codex coordinator",
+      "paths": ["packages/tokens/**", "packages/react/src/foundation/**"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
