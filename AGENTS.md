@@ -20,6 +20,7 @@ Read architecture, component, or operations material only when the task touches 
 - Tests are written with implementation, not after it.
 - One milestone at a time: claim it, create one branch and PR, verify locally, obtain independent review, merge, then synchronize records.
 - Keep changes bounded. Do not refactor unrelated behavior or start future-milestone work.
+- **A packet's assignment belongs on its own checklist line, in the milestone's linked GitHub issue** — not only in `assignments.md` or the tracker. Atlas (the always-current site) reads a milestone's tasks directly from that issue's body and shows a task's owner from a trailing tag on the same line: `- [ ] task text — role-or-name` (an em dash, en dash, or plain hyphen, with a space before it). A task with no trailing tag shows as "Unassigned" on the site even when `assignments.md` names someone — the tag is the only thing Atlas actually reads. A task line may also lead with a stable id before a middle dot (`- [ ] CG-M1-01 · task text — role`), so a specific task can be referred to directly once one exists.
 
 ## How every task is performed
 
