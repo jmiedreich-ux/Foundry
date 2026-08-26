@@ -58,7 +58,7 @@
       "packet": "CG-M1-04",
       "owner": "Local OpenCode qwen3.6:27b browser-specification agent (supervised)",
       "paths": ["tests/**", "apps/lab/**/*.spec.*"],
-      "status": "in_progress"
+      "status": "completed"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

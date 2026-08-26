@@ -29,6 +29,7 @@
 - The supervised Qwen 3.6 CG-M1-03.5 first commit retained literal reduced-motion durations. Its one permitted correction amended it to `ba3a6b5`, changing only `GalleryLayout.tsx` and `styles.css`; coordinator verification confirmed the structural layout, token-based visual values, visible focus, responsive source rules, reduced motion without content removal, and path-boundary, TypeScript, static, and production-build passes. CG-M1-03.6 is now assigned.
 - The supervised Qwen 3.6 CG-M1-03.6 first commit used invalid `legend` contents. Its one permitted correction amended it to `a5a97e9`, changing only `ExampleFrame.tsx`; coordinator verification confirmed a valid labelled section, generated IDs, required title/description props, zero/one/many child support, and path-boundary, TypeScript, static, and production-build passes. Coordinator packet CG-M1-03.7 is now integrating the accepted pieces.
 - Coordinator CG-M1-03.7 committed `a461a0b`, integrating the accepted layout, navigation, motion setting, and empty example frames into `GalleryApp.tsx`. Four local-component imports initially used disallowed `.tsx` suffixes; the coordinator corrected those within the owned file. TypeScript, static, and production build passed. Real Chromium screenshots at 1280×720 and 320×720 passed visual inspection with no horizontal overflow or clipping. CG-M1-04 is now assigned for durable browser specifications.
+- The supervised Qwen 3.6 CG-M1-04 first commit programmatically focused the motion button instead of proving Tab traversal. Its one permitted correction amended it to `67b860c`; coordinator reran the complete M1 gate: foundation 7/7, TypeScript, static check, production build, and Chromium 5/5 all PASS. Issue #3 has every packet checked. The M1 performance report and done ledger are complete except for independent review and owner acceptance, which are explicitly UNTESTED.
 
 ## Deliberately deferred
 
@@ -37,4 +38,4 @@
 
 ## Exact next action
 
-Complete and verify the supervised Qwen 3.6 CG-M1-04 browser specifications, then run complete M1 verification and independent review.
+Obtain an independent review of the M1 shell branch, merge if approved, then obtain owner acceptance before starting M2.
