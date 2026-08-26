@@ -31,6 +31,7 @@
 - Coordinator CG-M1-03.7 committed `a461a0b`, integrating the accepted layout, navigation, motion setting, and empty example frames into `GalleryApp.tsx`. Four local-component imports initially used disallowed `.tsx` suffixes; the coordinator corrected those within the owned file. TypeScript, static, and production build passed. Real Chromium screenshots at 1280×720 and 320×720 passed visual inspection with no horizontal overflow or clipping. CG-M1-04 is now assigned for durable browser specifications.
 - The supervised Qwen 3.6 CG-M1-04 first commit programmatically focused the motion button instead of proving Tab traversal. Its one permitted correction amended it to `67b860c`; coordinator reran the complete M1 gate: foundation 7/7, TypeScript, static check, production build, and Chromium 5/5 all PASS. Issue #3 has every packet checked.
 - Independent review of M1 head `d3bd907` returned `REQUEST_CHANGES`: the keyboard-focus test's generic non-`none` outline assertion could pass using a browser user-agent outline instead of Foundry's focus treatment. Coordinator correction `934122f` asserts the default skin's solid 3px `#93c5fd` outline and 4px offset after real Tab traversal. The focused check and complete M1 gate (foundation 7/7, TypeScript, static check, build, Chromium 5/5, and diff check) passed. Renewed independent review of `feeb8a4` confirmed the behavioral correction and all gates, but returned `REQUEST_CHANGES` because controlled records named the prior code commit instead of the actual PR head. This record correction uses the stable phrase “current PR #18 head”; final independent review is required after its commit. Owner acceptance remains UNTESTED.
+- Final independent review returned `APPROVE` on `99132e9`. PR #18 merged M1 into `main` at `6f45394`; Issue #3 remains open with all ten task boxes checked until owner acceptance. M1 has no remaining implementation, verification, or review work. Owner acceptance is explicitly UNTESTED, and M2 has not started.
 
 ## Deliberately deferred
 
@@ -39,4 +40,4 @@
 
 ## Exact next action
 
-Obtain final independent review of the current head of M1 PR #18; if approved, merge, then obtain owner acceptance before starting M2.
+Obtain owner acceptance of merged M1, then mark M1 closed before starting M2.

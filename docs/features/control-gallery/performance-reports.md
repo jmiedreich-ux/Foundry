@@ -86,7 +86,7 @@ qwen3-coder:30b    06c1097efce0    25 GB    100% GPU     65536      4 minutes fr
 
 **Routing consequence:** A production local-agent gate for new or unintegrated TypeScript files must include `npm exec tsc -- --noEmit`, not only a production build. This is an evidence-backed addition to the supervised-retry gate; it does not alter M1 status or authorize CG-M1-03.4.
 
-### M1 completion performance report — pending independent review
+### M1 completion performance report — merged, owner acceptance pending
 
 | Packet | Assigned role | Actual agent/model | Local or cloud | Elapsed time | Review rounds | Rework count | Verification result | UNTESTED count | Outcome |
 | --- | --- | --- | --- | ---: | ---: | ---: | --- | ---: | --- |
@@ -99,7 +99,7 @@ qwen3-coder:30b    06c1097efce0    25 GB    100% GPU     65536      4 minutes fr
 | CG-M1-03.5 | gallery layout | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | Local | 166.4 s | 0 | 1 | First draft retained literal reduced-motion durations; corrected two-file result passed token, TypeScript, static, build, and screenshot checks. | 0 | accepted |
 | CG-M1-03.6 | example frame | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | Local | 92.5 s | 0 | 1 | First draft used invalid legend contents; corrected one-file result passed semantic source review, TypeScript, static check, and build. | 0 | accepted |
 | CG-M1-03.7 | coordinator integration | Codex coordinator | Cloud | Not separately captured | 0 | 1 | Integrated all accepted parts; corrected local `.tsx` import suffixes; TypeScript, static check, build, and 1280×720/320×720 Chromium screenshots PASS. | 0 | accepted |
-| CG-M1-04 | browser specifications | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | Local | 161.0 s | 2 | 2 | First test programmatically focused the button; the returned test then used a generic outline assertion. A coordinator correction now asserts Foundry's exact solid 3px default-skin focus ring and 4px offset; the full TypeScript, foundation, static, build, and five-check Chromium gate passed. | 0 | accepted |
+| CG-M1-04 | browser specifications | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | Local | 161.0 s | 3 | 2 | First test programmatically focused the button; the returned test then used a generic outline assertion. A coordinator correction now asserts Foundry's exact solid 3px default-skin focus ring and 4px offset; the full TypeScript, foundation, static, build, and five-check Chromium gate passed. | 0 | accepted |
 
 | Measure | Result |
 | --- | --- |
@@ -107,12 +107,12 @@ qwen3-coder:30b    06c1097efce0    25 GB    100% GPU     65536      4 minutes fr
 | Packets attempted / accepted / escalated | 10 / 10 / 0 |
 | Local completion share | 7 of 10 packets (70%) |
 | Total elapsed time | 702.0 s measured local execution; historical coordinator and CG-M1-03.1 timings were not captured. |
-| Total review rounds and rework count | Two independent review rounds returned `REQUEST_CHANGES`: `d3bd907` needed a focus-contract assertion, then `feeb8a4` needed its controlled-record references corrected to the current PR head. The current PR #18 head awaits final review. Eight total rework rounds: five local packet-return corrections (including the historical bootstrap correction) and three coordinator corrections. |
+| Total review rounds and rework count | Three independent review rounds: `d3bd907` requested a focus-contract assertion, `feeb8a4` requested controlled-record head-reference correction, and `99132e9` received `APPROVE`. Eight total rework rounds: five local packet-return corrections (including the historical bootstrap correction) and three coordinator corrections. |
 | Build and browser-gate result | PASS: foundation 7/7, TypeScript, static check, build, and Chromium 5/5. |
-| Independent-review decision and reviewed commit | `REQUEST_CHANGES` on `d3bd907`: the browser focus test accepted a user-agent outline. A renewed review of `feeb8a4` confirmed the behavior fix and gates but requested a controlled-record head-reference correction. Final review of the current PR #18 head is UNTESTED. |
+| Independent-review decision and reviewed commit | `APPROVE` on `99132e9` after the two recorded request-change rounds. PR #18 merged to `main` at `6f45394`. |
 | Owner-acceptance result | UNTESTED — requested after reviewed merge. |
-| Total `UNTESTED` items | 2: independent review and owner acceptance. |
-| Post-merge QA escapes | N/A — not merged. |
+| Total `UNTESTED` items | 1: owner acceptance. |
+| Post-merge QA escapes | N/A — no escape reported at merge. |
 | Routing recommendation | Keep Qwen 3.6 only under the measured path-boundary, TypeScript, build, required-commit, coordinator-source-review, and one-correction gates. |
 
 ## M2
