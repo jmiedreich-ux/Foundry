@@ -22,6 +22,7 @@
 - Qwen3-Coder 30B was rerun from the same starting commit after manual Ollama launch with `OLLAMA_CONTEXT_LENGTH=65536`; the captured `ollama ps` output in `performance-reports.md` confirms live 65,536 context. It completed in 77.3 s but deleted allowed `main.js`, created forbidden `main.tsx`, skipped the requested build, and rendered a duplicate `#root`. This single 65K rerun did not show a reliability improvement; it does not establish context length as the cause of the scope failure. The manual server was stopped; no `ollama.service` exists to persist the setting.
 - Qwen 3.6 27B was added to OpenCode's local Ollama model registry and tested from `f59c1f9` with Ollama manually running at a confirmed 65,536 context. It passed the unchanged original CG-M1-03.1 prompt in 88.5 s (`dd830b2`) and the explicit no-duplicate-`#root` variant in 99.4 s (`d8a9898`); the latter corrected one JSX-in-`.js` build error before its passing build and commit. The first explicit-variant setup attempt is excluded because dependencies were prepared in the wrong worktree; the agent stopped without installing them or committing. This evidence supports only an owner-approved supervised CG-M1-03.2 retry, not an automatic routing change.
 - An owner-authorized throwaway Qwen 3.6 CG-M1-03.4 capability test began at `dd830b2`. It created only `MotionSetting.tsx`, passed the requested production build, and committed `b4d4afd`, but the coordinator's `npm exec tsc -- --noEmit` failed because it used `aria-pressed={String(reduced)}` instead of a type-correct ARIA value. The source cleanup logic preserves a pre-existing `document.body.reduce-motion` class, but the component cannot be accepted. Any supervised retry must run TypeScript checking as well as the production build; no M1 task status changed.
+- The owner authorized completion of M1. CG-M1-03.2 is now assigned to a supervised local OpenCode Qwen 3.6 agent on the M1 shell branch. Its acceptance gates are the declared path boundary, `npm exec tsc -- --noEmit`, `npm run build`, the required commit, and coordinator source review. CG-M1-03.3 remains blocked until that retry is accepted.
 
 ## Deliberately deferred
 
@@ -30,4 +31,4 @@
 
 ## Exact next action
 
-Obtain owner direction: authorize coordinator takeover of the remaining M1-03 work, approve an enforcement wrapper, or approve a supervised Qwen 3.6 27B retry for CG-M1-03.2 with path-boundary, TypeScript, build, and commit gates. Do not dispatch CG-M1-03.3.
+Complete and verify the supervised Qwen 3.6 CG-M1-03.2 retry. Do not dispatch CG-M1-03.3 until it is accepted.
