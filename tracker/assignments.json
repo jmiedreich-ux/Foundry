@@ -46,13 +46,13 @@
       "packet": "CG-M1-03.6",
       "owner": "Local OpenCode qwen3.6:27b example-frame agent (supervised)",
       "paths": ["apps/lab/src/ExampleFrame.tsx"],
-      "status": "in_progress"
+      "status": "completed"
     },
     {
       "packet": "CG-M1-03.7",
       "owner": "Codex coordinator",
       "paths": ["apps/lab/src/GalleryApp.tsx"],
-      "status": "planned"
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
