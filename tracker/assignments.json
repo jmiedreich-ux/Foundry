@@ -16,10 +16,16 @@
       "packet": "CG-M1-03.1",
       "owner": "Local OpenCode qwen3-coder:30b gallery bootstrap beta agent",
       "paths": ["apps/lab/src/main.js", "apps/lab/src/GalleryApp.tsx"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M1-03.2",
+      "owner": "Local OpenCode qwen3-coder:30b gallery content beta agent",
+      "paths": ["apps/lab/src/GalleryApp.tsx"],
       "status": "in_progress"
     },
     {
-      "packet": "CG-M1-03.2 through CG-M1-03.6",
+      "packet": "CG-M1-03.3 through CG-M1-03.6",
       "owner": "Local gallery beta agents, sequentially assigned after prior acceptance",
       "paths": ["individually declared in docs/features/control-gallery/work-packets/m1.md"],
       "status": "planned"
