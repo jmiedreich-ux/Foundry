@@ -26,6 +26,7 @@
 - CG-M1-03.1 was restored onto the M1 shell branch from its accepted isolated commits (`f087cd9`, `5c5aa30`) after the coordinator found it absent from `main`; TypeScript and build passed. The supervised Qwen 3.6 CG-M1-03.2 retry then committed `c868457`, changing only `GalleryApp.tsx`. Coordinator verification passed the path boundary, TypeScript, `npm run check`, production build, single-root invariant, and content boundaries. CG-M1-03.3 is assigned next; CG-M1-03.4 remains blocked until it is accepted.
 - The supervised Qwen 3.6 CG-M1-03.3 packet committed `c4d8617`, changing only `FamilyNavigation.tsx`. Coordinator verification confirmed a labelled native-link navigation landmark with the five exact section targets, and passed the path boundary, TypeScript, static, and production-build gates. CG-M1-03.4 is now assigned; its prior rejected capability-test defect (`aria-pressed={String(reduced)}`) must be avoided.
 - The supervised Qwen 3.6 CG-M1-03.4 first attempt left an uncommitted component and removed an initially present body motion class. Its one permitted correction committed `bfd74a0`, changing only `MotionSetting.tsx`; coordinator verification confirmed type-correct boolean `aria-pressed`, an effective-state label, body-class toggling, preservation/restoration of original class presence, and path-boundary, TypeScript, static, and production-build passes. CG-M1-03.5 is now assigned.
+- The supervised Qwen 3.6 CG-M1-03.5 first commit retained literal reduced-motion durations. Its one permitted correction amended it to `ba3a6b5`, changing only `GalleryLayout.tsx` and `styles.css`; coordinator verification confirmed the structural layout, token-based visual values, visible focus, responsive source rules, reduced motion without content removal, and path-boundary, TypeScript, static, and production-build passes. CG-M1-03.6 is now assigned.
 
 ## Deliberately deferred
 
@@ -34,4 +35,4 @@
 
 ## Exact next action
 
-Complete and verify the supervised Qwen 3.6 CG-M1-03.5 responsive-layout packet. Do not dispatch CG-M1-03.6 until it is accepted.
+Complete and verify the supervised Qwen 3.6 CG-M1-03.6 reusable-example-frame packet. Do not begin CG-M1-03.7 until it is accepted.

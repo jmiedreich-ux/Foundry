@@ -40,13 +40,13 @@
       "packet": "CG-M1-03.5",
       "owner": "Local OpenCode qwen3.6:27b gallery-layout agent (supervised)",
       "paths": ["apps/lab/src/GalleryLayout.tsx", "apps/lab/src/styles.css"],
-      "status": "in_progress"
+      "status": "completed"
     },
     {
       "packet": "CG-M1-03.6",
-      "owner": "Local gallery beta agent after CG-M1-03.5 acceptance",
+      "owner": "Local OpenCode qwen3.6:27b example-frame agent (supervised)",
       "paths": ["apps/lab/src/ExampleFrame.tsx"],
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "packet": "CG-M1-03.7",
