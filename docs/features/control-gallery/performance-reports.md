@@ -46,13 +46,18 @@ M1 remains active. This is a completed local-model comparison, not the M1 milest
 
 ### Qwen3-Coder 30B 65K-context rerun — 2026-08-26
 
-**Protocol:** The same CG-M1-03.1 prompt and `f59c1f9` starting commit as the comparison above. Ollama was manually launched with `OLLAMA_CONTEXT_LENGTH=65536`; while the agent ran, `ollama ps` confirmed the model `CONTEXT` column was `65536`.
+**Protocol:** The same CG-M1-03.1 prompt and `f59c1f9` starting commit as the comparison above. Ollama was manually launched with `OLLAMA_CONTEXT_LENGTH=65536`. During the agent run, the coordinator captured this `ollama ps` result:
+
+```text
+NAME               ID              SIZE     PROCESSOR    CONTEXT    UNTIL
+qwen3-coder:30b    06c1097efce0    25 GB    100% GPU     65536      4 minutes from now
+```
 
 | Model | Context | Elapsed time | Files changed | Build / commit | Coordinator result | Outcome |
 | --- | ---: | ---: | --- | --- | --- | --- |
 | Qwen3-Coder 30B | 65,536 | 77.3 s | three paths: allowed `GalleryApp.tsx`, deleted `main.js`, forbidden `main.tsx` | Not run / requested commit `096369e` | Exceeded the exact file boundary and rendered a duplicate `#root` again. | stopped |
 
-**Comparison:** The 32K run took 91.8 s, changed only the allowed paths, and passed the build but still rendered a duplicate `#root`. The verified 65K run was faster but regressed on scope and did not run the build. Raising context length alone did not improve task reliability.
+**Comparison:** The 32K run took 91.8 s, changed only the allowed paths, and passed the build but still rendered a duplicate `#root`. The 65K run was faster but exceeded scope and did not run the build. This single rerun did not show a reliability improvement; it does not establish context length as the cause of the scope failure.
 
 ## M2
 
