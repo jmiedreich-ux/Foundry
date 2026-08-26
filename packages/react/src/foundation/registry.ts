@@ -9,6 +9,9 @@ export interface ControlRegistryEntry {
 
 export function defineControl(entry: ControlRegistryEntry): ControlRegistryEntry {
   if (!entry.name.trim()) throw new Error('Foundry controls require a stable name.');
+  if (!controlCatalogs.includes(entry.catalog)) {
+    throw new Error(`Foundry controls require a declared catalog; received "${entry.catalog}".`);
+  }
   return entry;
 }
 

@@ -30,6 +30,7 @@ describe('Control Base', () => {
 
   it('requires a stable registry name', () => {
     expect(() => defineControl({ name: ' ', catalog: 'core', states: [] })).toThrow('stable name');
+    expect(() => defineControl({ name: 'Button', catalog: 'unknown' as never, states: [] })).toThrow('declared catalog');
     expect(defineControl({ name: 'Button', catalog: 'core', states: ['disabled'] })).toMatchObject({ name: 'Button' });
   });
 });
