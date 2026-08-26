@@ -1,0 +1,20 @@
+:root,
+[data-foundry-skin="default"] {
+  --foundry-color-canvas: #f8fafc;
+  --foundry-color-surface: #ffffff;
+  --foundry-color-text: #182230;
+  --foundry-color-muted: #526176;
+  --foundry-color-border: #cbd5e1;
+  --foundry-color-action: #2563eb;
+  --foundry-color-danger: #dc2626;
+  --foundry-color-success: #166534;
+  --foundry-focus-ring: #93c5fd;
+  --foundry-radius-control: 7px;
+  --foundry-radius-surface: 10px;
+  --foundry-space-1: 4px;
+  --foundry-space-2: 8px;
+  --foundry-space-3: 12px;
+  --foundry-space-4: 16px;
+  --foundry-shadow-surface: 0 8px 24px rgb(15 23 42 / 10%);
+  --foundry-motion-fast: 150ms;
+}
