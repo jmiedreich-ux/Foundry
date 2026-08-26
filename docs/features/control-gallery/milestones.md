@@ -39,3 +39,7 @@
 **Exit behavior:** Core v1 gallery behavior has evidence, open risks are explicitly marked, and the feature can be accepted without beginning Vennusign conversion.
 
 **Packets:** `CG-M5-01` through `CG-M5-04`. See [M5 record](milestones/m5.md).
+
+## Post-Core roadmap
+
+After M5 acceptance, scope and assign separate features in this order: structural/data controls (Accordion, Grid, Timeline, data lookup, Tree); complex input/workflow controls (calendar/date-range picker, drag-reorder list, Stepper/Wizard, Kanban); then visual/specialized controls (Chart, ColorPicker). Custom controls are feature-specific and are never promoted into Core without a new approved record.

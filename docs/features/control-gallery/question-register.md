@@ -7,5 +7,9 @@
 | CG-Q03 | Is the gallery static documentation or executable behavior? | resolved | It is an executable acceptance surface. | all |
 | CG-Q04 | Does every contributor follow the Vennusign-derived engineering process? | resolved | Yes. `AGENTS.md` is mandatory regardless of assignment method. | all |
 | CG-Q05 | What package-manager/runtime configuration will install and run the React/TypeScript workspace on the local agent box? | implementation prerequisite | The coordinator records the chosen, working command in M1 before M2 starts. This is setup, not a product-design decision. | M1 |
+| CG-Q06 | What common API and state contract does every Foundry control expose? | resolved | Control Base owns the approved properties, inherited values, root `data-*` state vocabulary, shared accessibility behavior, and consumer-styling boundary in `decisions.md`. | M1–M5 |
+| CG-Q07 | How do labels, locale, and Button text work in Core v1? | resolved | Ship `LocaleProvider`, the English catalog, and the approved Button category policy in M1/M3; `add` and `back` alone permit supplied labels. | M1, M3 |
+| CG-Q08 | What is the skin source of truth and package identity? | resolved | Use `@foundry/react`, `@foundry/tokens`, and `packages/tokens/src/skins/default.css`; the repository skin is authoritative. | M1 |
+| CG-Q09 | Which non-Core controls are committed now? | resolved | None. The approved candidates are post-Core roadmap items and require their own scoped feature records before implementation. | post-Core |
 
 No product or control-behavior questions are open for M1 planning.

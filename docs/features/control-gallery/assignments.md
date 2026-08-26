@@ -5,7 +5,7 @@ This is the complete planned labor allocation. **Local** means a bounded packet 
 | Milestone | Packet | Assigned role | Intended agent type | Local | Labor boundary |
 | --- | --- | --- | --- | --- | --- |
 | M1 | CG-M1-01 | Coordinator | Premium cloud coordinator | No | Workspace, package manifests, lockfile, build/test configuration. |
-| M1 | CG-M1-02 | Foundation agent | Local 24B–35B coding agent | Yes | Tokens, providers, registry, and example-state contracts. |
+| M1 | CG-M1-02 | Coordinator / foundation specialist | Premium cloud coordinator | No | Shared Control Base, tokens, default skin, providers, English catalog, registry, and example-state contracts. |
 | M1 | CG-M1-03 | Gallery agent | Local 24B–35B coding agent | Yes | React gallery shell and reusable example frame. |
 | M1 | CG-M1-04 | Test agent | Local 9B–24B coding agent | Yes | Real-browser smoke specifications. |
 | M2 | CG-M2-01 | Coordinator / foundation specialist | Premium cloud coordinator | No | Shared Field, Group, and validation contracts. |
@@ -28,7 +28,7 @@ This is the complete planned labor allocation. **Local** means a bounded packet 
 
 ## Local-agent total
 
-**16 of 21 packets** are intended for local agents. The remaining five stay with the coordinator or a stronger specialist because they own shared contracts, project configuration, cross-control focus/layer rules, or final acceptance.
+**15 of 21 packets** are intended for local agents. The remaining six stay with the coordinator or a stronger specialist because they own shared contracts, project configuration, cross-control focus/layer rules, or final acceptance.
 
 ## Execution limits
 

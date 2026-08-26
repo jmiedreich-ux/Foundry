@@ -21,3 +21,15 @@ Every implementation prompt or local-agent assignment must include:
 ## Dispatch rule
 
 Implementation packets with non-overlapping paths may run in parallel. The coordinator runs dependency installation, builds, browser tests, review, tracker/status updates, and the final integration serially.
+
+## Local-agent execution protocol
+
+Give a local agent one packet only. Its prompt must repeat the packet ID, exact writable paths, acceptance checks, and evidence command. The agent must:
+
+1. Read `AGENTS.md`, the current handoff, its linked issue checklist line, and its packet before editing.
+2. Change only its owned paths. It may read listed dependencies but must not edit them.
+3. Implement every stated behavior and its test in the same packet. It must not start a later packet or invent missing product decisions.
+4. Run the packet's evidence commands and return the unedited result, changed-file list, `PASS`/`UNTESTED` paths, and any blocker.
+5. Stop immediately on an ownership conflict, failed prerequisite, or missing decision; report the exact blocker to the coordinator rather than guessing a workaround.
+
+The coordinator alone updates package configuration, shared contracts, test infrastructure, controlled records, issue checkboxes, and milestone status.
