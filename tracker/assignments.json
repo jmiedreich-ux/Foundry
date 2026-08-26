@@ -52,6 +52,12 @@
       "packet": "CG-M1-03.7",
       "owner": "Codex coordinator",
       "paths": ["apps/lab/src/GalleryApp.tsx"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M1-04",
+      "owner": "Local OpenCode qwen3.6:27b browser-specification agent (supervised)",
+      "paths": ["tests/**", "apps/lab/**/*.spec.*"],
       "status": "in_progress"
     }
   ],
