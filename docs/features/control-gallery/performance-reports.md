@@ -44,6 +44,16 @@ M1 remains active. This is a completed local-model comparison, not the M1 milest
 
 **Routing recommendation:** Do not dispatch CG-M1-03.2 or later M1-03 work to an installed local model without an owner-approved enforcement wrapper. The evidence supports a coordinator takeover, or a new local retry only after the wrapper blocks writes outside the declared paths and automatically checks provider use, duplicate IDs, build success, and required commit presence. This is evidence for an owner decision, not an automatic routing change.
 
+### Qwen3-Coder 30B 65K-context rerun — 2026-08-26
+
+**Protocol:** The same CG-M1-03.1 prompt and `f59c1f9` starting commit as the comparison above. Ollama was manually launched with `OLLAMA_CONTEXT_LENGTH=65536`; while the agent ran, `ollama ps` confirmed the model `CONTEXT` column was `65536`.
+
+| Model | Context | Elapsed time | Files changed | Build / commit | Coordinator result | Outcome |
+| --- | ---: | ---: | --- | --- | --- | --- |
+| Qwen3-Coder 30B | 65,536 | 77.3 s | three paths: allowed `GalleryApp.tsx`, deleted `main.js`, forbidden `main.tsx` | Not run / requested commit `096369e` | Exceeded the exact file boundary and rendered a duplicate `#root` again. | stopped |
+
+**Comparison:** The 32K run took 91.8 s, changed only the allowed paths, and passed the build but still rendered a duplicate `#root`. The verified 65K run was faster but regressed on scope and did not run the build. Raising context length alone did not improve task reliability.
+
 ## M2
 
 Not started.
