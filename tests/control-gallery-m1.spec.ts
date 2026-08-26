@@ -49,10 +49,22 @@ test('keyboard focus on reduced-motion button shows visible outline', async ({ p
   await page.keyboard.press('Tab');
   await expect(btn).toBeFocused();
 
-  const outline = await btn.evaluate((el) =>
-    window.getComputedStyle(el).getPropertyValue('outline'),
-  );
-  expect(outline).not.toBe('none');
+  const focusStyle = await btn.evaluate((el) => {
+    const style = window.getComputedStyle(el);
+    return {
+      outlineColor: style.outlineColor,
+      outlineOffset: style.outlineOffset,
+      outlineStyle: style.outlineStyle,
+      outlineWidth: style.outlineWidth,
+    };
+  });
+
+  expect(focusStyle).toEqual({
+    outlineColor: 'rgb(147, 197, 253)',
+    outlineOffset: '4px',
+    outlineStyle: 'solid',
+    outlineWidth: '3px',
+  });
 });
 
 test('narrow viewport does not produce horizontal scroll', async ({ page }) => {
