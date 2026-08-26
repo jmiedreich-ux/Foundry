@@ -16,7 +16,7 @@
       "title": "Gallery foundation and test harness",
       "status": "unplanned",
       "plan": "milestones/m1.md",
-      "issue": null,
+      "issue": 3,
       "pr": null,
       "acceptance": { "kind": "demo-script", "record": null }
     },
@@ -27,7 +27,7 @@
       "title": "Foundations and field controls",
       "status": "unplanned",
       "plan": "milestones/m2.md",
-      "issue": null,
+      "issue": 4,
       "pr": null,
       "acceptance": { "kind": "demo-script", "record": null }
     },
@@ -38,7 +38,7 @@
       "title": "Actions, choices, search, and feedback",
       "status": "unplanned",
       "plan": "milestones/m3.md",
-      "issue": null,
+      "issue": 5,
       "pr": null,
       "acceptance": { "kind": "demo-script", "record": null }
     },
@@ -49,7 +49,7 @@
       "title": "Overlay and navigation controls",
       "status": "unplanned",
       "plan": "milestones/m4.md",
-      "issue": null,
+      "issue": 6,
       "pr": null,
       "acceptance": { "kind": "demo-script", "record": null }
     },
@@ -60,7 +60,7 @@
       "title": "Cross-control acceptance and release handoff",
       "status": "unplanned",
       "plan": "milestones/m5.md",
-      "issue": null,
+      "issue": 7,
       "pr": null,
       "acceptance": { "kind": "demo-script", "record": null }
     }
