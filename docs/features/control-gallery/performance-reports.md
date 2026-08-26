@@ -99,7 +99,7 @@ qwen3-coder:30b    06c1097efce0    25 GB    100% GPU     65536      4 minutes fr
 | CG-M1-03.5 | gallery layout | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | Local | 166.4 s | 0 | 1 | First draft retained literal reduced-motion durations; corrected two-file result passed token, TypeScript, static, build, and screenshot checks. | 0 | accepted |
 | CG-M1-03.6 | example frame | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | Local | 92.5 s | 0 | 1 | First draft used invalid legend contents; corrected one-file result passed semantic source review, TypeScript, static check, and build. | 0 | accepted |
 | CG-M1-03.7 | coordinator integration | Codex coordinator | Cloud | Not separately captured | 0 | 1 | Integrated all accepted parts; corrected local `.tsx` import suffixes; TypeScript, static check, build, and 1280×720/320×720 Chromium screenshots PASS. | 0 | accepted |
-| CG-M1-04 | browser specifications | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | Local | 161.0 s | 0 | 1 | First test programmatically focused the button; corrected one-file suite passed TypeScript, build, and five real Chromium checks. | 0 | accepted |
+| CG-M1-04 | browser specifications | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | Local | 161.0 s | 1 | 2 | First test programmatically focused the button; the returned test then used a generic outline assertion. A coordinator correction now asserts Foundry's exact solid 3px default-skin focus ring and 4px offset; the full TypeScript, foundation, static, build, and five-check Chromium gate passed. | 0 | accepted |
 
 | Measure | Result |
 | --- | --- |
@@ -107,9 +107,9 @@ qwen3-coder:30b    06c1097efce0    25 GB    100% GPU     65536      4 minutes fr
 | Packets attempted / accepted / escalated | 10 / 10 / 0 |
 | Local completion share | 7 of 10 packets (70%) |
 | Total elapsed time | 702.0 s measured local execution; historical coordinator and CG-M1-03.1 timings were not captured. |
-| Total review rounds and rework count | Independent review: pending; 4 local correction rounds; 1 coordinator integration correction. |
+| Total review rounds and rework count | One independent review returned `REQUEST_CHANGES` on `d3bd907`; its focused correction is `934122f` and awaits renewed review. Seven total rework rounds: five local packet-return corrections (including the historical bootstrap correction) and two coordinator corrections. |
 | Build and browser-gate result | PASS: foundation 7/7, TypeScript, static check, build, and Chromium 5/5. |
-| Independent-review decision and reviewed commit | UNTESTED — pending M1 PR review. |
+| Independent-review decision and reviewed commit | `REQUEST_CHANGES` on `d3bd907`: the browser focus test accepted a user-agent outline. `934122f` now asserts the Foundry focus contract; renewed review is UNTESTED. |
 | Owner-acceptance result | UNTESTED — requested after reviewed merge. |
 | Total `UNTESTED` items | 2: independent review and owner acceptance. |
 | Post-merge QA escapes | N/A — not merged. |

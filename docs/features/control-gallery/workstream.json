@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1 implementation and verification are complete on the M1 shell branch. Issue #3 has every packet checked. The branch is awaiting one independent review and merge; M2 through M5 remain unstarted.",
-  "next": "Obtain an independent review of the M1 shell branch, merge if approved, then obtain owner acceptance before starting M2.",
+  "position": "M1 implementation and verification are complete on the M1 shell branch. Review of d3bd907 returned REQUEST_CHANGES because its focus test accepted a user-agent outline; correction 934122f passed the complete gate and awaits renewed independent review. Issue #3 has every packet checked. M2 through M5 remain unstarted.",
+  "next": "Obtain renewed independent review of 934122f on the M1 shell branch, merge if approved, then obtain owner acceptance before starting M2.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" }
