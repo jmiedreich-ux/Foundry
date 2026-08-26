@@ -12,6 +12,7 @@
 - `docs/features/control-gallery/` now contains the approved decisions, question register, path coverage, M1–M5 records, ready M1 packets, and an explicit done ledger.
 - `docs/features/control-gallery/assignments.md` marks the complete advance allocation: 16 bounded local-agent packets and 5 coordinator/specialist packets.
 - Every Control Gallery milestone now requires an actual agent-routing performance report, including the model used, elapsed time, rework, review, verification, and `UNTESTED` results.
+- GitHub issues #3–#7 now hold the approved packet checklists for Control Gallery milestones M1–M5; `docs/features/control-gallery/workstream.json` links each milestone to its issue.
 
 ## Deliberately deferred
 
