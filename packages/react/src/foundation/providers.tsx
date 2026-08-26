@@ -1,11 +1,12 @@
 import { createContext, useContext, type PropsWithChildren } from 'react';
 import { defaultSkinName, type FoundrySkinName } from '@foundry/tokens';
+import '@foundry/tokens/skins/default.css';
 import { englishLabelCatalog, type LabelCatalog } from './labels.js';
 import type { ControlSize } from './control-base.js';
 
 export interface SkinContextValue { name: FoundrySkinName; }
 export interface LocaleContextValue { locale: string; labels: LabelCatalog; }
-export interface GroupContextValue { disabled?: boolean; size?: ControlSize; tone?: string; }
+export interface GroupContextValue { disabled?: boolean; size?: ControlSize; }
 
 const SkinContext = createContext<SkinContextValue>({ name: defaultSkinName });
 const LocaleContext = createContext<LocaleContextValue>({ locale: 'en', labels: englishLabelCatalog });

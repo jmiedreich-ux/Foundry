@@ -5,11 +5,14 @@ export type ControlInvalidState = boolean | string;
 
 export interface ControlBaseProps {
   id?: string;
+  ref?: Ref<HTMLElement>;
   disabled?: boolean;
   size?: ControlSize;
   invalid?: ControlInvalidState;
   loading?: boolean;
   readOnly?: boolean;
+  className?: never;
+  style?: never;
   'data-testid'?: string;
   [dataAttribute: `data-${string}`]: string | boolean | undefined;
 }
@@ -57,3 +60,4 @@ export function controlStateAttributes(options: ControlStateOptions): Record<str
     'data-readonly': options.readOnly ? '' : undefined
   };
 }
+import type { Ref } from 'react';
