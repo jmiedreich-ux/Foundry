@@ -1,4 +1,11 @@
 {
-  "assignments": [],
+  "assignments": [
+    {
+      "packet": "CG-M1-01",
+      "owner": "Codex coordinator",
+      "paths": ["package.json", "lockfile", "workspace configuration", "packages/**/package.json", "test configuration"],
+      "status": "in_progress"
+    }
+  ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
 }

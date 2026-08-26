@@ -1,9 +1,9 @@
 {
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
-  "stage": "planned",
-  "position": "Decisions approved, all five milestones planned in detail (goals, packets, acceptance criteria). Nothing built yet: M1's done ledger is entirely UNTESTED, M2-M5 not started.",
-  "next": "Claim M1's first packet, CG-M1-01 (workspace setup — package.json, lockfile, workspace config, test config). It has no dependencies and is first in M1's own packet order.",
+  "stage": "in_progress",
+  "position": "M1 is active. CG-M1-01 is claimed by the coordinator; the approved Control Base, skin, locale, catalog, and post-Core roadmap are recorded. M1-02 through M5 are not started.",
+  "next": "Execute CG-M1-01: establish and verify the reproducible React/TypeScript install, development, build, and real-browser-test commands.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" }
@@ -14,7 +14,7 @@
       "label": "M1",
       "depth": 1,
       "title": "Gallery foundation and test harness",
-      "status": "unplanned",
+      "status": "in_progress",
       "plan": "milestones/m1.md",
       "issue": 3,
       "pr": null,
