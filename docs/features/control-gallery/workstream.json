@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1 is active. CG-M1-01 is merged. CG-M1-02 (coordinator) adds the Control Base, default skin, Skin/Locale providers, label catalog, registry, and shared example-state contracts. M1-03 through M5 not started.",
-  "next": "Execute CG-M1-02: implement and verify the coordinator-owned foundation contracts without adding concrete controls or gallery replacement work.",
+  "position": "M1 is active. CG-M1-01 and CG-M1-02 are merged. CG-M1-03 is claimed for the local OpenCode qwen3-coder:30b gallery agent; it will replace the prototype runtime with the React gallery shell. M1-04 through M5 are not started.",
+  "next": "Execute CG-M1-03: implement and verify the local-agent-owned React gallery shell without changing package configuration, foundation contracts, or test-owned files.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" }
@@ -14,7 +14,7 @@
       "label": "M1",
       "depth": 1,
       "title": "Gallery foundation and test harness",
-      "status": "next",
+      "status": "in_progress",
       "plan": "milestones/m1.md",
       "issue": 3,
       "pr": null,

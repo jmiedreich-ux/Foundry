@@ -14,12 +14,14 @@
 - Every Control Gallery milestone now requires an actual agent-routing performance report, including the model used, elapsed time, rework, review, verification, and `UNTESTED` results.
 - GitHub issues #3–#7 now hold the approved packet checklists for Control Gallery milestones M1–M5; `docs/features/control-gallery/workstream.json` links each milestone to its issue.
 - CG-M1-01 is complete: Node 22.23.2 and npm 10.9.8 ran `npm install`, `npm run check`, `npm run build`, and a real Chromium gallery smoke successfully. The issue #3 task is checked; the first durable browser specification remains CG-M1-04 work.
+- CG-M1-02 is complete: PR #13 merged at `57bc1d7` after an independent final review approved `bd73c6f`. The coordinator reran `npm run test:foundation` (7/7), `npm exec tsc -- --noEmit`, `npm run check`, `npm run build`, and `git diff --check`; all passed. Browser specifications remain CG-M1-04 work.
+- CG-M1-03 is claimed for the local OpenCode 1.18.21 agent using Ollama 0.32.15 and `qwen3-coder:30b` on the R9700. Ollama must run with `OLLAMA_MODELS=/home/jeremy/aibox-setup/ollama-models`; the default `~/.ollama/models` store is empty.
 
 ## Deliberately deferred
 
 - Any Vennusign adoption or conversion plan.
-- React package implementation beyond the dependency-free interactive gallery foundation.
+- Concrete controls beyond the minimum gallery shell used by CG-M1-03.
 
 ## Exact next action
 
-Claim and execute CG-M1-02: the coordinator-owned Control Base, default skin, Skin/Locale providers, English label catalog, registry, and shared example-state contracts.
+Execute CG-M1-03: the local-agent-owned React gallery shell and reusable example frame, then collect its unedited evidence and perform serialized coordinator verification.
