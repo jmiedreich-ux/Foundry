@@ -49,6 +49,7 @@
 - CG-M3-01.1 is accepted at `4f4579a`: foundation checks (11/11), TypeScript, static check, production build, an exact four-variant selector check, and diff check passed; independent review returned `APPROVE`. CG-M3-02 Checkbox is now assigned to Qwen (local) with the sole writable path `packages/react/src/inputs/choice/checkbox/**`; its baseline TypeScript/build preflight passed at 2026-08-27T02:53:51-04:00. The local prompt must require native checkbox semantics, controlled and uncontrolled operation, form reset, inherited and explicit disabled state, checked/disabled/focus state attributes, focused tests, TypeScript, build, and one commit.
 - CG-M3-02 is accepted at M3 branch head `65bb2bb`. Qwen (local) returned the scoped two-file first draft at `9b0bb18`, but its one authorized correction stalled without a file change and was stopped. Coordinator follow-ups fixed uncontrolled `data-checked`/reset state, then the independent review found and the coordinator fixed required native-form propagation plus controlled/uncontrolled prop conflict. Renewed independent review returned `APPROVE`. Focused Checkbox checks (9/9), TypeScript, static check, production build, and diff check passed. Real browser toggle/reset/focus/accessibility proof remains `UNTESTED` until CG-M3-24.
 - CG-M3-03 Switch is active with Qwen (local), limited to `packages/react/src/inputs/choice/switch/**`. Its recorded 80–110-line forecast and 2026-08-27T03:29:20-04:00 TypeScript/static/build preflight passed. The prompt explicitly includes the M3 choice-control invariants and requires escalation, rather than guessing, if a convention is missing.
+- CG-M3-03 is accepted at M3 branch head `ea9f247`. Qwen returned a scoped native Switch that follows the recorded choice-control invariants, but initially omitted the required commit; its one correction created the commit with no source change. Independent review then found a consumer role-override escape, which the coordinator fixed by forbidding `role` and applying the fixed semantic role after native props. Renewed review approved. Focused Switch checks (10/10), TypeScript, static check, production build, and diff check passed. Real browser proof remains `UNTESTED` until CG-M3-25.
 
 ## Deliberately deferred
 
@@ -57,4 +58,4 @@
 
 ## Exact next action
 
-Complete CG-M3-03 Switch using the recorded choice-control invariants.
+Preflight CG-M3-04 RadioGroup before implementation.
