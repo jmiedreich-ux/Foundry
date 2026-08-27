@@ -61,6 +61,7 @@
 
 - Any Vennusign adoption or conversion plan.
 - Concrete controls beyond the minimum gallery shell used by CG-M1-03.
+- Post-Core Front of House skin-contract expansion: issue #26 records the seven candidate token gaps, required `data-size` audit, and governance decisions. It starts only after M5 acceptance and never imports Vennusign source.
 
 - CG-M3-06 StatusChip is accepted at M3 branch head `7208d9e`: Qwen authored the scoped first draft, then source review required Control Base size inheritance plus runtime refusal of focus, interaction, and assertive-live escapes. Renewed review approved after focused checks (14/14), TypeScript, static check, production build, and diff check passed. Gallery and browser proof remain `UNTESTED` until CG-M3-16 and CG-M3-28.
 - CG-M3-07 Banner is accepted at M3 branch head `87748b3`. Qwen's scoped first commit passed automated gates but lacked the labelled-section and applicable Control Base/Group contract; its one correction attempted blocked delegation, imported an uninstalled test library, and made no commit. The coordinator completed the repair, added the minimally scoped jsdom capability required to prove component-level open transitions, and corrected a `data-open` spread collision caught by the focused test. Renewed independent review approved. Banner checks 25/25, TypeScript, static check, production build, scope, and diff checks passed. CG-M3-29 owns real-browser dismiss, restore, focus, long-content, and responsive proof. The local-agent SOP now requires every dispatch to name its available test harness.
