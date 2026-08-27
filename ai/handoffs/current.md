@@ -63,4 +63,4 @@
 
 ## Exact next action
 
-Preflight CG-M3-06 StatusChip, then dispatch its bounded local Qwen packet.
+CG-M3-06 StatusChip is active in its bounded local Qwen packet.
