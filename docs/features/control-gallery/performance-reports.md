@@ -213,6 +213,26 @@ muse-glimmer:30b    de878ce33ad8    16 GB    100% GPU     65536
 
 ## M3
 
+### M3 packet reports
+
+Each completed M3 packet receives a short report in this section before the next ordered packet starts. The report distinguishes local code retained in the accepted result from coordinator completion work; it does not substitute for the milestone-close performance table.
+
+#### CG-M3-02 — Checkbox
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `65bb2bb`. |
+| Assigned / actual executor | Qwen (local) / Qwen (local), with coordinator completion after the one local correction stalled. |
+| Final code ownership | Qwen retained 170 of 245 changed lines (69%); coordinator wrote 75 lines (31%). |
+| Estimate / actual size | 90–130 / 245 changed lines. The estimate was exceeded; future reusable controls use the shared choice-control invariants. |
+| Local elapsed time | 13 min 29 sec across the initial result and its stalled correction. |
+| Rework and review | One local correction returned no commit and escalated. Two coordinator follow-up commits; first independent review requested changes, renewed review approved. |
+| Misses caught before acceptance | Live uncontrolled state, native reset synchronization, Field-native required propagation, and the controlled/uncontrolled prop conflict. |
+| Verification | Focused Checkbox tests 9/9, TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | Real-browser toggle, reset, focus, and accessibility behavior; CG-M3-24 owns it. |
+
+The local agent correctly held its two-file path boundary but silently inferred reusable-control conventions instead of reporting them as missing. This is a protocol finding, not only an implementation defect.
+
 ### CG-M3-01 dispatch forecast
 
 | Packet | Planned executor/runtime | Code-bearing paths | Estimated changed lines | Why local or cloud | Preflight command and expected result | Actual executor/runtime at dispatch | Preflight result and timestamp | Maximum corrections |
