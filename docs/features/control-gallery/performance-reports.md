@@ -106,7 +106,7 @@ qwen3-coder:30b    06c1097efce0    25 GB    100% GPU     65536      4 minutes fr
 | Milestone | M1 — Gallery foundation and test harness |
 | Packets attempted / accepted / escalated | 10 / 10 / 0 |
 | Local completion share | 7 of 10 packets (70%) |
-| Total elapsed time | 702.0 s measured local execution; historical coordinator and CG-M1-03.1 timings were not captured. |
+| Total elapsed time | 702.1 s measured local execution; historical coordinator and CG-M1-03.1 timings were not captured. |
 | Total review rounds and rework count | Three independent review rounds: `d3bd907` requested a focus-contract assertion, `feeb8a4` requested controlled-record head-reference correction, and `99132e9` received `APPROVE`. Eight total rework rounds: five local packet-return corrections (including the historical bootstrap correction) and three coordinator corrections. |
 | Build and browser-gate result | PASS: foundation 7/7, TypeScript, static check, build, and Chromium 5/5. |
 | Independent-review decision and reviewed commit | `APPROVE` on `99132e9` after the two recorded request-change rounds. PR #18 merged to `main` at `6f45394`. |
@@ -114,6 +114,36 @@ qwen3-coder:30b    06c1097efce0    25 GB    100% GPU     65536      4 minutes fr
 | Total `UNTESTED` items | 1: owner acceptance. |
 | Post-merge QA escapes | N/A — no escape reported at merge. |
 | Routing recommendation | Keep Qwen 3.6 only under the measured path-boundary, TypeScript, build, required-commit, coordinator-source-review, and one-correction gates. |
+
+### Muse Glimmer 30B M1 packet comparison — partial, 2026-08-26
+
+**Status:** This is an owner-requested, non-production comparison. It does not change M1, issue #3, its accepted code, or its routing decision. The run stopped after four of six packets were attempted; CG-M1-03.6 and CG-M1-04 were not started. This section deliberately preserves incomplete and missing results rather than estimating them.
+
+**Protocol:** OpenCode 1.18.21 used local Ollama `muse-glimmer:30b`. Ollama was manually started with `OLLAMA_CONTEXT_LENGTH=65536`; immediately before the runs, `ollama ps` showed the model at `100% GPU` with `CONTEXT 65536`. Each packet began in a separate detached worktree at the same historical starting commit used for its Qwen 3.6 production run, with dependencies prepared. The gates were exact writable paths, TypeScript, static check, production build, requested commit, one permitted rework, and coordinator source review. Browser testing is N/A for packets CG-M1-03.2 through CG-M1-03.6 because CG-M1-04 owns it.
+
+```text
+NAME                ID              SIZE     PROCESSOR    CONTEXT
+muse-glimmer:30b    de878ce33ad8    16 GB    100% GPU     65536
+```
+
+| Packet | Assigned role | Actual agent/model | Local or cloud | Files changed | Elapsed time | Review rounds | Rework count | Failed-tool recovery without coordinator rework | Verification result | UNTESTED count | Outcome |
+| --- | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | ---: | --- |
+| CG-M1-03.2 | gallery content | OpenCode 1.18.21 / Ollama `muse-glimmer:30b` | Local | `apps/lab/src/GalleryApp.tsx` | 604.7 s | 2 | 1 | No | Initial draft used incompatible section IDs; corrected draft passed exact-path, TypeScript, static, build, commit, and source-review gates. | 0 | accepted |
+| CG-M1-03.3 | gallery navigation | OpenCode 1.18.21 / Ollama `muse-glimmer:30b` | Local | `apps/lab/src/FamilyNavigation.tsx` | 334.9 s | 1 | 0 | Yes — it recovered after an attempted read of the intentionally absent new file. | Exact-path, TypeScript, static, build, commit, native-link, and source-review gates passed. | 0 | accepted |
+| CG-M1-03.4 | motion setting | OpenCode 1.18.21 / Ollama `muse-glimmer:30b` | Local | `apps/lab/src/MotionSetting.tsx` | 1,001.4 s | 2 | 1 | No | Initial draft temporarily removed an existing motion class. Corrected draft preserves and restores original state; exact-path, TypeScript, static, build, commit, and source-review gates passed. | 0 | accepted |
+| CG-M1-03.5 | gallery layout | OpenCode 1.18.21 / Ollama `muse-glimmer:30b` | Local | Uncommitted `apps/lab/src/GalleryLayout.tsx` only; required stylesheet was not changed | Not captured as a completed packet | 0 | 1 | Yes — it continued after a failed stylesheet-inspection command, but did not finish. | Initial run changed its fixed historical checkout, violating isolation. Its one replacement run did not complete the layout, gates, or commit. | 5 | stopped |
+| CG-M1-03.6 | example frame | Not dispatched | N/A | none | N/A | 0 | 0 | N/A | Not run because the comparison stopped after the incomplete layout packet. | 6 | not started |
+| CG-M1-04 | browser specifications | Not dispatched | N/A | none | N/A | 0 | 0 | N/A | Not run because the comparison stopped after the incomplete layout packet. | 7 | not started |
+
+| Measure | Result |
+| --- | --- |
+| Packets attempted / accepted / escalated | 4 / 3 / 0; two packets not started. |
+| Completed-packet elapsed time | 1,941.0 s (32.4 min) for CG-M1-03.2 through CG-M1-03.4 only. The incomplete layout attempt has no trustworthy completed-packet time, so no six-packet total is reported. |
+| Comparison to Qwen 3.6 | The same three Qwen packets totaled 282.2 s (4.7 min); Muse took 6.9× as long for the completed subset. Qwen completed all six packets in 702.1 s (11.7 min). |
+| Build and browser-gate result | Three accepted packet build gates PASS. Browser gate N/A for CG-M1-03.2 through CG-M1-03.6; UNTESTED for CG-M1-04 because it was not dispatched. |
+| Independent-review decision | UNTESTED — this is an in-progress comparison record, not a production milestone change. |
+| Owner-acceptance result | N/A — the benchmark does not seek owner acceptance or alter M1's outstanding owner-acceptance item. |
+| Routing recommendation | Do not replace supervised Qwen 3.6 routing with Muse Glimmer on this evidence. Muse recovered from two failed tool actions without a coordinator-issued rework, but it was markedly slower and failed the layout packet's isolation/completion contract. |
 
 ## M2
 
