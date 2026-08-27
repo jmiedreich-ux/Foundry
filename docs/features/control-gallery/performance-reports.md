@@ -206,14 +206,18 @@ muse-glimmer:30b    de878ce33ad8    16 GB    100% GPU     65536
 | Total review rounds and rework count | Two independent-review rounds: `REQUEST_CHANGES` on `e49aa8f`, then `APPROVE` on `2b7002a`. Five recorded rework/correction rounds, including two coordinator takeovers and the review correction. |
 | Build and browser-gate result | PASS: focused Vitest 21/21, TypeScript, static check, production build, and Chromium 13/13. |
 | Independent-review decision and reviewed commit | `APPROVE` on `2b7002a`; PR #21 merged to `main` at `2ab4753`. |
-| Owner-acceptance result | UNTESTED — merged gallery review is awaiting owner acceptance. |
-| Total `UNTESTED` items | 1: owner acceptance only. |
+| Owner-acceptance result | PASS — owner approved the merged M2 field-controls gallery on 2026-08-27. |
+| Total `UNTESTED` items | 0. |
 | Post-merge QA escapes | N/A — no post-merge escape reported. Pre-merge independent review found and corrected the default-skin/focus-visible defects under Issue #22. |
 | Routing recommendation | Keep Qwen 3.6 only for very small, presentation-level packets with exact paths, preinstalled dependencies, TypeScript/build/commit gates, source review, and one correction. It completed CG-M2-03 after correction but did not complete the input or browser-test packets; no routing expansion is supported by this evidence. |
 
 ## M3
 
-Not started.
+### CG-M3-01 dispatch forecast
+
+| Packet | Planned executor/runtime | Code-bearing paths | Estimated changed lines | Why local or cloud | Preflight command and expected result | Actual executor/runtime at dispatch | Preflight result and timestamp | Maximum corrections |
+| --- | --- | --- | ---: | --- | --- | --- | --- | ---: |
+| CG-M3-01 | Codex coordinator (cloud) | `packages/react/src/actions/button/**` | 110–140 | Cloud: shared Button contract establishes the reusable API that later examples and browser checks consume. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS | Codex coordinator (cloud) | PASS — 2026-08-27T02:45:00-04:00 | N/A (coordinator-owned contract packet) |
 
 ## M4
 

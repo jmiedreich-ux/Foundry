@@ -15,7 +15,7 @@ to its own records under `docs/features/<feature>/`; the detail lives there.
 
 | Codename | What it is | Position | Gate |
 |---|---|---|---|
-| **Control Gallery** | Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control (React/TypeScript), so a developer or reviewer can exercise the contract before a product adopts it | **M1 and M2 are accepted and closed.** M3 is fully planned but not claimed or started. | Await owner authorization to claim `CG-M3-01` (the Button contract packet). |
+| **Control Gallery** | Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control (React/TypeScript), so a developer or reviewer can exercise the contract before a product adopts it | **M1 and M2 are accepted and closed.** M3 has begun with its coordinator-owned Button contract; no local M3 packet has started. | Complete `CG-M3-01` (Button variants and label/state contract). |
 
 Design authority for a feature is approved and recorded directly under
 `docs/features/<feature>/` (see `AGENTS.md`); Control Gallery's own `decisions.md` is that

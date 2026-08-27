@@ -89,6 +89,12 @@
       "owner": "Codex coordinator (cloud; local-agent takeover)",
       "paths": ["tests/fields/**", "apps/lab/src/examples/fields/**/*.spec.*"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M3-01",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["packages/react/src/actions/button/**"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
