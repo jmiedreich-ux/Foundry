@@ -44,6 +44,8 @@ test.describe('M2 field controls', () => {
     await submit.click();
     const alert = requiredExample.getByRole('alert');
     await expect(alert).toHaveText('This field is required.');
+    await expect(input).toHaveAttribute('data-invalid', '');
+    await expect(input).toHaveCSS('border-color', 'rgb(220, 38, 38)');
 
     const errorId = await alert.getAttribute('id');
     expect(errorId).toBeTruthy();
@@ -76,7 +78,10 @@ test.describe('M2 field controls', () => {
     const disabled = example(page, 'Disabled Group');
 
     await expect(disabled.locator('fieldset')).toHaveAttribute('aria-disabled', 'true');
-    await expect(disabled.getByRole('textbox', { name: 'Disabled field' })).toBeDisabled();
+    const input = disabled.getByRole('textbox', { name: 'Disabled field' });
+    await expect(input).toBeDisabled();
+    await expect(input).toHaveAttribute('data-disabled', '');
+    await expect(input).toHaveCSS('opacity', '0.6');
   });
 
   test('real Tab traversal reaches a field control with Foundry focus treatment', async ({ page }) => {
@@ -88,6 +93,7 @@ test.describe('M2 field controls', () => {
     }
 
     await expect(controlled).toBeFocused();
+    await expect(controlled).toHaveAttribute('data-focus-visible', '');
     const focusStyle = await controlled.evaluate((element) => {
       const style = window.getComputedStyle(element);
       return {
@@ -103,6 +109,22 @@ test.describe('M2 field controls', () => {
       outlineStyle: 'solid',
       outlineWidth: '3px'
     });
+    await page.mouse.click(1, 1);
+    await expect(controlled).not.toHaveAttribute('data-focus-visible', '');
+  });
+
+  test('real Tab traversal also records keyboard-visible focus on Select', async ({ page }) => {
+    const select = page.getByRole('combobox', { name: 'Select (initial: alpha)' });
+
+    for (let tab = 0; tab < 20; tab += 1) {
+      await page.keyboard.press('Tab');
+      if (await select.evaluate((element) => element === document.activeElement)) break;
+    }
+
+    await expect(select).toBeFocused();
+    await expect(select).toHaveAttribute('data-focus-visible', '');
+    await page.mouse.click(1, 1);
+    await expect(select).not.toHaveAttribute('data-focus-visible', '');
   });
 
   test('narrow layout retains the long label relationship without horizontal overflow', async ({ page }) => {

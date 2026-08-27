@@ -5,6 +5,7 @@ import {
   type ControlSize
 } from '../../foundation/control-base.js';
 import { useField } from '../../foundation/field.js';
+import { useFocusVisible } from '../../foundation/focus-visible.js';
 
 type NativeSelectProps = Omit<
   ComponentPropsWithoutRef<'select'>,
@@ -31,7 +32,7 @@ export interface SelectProps extends NativeSelectProps {
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select(
-  { id, disabled, size, invalid, required, ...nativeProps },
+  { id, disabled, size, invalid, required, onFocus, onBlur, ...nativeProps },
   ref
 ) {
   const generatedId = useId().replaceAll(':', '');
@@ -41,6 +42,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
   const resolvedInvalid = invalid ?? field?.invalidMessage ?? field?.invalid ?? false;
   const resolvedRequired = required ?? field?.required ?? false;
   const controlId = id ?? field?.controlId ?? `foundry-select-${generatedId}`;
+  const focus = useFocusVisible<HTMLSelectElement>();
 
   return (
     <select
@@ -49,6 +51,14 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
       id={controlId}
       disabled={resolvedDisabled}
       required={resolvedRequired}
+      onFocus={(event) => {
+        focus.onFocus(event);
+        onFocus?.(event);
+      }}
+      onBlur={(event) => {
+        focus.onBlur(event);
+        onBlur?.(event);
+      }}
       aria-labelledby={field?.labelId}
       aria-describedby={field?.describedBy}
       aria-invalid={Boolean(resolvedInvalid) || undefined}
@@ -56,7 +66,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
       {...controlStateAttributes({
         disabled: resolvedDisabled,
         size: resolvedSize,
-        invalid: Boolean(resolvedInvalid)
+        invalid: Boolean(resolvedInvalid),
+        focusVisible: focus.focusVisible
       })}
     />
   );

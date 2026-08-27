@@ -5,6 +5,7 @@ import {
   type ControlSize
 } from '../../foundation/control-base.js';
 import { useField } from '../../foundation/field.js';
+import { useFocusVisible } from '../../foundation/focus-visible.js';
 
 type NativeTextFieldProps = Omit<
   ComponentPropsWithoutRef<'input'>,
@@ -33,7 +34,7 @@ export interface TextFieldProps extends NativeTextFieldProps {
 }
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function TextField(
-  { id, disabled, size, invalid, readOnly, required, ...nativeProps },
+  { id, disabled, size, invalid, readOnly, required, onFocus, onBlur, ...nativeProps },
   ref
 ) {
   const generatedId = useId().replaceAll(':', '');
@@ -44,6 +45,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
   const resolvedReadOnly = readOnly ?? false;
   const resolvedRequired = required ?? field?.required ?? false;
   const controlId = id ?? field?.controlId ?? `foundry-text-field-${generatedId}`;
+  const focus = useFocusVisible<HTMLInputElement>();
 
   return (
     <input
@@ -54,6 +56,14 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
       disabled={resolvedDisabled}
       readOnly={resolvedReadOnly}
       required={resolvedRequired}
+      onFocus={(event) => {
+        focus.onFocus(event);
+        onFocus?.(event);
+      }}
+      onBlur={(event) => {
+        focus.onBlur(event);
+        onBlur?.(event);
+      }}
       aria-labelledby={field?.labelId}
       aria-describedby={field?.describedBy}
       aria-invalid={Boolean(resolvedInvalid) || undefined}
@@ -62,7 +72,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
         disabled: resolvedDisabled,
         size: resolvedSize,
         invalid: Boolean(resolvedInvalid),
-        readOnly: resolvedReadOnly
+        readOnly: resolvedReadOnly,
+        focusVisible: focus.focusVisible
       })}
     />
   );
