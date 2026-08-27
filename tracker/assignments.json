@@ -59,6 +59,12 @@
       "owner": "Local OpenCode qwen3.6:27b browser-specification agent (supervised)",
       "paths": ["tests/**", "apps/lab/**/*.spec.*"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M2-01",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["packages/react/src/foundation/**", "packages/validation/**"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

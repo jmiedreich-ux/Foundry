@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1 is accepted and closed: PR #18 merged at 6f45394, final independent review approved 99132e9, and the owner accepted the live gallery on 2026-08-27. Issue #3 is closed. M2 through M5 remain unstarted.",
-  "next": "Await owner authorization to start M2 — Foundations and field controls.",
+  "position": "M1 is accepted and closed. M2 is in progress: CG-M2-01 is claimed by the Codex coordinator; CG-M2-02 through CG-M2-04 remain blocked until its shared contracts are accepted. Issue #4 is the active checklist.",
+  "next": "Complete CG-M2-01 — shared Field, Group, and validation contracts.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" }
@@ -25,7 +25,7 @@
       "label": "M2",
       "depth": 2,
       "title": "Foundations and field controls",
-      "status": "unplanned",
+      "status": "in_progress",
       "plan": "milestones/m2.md",
       "issue": 4,
       "pr": null,
