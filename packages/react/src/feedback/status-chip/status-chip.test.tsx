@@ -1,5 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, expectTypeOf, it } from 'vitest';
+import { Group } from '../../foundation/field.js';
 import { StatusChip, statusChipTones, type StatusChipProps } from './status-chip.js';
 
 describe('StatusChip', () => {
@@ -48,8 +49,8 @@ describe('StatusChip', () => {
       <StatusChip label="Ref test" ref={(el) => { capturedRef = el; }} />
     );
 
-    // renderToStaticMarkup does not invoke ref callbacks in SSR; the type boundary 
-    // confirms ref forwarding structure. The ref prop is typed and wired in the 
+    // renderToStaticMarkup does not invoke ref callbacks in SSR; the type boundary
+    // confirms ref forwarding structure. The ref prop is typed and wired in the
     // component definition.
     expectTypeOf(StatusChip).toMatchTypeOf<React.ForwardRefExoticComponent<StatusChipProps>>();
   });
@@ -59,7 +60,22 @@ describe('StatusChip', () => {
       role?: never;
       className?: never;
       style?: never;
+      tabIndex?: never;
+      onClick?: never;
+      'aria-live'?: never;
     }>();
+  });
+
+  it('uses an explicit or inherited Control Base size', () => {
+    const inheritedMarkup = renderToStaticMarkup(
+      <Group size="lg"><StatusChip label="Inherited" /></Group>
+    );
+    const overrideMarkup = renderToStaticMarkup(
+      <Group size="lg"><StatusChip label="Override" size="sm" /></Group>
+    );
+
+    expect(inheritedMarkup).toContain('data-size="lg"');
+    expect(overrideMarkup).toContain('data-size="sm"');
   });
 
   it('overwrites component-owned data-control and data-tone at runtime', () => {
@@ -105,5 +121,23 @@ describe('StatusChip', () => {
     expect(markup).not.toContain('tabindex');
     expect(markup).not.toContain('onClick');
     expect(markup).not.toContain('onKeyDown');
+  });
+
+  it('strips interactive and assertive-live runtime escapes', () => {
+    const markup = renderToStaticMarkup(
+      <StatusChip
+        {...({
+          label: 'Static',
+          tabIndex: 0,
+          onClick: () => {},
+          onKeyDown: () => {},
+          'aria-live': 'assertive'
+        } as unknown as StatusChipProps)}
+      />
+    );
+
+    expect(markup).not.toContain('tabindex');
+    expect(markup).not.toContain('aria-live');
+    expect(markup).toContain('role="status"');
   });
 });
