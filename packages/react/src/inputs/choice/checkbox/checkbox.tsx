@@ -1,4 +1,11 @@
-import { forwardRef, useId, type ComponentPropsWithoutRef } from 'react';
+import {
+  forwardRef,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type ComponentPropsWithoutRef
+} from 'react';
 import {
   controlStateAttributes,
   type ControlInvalidState,
@@ -42,19 +49,50 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
   const resolvedInvalid = invalid ?? field?.invalidMessage ?? field?.invalid ?? false;
   const controlId = id ?? field?.controlId ?? `foundry-checkbox-${generatedId}`;
   const focus = useFocusVisible<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const isControlled = typeof checked === 'boolean';
-  const isChecked = isControlled ? checked : false;
+  const [uncontrolledChecked, setUncontrolledChecked] = useState(() => Boolean(defaultChecked));
+  const isChecked = isControlled ? checked : uncontrolledChecked;
+
+  useEffect(() => {
+    const form = inputRef.current?.form;
+
+    if (!form || isControlled) {
+      return;
+    }
+
+    const handleReset = () => {
+      setUncontrolledChecked(Boolean(defaultChecked));
+    };
+
+    form.addEventListener('reset', handleReset);
+    return () => form.removeEventListener('reset', handleReset);
+  }, [defaultChecked, isControlled]);
 
   return (
     <input
       type="checkbox"
       {...nativeProps}
-      ref={ref}
+      ref={(node) => {
+        inputRef.current = node;
+
+        if (typeof ref === 'function') {
+          ref(node);
+        } else if (ref) {
+          ref.current = node;
+        }
+      }}
       id={controlId}
       disabled={resolvedDisabled}
       checked={isControlled ? checked : undefined}
       defaultChecked={defaultChecked}
+      onChange={(event) => {
+        if (!isControlled) {
+          setUncontrolledChecked(event.currentTarget.checked);
+        }
+        nativeProps.onChange?.(event);
+      }}
       onFocus={(event) => {
         focus.onFocus(event);
         onFocus?.(event);

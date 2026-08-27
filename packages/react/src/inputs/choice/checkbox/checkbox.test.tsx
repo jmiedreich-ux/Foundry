@@ -47,6 +47,8 @@ describe('Checkbox', () => {
 
     expect(markup).toContain('type="checkbox"');
     expect(markup).toContain('name="uncontrolled"');
+    expect(markup).toContain('checked=""');
+    expect(markup).toContain('data-checked=""');
   });
 
   it('supports uncontrolled without defaultChecked', () => {
@@ -56,6 +58,7 @@ describe('Checkbox', () => {
 
     expect(markup).not.toContain('defaultchecked');
     expect(markup).not.toContain('checked=""');
+    expect(markup).not.toContain('data-checked');
   });
 
   it('inherits disabled from Group and allows explicit disabled=false override', () => {
