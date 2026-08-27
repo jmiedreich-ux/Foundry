@@ -73,9 +73,14 @@ describe('EmptyState', () => {
           role: 'alert',
           className: 'consumer-class',
           style: { color: 'red' },
+          'aria-busy': true,
+          'aria-label': 'consumer-label',
           'aria-labelledby': 'consumer-id',
+          'aria-live': 'assertive',
           'data-control': 'not-empty-state',
           'data-disabled': 'evil',
+          'data-loading': 'evil',
+          'data-open': 'evil',
           'data-size': 'evil'
         } as unknown as EmptyStateProps)}
       />
@@ -86,17 +91,25 @@ describe('EmptyState', () => {
     expect(markup).not.toContain('consumer-class');
     expect(markup).not.toContain('color');
     expect(markup).not.toContain('consumer-id');
+    expect(markup).not.toContain('consumer-label');
     expect(markup).not.toContain('not-empty-state');
+    expect(markup).not.toContain('aria-busy');
+    expect(markup).not.toContain('aria-live');
     expect(markup).not.toContain('data-disabled');
+    expect(markup).not.toContain('data-loading');
+    expect(markup).not.toContain('data-open');
     expect(markup).not.toContain('disabled');
   });
 
-  it('refuses role, className, style, and aria-labelledby at the type boundary', () => {
+  it('refuses semantic and styling overrides at the type boundary', () => {
     expectTypeOf<EmptyStateProps>().toMatchTypeOf<{
       role?: never;
       className?: never;
       style?: never;
+      'aria-busy'?: never;
+      'aria-label'?: never;
       'aria-labelledby'?: never;
+      'aria-live'?: never;
     }>();
   });
 

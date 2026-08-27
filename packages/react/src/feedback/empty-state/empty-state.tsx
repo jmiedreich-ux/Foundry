@@ -7,7 +7,10 @@ import { useGroup } from '../../foundation/providers.js';
 
 type NativeSectionProps = Omit<
   ComponentPropsWithoutRef<'section'>,
+  | 'aria-busy'
+  | 'aria-label'
   | 'aria-labelledby'
+  | 'aria-live'
   | 'className'
   | 'disabled'
   | 'role'
@@ -21,7 +24,10 @@ export type EmptyStateProps = NativeSectionProps & {
   description: ReactNode;
   action?: ReactNode;
   size?: ControlSize;
+  'aria-busy'?: never;
+  'aria-label'?: never;
   'aria-labelledby'?: never;
+  'aria-live'?: never;
   role?: never;
   className?: never;
   style?: never;
@@ -50,12 +56,17 @@ export const EmptyState = forwardRef<HTMLElement, EmptyStateProps>(function Empt
     'data-size'?: unknown;
   };
   const {
+    'aria-busy': _ariaBusy,
+    'aria-label': _ariaLabel,
     'aria-labelledby': _ariaLabelledby,
+    'aria-live': _ariaLive,
     role: _role,
     className: _className,
     style: _style,
     'data-control': _dataControl,
     'data-disabled': _dataDisabled,
+    'data-loading': _dataLoading,
+    'data-open': _dataOpen,
     'data-size': _dataSize,
     ...safeProps
   } = unsafeProps;
