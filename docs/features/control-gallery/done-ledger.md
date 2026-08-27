@@ -15,6 +15,22 @@ Use `PASS`, `N/A (reason)`, or `UNTESTED`. Do not leave cells blank at milestone
 | Independent review | PASS | The first review returned `REQUEST_CHANGES` on `d3bd907` because the focus assertion allowed a user-agent outline; the second requested correction of stale record references. Final review approved `99132e9`; PR #18 merged to `main` at `6f45394`. |
 | Owner acceptance workbook | PASS | Owner accepted the live M1 gallery on 2026-08-27 after reviewed merge. |
 
-## M2–M5
+## M2
+
+| Check | Status | Evidence / reason |
+| --- | --- | --- |
+| Field labels, descriptions, errors, and required relationships | PASS | M2 Chromium specification asserts accessible labels, required semantics, alert association, and the Field-owned relationship. |
+| Invalid submission, announcement, correction, and success | PASS | Real Chromium submits blank, observes the alert and invalid state, enters a correction without value loss, then observes cleared error and status success. |
+| Controlled and uncontrolled state | PASS | Browser checks observable controlled output and uncontrolled native TextField/Select values. |
+| Native form reset | PASS | Browser changes both uncontrolled controls and asserts Reset restores `hello` and `alpha`. |
+| Disabled and invalid treatments | PASS | Default-skin `data-disabled` opacity and `data-invalid` border are asserted in Chromium. |
+| Keyboard focus and focus-visible state | PASS | Real Tab traversal asserts the exact default-skin ring and `data-focus-visible` for TextField and Select; pointer input clears the state. |
+| Long label and narrow width | PASS | 320px Chromium check asserts accessible long-label connection and no horizontal overflow. |
+| Loading, duplicate records, maximum values, and retry | N/A (M2 field controls do not implement loading, record collections, maximum-length policy, or network retry.) |
+| Shared-control consumer search | PASS | `rg` found only the M2 gallery examples as TextField/Select consumers; they are covered by the browser target. |
+| Independent review | PASS | Review requested changes on `e49aa8f` for default-skin and focus-visible defects; renewed review approved `2b7002a`. PR #21 merged at `2ab4753`. |
+| Owner acceptance workbook | UNTESTED | Awaiting owner review of the merged M2 gallery. |
+
+## M3–M5
 
 Not started. Each milestone adds a complete check table before implementation begins.

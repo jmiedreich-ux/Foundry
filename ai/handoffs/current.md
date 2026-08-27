@@ -41,6 +41,7 @@
 - CG-M2-03 is accepted from local OpenCode 1.18.21 / Ollama `qwen3.6:27b` at `27cf86c`, changing only the permitted `FieldExamples.tsx`. It provides controlled, uncontrolled/reset, required/error/correction, disabled-group, and long-label examples. Coordinator review found that native `required` would prevent the example's submit handler, so the agent's one permitted correction added `noValidate` and a status announcement; TypeScript, static check, build, and diff check passed. The original M2 table left the examples unrendered, so a newly recorded coordinator sub-packet CG-M2-03.1 owns the required one-file gallery integration before M2-04 browser tests.
 - CG-M2-03.1 is accepted on the M2 branch: the Inputs section now renders `FieldExamples`; the other family placeholders remain unchanged. Focused tests (21/21), TypeScript, static check, production build, and diff check pass. CG-M2-04 is now assigned to a supervised local specifications agent with the allowed `tests/fields/**` and field-example spec paths.
 - CG-M2-04 local attempt was stopped before commit after a first browser run exposed stale-server/weak-assertion problems and it then made no progress. Coordinator took over the one permitted test file. The accepted Chromium specification covers rendered/labelled/required fields, controlled output, invalid-submit/error/correction/success, native reset, disabled Group, real Tab focus styling, and narrow long-label overflow. Focused tests (21/21), TypeScript, static check, production build, full Chromium suite (12/12), and diff check pass. All Issue #4 implementation tasks are checked; independent review is the next required action.
+- M2 is merged to `main` at `2ab4753` through PR #21. First independent review requested default-skin state treatments and actual focus-visible state; coordinator correction `2b7002a` added the token-skin focus/invalid/disabled rules, keyboard-versus-pointer focus tracking for TextField and Select, and browser coverage. Renewed independent review approved. Final gates PASS: focused Vitest 21/21, TypeScript, static check, production build, full Chromium 13/13, and diff check. Issue #22 records the review finding and is closed. M2 owner acceptance is the only remaining item; its complete performance report and done ledger are now maintained in the feature records.
 
 ## Deliberately deferred
 
@@ -49,4 +50,4 @@
 
 ## Exact next action
 
-Obtain the independent review decision for the M2 milestone branch, then open/merge its pull request if approved.
+Obtain owner acceptance of the merged M2 field-controls gallery.

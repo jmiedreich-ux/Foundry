@@ -166,7 +166,30 @@ muse-glimmer:30b    de878ce33ad8    16 GB    100% GPU     65536
 
 ## M2
 
-Not started.
+### M2 completion performance report — merged, owner acceptance pending
+
+| Packet | Assigned role | Intended type | Actual agent/model | Local or cloud | Files changed | Elapsed time | Review rounds | Rework count | Verification result | UNTESTED count | Outcome |
+| --- | --- | --- | --- | --- | --- | --- | ---: | ---: | --- | ---: | --- |
+| CG-M2-01 | coordinator / foundation specialist | Premium cloud coordinator | Codex coordinator | Cloud | `foundation/field.*`, `validation/**`, decision record | Not separately captured | 2 | 1 | Field/Group/validation focused tests, TypeScript, static check, build, and diff check PASS. The explicit-child-ID contract gap found during the next packet was corrected before acceptance. | 0 | accepted |
+| CG-M2-02 | input-controls agent | Local 24B–35B coding agent | OpenCode 1.18.21 / Ollama `qwen3.6:27b` stopped; Codex coordinator completed | Local + cloud | `inputs/text-field/**`, `inputs/select/**`, public exports | Local restarted attempt: over 7 min with no source change; coordinator time not separately captured | 2 | 1 | Focused tests, TypeScript, static check, build, and diff check PASS. | 0 | accepted |
+| CG-M2-03 | gallery agent | Local 9B–24B coding agent | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | Local | `apps/lab/src/examples/fields/FieldExamples.tsx` | 182 s measured agent session | 2 | 1 | Agent corrected its required-form handling after coordinator review; TypeScript, static check, build, and diff check PASS. | 0 | accepted |
+| CG-M2-03.1 | coordinator integration | Premium cloud coordinator | Codex coordinator | Cloud | `apps/lab/src/GalleryApp.tsx` | Not separately captured | 2 | 0 | Inputs section integration plus focused tests, TypeScript, static check, build, and diff check PASS. | 0 | accepted |
+| CG-M2-04 | specifications agent | Local 9B–24B coding agent | OpenCode 1.18.21 / Ollama `qwen3.6:27b` stopped; Codex coordinator completed | Local + cloud | `tests/fields/control-gallery-fields.spec.ts` | Local attempt: about 7 min 30 s before stop; coordinator time not separately captured | 2 | 1 | Local draft failed its first real-browser run and stalled. Coordinator replacement passes all seven M2 Chromium checks. | 0 | accepted |
+| CG-M2-review-01 | review correction | Premium cloud coordinator | Codex coordinator | Cloud | focus hook, TextField, Select, default skin, browser spec | Not separately captured | 1 | 1 | First independent review found missing default-skin state treatments and absent focus-visible state. Correction passed focused 21/21, TypeScript, static check, build, full Chromium 13/13, and diff check; renewed review approved. | 0 | accepted |
+
+| Measure | Result |
+| --- | --- |
+| Milestone | M2 — Foundations and field controls |
+| Packets attempted / accepted / escalated | 5 / 5 / 2 coordinator takeovers (CG-M2-02 and CG-M2-04). |
+| Local completion share | 1 of 5 packets (20%) completed directly by the local agent; CG-M2-03 required one correction. |
+| Total elapsed time | At least 17 min 32 s of measured/observed local-agent time. Coordinator timing was not separately captured, so no fabricated total is reported. |
+| Total review rounds and rework count | Two independent-review rounds: `REQUEST_CHANGES` on `e49aa8f`, then `APPROVE` on `2b7002a`. Five recorded rework/correction rounds, including two coordinator takeovers and the review correction. |
+| Build and browser-gate result | PASS: focused Vitest 21/21, TypeScript, static check, production build, and Chromium 13/13. |
+| Independent-review decision and reviewed commit | `APPROVE` on `2b7002a`; PR #21 merged to `main` at `2ab4753`. |
+| Owner-acceptance result | UNTESTED — merged gallery review is awaiting owner acceptance. |
+| Total `UNTESTED` items | 1: owner acceptance only. |
+| Post-merge QA escapes | N/A — no post-merge escape reported. Pre-merge independent review found and corrected the default-skin/focus-visible defects under Issue #22. |
+| Routing recommendation | Keep Qwen 3.6 only for very small, presentation-level packets with exact paths, preinstalled dependencies, TypeScript/build/commit gates, source review, and one correction. It completed CG-M2-03 after correction but did not complete the input or browser-test packets; no routing expansion is supported by this evidence. |
 
 ## M3
 
