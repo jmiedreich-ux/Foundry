@@ -4,6 +4,7 @@ import { ExampleFrame } from './ExampleFrame';
 import { FamilyNavigation } from './FamilyNavigation';
 import { GalleryLayout } from './GalleryLayout';
 import { MotionSetting } from './MotionSetting';
+import { FieldExamples } from './examples/fields/FieldExamples';
 
 const families = [
   { id: 'family-actions', title: 'Actions', description: 'Action control examples will appear here.' },
@@ -28,10 +29,14 @@ export function GalleryApp() {
             {families.map((family) => (
               <section key={family.id} id={family.id} aria-labelledby={`${family.id}-title`}>
                 <h2 id={`${family.id}-title`}>{family.title}</h2>
-                <ExampleFrame
-                  title={`${family.title} examples`}
-                  description={family.description}
-                />
+                {family.id === 'family-inputs' ? (
+                  <FieldExamples />
+                ) : (
+                  <ExampleFrame
+                    title={`${family.title} examples`}
+                    description={family.description}
+                  />
+                )}
               </section>
             ))}
           </main>
