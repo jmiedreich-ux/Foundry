@@ -18,3 +18,17 @@
   --foundry-shadow-surface: 0 8px 24px rgb(15 23 42 / 10%);
   --foundry-motion-fast: 150ms;
 }
+
+:where(:root, [data-foundry-skin="default"]) :is(button, input, select)[data-focus-visible] {
+  outline: 3px solid var(--foundry-focus-ring);
+  outline-offset: var(--foundry-space-1);
+}
+
+:where(:root, [data-foundry-skin="default"]) :is(button, input, select)[data-invalid] {
+  border-color: var(--foundry-color-danger);
+}
+
+:where(:root, [data-foundry-skin="default"]) :is(button, input, select)[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

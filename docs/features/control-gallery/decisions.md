@@ -18,6 +18,8 @@
 8. Buttons separate variant, label category, and domain state. The initial label categories are `cancel`, `save`, `delete`, `add`, `back`, `retry`, `dismiss`, `reorder`, `edit`, `open`, `done`, `duplicate`, and `rename`; only `add` and `back` permit a supplied label override.
 9. `LocaleProvider` and the English label catalog are Core v1. A control never owns a hardcoded locked-category label; a future locale is a catalog addition, not an API rewrite.
 10. The gallery has a reduced-motion mode and stays usable at narrow and wide widths.
+11. M2's field contract is `<Field label description error required><TextField /></Field>`. `Field` generates the control ID when absent, renders the label/help/error primitives, owns `aria-labelledby`, `aria-describedby`, and invalid-state context, and never owns the control's entered value. An error is announced and does not clear the value being corrected.
+12. `Group` is a semantic fieldset for related controls. It supplies inherited `disabled` and `size` state through the existing group context; an explicit child value wins. M2 validation returns a stable valid/invalid result with an optional message, beginning with required-value validation.
 
 ## Skins and catalog governance
 
