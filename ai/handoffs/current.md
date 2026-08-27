@@ -37,6 +37,7 @@
 - The owner accepted the live M1 gallery on 2026-08-27. M1 is closed: issue #3 is closed, all packet work is accepted, and the M1 performance report now records zero `UNTESTED` items. M2 has not started.
 - The owner authorized M2 end to end on 2026-08-27. CG-M2-01 is claimed by the Codex coordinator; issue #4 carries its cloud-coordinator assignment and the three later supervised-local assignments. No M2 local packet may begin until CG-M2-01's shared Field, Group, and validation contract is accepted.
 - CG-M2-01 is accepted on M2 branch commit `a3f61fd`. It adds the documented Field/Group/required-validation contract, its focused tests (12/12 including prior foundation tests), TypeScript, static check, production build, and diff check all pass. CG-M2-02 is active as a supervised local OpenCode 1.18.21 / Ollama `qwen3.6:27b` packet; CG-M2-03 and CG-M2-04 remain blocked.
+- CG-M2-02 is accepted on the M2 branch after a local-agent takeover. TextField and Select are reusable native controls with Field/Group semantics, controlled/uncontrolled value support, native form participation, state attributes, public exports, ref/type-boundary tests, and complete focused verification (21/21). The first local attempt exposed a coordinator-owned Field explicit-child-ID gap; the contract was corrected and retested. A restarted local attempt made no source change and was stopped as nonproductive. CG-M2-03 is now assigned to the supervised local gallery agent.
 
 ## Deliberately deferred
 
@@ -45,4 +46,4 @@
 
 ## Exact next action
 
-Complete CG-M2-02 — reusable TextField and Select controls.
+Complete CG-M2-03 — controlled, uncontrolled, invalid, disabled, and reset gallery examples.

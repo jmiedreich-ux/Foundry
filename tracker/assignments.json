@@ -68,8 +68,14 @@
     },
     {
       "packet": "CG-M2-02",
-      "owner": "OpenCode 1.18.21 / Ollama qwen3.6:27b (local; supervised)",
+      "owner": "Codex coordinator (cloud; local-agent takeover)",
       "paths": ["packages/react/src/inputs/text-field/**", "packages/react/src/inputs/select/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M2-03",
+      "owner": "Local OpenCode qwen3.6:27b gallery agent (supervised)",
+      "paths": ["apps/lab/src/examples/fields/**"],
       "status": "in_progress"
     }
   ],
