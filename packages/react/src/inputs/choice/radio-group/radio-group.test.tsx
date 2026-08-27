@@ -1,7 +1,12 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import { Field, Group } from '../../../foundation/field.js';
-import { RadioGroup, type RadioGroupProps } from './radio-group.js';
+import {
+  getNextEnabledRadioIndex,
+  RadioGroup,
+  resolveInitialRadioValue,
+  type RadioGroupProps
+} from './radio-group.js';
 
 const options = [
   { value: 'alpha', label: 'Alpha' },
@@ -37,6 +42,15 @@ describe('RadioGroup', () => {
     expectTypeOf<RadioGroupProps>().not.toMatchTypeOf<{ value: string; defaultValue: string }>();
   });
 
+  it('does not select disabled or missing controlled values', () => {
+    const disabledMarkup = renderToStaticMarkup(<RadioGroup name="plan" options={options} value="gamma" onValueChange={() => {}} />);
+    const missingMarkup = renderToStaticMarkup(<RadioGroup name="plan" options={options} value="missing" onValueChange={() => {}} />);
+    expect(disabledMarkup).not.toContain('checked=""');
+    expect(disabledMarkup).not.toContain('data-selected');
+    expect(missingMarkup).not.toContain('checked=""');
+    expect(missingMarkup).not.toContain('data-selected');
+  });
+
   it('allows RadioGroup disabled=false to override Group disabled', () => {
     const markup = renderToStaticMarkup(<Group disabled><Field label="Plan"><RadioGroup name="plan" options={options.slice(0, 2)} disabled={false} /></Field></Group>);
     expect(markup).not.toMatch(/<input[^>]*disabled=""/);
@@ -55,8 +69,23 @@ describe('RadioGroup', () => {
     expect(() => renderToStaticMarkup(<RadioGroup name="plan" options={options} required value="missing" onValueChange={() => {}} />)).toThrow('value');
   });
 
+  it('calculates native reset values and roving keyboard targets deterministically', () => {
+    expect(resolveInitialRadioValue(options, true, undefined)).toBe('alpha');
+    expect(resolveInitialRadioValue(options, false, 'gamma')).toBeUndefined();
+    expect(getNextEnabledRadioIndex(options, false, 0, 'next')).toBe(1);
+    expect(getNextEnabledRadioIndex(options, false, 1, 'next')).toBe(0);
+    expect(getNextEnabledRadioIndex(options, false, 0, 'previous')).toBe(1);
+    expect(getNextEnabledRadioIndex(options, false, 1, 'first')).toBe(0);
+    expect(getNextEnabledRadioIndex(options, false, 0, 'last')).toBe(1);
+    expect(getNextEnabledRadioIndex(options, true, 0, 'next')).toBeUndefined();
+  });
+
   it('forwards a fieldset ref and refuses consumer role and styling overrides', () => {
     expectTypeOf(RadioGroup).toMatchTypeOf<React.ForwardRefExoticComponent<RadioGroupProps>>();
     expectTypeOf<RadioGroupProps>().toMatchTypeOf<{ role?: never; className?: never; style?: never }>();
+    const unsafeProps = { role: 'presentation', className: 'escape' } as unknown as Pick<RadioGroupProps, 'role' | 'className'>;
+    const markup = renderToStaticMarkup(<RadioGroup name="plan" options={options} {...unsafeProps} />);
+    expect(markup).not.toContain('role="presentation"');
+    expect(markup).not.toContain('class="escape"');
   });
 });

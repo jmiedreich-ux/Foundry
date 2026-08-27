@@ -50,7 +50,7 @@ function ensureUniqueOptions(options: readonly RadioOption[]) {
   }
 }
 
-function resolveInitialValue(
+export function resolveInitialRadioValue(
   options: readonly RadioOption[],
   required: boolean,
   defaultValue: string | undefined
@@ -76,6 +76,24 @@ function resolveInitialValue(
   return defaultValue;
 }
 
+export function getNextEnabledRadioIndex(
+  options: readonly RadioOption[],
+  disabled: boolean,
+  currentIndex: number,
+  direction: 'next' | 'previous' | 'first' | 'last'
+) {
+  const enabledIndexes = options
+    .map((option, index) => (!disabled && !option.disabled ? index : -1))
+    .filter((index) => index >= 0);
+  if (enabledIndexes.length === 0) return undefined;
+  if (direction === 'first') return enabledIndexes[0];
+  if (direction === 'last') return enabledIndexes.at(-1);
+
+  const currentEnabledIndex = Math.max(0, enabledIndexes.indexOf(currentIndex));
+  const offset = direction === 'next' ? 1 : -1;
+  return enabledIndexes[(currentEnabledIndex + offset + enabledIndexes.length) % enabledIndexes.length];
+}
+
 export const RadioGroup = forwardRef<HTMLFieldSetElement, RadioGroupProps>(function RadioGroup(
   {
     id,
@@ -88,6 +106,9 @@ export const RadioGroup = forwardRef<HTMLFieldSetElement, RadioGroupProps>(funct
     size,
     invalid,
     required,
+    role: _role,
+    className: _className,
+    style: _style,
     ...dataProps
   },
   ref
@@ -108,9 +129,13 @@ export const RadioGroup = forwardRef<HTMLFieldSetElement, RadioGroupProps>(funct
     throw new Error('A required RadioGroup value must identify an enabled option.');
   }
 
-  const initialValue = resolveInitialValue(options, resolvedRequired, defaultValue);
+  const initialValue = resolveInitialRadioValue(options, resolvedRequired, defaultValue);
   const [uncontrolledValue, setUncontrolledValue] = useState(initialValue);
-  const selectedValue = isControlled ? value : uncontrolledValue;
+  const selectedValue = isControlled && enabledOptions.some((option) => option.value === value)
+    ? value
+    : isControlled
+      ? undefined
+      : uncontrolledValue;
   const fieldsetRef = useRef<HTMLFieldSetElement | null>(null);
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
   const [focusVisibleIndex, setFocusVisibleIndex] = useState<number | null>(null);
@@ -120,30 +145,20 @@ export const RadioGroup = forwardRef<HTMLFieldSetElement, RadioGroupProps>(funct
     const form = inputRefs.current.find(Boolean)?.form;
     if (!form || isControlled) return;
 
-    const handleReset = () => setUncontrolledValue(resolveInitialValue(options, resolvedRequired, defaultValue));
+    const handleReset = () => setUncontrolledValue(resolveInitialRadioValue(options, resolvedRequired, defaultValue));
     form.addEventListener('reset', handleReset);
     return () => form.removeEventListener('reset', handleReset);
   }, [defaultValue, isControlled, options, resolvedRequired]);
 
   const choose = (nextValue: string) => {
+    if (!enabledOptions.some((option) => option.value === nextValue)) return;
     if (!isControlled) setUncontrolledValue(nextValue);
     onValueChange?.(nextValue);
   };
 
   const move = (currentIndex: number, direction: 'next' | 'previous' | 'first' | 'last') => {
-    const enabledIndexes = options
-      .map((option, index) => (!resolvedDisabled && !option.disabled ? index : -1))
-      .filter((index) => index >= 0);
-    if (enabledIndexes.length === 0) return;
-
-    let nextIndex: number;
-    if (direction === 'first') nextIndex = enabledIndexes[0] as number;
-    else if (direction === 'last') nextIndex = enabledIndexes.at(-1) as number;
-    else {
-      const currentEnabledIndex = Math.max(0, enabledIndexes.indexOf(currentIndex));
-      const offset = direction === 'next' ? 1 : -1;
-      nextIndex = enabledIndexes[(currentEnabledIndex + offset + enabledIndexes.length) % enabledIndexes.length] as number;
-    }
+    const nextIndex = getNextEnabledRadioIndex(options, resolvedDisabled, currentIndex, direction);
+    if (nextIndex === undefined) return;
 
     const nextOption = options[nextIndex] as RadioOption;
     choose(nextOption.value);
