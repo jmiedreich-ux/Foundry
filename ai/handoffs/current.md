@@ -46,6 +46,7 @@
 - The owner authorized M3 on 2026-08-27. CG-M3-01 is claimed by the Codex coordinator with the sole writable path `packages/react/src/actions/button/**`; its TypeScript, static-check, and production-build preflight passed at 2026-08-27T02:45:00-04:00. No local M3 packet has started.
 - Before source changes, the coordinator found that CG-M3-01's Button directory cannot own the required default-skin visual distinction. CG-M3-01.1 is therefore a separate coordinator-owned default-skin packet after the contract and before Button examples; this is a path-boundary correction, not a new Button behavior or local-agent assignment.
 - CG-M3-01 is accepted at `2fb0008`: its component checks (4/4), TypeScript, static check, production build, and diff check passed, and independent review returned `APPROVE`. CG-M3-01.1 is now claimed by the coordinator; its focused Button test, TypeScript, and production-build preflight passed at 2026-08-27T02:50:50-04:00. No local M3 packet has started.
+- CG-M3-01.1 is accepted at `4f4579a`: foundation checks (11/11), TypeScript, static check, production build, an exact four-variant selector check, and diff check passed; independent review returned `APPROVE`. CG-M3-02 Checkbox is now assigned to Qwen (local) with the sole writable path `packages/react/src/inputs/choice/checkbox/**`; its baseline TypeScript/build preflight passed at 2026-08-27T02:53:51-04:00. The local prompt must require native checkbox semantics, controlled and uncontrolled operation, form reset, inherited and explicit disabled state, checked/disabled/focus state attributes, focused tests, TypeScript, build, and one commit.
 
 ## Deliberately deferred
 
@@ -54,4 +55,4 @@
 
 ## Exact next action
 
-Complete CG-M3-01.1: default-skin rules for visually distinct Button variants.
+Complete CG-M3-02: Checkbox semantics, controlled/uncontrolled state, and reset behavior.
