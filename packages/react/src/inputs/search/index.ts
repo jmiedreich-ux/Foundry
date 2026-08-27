@@ -1,1 +1,1 @@
-export * from './search.js';
+export { Search, type SearchProps } from './search.js';
