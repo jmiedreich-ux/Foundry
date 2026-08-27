@@ -1,7 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import { Field, Group } from '../../foundation/field.js';
-import { Search, type SearchProps } from './search.js';
+import { clearUncontrolledSearch, Search, type SearchProps } from './search.js';
 
 describe('Search', () => {
   it('renders a native search input with Field-owned label, description, error, and required relationships', () => {
@@ -59,19 +59,59 @@ describe('Search', () => {
 
     expect(inheritedMarkup).toMatch(/<input[^>]*disabled=""/);
     expect(inheritedMarkup).toContain('data-disabled=""');
-    expect(inheritedMarkup).toContain('data-search-clear="true" disabled=""');
+    expect(inheritedMarkup).not.toContain('data-search-clear');
     expect(overrideMarkup).not.toMatch(/<input[^>]*disabled=""/);
     expect(overrideMarkup).not.toMatch(/<input[^>]*data-disabled=""/);
   });
 
-  it('keeps component-owned role, styling, and data hooks from being overridden', () => {
-    const markup = renderToStaticMarkup(
-      <Search defaultValue="Ada" data-control="not-search" data-empty="not-empty" />
+  it('does not render a clear action for a read-only search', () => {
+    const markup = renderToStaticMarkup(<Search defaultValue="Ada" readOnly />);
+
+    expect(markup).toContain('readonly=""');
+    expect(markup).not.toContain('data-search-clear');
+  });
+
+  it('clears the uncontrolled native value before notifying, then restores input focus', () => {
+    const calls: string[] = [];
+    const input = {
+      value: 'Ada',
+      focus: () => calls.push('focus')
+    };
+
+    clearUncontrolledSearch(
+      input,
+      (value) => calls.push(`value:${value}`),
+      () => calls.push('clear')
     );
 
-    expect(markup).toContain('data-control="search"');
+    expect(input.value).toBe('');
+    expect(calls).toEqual(['value:', 'clear', 'focus']);
+  });
+
+  it('keeps component-owned role, styling, and data hooks from being overridden', () => {
+    const markup = renderToStaticMarkup(
+      <Search
+        {...({
+          defaultValue: 'Ada',
+          type: 'text',
+          role: 'searchbox',
+          className: 'consumer-class',
+          style: { color: 'red' },
+          'data-control': 'not-search',
+          'data-empty': 'not-empty',
+          'data-search-clear': 'not-a-button-hook'
+        } as unknown as SearchProps)}
+      />
+    );
+
+    expect(markup).toMatch(/<input[^>]*type="search"/);
+    expect(markup).toMatch(/<input[^>]*data-control="search"/);
     expect(markup).not.toContain('not-search');
     expect(markup).not.toContain('not-empty');
+    expect(markup).not.toContain('not-a-button-hook');
+    expect(markup).not.toContain('searchbox');
+    expect(markup).not.toContain('consumer-class');
+    expect(markup).not.toContain('color:red');
     expectTypeOf<SearchProps>().toMatchTypeOf<{
       role?: never;
       className?: never;

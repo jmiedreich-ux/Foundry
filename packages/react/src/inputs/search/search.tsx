@@ -56,6 +56,22 @@ export type SearchProps = NativeSearchProps & SearchModeProps & {
   style?: never;
 };
 
+interface ClearableSearchInput {
+  value: string;
+  focus: () => void;
+}
+
+export function clearUncontrolledSearch(
+  input: ClearableSearchInput,
+  onValueChange?: (value: string) => void,
+  onClear?: () => void
+) {
+  input.value = '';
+  onValueChange?.('');
+  onClear?.();
+  input.focus();
+}
+
 export const Search = forwardRef<HTMLInputElement, SearchProps>(function Search(
   {
     id,
@@ -70,16 +86,28 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(function Search(
     onFocus,
     onBlur,
     readOnly,
-    ...nativeProps
+    ...passedNativeProps
   },
   ref
 ) {
+  const unsafeNativeProps = passedNativeProps as ComponentPropsWithoutRef<'input'> & {
+    'data-search-clear'?: unknown;
+  };
+  const {
+    type: _type,
+    role: _role,
+    className: _className,
+    style: _style,
+    'data-search-clear': _consumerClearHook,
+    ...nativeProps
+  } = unsafeNativeProps;
   const generatedId = useId().replaceAll(':', '');
   const field = useField();
   const resolvedDisabled = disabled ?? field?.disabled ?? false;
   const resolvedSize = size ?? field?.size ?? 'md';
   const resolvedInvalid = invalid ?? field?.invalidMessage ?? field?.invalid ?? false;
   const resolvedRequired = required ?? field?.required ?? false;
+  const resolvedReadOnly = readOnly ?? false;
   const controlId = id ?? field?.controlId ?? `foundry-search-${generatedId}`;
   const focus = useFocusVisible<HTMLInputElement>();
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -121,11 +149,15 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(function Search(
         ref={setInputRef}
         id={controlId}
         disabled={resolvedDisabled}
-        readOnly={readOnly}
+        readOnly={resolvedReadOnly}
         required={resolvedRequired}
         value={isControlled ? value : undefined}
         defaultValue={isControlled ? undefined : defaultValue}
         onChange={(event) => {
+          if (resolvedDisabled || resolvedReadOnly) {
+            return;
+          }
+
           const nextValue = event.currentTarget.value;
 
           if (!isControlled) {
@@ -150,24 +182,23 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(function Search(
           disabled: resolvedDisabled,
           size: resolvedSize,
           invalid: Boolean(resolvedInvalid),
-          readOnly,
+          readOnly: resolvedReadOnly,
           focusVisible: focus.focusVisible
         })}
         data-control="search"
         data-empty={isEmpty ? '' : undefined}
       />
-      {!isEmpty ? (
+      {!isEmpty && !resolvedDisabled && !resolvedReadOnly ? (
         <button
           type="button"
           data-search-clear
-          disabled={resolvedDisabled || readOnly}
           onClick={() => {
-            if (resolvedDisabled || readOnly) {
-              return;
-            }
-
             if (!isControlled) {
               setUncontrolledValue('');
+              if (inputRef.current) {
+                clearUncontrolledSearch(inputRef.current, onValueChange, onClear);
+                return;
+              }
             }
 
             onValueChange?.('');
