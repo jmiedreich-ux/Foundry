@@ -64,6 +64,12 @@
       "packet": "CG-M2-01",
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/foundation/**", "packages/validation/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M2-02",
+      "owner": "OpenCode 1.18.21 / Ollama qwen3.6:27b (local; supervised)",
+      "paths": ["packages/react/src/inputs/text-field/**", "packages/react/src/inputs/select/**"],
       "status": "in_progress"
     }
   ],
