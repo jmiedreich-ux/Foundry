@@ -145,6 +145,25 @@ muse-glimmer:30b    de878ce33ad8    16 GB    100% GPU     65536
 | Owner-acceptance result | N/A — the benchmark does not seek owner acceptance or alter M1's outstanding owner-acceptance item. |
 | Routing recommendation | Do not replace supervised Qwen 3.6 routing with Muse Glimmer on this evidence. Muse recovered from two failed tool actions without a coordinator-issued rework, but it was markedly slower and failed the layout packet's isolation/completion contract. |
 
+### Codestral 22B M1 packet dispatch preflight — 2026-08-26
+
+**Status:** This owner-requested comparison could not dispatch a packet through the same OpenCode local-agent method used for Qwen and Muse. It is a configuration result, not a six-packet performance result; no Foundry source or temporary benchmark worktree was changed.
+
+**Environment:** The official Ollama image `codestral:22b` (`0898a8b286d5`) was installed and loaded at `100% GPU`. The temporary Ollama server had `OLLAMA_CONTEXT_LENGTH=65536` set, but `ollama ps` correctly reported `CONTEXT 32768`: this specific Codestral 22B image has a 32K context window. The official Ollama tags list that 32K limit. [Ollama Codestral tags](https://ollama.com/library/codestral/tags)
+
+| Packet | Actual agent/model | Local or cloud | Files changed | Elapsed time | Verification result | UNTESTED count | Outcome |
+| --- | --- | --- | --- | --- | --- | ---: | --- |
+| CG-M1-03.2 dispatch preflight | OpenCode 1.18.21 / Ollama `codestral:22b` | Local | none | No model task elapsed time | OpenCode rejected dispatch before model work: `registry.ollama.ai/library/codestral:22b does not support tools`. The model therefore could not read, edit, run the gates, or commit. | 6 | stopped |
+| CG-M1-03.3 through CG-M1-03.6 | Not dispatched | N/A | none | N/A | Not run after the tool-support preflight failure. Browser testing is N/A because CG-M1-04 owns it. | 6 each | not started |
+| CG-M1-04 | Not dispatched | N/A | none | N/A | Not run after the tool-support preflight failure; its real-browser gate was not exercised. | 7 | not started |
+
+| Measure | Result |
+| --- | --- |
+| Packets attempted / accepted / escalated | 0 / 0 / 0; one dispatch preflight stopped before model work, five packets not started. |
+| Completed-packet elapsed time | N/A — OpenCode rejected the model before a packet began. |
+| Build and browser-gate result | UNTESTED — no model-authored change exists to validate. |
+| Routing recommendation | Do not route Foundry local coding packets to this `codestral:22b` Ollama image through OpenCode. Its tool-support absence makes it ineligible for the controlled agentic workflow; a different harness would be a different benchmark and requires separate approval. |
+
 ## M2
 
 Not started.
