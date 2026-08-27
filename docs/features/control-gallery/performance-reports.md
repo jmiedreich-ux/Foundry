@@ -263,6 +263,21 @@ Qwen followed the new shared-control behavior rules in the returned source, but 
 
 This packet proves the value of recording a complete public contract before code: every reported defect was resolved inside the bounded RadioGroup directory before acceptance.
 
+#### CG-M3-05 — Search
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `2d910d8`. |
+| Assigned / actual executor | Qwen (local) / Qwen (local) attempted, then Codex coordinator (cloud) completed the packet. |
+| Final code ownership | Coordinator retained all 337 accepted lines; Qwen retained 0 lines because its run produced no source or commit. |
+| Estimate / actual size | 100–140 / 337 changed lines. This materially exceeded the local-routing forecast. |
+| Local elapsed time | 3 min 57 sec of recorded OpenCode activity, ending after exploration with no subsequent tool action, source, or commit. |
+| Rework and review | Two coordinator corrections: the first independent review found uncontrolled native-value clearing, runtime semantic/hook escaping, and disabled/read-only defects; renewed review found an accidental public helper export. Final independent review approved. |
+| Verification | Focused Search tests 7/7, TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | Real-browser typing, clear/callback order, native reset, focus, keyboard, and responsive behavior; CG-M3-27 owns it. |
+
+The packet’s contract was clear, but its 337-line implementation plus live uncontrolled-state behavior exceeded the current Qwen envelope. Keep Search-like stateful input controls coordinator-owned unless a future benchmark shows reliable bounded completion.
+
 ### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
 
 **Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.
@@ -288,7 +303,7 @@ This packet proves the value of recording a complete public contract before code
 | CG-M3-04 | Codex coordinator (cloud) | `packages/react/src/inputs/choice/radio-group/**` | 220–300 | Cloud: RadioGroup establishes the shared selection and roving-keyboard contract that its examples and browser checks consume. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS before implementation. | Codex coordinator (cloud) | Pending recorded-contract review | N/A |
 | CG-M3-04.1 | Codex coordinator (cloud) | M3 contract records only | 120–180 | Cloud: the missing API/state/accessibility decisions must be explicit before any local source packet can start. | Markdown authority review and `git diff --check` → PASS | Codex coordinator (cloud) | PASS — independent contract review approved the recorded Search and feedback boundaries | N/A |
 | CG-M3-04.2 | Codex coordinator (cloud) | `packages/tokens/src/skins/default.css` | 90–140 | Cloud: shared skin selectors cannot be safely split across feedback controls. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS before implementation. | Codex coordinator (cloud) | PASS — 2026-08-27T11:41:14-04:00; providers 2/2, TypeScript, static check, build, selector scan, and independent review approved | N/A |
-| CG-M3-05 | Qwen (local) | `packages/react/src/inputs/search/**` | 100–140 | Local: one native Search field after its exact contract and shared skin are accepted. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused Search checks. | UNSET | UNSET | 1 |
+| CG-M3-05 | Qwen (local) | `packages/react/src/inputs/search/**` | 100–140 | Local: one native Search field after its exact contract and shared skin are accepted. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused Search checks. | Qwen (local), then Codex coordinator (cloud) | PASS — 2026-08-27T11:55:48-04:00; focused Search 7/7, TypeScript, static check, build, scope/diff checks, and independent review approved | 1 |
 | CG-M3-06 | Qwen (local) | `packages/react/src/feedback/status-chip/**` | 50–80 | Local: one static advisory-status component with no shared infrastructure. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused StatusChip checks. | UNSET | UNSET | 1 |
 | CG-M3-07 | Qwen (local) | `packages/react/src/feedback/banner/**` | 100–140 | Local: one bounded persistent feedback component after the open-state contract is explicit. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused Banner checks. | UNSET | UNSET | 1 |
 | CG-M3-08 | Codex coordinator (cloud) | `packages/react/src/feedback/toast/**` | 100–140 | Cloud: Toast owns the milestone's live-message and lifecycle boundary. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS before implementation. | UNSET | UNSET | N/A |
