@@ -14,7 +14,7 @@ The Control Gallery is Foundry's living acceptance surface. It demonstrates real
 | --- | --- | --- |
 | M1 | Runnable gallery foundation and testing harness | completed |
 | M2 | Foundational contracts and field controls | accepted and closed |
-| M3 | Buttons, selection controls, search, and feedback | in progress; Button packets and Checkbox accepted; CG-M3-03 not yet started |
+| M3 | Buttons, selection controls, search, and feedback | in progress; Button packets and Checkbox accepted; CG-M3-03 Switch active with Qwen |
 | M4 | Overlays and navigation controls | planned |
 | M5 | Cross-control acceptance, accessibility, and release handoff | planned |
 
