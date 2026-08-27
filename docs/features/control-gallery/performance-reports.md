@@ -29,8 +29,8 @@ Create one completed section after each milestone. Record actual execution facts
 
 Before dispatching any M3–M5 packet, add this forecast to that milestone's report section. Estimates are planning ranges, not completion claims.
 
-| Packet | Expected executor | Code-bearing paths | Estimated changed lines | Why local or cloud | Preconditions | Maximum corrections |
-| --- | --- | --- | ---: | --- | --- | ---: |
+| Packet | Planned executor/runtime | Code-bearing paths | Estimated changed lines | Why local or cloud | Preflight command and expected result | Actual executor/runtime at dispatch | Preflight result and timestamp | Maximum corrections |
+| --- | --- | --- | ---: | --- | --- | --- | --- | ---: |
 
 At milestone close, add this cost-savings result. Count added plus deleted lines in accepted implementation and test files only; exclude controlled records, generated output, lockfiles, and runtime logs. Attribute a coordinator takeover or amendment to the coordinator even if a local attempt preceded it.
 
@@ -43,7 +43,7 @@ At milestone close, add this cost-savings result. Count added plus deleted lines
 | Local attempts stopped or taken over | — packet IDs, elapsed time, and affected line estimate |
 | Cost-savings conclusion | Evidence only: local work avoided, repeated, or added to coordinator work; no unmeasured dollar claim |
 
-**Reporting rule:** M3 and M4 target 60–70% accepted local code-bearing share. M5 reports local test-code share separately and does not treat audit or documentation lines as implementation-cost savings.
+**Reporting rule:** Before dispatch, `Actual executor/runtime at dispatch` and `Preflight result and timestamp` are `UNSET`; filling them is part of the claim/start record, not a deferred close-out step. M3 and M4 target 60–70% accepted local code-bearing share. M5 reports local test-code share separately and does not treat audit or documentation lines as implementation-cost savings.
 
 ## M1
 

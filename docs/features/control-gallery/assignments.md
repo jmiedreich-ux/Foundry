@@ -30,14 +30,28 @@ For M3–M5, the named local runtime is **OpenCode 1.18.21 / Ollama `qwen3.6:27b
 | M3 | CG-M3-08 | Toast contract specialist | Premium cloud coordinator | No | Toast lifecycle and announcement contract. |
 | M3 | CG-M3-09 | EmptyState agent | Local 9B–24B coding agent | Yes | EmptyState only. |
 | M3 | CG-M3-10 | LoadingSkeleton agent | Local 9B–24B coding agent | Yes | LoadingSkeleton only. |
-| M3 | CG-M3-11 | Action-gallery agent | Local 24B coding agent | Yes | Action examples only. |
-| M3 | CG-M3-12 | Choice-gallery agent | Local 24B coding agent | Yes | Choice and Search examples only. |
-| M3 | CG-M3-13 | Feedback-gallery agent | Local 24B coding agent | Yes | Feedback examples only. |
-| M3 | CG-M3-14 | Public-API coordinator | Premium cloud coordinator | No | M3 public exports only. |
-| M3 | CG-M3-15 | Gallery-integration coordinator | Premium cloud coordinator | No | Render accepted examples only. |
-| M3 | CG-M3-16 | Action-specifications agent | Local 24B coding agent | Yes | Action browser checks only. |
-| M3 | CG-M3-17 | Choice-specifications agent | Local 24B coding agent | Yes | Choice/Search browser checks only. |
-| M3 | CG-M3-18 | Feedback-specifications agent | Local 24B coding agent | Yes | Feedback browser checks only. |
+| M3 | CG-M3-11 | Button-gallery agent | Local 24B coding agent | Yes | Button examples only. |
+| M3 | CG-M3-12 | Checkbox-gallery agent | Local 24B coding agent | Yes | Checkbox examples only. |
+| M3 | CG-M3-13 | Switch-gallery agent | Local 24B coding agent | Yes | Switch examples only. |
+| M3 | CG-M3-14 | RadioGroup-gallery agent | Local 24B coding agent | Yes | RadioGroup examples only. |
+| M3 | CG-M3-15 | Search-gallery agent | Local 24B coding agent | Yes | Search examples only. |
+| M3 | CG-M3-16 | StatusChip-gallery agent | Local 24B coding agent | Yes | StatusChip examples only. |
+| M3 | CG-M3-17 | Banner-gallery agent | Local 24B coding agent | Yes | Banner examples only. |
+| M3 | CG-M3-18 | Toast-gallery agent | Local 24B coding agent | Yes | Toast examples only. |
+| M3 | CG-M3-19 | EmptyState-gallery agent | Local 24B coding agent | Yes | EmptyState examples only. |
+| M3 | CG-M3-20 | LoadingSkeleton-gallery agent | Local 24B coding agent | Yes | LoadingSkeleton examples only. |
+| M3 | CG-M3-21 | Public-API coordinator | Premium cloud coordinator | No | M3 public exports only. |
+| M3 | CG-M3-22 | Gallery-integration coordinator | Premium cloud coordinator | No | Render accepted examples only. |
+| M3 | CG-M3-23 | Button-specifications agent | Local 24B coding agent | Yes | Button browser checks only. |
+| M3 | CG-M3-24 | Checkbox-specifications agent | Local 24B coding agent | Yes | Checkbox browser checks only. |
+| M3 | CG-M3-25 | Switch-specifications agent | Local 24B coding agent | Yes | Switch browser checks only. |
+| M3 | CG-M3-26 | RadioGroup-specifications agent | Local 24B coding agent | Yes | RadioGroup browser checks only. |
+| M3 | CG-M3-27 | Search-specifications agent | Local 24B coding agent | Yes | Search browser checks only. |
+| M3 | CG-M3-28 | StatusChip-specifications agent | Local 24B coding agent | Yes | StatusChip browser checks only. |
+| M3 | CG-M3-29 | Banner-specifications agent | Local 24B coding agent | Yes | Banner browser checks only. |
+| M3 | CG-M3-30 | Toast-specifications agent | Local 24B coding agent | Yes | Toast browser checks only. |
+| M3 | CG-M3-31 | EmptyState-specifications agent | Local 24B coding agent | Yes | EmptyState browser checks only. |
+| M3 | CG-M3-32 | LoadingSkeleton-specifications agent | Local 24B coding agent | Yes | LoadingSkeleton browser checks only. |
 | M4 | CG-M4-01 | Overlay-foundation specialist | Premium cloud coordinator | No | Overlay root, layer, and focus contract only. |
 | M4 | CG-M4-02 | Dialog contract specialist | Premium cloud coordinator | No | Dialog only. |
 | M4 | CG-M4-03 | Drawer agent | Local 24B–35B coding agent | Yes | Drawer only. |
@@ -45,24 +59,35 @@ For M3–M5, the named local runtime is **OpenCode 1.18.21 / Ollama `qwen3.6:27b
 | M4 | CG-M4-05 | Menu contract specialist | Premium cloud coordinator | No | Menu only. |
 | M4 | CG-M4-06 | Tabs agent | Local 24B–35B coding agent | Yes | Tabs only. |
 | M4 | CG-M4-07 | Card agent | Local 9B–24B coding agent | Yes | Card only. |
-| M4 | CG-M4-08 | Dialog/Drawer-gallery agent | Local 24B coding agent | Yes | Dialog and Drawer examples only. |
-| M4 | CG-M4-09 | Popover/Menu-gallery agent | Local 24B coding agent | Yes | Popover and Menu examples only. |
-| M4 | CG-M4-10 | Navigation-gallery agent | Local 24B coding agent | Yes | Tabs and Card examples only. |
-| M4 | CG-M4-11 | Public-API coordinator | Premium cloud coordinator | No | M4 public exports only. |
-| M4 | CG-M4-12 | Gallery-integration coordinator | Premium cloud coordinator | No | Render accepted examples only. |
-| M4 | CG-M4-13 | Dialog/Drawer specifications specialist | Premium cloud coordinator | No | Highest-risk focus and restoration checks only. |
-| M4 | CG-M4-14 | Popover/Menu specifications agent | Local 24B coding agent | Yes | Popover/Menu dismissal checks only. |
-| M4 | CG-M4-15 | Navigation specifications agent | Local 24B coding agent | Yes | Tabs/Card checks only. |
-| M5 | CG-M5-01 | Actions/Input acceptance agent | Local 24B–35B coding agent | Yes | Actions, fields, choices, and Search acceptance only. |
-| M5 | CG-M5-02 | Overlay/Navigation acceptance agent | Local 24B–35B coding agent | Yes | Overlay and navigation acceptance only. |
-| M5 | CG-M5-03 | Responsive/Motion acceptance agent | Local 24B coding agent | Yes | Responsive, overflow, and motion acceptance only. |
-| M5 | CG-M5-04 | Accessibility audit agent | Local 9B–24B audit agent | Yes, audit only | Accessibility audit findings only; implementation fixes route to owners. |
-| M5 | CG-M5-05 | Documentation agent | Local 9B coding agent | Yes | API/examples reference and explicit risk record. |
-| M5 | CG-M5-06 | Coordinator + independent reviewer | Premium cloud coordinator + separate cloud reviewer | No | Final integration, review decision, ledger, and owner acceptance workbook. |
+| M4 | CG-M4-08 | Dialog-gallery agent | Local 24B coding agent | Yes | Dialog examples only. |
+| M4 | CG-M4-09 | Drawer-gallery agent | Local 24B coding agent | Yes | Drawer examples only. |
+| M4 | CG-M4-10 | Popover-gallery agent | Local 24B coding agent | Yes | Popover examples only. |
+| M4 | CG-M4-11 | Menu-gallery agent | Local 24B coding agent | Yes | Menu examples only. |
+| M4 | CG-M4-12 | Tabs-gallery agent | Local 24B coding agent | Yes | Tabs examples only. |
+| M4 | CG-M4-13 | Card-gallery agent | Local 24B coding agent | Yes | Card examples only. |
+| M4 | CG-M4-14 | Public-API coordinator | Premium cloud coordinator | No | M4 public exports only. |
+| M4 | CG-M4-15 | Gallery-integration coordinator | Premium cloud coordinator | No | Render accepted examples only. |
+| M4 | CG-M4-16 | Dialog specifications specialist | Premium cloud coordinator | No | Dialog focus/restore checks only. |
+| M4 | CG-M4-17 | Drawer specifications specialist | Premium cloud coordinator | No | Drawer focus/restore checks only. |
+| M4 | CG-M4-18 | Popover specifications agent | Local 24B coding agent | Yes | Popover dismissal checks only. |
+| M4 | CG-M4-19 | Menu specifications agent | Local 24B coding agent | Yes | Menu dismissal checks only. |
+| M4 | CG-M4-20 | Tabs specifications agent | Local 24B coding agent | Yes | Tabs checks only. |
+| M4 | CG-M4-21 | Card specifications agent | Local 24B coding agent | Yes | Card checks only. |
+| M5 | CG-M5-01 | Action acceptance agent | Local 24B–35B coding agent | Yes | Button acceptance only. |
+| M5 | CG-M5-02 | Field acceptance agent | Local 24B–35B coding agent | Yes | Field acceptance only. |
+| M5 | CG-M5-03 | Choice acceptance agent | Local 24B–35B coding agent | Yes | Choice-control acceptance only. |
+| M5 | CG-M5-04 | Search acceptance agent | Local 24B coding agent | Yes | Search acceptance only. |
+| M5 | CG-M5-05 | Overlay acceptance agent | Local 24B–35B coding agent | Yes | Overlay acceptance only. |
+| M5 | CG-M5-06 | Navigation acceptance agent | Local 24B–35B coding agent | Yes | Navigation acceptance only. |
+| M5 | CG-M5-07 | Responsive acceptance agent | Local 24B coding agent | Yes | Responsive/overflow acceptance only. |
+| M5 | CG-M5-08 | Motion acceptance agent | Local 24B coding agent | Yes | Reduced-motion acceptance only. |
+| M5 | CG-M5-09 | Accessibility audit agent | Local 9B–24B audit agent | Yes, audit only | Accessibility audit findings only; implementation fixes route to owners. |
+| M5 | CG-M5-10 | Documentation agent | Local 9B coding agent | Yes | API/examples reference and explicit risk record. |
+| M5 | CG-M5-11 | Coordinator + independent reviewer | Premium cloud coordinator + separate cloud reviewer | No | Final integration, review decision, ledger, and owner acceptance workbook. |
 
 ## Local-agent total
 
-**37 of 53 packets** are intended for local agents. Packet counts are only a routing plan: M3 and M4 instead target 60–70% of accepted code-bearing lines authored locally, measured at milestone close. The remaining packets stay with the coordinator or a stronger specialist because they own shared contracts, public exports, cross-control focus/layer rules, integration, or final acceptance.
+**61 of 78 packets** are intended for local agents. Packet counts are only a routing plan: M3 and M4 instead target 60–70% of accepted code-bearing lines authored locally, measured at milestone close. The remaining packets stay with the coordinator or a stronger specialist because they own shared contracts, public exports, cross-control focus/layer rules, integration, or final acceptance.
 
 ## Execution limits
 
