@@ -40,6 +40,10 @@ describe('Switch', () => {
     }>();
   });
 
+  it('does not permit consumers to override the Switch role', () => {
+    expectTypeOf<SwitchProps>().toMatchTypeOf<{ role?: never }>();
+  });
+
   it('supports controlled unchecked state', () => {
     const markup = renderToStaticMarkup(
       <Switch name="controlled" checked={false} onChange={() => {}} />

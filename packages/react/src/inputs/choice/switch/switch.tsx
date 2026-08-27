@@ -20,6 +20,7 @@ type NativeSwitchProps = Omit<
   | 'disabled'
   | 'size'
   | 'type'
+  | 'role'
   | 'required'
   | 'checked'
   | 'defaultChecked'
@@ -47,6 +48,7 @@ export type SwitchProps = NativeSwitchProps & SwitchModeProps & {
   size?: ControlSize;
   invalid?: ControlInvalidState;
   required?: boolean;
+  role?: never;
   className?: never;
   style?: never;
 };
@@ -87,8 +89,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   return (
     <input
       type="checkbox"
-      role="switch"
       {...nativeProps}
+      role="switch"
       ref={(node) => {
         inputRef.current = node;
 
