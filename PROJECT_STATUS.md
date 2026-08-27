@@ -6,8 +6,8 @@ Control Gallery — Milestone 3: actions, choices, search, and feedback.
 
 ## Current state
 
-Control Gallery M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-05, the CG-M3-04.1 conservative Search and feedback contracts, and CG-M3-04.2 shared default-skin selectors are accepted on the M3 branch after independent review. Real RadioGroup and Search browser proof remain owned by CG-M3-26 and CG-M3-27.
+Control Gallery M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-06, the CG-M3-04.1 conservative Search and feedback contracts, and CG-M3-04.2 shared default-skin selectors are accepted on the M3 branch after independent review. Real RadioGroup, Search, and StatusChip browser proof remain owned by CG-M3-26 through CG-M3-28.
 
 ## Next action
 
-CG-M3-06 StatusChip is active in its bounded local Qwen packet.
+CG-M3-07 Banner is active in its bounded local Qwen packet.

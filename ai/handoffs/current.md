@@ -63,4 +63,8 @@
 
 ## Exact next action
 
-CG-M3-06 StatusChip is active in its bounded local Qwen packet.
+- CG-M3-06 StatusChip is accepted at M3 branch head `7208d9e`: Qwen authored the scoped first draft, then source review required Control Base size inheritance plus runtime refusal of focus, interaction, and assertive-live escapes. Renewed review approved after focused checks (14/14), TypeScript, static check, production build, and diff check passed. Gallery and browser proof remain `UNTESTED` until CG-M3-16 and CG-M3-28.
+
+## Exact next action
+
+CG-M3-07 Banner is active in its bounded local Qwen packet.
