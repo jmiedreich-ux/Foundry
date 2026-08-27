@@ -31,6 +31,16 @@ Read architecture, component, or operations material only when the task touches 
 - Evidence is a rerunnable command plus its result. Never call unexecuted work verified.
 - Read the handoff first and append the established facts, assumptions, deferred work, and exact next action before stopping.
 
+## Local-agent quality protocol
+
+- A local packet is a bounded implementation contract, not an invitation to infer framework conventions. Before dispatch, record its exact writable paths, estimated code-bearing line range, prerequisite state, three to five observable assertions, required command gates, and required commit.
+- The packet names the available test harness and the test paths it owns. An agent does not import an uninstalled test library, add a dependency, or create a new test environment to satisfy a packet; it reports that missing capability for a coordinator decision.
+- Each packet links to the applicable reusable-control invariants. If a required rule is absent or conflicts with the packet, the agent stops and reports the missing decision; it does not invent an API, state transition, accessibility treatment, or styling escape.
+- Tests prove the contract's live transitions where a renderer can exercise them: controlled and uncontrolled entry, change, reset or remount recovery, disabled/refusal, and callback count. Static-markup checks may supplement these proofs but do not substitute for them.
+- The coordinator rejects a return with no scoped diff or no required commit before spending a correction round. One correction is allowed only when its target is named; an unchanged correction escalates immediately.
+- Review checks the implementation against the packet contract, shared invariants, public type boundary, runtime refusal boundary, and declared test paths—not merely against the agent's self-reported gates.
+- Every R3 or R4 review finding is converted into a shared invariant, packet-template assertion, or explicit open decision before another packet in the same control family is dispatched. Future packets inherit that rule rather than rediscover it.
+
 ## Definition of done
 
 Consider every item below and explicitly mark non-applicable items `N/A (reason)` and unexecuted items `UNTESTED`.
