@@ -1,7 +1,32 @@
+// @vitest-environment jsdom
+
+import { act, type ReactNode } from 'react';
+import { createRoot, type Root } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { describe, expect, expectTypeOf, it } from 'vitest';
+import { describe, expect, expectTypeOf, it, vi } from 'vitest';
 import { Group } from '../../foundation/field.js';
 import { Banner, bannerTones, type BannerProps } from './banner.js';
+
+(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
+
+async function mountBanner(node: ReactNode) {
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+
+  await act(async () => {
+    root.render(node);
+  });
+
+  return { container, root };
+}
+
+async function unmountBanner(root: Root, container: HTMLElement) {
+  await act(async () => {
+    root.unmount();
+  });
+  container.remove();
+}
 
 describe('Banner', () => {
   /* ---- tones / title / description / action ---- */
@@ -101,7 +126,7 @@ describe('Banner', () => {
     const withCallback = renderToStaticMarkup(
       <Banner title="Dismiss" description="Can close" onOpenChange={() => {}} />
     );
-    expect(withoutCallback).not.toMatch(/<button/);
+    expect(withCallback).toMatch(/<button/);
   });
 
   it('renders a native dismiss button with type button when onOpenChange exists', () => {
@@ -110,7 +135,66 @@ describe('Banner', () => {
     );
     expect(markup).toMatch(/<button[^>]*type="button"/);
     expect(markup).toContain('Dismiss');
-    /* Interactive dismissal and onOpenChange call verified by browser test M3-29 */
+  });
+
+  it('dismisses an uncontrolled Banner once and keeps it closed for the mounted instance', async () => {
+    const onOpenChange = vi.fn();
+    const { container, root } = await mountBanner(
+      <Banner title="Dismiss" description="Can close" onOpenChange={onOpenChange} />
+    );
+    const dismiss = container.querySelector<HTMLButtonElement>('button');
+
+    expect(dismiss).not.toBeNull();
+    await act(async () => {
+      dismiss?.click();
+    });
+
+    expect(onOpenChange).toHaveBeenCalledTimes(1);
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+    expect(container.querySelector('section')).toBeNull();
+    await unmountBanner(root, container);
+  });
+
+  it('reports controlled dismissal while the parent controls close and restore', async () => {
+    const onOpenChange = vi.fn();
+    const { container, root } = await mountBanner(
+      <Banner title="Controlled" description="Visible" open onOpenChange={onOpenChange} />
+    );
+    const dismiss = container.querySelector<HTMLButtonElement>('button');
+
+    await act(async () => {
+      dismiss?.click();
+    });
+    expect(onOpenChange).toHaveBeenCalledTimes(1);
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+    expect(container.querySelector('section')).not.toBeNull();
+
+    await act(async () => {
+      root.render(<Banner title="Controlled" description="Hidden" open={false} onOpenChange={onOpenChange} />);
+    });
+    expect(container.querySelector('section')).toBeNull();
+
+    await act(async () => {
+      root.render(<Banner title="Controlled" description="Restored" open onOpenChange={onOpenChange} />);
+    });
+    expect(container.querySelector('section')?.textContent).toContain('Restored');
+    await unmountBanner(root, container);
+  });
+
+  it('renders a disabled dismiss button that refuses a callback', async () => {
+    const onOpenChange = vi.fn();
+    const { container, root } = await mountBanner(
+      <Banner title="Disabled" description="Cannot close" disabled onOpenChange={onOpenChange} />
+    );
+    const dismiss = container.querySelector<HTMLButtonElement>('button');
+
+    expect(dismiss?.disabled).toBe(true);
+    await act(async () => {
+      dismiss?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    expect(onOpenChange).not.toHaveBeenCalled();
+    expect(container.querySelector('section')).not.toBeNull();
+    await unmountBanner(root, container);
   });
 
   /* ---- fixed semantics ---- */
