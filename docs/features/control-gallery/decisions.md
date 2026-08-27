@@ -35,6 +35,8 @@
 3. Work is divided into bounded, non-overlapping packets. Every contributor follows `AGENTS.md`; packets do not create an exception to it.
 4. Browser verification and integration checks are serialized after implementation packets complete.
 5. After the initial M1-03 local-agent attempt returned no acceptable change, CG-M1-03 is divided into sequential, exact-path sub-packets. The coordinator accepts each returned diff before dispatching its successor. The completed integrated M1-03 diff receives one independent review before merge; a commit after that review requires a new review.
+6. Beginning with M3, local-agent routing is measured by accepted code-bearing line share, not task-count share. A milestone plans a 60–70% local share of changed implementation and test lines where its work is suitable for local execution. Code-bearing lines exclude controlled records, generated output, lockfiles, and runtime logs. Actual attribution follows the accepted commit author; coordinator takeovers and coordinator amendments count as cloud-authored lines.
+7. A local code packet has one behavior responsibility, exact non-overlapping paths, a stated estimated code-bearing line range (normally 40–140 changed lines), a preflighted dependency/browser target where applicable, three to five observable acceptance assertions, one required commit, and at most one correction. An estimate above that range is split or receives an owner-approved exception. Shared contracts, public exports, gallery integration, test-server configuration, controlled records, and final review remain explicit coordinator packets. A packet that needs a coordinator-owned edit is split before dispatch rather than relying on an implicit handoff.
 
 ## Explicit non-goals
 

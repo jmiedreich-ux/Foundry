@@ -22,7 +22,7 @@
 
 **Exit behavior:** The gallery demonstrates real action, selection, loading, disabled, empty, and feedback behavior, including all approved Button variants.
 
-**Packets:** `CG-M3-01` through `CG-M3-05`. See [M3 record](milestones/m3.md).
+**Packets:** `CG-M3-01` through `CG-M3-18`. See [M3 record](milestones/m3.md).
 
 ## M4 — Overlay and navigation controls
 
@@ -30,7 +30,7 @@
 
 **Exit behavior:** Layer controls manage focus, Escape, appropriate dismissal, and keyboard navigation consistently.
 
-**Packets:** `CG-M4-01` through `CG-M4-04`. See [M4 record](milestones/m4.md).
+**Packets:** `CG-M4-01` through `CG-M4-15`. See [M4 record](milestones/m4.md).
 
 ## M5 — Cross-control acceptance and release handoff
 
@@ -38,7 +38,7 @@
 
 **Exit behavior:** Core v1 gallery behavior has evidence, open risks are explicitly marked, and the feature can be accepted without beginning Vennusign conversion.
 
-**Packets:** `CG-M5-01` through `CG-M5-04`. See [M5 record](milestones/m5.md).
+**Packets:** `CG-M5-01` through `CG-M5-06`. See [M5 record](milestones/m5.md).
 
 ## Post-Core roadmap
 
