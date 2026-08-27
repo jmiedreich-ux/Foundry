@@ -31,6 +31,10 @@ Use `PASS`, `N/A (reason)`, or `UNTESTED`. Do not leave cells blank at milestone
 | Independent review | PASS | Review requested changes on `e49aa8f` for default-skin and focus-visible defects; renewed review approved `2b7002a`. PR #21 merged at `2ab4753`. |
 | Owner acceptance workbook | PASS | Owner approved the merged M2 field-controls gallery on 2026-08-27. |
 
-## M3–M5
+## M3
+
+In progress. CG-M3-01, CG-M3-01.1, and CG-M3-02 are accepted on the M3 branch. The Checkbox component passed its focused unit, TypeScript, static, production-build, scope, and independent-review gates. Real browser toggle, reset, focus, and accessibility proof is `UNTESTED` here because CG-M3-24 owns that browser specification.
+
+## M4–M5
 
 Not started. Each milestone adds a complete check table before implementation begins.
