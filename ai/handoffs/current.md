@@ -34,6 +34,7 @@
 - Final independent review returned `APPROVE` on `99132e9`. PR #18 merged M1 into `main` at `6f45394`; Issue #3 remains open with all ten task boxes checked until owner acceptance. M1 has no remaining implementation, verification, or review work. Owner acceptance is explicitly UNTESTED, and M2 has not started.
 - Owner-requested Muse Glimmer comparison: local OpenCode 1.18.21 / Ollama `muse-glimmer:30b` was confirmed at 65,536 context and 100% GPU, then run in historical isolated M1 packet worktrees. CG-M1-03.2, -03.3, and -03.4 were accepted in 604.7 s, 334.9 s, and 1,001.4 s respectively; CG-M1-03.5 stopped after an isolation violation and an incomplete permitted retry; CG-M1-03.6 and CG-M1-04 were not started. The dated partial comparison is in `docs/features/control-gallery/performance-reports.md`; it does not alter M1's accepted implementation or owner-acceptance status.
 - Owner-requested Codestral 22B preflight: official local Ollama `codestral:22b` installed and loaded at 100% GPU but has a 32K image context limit. OpenCode 1.18.21 rejected it before model work because the image does not support tools, so it cannot read, edit, validate, or commit bounded Foundry packets using the Qwen/Muse method. No packet was dispatched and no Foundry source changed. The durable comparison record says it is not eligible for local coding-packet routing without separately approving a different harness.
+- The owner accepted the live M1 gallery on 2026-08-27. M1 is closed: issue #3 is closed, all packet work is accepted, and the M1 performance report now records zero `UNTESTED` items. M2 has not started.
 
 ## Deliberately deferred
 
@@ -42,4 +43,4 @@
 
 ## Exact next action
 
-Obtain owner acceptance of merged M1, then mark M1 closed before starting M2.
+Await owner authorization to start CG-M2-01 — shared Field, Group, and validation contracts.

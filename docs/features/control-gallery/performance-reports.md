@@ -86,7 +86,7 @@ qwen3-coder:30b    06c1097efce0    25 GB    100% GPU     65536      4 minutes fr
 
 **Routing consequence:** A production local-agent gate for new or unintegrated TypeScript files must include `npm exec tsc -- --noEmit`, not only a production build. This is an evidence-backed addition to the supervised-retry gate; it does not alter M1 status or authorize CG-M1-03.4.
 
-### M1 completion performance report — merged, owner acceptance pending
+### M1 completion performance report — merged and owner accepted
 
 | Packet | Assigned role | Actual agent/model | Local or cloud | Elapsed time | Review rounds | Rework count | Verification result | UNTESTED count | Outcome |
 | --- | --- | --- | --- | ---: | ---: | ---: | --- | ---: | --- |
@@ -110,8 +110,8 @@ qwen3-coder:30b    06c1097efce0    25 GB    100% GPU     65536      4 minutes fr
 | Total review rounds and rework count | Three independent review rounds: `d3bd907` requested a focus-contract assertion, `feeb8a4` requested controlled-record head-reference correction, and `99132e9` received `APPROVE`. Eight total rework rounds: five local packet-return corrections (including the historical bootstrap correction) and three coordinator corrections. |
 | Build and browser-gate result | PASS: foundation 7/7, TypeScript, static check, build, and Chromium 5/5. |
 | Independent-review decision and reviewed commit | `APPROVE` on `99132e9` after the two recorded request-change rounds. PR #18 merged to `main` at `6f45394`. |
-| Owner-acceptance result | UNTESTED — requested after reviewed merge. |
-| Total `UNTESTED` items | 1: owner acceptance. |
+| Owner-acceptance result | PASS — owner accepted the live M1 gallery on 2026-08-27. |
+| Total `UNTESTED` items | 0. |
 | Post-merge QA escapes | N/A — no escape reported at merge. |
 | Routing recommendation | Keep Qwen 3.6 only under the measured path-boundary, TypeScript, build, required-commit, coordinator-source-review, and one-correction gates. |
 

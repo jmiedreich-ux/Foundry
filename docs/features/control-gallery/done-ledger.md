@@ -13,7 +13,7 @@ Use `PASS`, `N/A (reason)`, or `UNTESTED`. Do not leave cells blank at milestone
 | Reduced-motion path | PASS | CG-M1-04 real Chromium test asserts body class, boolean pressed state, labels, visible sections, and recovery. |
 | Narrow and wide layout | PASS | CG-M1-03.7 Chromium screenshots passed at 1280×720 and 320×720; CG-M1-04 asserts no horizontal scroll at 320px. |
 | Independent review | PASS | The first review returned `REQUEST_CHANGES` on `d3bd907` because the focus assertion allowed a user-agent outline; the second requested correction of stale record references. Final review approved `99132e9`; PR #18 merged to `main` at `6f45394`. |
-| Owner acceptance workbook | UNTESTED | Owner acceptance is requested after reviewed merge. |
+| Owner acceptance workbook | PASS | Owner accepted the live M1 gallery on 2026-08-27 after reviewed merge. |
 
 ## M2–M5
 

@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1 code and records merged to main at 6f45394 through PR #18. Final independent review approved 99132e9; Issue #3 has every packet checked. Owner acceptance is the only remaining M1 closure item; M2 through M5 remain unstarted.",
-  "next": "Obtain owner acceptance of merged M1, then mark M1 closed before starting M2.",
+  "position": "M1 is accepted and closed: PR #18 merged at 6f45394, final independent review approved 99132e9, and the owner accepted the live gallery on 2026-08-27. Issue #3 is closed. M2 through M5 remain unstarted.",
+  "next": "Await owner authorization to start M2 — Foundations and field controls.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" }
@@ -14,11 +14,11 @@
       "label": "M1",
       "depth": 1,
       "title": "Gallery foundation and test harness",
-      "status": "in_progress",
+      "status": "completed",
       "plan": "milestones/m1.md",
       "issue": 3,
       "pr": 18,
-      "acceptance": { "kind": "demo-script", "record": null }
+      "acceptance": { "kind": "demo-script", "record": "docs/features/control-gallery/done-ledger.md" }
     },
     {
       "id": "M2",
