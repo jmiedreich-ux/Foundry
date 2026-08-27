@@ -20,26 +20,39 @@ type NativeCheckboxProps = Omit<
   | 'disabled'
   | 'size'
   | 'type'
+  | 'required'
+  | 'checked'
+  | 'defaultChecked'
   | 'className'
   | 'style'
   | 'aria-describedby'
   | 'aria-invalid'
   | 'aria-labelledby'
+  | 'aria-required'
 >;
 
-export interface CheckboxProps extends NativeCheckboxProps {
+type CheckboxModeProps =
+  | {
+      checked: boolean;
+      defaultChecked?: never;
+    }
+  | {
+      checked?: never;
+      defaultChecked?: boolean;
+    };
+
+export type CheckboxProps = NativeCheckboxProps & CheckboxModeProps & {
   id?: string;
   disabled?: boolean;
   size?: ControlSize;
   invalid?: ControlInvalidState;
-  checked?: boolean;
-  defaultChecked?: boolean;
+  required?: boolean;
   className?: never;
   style?: never;
-}
+};
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
-  { id, disabled, size, invalid, checked, defaultChecked, onFocus, onBlur, ...nativeProps },
+  { id, disabled, size, invalid, required, checked, defaultChecked, onChange, onFocus, onBlur, ...nativeProps },
   ref
 ) {
   const generatedId = useId().replaceAll(':', '');
@@ -47,6 +60,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
   const resolvedDisabled = disabled ?? field?.disabled ?? false;
   const _resolvedSize = size ?? field?.size ?? 'md';
   const resolvedInvalid = invalid ?? field?.invalidMessage ?? field?.invalid ?? false;
+  const resolvedRequired = required ?? field?.required ?? false;
   const controlId = id ?? field?.controlId ?? `foundry-checkbox-${generatedId}`;
   const focus = useFocusVisible<HTMLInputElement>();
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -86,12 +100,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
       id={controlId}
       disabled={resolvedDisabled}
       checked={isControlled ? checked : undefined}
-      defaultChecked={defaultChecked}
+      defaultChecked={isControlled ? undefined : defaultChecked}
+      required={resolvedRequired}
       onChange={(event) => {
         if (!isControlled) {
           setUncontrolledChecked(event.currentTarget.checked);
         }
-        nativeProps.onChange?.(event);
+        onChange?.(event);
       }}
       onFocus={(event) => {
         focus.onFocus(event);
@@ -104,6 +119,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
       aria-labelledby={field?.labelId}
       aria-describedby={field?.describedBy}
       aria-invalid={Boolean(resolvedInvalid) || undefined}
+      aria-required={resolvedRequired || undefined}
       {...controlStateAttributes({
         disabled: resolvedDisabled,
         invalid: Boolean(resolvedInvalid),

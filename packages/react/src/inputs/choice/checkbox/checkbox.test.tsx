@@ -17,6 +17,8 @@ describe('Checkbox', () => {
     expect(markup).toContain(`aria-labelledby="${id}-label"`);
     expect(markup).toContain(`aria-describedby="${id}-description ${id}-error"`);
     expect(markup).toContain('aria-invalid="true"');
+    expect(markup).toContain('required=""');
+    expect(markup).toContain('aria-required="true"');
     expect(markup).toContain('type="checkbox"');
     expect(markup).toContain('name="terms"');
     expect(markup).toContain('data-example="terms"');
@@ -29,6 +31,13 @@ describe('Checkbox', () => {
 
     expect(markup).toContain('checked=""');
     expect(markup).toContain('data-checked=""');
+  });
+
+  it('makes controlled and uncontrolled props mutually exclusive', () => {
+    expectTypeOf<CheckboxProps>().not.toMatchTypeOf<{
+      checked: boolean;
+      defaultChecked: boolean;
+    }>();
   });
 
   it('supports controlled unchecked state', () => {
