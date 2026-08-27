@@ -15,7 +15,7 @@ to its own records under `docs/features/<feature>/`; the detail lives there.
 
 | Codename | What it is | Position | Gate |
 |---|---|---|---|
-| **Control Gallery** | Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control (React/TypeScript), so a developer or reviewer can exercise the contract before a product adopts it | **Decisions approved, five milestones planned in detail.** Nothing built: M1's done ledger is entirely UNTESTED. | Claim M1's first packet, `CG-M1-01` (workspace setup) — it has no dependencies |
+| **Control Gallery** | Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control (React/TypeScript), so a developer or reviewer can exercise the contract before a product adopts it | **M1 is accepted and closed.** M2's foundations, field controls, gallery examples, and Chromium checks are merged; owner acceptance remains pending. | Obtain owner acceptance of the merged M2 field-controls gallery. |
 
 Design authority for a feature is approved and recorded directly under
 `docs/features/<feature>/` (see `AGENTS.md`); Control Gallery's own `decisions.md` is that
