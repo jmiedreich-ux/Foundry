@@ -29,7 +29,7 @@ Use `PASS`, `N/A (reason)`, or `UNTESTED`. Do not leave cells blank at milestone
 | Loading, duplicate records, maximum values, and retry | N/A (M2 field controls do not implement loading, record collections, maximum-length policy, or network retry.) |
 | Shared-control consumer search | PASS | `rg` found only the M2 gallery examples as TextField/Select consumers; they are covered by the browser target. |
 | Independent review | PASS | Review requested changes on `e49aa8f` for default-skin and focus-visible defects; renewed review approved `2b7002a`. PR #21 merged at `2ab4753`. |
-| Owner acceptance workbook | UNTESTED | Awaiting owner review of the merged M2 gallery. |
+| Owner acceptance workbook | PASS | Owner approved the merged M2 field-controls gallery on 2026-08-27. |
 
 ## M3–M5
 

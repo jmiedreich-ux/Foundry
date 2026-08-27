@@ -2,12 +2,12 @@
 
 ## Current feature
 
-Control Gallery — Milestone 2: foundations and field controls.
+Control Gallery — Milestone 3: actions, choices, search, and feedback.
 
 ## Current state
 
-Control Gallery M1 is accepted and closed. M2 is merged to `main` at `2ab4753`: foundations, reusable inputs, gallery examples, integration, and real Chromium checks pass; renewed independent review approved `2b7002a`. Issue #4 is closed. Owner acceptance is the only remaining M2 item.
+Control Gallery M1 and M2 are accepted and closed. M2 is merged to `main` at `2ab4753`: foundations, reusable inputs, gallery examples, integration, and real Chromium checks pass; renewed independent review approved `2b7002a`. Issue #4 is closed. M3 is planned but not claimed or started.
 
 ## Next action
 
-Obtain owner acceptance of the merged M2 field-controls gallery.
+Await owner authorization to claim CG-M3-01, the Button contract packet.
