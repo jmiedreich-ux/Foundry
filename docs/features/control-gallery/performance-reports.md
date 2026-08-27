@@ -292,6 +292,23 @@ This packet proves the value of recording a complete public contract before code
 
 The packet’s contract was clear, but its 337-line implementation plus live uncontrolled-state behavior exceeded the current Qwen envelope. Keep Search-like stateful input controls coordinator-owned unless a future benchmark shows reliable bounded completion.
 
+#### CG-M3-07 — Banner
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `87748b3`. |
+| Assigned / actual executor | Qwen (local) / Qwen (local) authored the first scoped commit; its one correction made no commit, so Codex coordinator (cloud) completed the named repair and the component-test capability decision. |
+| Final code ownership | Qwen retained 313 of 476 Banner source/test/export lines (66%); coordinator retained 163 lines. The jsdom dependency and lockfile are excluded from this code-bearing attribution. |
+| Estimate / actual size | 100–140 / 476 Banner source/test/export lines. The forecast was materially exceeded, primarily because the accepted contract requires executable open-state transitions. |
+| Local elapsed time | Initial authoring duration: N/A (not captured). Permitted correction: 5 min 20 sec recorded OpenCode activity; it ended without a required commit. |
+| Rework and review | Coordinator source review found missing section labelling and Control Base/Group size/disabled behavior. Qwen's correction attempted a blocked subagent call, then imported an uninstalled test library and did not commit; it was stopped. The coordinator repaired the contract. First independent review requested executable dismiss/restore/refusal coverage; the coordinator added a per-file jsdom environment and live component checks. Renewed independent review approved. |
+| Review impact | `R4` — local result and correction did not satisfy the core component contract; coordinator repair and test-harness escalation were required. |
+| Misses caught before acceptance | Accessible name relationship, Group/Control Base state, component-owned `data-open` spread collision, and absent live open-state coverage. |
+| Verification | Banner checks 25/25, TypeScript, static check, production build, scope check, and diff check passed. Independent review approved `87748b3`. |
+| UNTESTED | Real-browser dismissal, controlled restore, focus behavior, long-content layout, and responsive behavior; CG-M3-29 owns them. |
+
+This packet added the durable local-agent rule that a dispatch names its available test harness. An agent must report a missing capability rather than importing a new test library or changing dependencies.
+
 ### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
 
 **Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.

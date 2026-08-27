@@ -33,7 +33,7 @@ Use `PASS`, `N/A (reason)`, or `UNTESTED`. Do not leave cells blank at milestone
 
 ## M3
 
-In progress. CG-M3-01, CG-M3-01.1, and CG-M3-02 are accepted on the M3 branch. The Checkbox component passed its focused unit, TypeScript, static, production-build, scope, and independent-review gates. Real browser toggle, reset, focus, and accessibility proof is `UNTESTED` here because CG-M3-24 owns that browser specification.
+In progress. CG-M3-01 through CG-M3-07 are accepted on the M3 branch. Their focused component, TypeScript, static, production-build, scope, and independent-review gates passed. Real browser proof remains `UNTESTED` where it is owned by CG-M3-23 through CG-M3-29; Banner dismissal, restore, and focus proof specifically belong to CG-M3-29.
 
 ## M4–M5
 

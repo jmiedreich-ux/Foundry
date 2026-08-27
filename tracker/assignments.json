@@ -148,6 +148,12 @@
       "packet": "CG-M3-07",
       "owner": "Qwen (local)",
       "paths": ["packages/react/src/feedback/banner/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-08",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["packages/react/src/feedback/toast/**"],
       "status": "in_progress"
     }
   ],
