@@ -218,6 +218,9 @@ muse-glimmer:30b    de878ce33ad8    16 GB    100% GPU     65536
 | Packet | Planned executor/runtime | Code-bearing paths | Estimated changed lines | Why local or cloud | Preflight command and expected result | Actual executor/runtime at dispatch | Preflight result and timestamp | Maximum corrections |
 | --- | --- | --- | ---: | --- | --- | --- | --- | ---: |
 | CG-M3-01 | Codex coordinator (cloud) | `packages/react/src/actions/button/**` | 110–140 | Cloud: shared Button contract establishes the reusable API that later examples and browser checks consume. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS | Codex coordinator (cloud) | PASS — 2026-08-27T02:45:00-04:00 | N/A (coordinator-owned contract packet) |
+| CG-M3-01.1 | Codex coordinator (cloud) | `packages/tokens/src/skins/default.css` | 30–50 | Cloud: one shared default-skin file must stay coordinator-owned. | `npm exec vitest run packages/react/src/actions/button && npm exec tsc -- --noEmit && npm run build` → PASS | Codex coordinator (cloud) | PASS — 2026-08-27T02:50:50-04:00 | N/A (coordinator-owned skin packet) |
+
+CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScript, static check, production build, and diff check passed; independent review returned `APPROVE`. Default-skin visual distinction, gallery examples, public export, integration, and browser interaction remain owned by CG-M3-01.1, CG-M3-11, CG-M3-21, CG-M3-22, and CG-M3-23.
 
 ## M4
 

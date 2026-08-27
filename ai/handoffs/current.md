@@ -10,7 +10,7 @@
 - The gallery exercises buttons, validation/reset, search, selection controls, dialog, drawer, menu, popover, tabs, banner, toast, loading, and reduced-motion behavior.
 - `node --check apps/lab/src/main.js` passed. The visual detector found an overused typeface, which was replaced before the final commit.
 - `docs/features/control-gallery/` now contains the approved decisions, question register, path coverage, M1–M5 records, ready M1 packets, and an explicit done ledger.
-- `docs/features/control-gallery/assignments.md` records the current M1–M5 advance allocation: 75 bounded local-agent packets and 17 coordinator/specialist packets. M3/M4 routing is governed by the newer 60–70% accepted local code-bearing-share target, not packet count alone.
+- `docs/features/control-gallery/assignments.md` records the current M1–M5 advance allocation: 75 bounded local-agent packets and 18 coordinator/specialist packets. M3/M4 routing is governed by the newer 60–70% accepted local code-bearing-share target, not packet count alone.
 - Every Control Gallery milestone now requires an actual agent-routing performance report, including the model used, elapsed time, rework, review, verification, and `UNTESTED` results.
 - GitHub issues #3–#7 now hold the approved packet checklists for Control Gallery milestones M1–M5; `docs/features/control-gallery/workstream.json` links each milestone to its issue.
 - CG-M1-01 is complete: Node 22.23.2 and npm 10.9.8 ran `npm install`, `npm run check`, `npm run build`, and a real Chromium gallery smoke successfully. The issue #3 task is checked; the first durable browser specification remains CG-M1-04 work.
@@ -44,6 +44,8 @@
 - M2 is merged to `main` at `2ab4753` through PR #21. First independent review requested default-skin state treatments and actual focus-visible state; coordinator correction `2b7002a` added the token-skin focus/invalid/disabled rules, keyboard-versus-pointer focus tracking for TextField and Select, and browser coverage. Renewed independent review approved. Final gates PASS: focused Vitest 21/21, TypeScript, static check, production build, full Chromium 13/13, and diff check. Issue #22 records the review finding and is closed. The owner approved M2 on 2026-08-27; M2 is closed and its complete performance report and done ledger are maintained in the feature records.
 - Owner approved an evidence-based M3–M5 routing/reporting change after M2's actual accepted local code share was 16.5% versus its approximately 60% local-code forecast. M3 and M4 now target 60–70% accepted local code-bearing lines (implementation and tests only; controlled records, lockfiles, generated output, and logs excluded). Every future local packet must declare an estimated line range, exact paths, three to five observable assertions, preflight state, required commit, and one-correction limit; shared contracts, exports, gallery integration, configuration, and final review remain coordinator packets. M5 reports test-code share separately because audit/documentation output is not implementation-cost savings. M3–M5 milestones, assignments, and their linked issue checklists use these smaller boundaries; local M3 implementation remains blocked until its dependencies are accepted.
 - The owner authorized M3 on 2026-08-27. CG-M3-01 is claimed by the Codex coordinator with the sole writable path `packages/react/src/actions/button/**`; its TypeScript, static-check, and production-build preflight passed at 2026-08-27T02:45:00-04:00. No local M3 packet has started.
+- Before source changes, the coordinator found that CG-M3-01's Button directory cannot own the required default-skin visual distinction. CG-M3-01.1 is therefore a separate coordinator-owned default-skin packet after the contract and before Button examples; this is a path-boundary correction, not a new Button behavior or local-agent assignment.
+- CG-M3-01 is accepted at `2fb0008`: its component checks (4/4), TypeScript, static check, production build, and diff check passed, and independent review returned `APPROVE`. CG-M3-01.1 is now claimed by the coordinator; its focused Button test, TypeScript, and production-build preflight passed at 2026-08-27T02:50:50-04:00. No local M3 packet has started.
 
 ## Deliberately deferred
 
@@ -52,4 +54,4 @@
 
 ## Exact next action
 
-Complete CG-M3-01: Button variants and label/state contract.
+Complete CG-M3-01.1: default-skin rules for visually distinct Button variants.

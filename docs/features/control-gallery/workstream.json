@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1 and M2 are accepted and closed. CG-M3-01, the coordinator-owned Button contract packet, is claimed; no local M3 packet has started.",
-  "next": "Complete CG-M3-01: Button variants and label/state contract.",
+  "position": "M1 and M2 are accepted and closed. CG-M3-01, the coordinator-owned Button contract, is accepted on the M3 branch after independent review. CG-M3-01.1, Button default-skin treatment, is active; no local M3 packet has started.",
+  "next": "Complete CG-M3-01.1: default-skin rules for visually distinct Button variants.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" }

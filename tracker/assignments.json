@@ -94,6 +94,12 @@
       "packet": "CG-M3-01",
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/actions/button/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-01.1",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["packages/tokens/src/skins/default.css"],
       "status": "in_progress"
     }
   ],

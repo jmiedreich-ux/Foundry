@@ -21,6 +21,7 @@ For M3–M5, the named local runtime is **OpenCode 1.18.21 / Ollama `qwen3.6:27b
 | M2 | CG-M2-03 | Gallery agent | Local 9B–24B coding agent | Yes | Field examples only. |
 | M2 | CG-M2-04 | Test agent | Local 9B–24B coding agent | Yes | Field behavior tests only. |
 | M3 | CG-M3-01 | Button contract specialist | Premium cloud coordinator | No | Button variants, category/label policy, domain override, disabled/loading. |
+| M3 | CG-M3-01.1 | Button default-skin specialist | Premium cloud coordinator | No | Default-skin rules for the four approved Button variants. |
 | M3 | CG-M3-02 | Checkbox agent | Local 24B–35B coding agent | Yes | Checkbox only. |
 | M3 | CG-M3-03 | Switch agent | Local 24B–35B coding agent | Yes | Switch only. |
 | M3 | CG-M3-04 | RadioGroup contract specialist | Premium cloud coordinator | No | RadioGroup selection and roving keyboard contract. |
@@ -101,7 +102,7 @@ For M3–M5, the named local runtime is **OpenCode 1.18.21 / Ollama `qwen3.6:27b
 
 ## Local-agent total
 
-**75 of 92 packets** are intended for local agents. Packet counts are only a routing plan: M3 and M4 instead target 60–70% of accepted code-bearing lines authored locally, measured at milestone close. The remaining packets stay with the coordinator or a stronger specialist because they own shared contracts, public exports, cross-control focus/layer rules, integration, or final acceptance.
+**75 of 93 packets** are intended for local agents. Packet counts are only a routing plan: M3 and M4 instead target 60–70% of accepted code-bearing lines authored locally, measured at milestone close. The remaining packets stay with the coordinator or a stronger specialist because they own shared contracts, public exports, cross-control focus/layer rules, integration, or final acceptance.
 
 ## Execution limits
 

@@ -22,7 +22,7 @@
 
 **Exit behavior:** The gallery demonstrates real action, selection, loading, disabled, empty, and feedback behavior, including all approved Button variants.
 
-**Packets:** `CG-M3-01` through `CG-M3-32`. See [M3 record](milestones/m3.md).
+**Packets:** `CG-M3-01` through `CG-M3-32`, including `CG-M3-01.1`. See [M3 record](milestones/m3.md).
 
 ## M4 — Overlay and navigation controls
 
