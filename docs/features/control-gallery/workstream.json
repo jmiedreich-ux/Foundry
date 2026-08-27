@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1 is accepted and closed. M2 is in progress: foundations, reusable inputs, and CG-M2-03 gallery examples are accepted; coordinator packet CG-M2-03.1 is rendering those examples in the Inputs section. Issue #4 is the active checklist.",
-  "next": "Complete CG-M2-03.1 — render accepted field examples in the Inputs gallery section.",
+  "position": "M1 is accepted and closed. M2 is in progress: foundations, reusable inputs, field examples, and coordinator gallery integration are accepted; CG-M2-04 Chromium specifications are assigned to the supervised local agent. Issue #4 is the active checklist.",
+  "next": "Complete CG-M2-04 — behavioral browser/component checks.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" }

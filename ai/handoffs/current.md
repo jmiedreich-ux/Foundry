@@ -39,6 +39,7 @@
 - CG-M2-01 is accepted on M2 branch commit `a3f61fd`. It adds the documented Field/Group/required-validation contract, its focused tests (12/12 including prior foundation tests), TypeScript, static check, production build, and diff check all pass. CG-M2-02 is active as a supervised local OpenCode 1.18.21 / Ollama `qwen3.6:27b` packet; CG-M2-03 and CG-M2-04 remain blocked.
 - CG-M2-02 is accepted on the M2 branch after a local-agent takeover. TextField and Select are reusable native controls with Field/Group semantics, controlled/uncontrolled value support, native form participation, state attributes, public exports, ref/type-boundary tests, and complete focused verification (21/21). The first local attempt exposed a coordinator-owned Field explicit-child-ID gap; the contract was corrected and retested. A restarted local attempt made no source change and was stopped as nonproductive. CG-M2-03 is now assigned to the supervised local gallery agent.
 - CG-M2-03 is accepted from local OpenCode 1.18.21 / Ollama `qwen3.6:27b` at `27cf86c`, changing only the permitted `FieldExamples.tsx`. It provides controlled, uncontrolled/reset, required/error/correction, disabled-group, and long-label examples. Coordinator review found that native `required` would prevent the example's submit handler, so the agent's one permitted correction added `noValidate` and a status announcement; TypeScript, static check, build, and diff check passed. The original M2 table left the examples unrendered, so a newly recorded coordinator sub-packet CG-M2-03.1 owns the required one-file gallery integration before M2-04 browser tests.
+- CG-M2-03.1 is accepted on the M2 branch: the Inputs section now renders `FieldExamples`; the other family placeholders remain unchanged. Focused tests (21/21), TypeScript, static check, production build, and diff check pass. CG-M2-04 is now assigned to a supervised local specifications agent with the allowed `tests/fields/**` and field-example spec paths.
 
 ## Deliberately deferred
 
@@ -47,4 +48,4 @@
 
 ## Exact next action
 
-Complete CG-M2-03.1 — render accepted field examples in the Inputs gallery section.
+Complete CG-M2-04 — behavioral browser/component checks.
