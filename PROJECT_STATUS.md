@@ -10,4 +10,4 @@ Control Gallery M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-08, th
 
 ## Next action
 
-Paused after CG-M3-08 at the owner's request. CG-M3-09 EmptyState is the exact next action when work resumes.
+CG-M3-09 EmptyState is active in its bounded local Qwen packet.

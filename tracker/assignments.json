@@ -155,6 +155,12 @@
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/feedback/toast/**"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M3-09",
+      "owner": "Qwen (local)",
+      "paths": ["packages/react/src/feedback/empty-state/**"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

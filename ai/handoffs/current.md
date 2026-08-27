@@ -69,4 +69,4 @@
 
 ## Exact next action
 
-Paused after CG-M3-08 at the owner's request. CG-M3-09 EmptyState is the exact next action when work resumes.
+CG-M3-09 EmptyState is active in its bounded local Qwen packet.
