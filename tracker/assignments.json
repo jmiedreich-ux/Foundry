@@ -125,6 +125,12 @@
       "owner": "Codex coordinator (cloud)",
       "paths": ["docs/features/control-gallery/decisions.md", "docs/features/control-gallery/milestones/m3.md", "docs/features/control-gallery/question-register.md", "docs/features/control-gallery/assignments.md", "docs/features/control-gallery/performance-reports.md"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M3-04.2",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["packages/tokens/src/skins/default.css"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

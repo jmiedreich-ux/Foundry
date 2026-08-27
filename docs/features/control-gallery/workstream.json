@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-04 and the CG-M3-04.1 conservative Search and feedback contracts are accepted on the M3 branch. CG-M3-04.2 shared default-skin selectors are next; real RadioGroup browser proof remains owned by CG-M3-26.",
-  "next": "Preflight CG-M3-04.2 M3 default-skin selectors before implementation.",
+  "position": "M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-04 and the CG-M3-04.1 conservative Search and feedback contracts are accepted on the M3 branch. CG-M3-04.2 shared default-skin selectors are active; real RadioGroup browser proof remains owned by CG-M3-26.",
+  "next": "Complete CG-M3-04.2 shared default-skin selectors, then preflight CG-M3-05 Search.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" },
