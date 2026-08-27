@@ -25,6 +25,8 @@ For M3–M5, the named local runtime is **OpenCode 1.18.21 / Ollama `qwen3.6:27b
 | M3 | CG-M3-02 | Checkbox agent | Local 24B–35B coding agent | Yes | Checkbox only. |
 | M3 | CG-M3-03 | Switch agent | Local 24B–35B coding agent | Yes | Switch only. |
 | M3 | CG-M3-04 | RadioGroup contract specialist | Premium cloud coordinator | No | RadioGroup selection and roving keyboard contract. |
+| M3 | CG-M3-04.1 | M3 contract specialist | Premium cloud coordinator | No | Conservative Search and feedback contracts only. |
+| M3 | CG-M3-04.2 | M3 default-skin specialist | Premium cloud coordinator | No | Shared Search and feedback default-skin selectors only. |
 | M3 | CG-M3-05 | Search agent | Local 24B–35B coding agent | Yes | Search only. |
 | M3 | CG-M3-06 | StatusChip agent | Local 9B–24B coding agent | Yes | StatusChip only. |
 | M3 | CG-M3-07 | Banner agent | Local 9B–24B coding agent | Yes | Banner only. |

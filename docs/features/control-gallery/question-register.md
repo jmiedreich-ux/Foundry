@@ -11,5 +11,6 @@
 | CG-Q07 | How do labels, locale, and Button text work in Core v1? | resolved | Ship `LocaleProvider`, the English catalog, and the approved Button category policy in M1/M3; `add` and `back` alone permit supplied labels. | M1, M3 |
 | CG-Q08 | What is the skin source of truth and package identity? | resolved | Use `@foundry/react`, `@foundry/tokens`, and `packages/tokens/src/skins/default.css`; the repository skin is authoritative. | M1 |
 | CG-Q09 | Which non-Core controls are committed now? | resolved | None. The approved candidates are post-Core roadmap items and require their own scoped feature records before implementation. | post-Core |
+| CG-Q10 | What is the smallest safe API and accessibility contract for M3 Search and feedback controls? | resolved | CG-M3-04.1 defines native Search; advisory StatusChip; persistent Banner; one polite, manual Toast; semantic EmptyState; and indeterminate LoadingSkeleton. Popups, remote search, toast infrastructure, auto-dismiss, and progress values are deferred. | M3 |
 
-No product or control-behavior questions are open for M1 planning.
+No product or control-behavior questions are open for the currently planned M3 controls.
