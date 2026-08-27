@@ -248,6 +248,21 @@ The local agent correctly held its two-file path boundary but silently inferred 
 
 Qwen followed the new shared-control behavior rules in the returned source, but it again required a commit-only correction and exceeded the planned size. The fixed semantic role boundary was caught before acceptance.
 
+#### CG-M3-04 — RadioGroup
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `b76a26a`. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: all 322 changed lines. |
+| Estimate / actual size | 220–300 / 322 changed lines. Slightly over the forecast; no local-routing target applies to this coordinator contract packet. |
+| Implementation elapsed time | 5 min 19 sec from first source commit through the accepted correction. Contract design/review time is separately represented by PR #25. |
+| Rework and review | Contract review requested two successive clarification rounds before approving PR #25. Source review requested two corrections: disabled/missing controlled selection plus runtime semantic escaping, then required behavior under effective disabled state. Renewed source review approved. |
+| Verification | Focused RadioGroup tests 9/9, TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | Live native-radio keyboard, reset, focus, and accessibility behavior; CG-M3-26 owns it. |
+
+This packet proves the value of recording a complete public contract before code: every reported defect was resolved inside the bounded RadioGroup directory before acceptance.
+
 ### CG-M3-01 dispatch forecast
 
 | Packet | Planned executor/runtime | Code-bearing paths | Estimated changed lines | Why local or cloud | Preflight command and expected result | Actual executor/runtime at dispatch | Preflight result and timestamp | Maximum corrections |
