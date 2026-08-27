@@ -113,6 +113,12 @@
       "owner": "Qwen (local)",
       "paths": ["packages/react/src/inputs/choice/switch/**"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M3-04",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["packages/react/src/inputs/choice/radio-group/**"],
+      "status": "completed"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

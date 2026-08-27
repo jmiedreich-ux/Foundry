@@ -50,6 +50,7 @@
 - CG-M3-02 is accepted at M3 branch head `65bb2bb`. Qwen (local) returned the scoped two-file first draft at `9b0bb18`, but its one authorized correction stalled without a file change and was stopped. Coordinator follow-ups fixed uncontrolled `data-checked`/reset state, then the independent review found and the coordinator fixed required native-form propagation plus controlled/uncontrolled prop conflict. Renewed independent review returned `APPROVE`. Focused Checkbox checks (9/9), TypeScript, static check, production build, and diff check passed. Real browser toggle/reset/focus/accessibility proof remains `UNTESTED` until CG-M3-24.
 - CG-M3-03 Switch is active with Qwen (local), limited to `packages/react/src/inputs/choice/switch/**`. Its recorded 80–110-line forecast and 2026-08-27T03:29:20-04:00 TypeScript/static/build preflight passed. The prompt explicitly includes the M3 choice-control invariants and requires escalation, rather than guessing, if a convention is missing.
 - CG-M3-03 is accepted at M3 branch head `ea9f247`. Qwen returned a scoped native Switch that follows the recorded choice-control invariants, but initially omitted the required commit; its one correction created the commit with no source change. Independent review then found a consumer role-override escape, which the coordinator fixed by forbidding `role` and applying the fixed semantic role after native props. Renewed review approved. Focused Switch checks (10/10), TypeScript, static check, production build, and diff check passed. Real browser proof remains `UNTESTED` until CG-M3-25.
+- CG-M3-04 is accepted at M3 branch head `b76a26a`. Its reviewed M3 contract defines one native fieldset API, controlled/uncontrolled value, duplicate and impossible-required refusal, Field/Group precedence, native required/reset semantics, and roving keyboard behavior. Source review corrected disabled/missing controlled selection, runtime role/style escaping, and the required effective-disabled path. Focused RadioGroup checks (9/9), TypeScript, static check, production build, and diff check passed. Real browser proof remains `UNTESTED` until CG-M3-26.
 
 ## Deliberately deferred
 
@@ -58,4 +59,4 @@
 
 ## Exact next action
 
-Preflight CG-M3-04 RadioGroup before implementation.
+Preflight CG-M3-05 Search before implementation.
