@@ -1,5 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, expectTypeOf, it } from 'vitest';
+import { Group } from '../../foundation/field.js';
 import { Banner, bannerTones, type BannerProps } from './banner.js';
 
 describe('Banner', () => {
@@ -118,10 +119,39 @@ describe('Banner', () => {
     const markup = renderToStaticMarkup(
       <Banner title="Semantic" description="Section" />
     );
+    const titleId = markup.match(/<h2 id="([^"]+)">Semantic<\/h2>/)?.[1];
+
     expect(markup).toMatch(/<section/);
+    expect(titleId).toBeTruthy();
+    expect(markup).toContain(`aria-labelledby="${titleId}"`);
     expect(markup).toContain('data-control="banner"');
-    expect(markup).toContain('<h2>Semantic</h2>');
     expect(markup).toContain('<p>Section</p>');
+  });
+
+  it('inherits Group size and disabled state while explicit Banner values win', () => {
+    const inherited = renderToStaticMarkup(
+      <Group disabled size="lg">
+        <Banner title="Inherited" description="Group values" onOpenChange={() => {}} />
+      </Group>
+    );
+    const overridden = renderToStaticMarkup(
+      <Group disabled size="lg">
+        <Banner
+          title="Override"
+          description="Banner values"
+          disabled={false}
+          size="sm"
+          onOpenChange={() => {}}
+        />
+      </Group>
+    );
+
+    expect(inherited).toContain('data-size="lg"');
+    expect(inherited).toContain('data-disabled=""');
+    expect(inherited).toMatch(/<button[^>]*disabled=""/);
+    expect(overridden).toContain('data-size="sm"');
+    expect(overridden).not.toMatch(/<section[^>]*data-disabled=""/);
+    expect(overridden).not.toMatch(/<button[^>]*disabled=""/);
   });
 
   it('does not use ARIA banner or alert', () => {
@@ -134,22 +164,26 @@ describe('Banner', () => {
 
   /* ---- runtime hook and semantic refusal ---- */
 
-  it('overwrites consumer data-control, data-tone, and data-open at runtime', () => {
+  it('overwrites consumer data-control, data-tone, data-open, data-size, and data-disabled hooks at runtime', () => {
     const markup = renderToStaticMarkup(
       <Banner
         {...({
           title: 'Hook test',
           description: 'Hooks',
           'data-control': 'not-banner',
+          'data-disabled': 'not-disabled',
           'data-tone': 'not-neutral',
           'data-open': 'evil',
+          'data-size': 'not-size',
         } as unknown as BannerProps)}
       />
     );
     expect(markup).toContain('data-control="banner"');
     expect(markup).toContain('data-tone="neutral"');
     expect(markup).not.toContain('not-banner');
+    expect(markup).not.toContain('not-disabled');
     expect(markup).not.toContain('not-neutral');
+    expect(markup).not.toContain('not-size');
   });
 
   it('refuses consumer role, className, and style at runtime', () => {
@@ -169,11 +203,12 @@ describe('Banner', () => {
     expect(markup).not.toContain('color');
   });
 
-  it('refuses role, className, and style at the type boundary', () => {
+  it('refuses role, className, style, and consumer section labelling at the type boundary', () => {
     expectTypeOf<BannerProps>().toMatchTypeOf<{
       role?: never;
       className?: never;
       style?: never;
+      'aria-labelledby'?: never;
     }>();
   });
 
