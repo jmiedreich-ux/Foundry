@@ -6,7 +6,8 @@
   "next": "Review the completed CG-M3-02 local-agent report before preflighting CG-M3-03 Switch.",
   "label": "workstream:control-gallery",
   "design": [
-    { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" }
+    { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" },
+    { "name": "Control Gallery per-task reports", "where": "docs/features/control-gallery/performance-reports.md#m3-packet-reports" }
   ],
   "milestones": [
     {
