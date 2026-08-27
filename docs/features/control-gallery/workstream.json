@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1 and M2 are accepted and closed. CG-M3-01, CG-M3-01.1, and CG-M3-02 are accepted on the M3 branch after independent review. CG-M3-03 Switch is active with Qwen (local).",
-  "next": "Complete CG-M3-03 Switch using the recorded choice-control invariants.",
+  "position": "M1 and M2 are accepted and closed. CG-M3-01, CG-M3-01.1, CG-M3-02, and CG-M3-03 are accepted on the M3 branch after independent review. Real Switch browser proof remains owned by CG-M3-25.",
+  "next": "Preflight CG-M3-04 RadioGroup before implementation.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" },

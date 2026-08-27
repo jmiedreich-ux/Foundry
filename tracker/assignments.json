@@ -112,7 +112,7 @@
       "packet": "CG-M3-03",
       "owner": "Qwen (local)",
       "paths": ["packages/react/src/inputs/choice/switch/**"],
-      "status": "in_progress"
+      "status": "completed"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

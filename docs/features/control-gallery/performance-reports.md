@@ -233,6 +233,21 @@ Each completed M3 packet receives a short report in this section before the next
 
 The local agent correctly held its two-file path boundary but silently inferred reusable-control conventions instead of reporting them as missing. This is a protocol finding, not only an implementation defect.
 
+#### CG-M3-03 — Switch
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `ea9f247`. |
+| Assigned / actual executor | Qwen (local) / Qwen (local), with one coordinator semantic-boundary correction. |
+| Final code ownership | Qwen retained 246 of 253 changed lines (97%); coordinator wrote 7 lines (3%). |
+| Estimate / actual size | 80–110 / 253 changed lines. This is a material forecast variance. |
+| Local elapsed time | 244 sec (4 min 4 sec) across initial work and the commit-only correction. |
+| Rework and review | The initial handoff omitted the required commit; its one local correction created it without changing source. First independent review found a consumer role-override escape; coordinator fixed it and renewed review approved. |
+| Verification | Focused Switch tests 10/10, TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | Real-browser Switch toggle, reset, focus, and accessibility behavior; CG-M3-25 owns it. |
+
+Qwen followed the new shared-control behavior rules in the returned source, but it again required a commit-only correction and exceeded the planned size. The fixed semantic role boundary was caught before acceptance.
+
 ### CG-M3-01 dispatch forecast
 
 | Packet | Planned executor/runtime | Code-bearing paths | Estimated changed lines | Why local or cloud | Preflight command and expected result | Actual executor/runtime at dispatch | Preflight result and timestamp | Maximum corrections |
