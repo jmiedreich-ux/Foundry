@@ -28,5 +28,6 @@ Each milestone is independently mergeable and uses the sequence: contracts/token
 - [Milestones](milestones.md)
 - [Advance assignment map](assignments.md)
 - [Milestone performance reports](performance-reports.md)
+- [Per-task reports](performance-reports.md#m3-packet-reports)
 - [Work packets](work-packets/README.md)
 - [Done ledger](done-ledger.md)
