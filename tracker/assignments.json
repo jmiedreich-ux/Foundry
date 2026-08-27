@@ -76,6 +76,12 @@
       "packet": "CG-M2-03",
       "owner": "Local OpenCode qwen3.6:27b gallery agent (supervised)",
       "paths": ["apps/lab/src/examples/fields/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M2-03.1",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["apps/lab/src/GalleryApp.tsx"],
       "status": "in_progress"
     }
   ],
