@@ -64,7 +64,7 @@ describe('EmptyState', () => {
 
   /* ---- runtime/type consumer escape refusal ---- */
 
-  it('refuses consumer semantic, styling, and component-hook overrides at runtime', () => {
+  it('refuses consumer semantic, styling, component-hook, and disabled overrides at runtime', () => {
     const markup = renderToStaticMarkup(
       <EmptyState
         {...({
@@ -87,6 +87,8 @@ describe('EmptyState', () => {
     expect(markup).not.toContain('color');
     expect(markup).not.toContain('consumer-id');
     expect(markup).not.toContain('not-empty-state');
+    expect(markup).not.toContain('data-disabled');
+    expect(markup).not.toContain('disabled');
   });
 
   it('refuses role, className, style, and aria-labelledby at the type boundary', () => {

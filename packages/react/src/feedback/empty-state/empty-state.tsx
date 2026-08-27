@@ -1,6 +1,5 @@
 import { forwardRef, useId, type ComponentPropsWithoutRef, type ReactNode } from 'react';
 import {
-  controlStateAttributes,
   resolveControlBase,
   type ControlSize
 } from '../../foundation/control-base.js';
@@ -21,7 +20,6 @@ export type EmptyStateProps = NativeSectionProps & {
   title: ReactNode;
   description: ReactNode;
   action?: ReactNode;
-  disabled?: boolean;
   size?: ControlSize;
   'aria-labelledby'?: never;
   role?: never;
@@ -34,7 +32,6 @@ export const EmptyState = forwardRef<HTMLElement, EmptyStateProps>(function Empt
     title,
     description,
     action,
-    disabled,
     size,
     ...rest
   },
@@ -42,8 +39,8 @@ export const EmptyState = forwardRef<HTMLElement, EmptyStateProps>(function Empt
 ) {
   const group = useGroup();
   const state = resolveControlBase(
-    { disabled, size },
-    { disabled: group.disabled ?? false, size: group.size ?? 'md' }
+    { size },
+    { disabled: false, size: group.size ?? 'md' }
   );
   const titleId = `${useId().replaceAll(':', '')}-empty-title`;
 
@@ -70,7 +67,6 @@ export const EmptyState = forwardRef<HTMLElement, EmptyStateProps>(function Empt
       aria-labelledby={titleId}
       data-control="empty-state"
       data-size={state.size}
-      {...controlStateAttributes({ disabled: state.disabled })}
     >
       <h2 id={titleId}>{title}</h2>
       <p>{description}</p>
