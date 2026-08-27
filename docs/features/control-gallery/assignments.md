@@ -73,21 +73,35 @@ For M3–M5, the named local runtime is **OpenCode 1.18.21 / Ollama `qwen3.6:27b
 | M4 | CG-M4-19 | Menu specifications agent | Local 24B coding agent | Yes | Menu dismissal checks only. |
 | M4 | CG-M4-20 | Tabs specifications agent | Local 24B coding agent | Yes | Tabs checks only. |
 | M4 | CG-M4-21 | Card specifications agent | Local 24B coding agent | Yes | Card checks only. |
-| M5 | CG-M5-01 | Action acceptance agent | Local 24B–35B coding agent | Yes | Button acceptance only. |
-| M5 | CG-M5-02 | Field acceptance agent | Local 24B–35B coding agent | Yes | Field acceptance only. |
-| M5 | CG-M5-03 | Choice acceptance agent | Local 24B–35B coding agent | Yes | Choice-control acceptance only. |
-| M5 | CG-M5-04 | Search acceptance agent | Local 24B coding agent | Yes | Search acceptance only. |
-| M5 | CG-M5-05 | Overlay acceptance agent | Local 24B–35B coding agent | Yes | Overlay acceptance only. |
-| M5 | CG-M5-06 | Navigation acceptance agent | Local 24B–35B coding agent | Yes | Navigation acceptance only. |
-| M5 | CG-M5-07 | Responsive acceptance agent | Local 24B coding agent | Yes | Responsive/overflow acceptance only. |
-| M5 | CG-M5-08 | Motion acceptance agent | Local 24B coding agent | Yes | Reduced-motion acceptance only. |
-| M5 | CG-M5-09 | Accessibility audit agent | Local 9B–24B audit agent | Yes, audit only | Accessibility audit findings only; implementation fixes route to owners. |
-| M5 | CG-M5-10 | Documentation agent | Local 9B coding agent | Yes | API/examples reference and explicit risk record. |
-| M5 | CG-M5-11 | Coordinator + independent reviewer | Premium cloud coordinator + separate cloud reviewer | No | Final integration, review decision, ledger, and owner acceptance workbook. |
+| M5 | CG-M5-01 | Button acceptance agent | Local 24B–35B coding agent | Yes | Button acceptance only. |
+| M5 | CG-M5-02 | TextField acceptance agent | Local 24B–35B coding agent | Yes | TextField acceptance only. |
+| M5 | CG-M5-03 | Select acceptance agent | Local 24B–35B coding agent | Yes | Select acceptance only. |
+| M5 | CG-M5-04 | Checkbox acceptance agent | Local 24B–35B coding agent | Yes | Checkbox acceptance only. |
+| M5 | CG-M5-05 | Switch acceptance agent | Local 24B–35B coding agent | Yes | Switch acceptance only. |
+| M5 | CG-M5-06 | RadioGroup acceptance agent | Local 24B–35B coding agent | Yes | RadioGroup acceptance only. |
+| M5 | CG-M5-07 | Search acceptance agent | Local 24B coding agent | Yes | Search acceptance only. |
+| M5 | CG-M5-08 | Dialog acceptance agent | Local 24B–35B coding agent | Yes | Dialog acceptance only. |
+| M5 | CG-M5-09 | Drawer acceptance agent | Local 24B–35B coding agent | Yes | Drawer acceptance only. |
+| M5 | CG-M5-10 | Popover acceptance agent | Local 24B–35B coding agent | Yes | Popover acceptance only. |
+| M5 | CG-M5-11 | Menu acceptance agent | Local 24B–35B coding agent | Yes | Menu acceptance only. |
+| M5 | CG-M5-12 | Tabs acceptance agent | Local 24B–35B coding agent | Yes | Tabs acceptance only. |
+| M5 | CG-M5-13 | Card acceptance agent | Local 24B–35B coding agent | Yes | Card acceptance only. |
+| M5 | CG-M5-14 | Narrow responsive acceptance agent | Local 24B coding agent | Yes | Narrow-width acceptance only. |
+| M5 | CG-M5-15 | Wide responsive acceptance agent | Local 24B coding agent | Yes | Wide-width acceptance only. |
+| M5 | CG-M5-16 | Long-content acceptance agent | Local 24B coding agent | Yes | Long-content acceptance only. |
+| M5 | CG-M5-17 | Overflow acceptance agent | Local 24B coding agent | Yes | Overflow acceptance only. |
+| M5 | CG-M5-18 | Motion acceptance agent | Local 24B coding agent | Yes | Reduced-motion acceptance only. |
+| M5 | CG-M5-19 | Keyboard audit agent | Local 9B–24B audit agent | Yes, audit only | Keyboard findings only; implementation fixes route to owners. |
+| M5 | CG-M5-20 | Semantic audit agent | Local 9B–24B audit agent | Yes, audit only | Semantic findings only; implementation fixes route to owners. |
+| M5 | CG-M5-21 | Focus audit agent | Local 9B–24B audit agent | Yes, audit only | Focus findings only; implementation fixes route to owners. |
+| M5 | CG-M5-22 | Accessible-name audit agent | Local 9B–24B audit agent | Yes, audit only | Accessible-name findings only; implementation fixes route to owners. |
+| M5 | CG-M5-23 | Control-reference agent | Local 9B coding agent | Yes | API/example reference only. |
+| M5 | CG-M5-24 | Risk-register agent | Local 9B coding agent | Yes | Explicit risk record only. |
+| M5 | CG-M5-25 | Coordinator + independent reviewer | Premium cloud coordinator + separate cloud reviewer | No | Final integration, review decision, ledger, and owner acceptance workbook. |
 
 ## Local-agent total
 
-**61 of 78 packets** are intended for local agents. Packet counts are only a routing plan: M3 and M4 instead target 60–70% of accepted code-bearing lines authored locally, measured at milestone close. The remaining packets stay with the coordinator or a stronger specialist because they own shared contracts, public exports, cross-control focus/layer rules, integration, or final acceptance.
+**75 of 92 packets** are intended for local agents. Packet counts are only a routing plan: M3 and M4 instead target 60–70% of accepted code-bearing lines authored locally, measured at milestone close. The remaining packets stay with the coordinator or a stronger specialist because they own shared contracts, public exports, cross-control focus/layer rules, integration, or final acceptance.
 
 ## Execution limits
 

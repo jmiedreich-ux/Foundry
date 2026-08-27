@@ -38,7 +38,7 @@
 
 **Exit behavior:** Core v1 gallery behavior has evidence, open risks are explicitly marked, and the feature can be accepted without beginning Vennusign conversion.
 
-**Packets:** `CG-M5-01` through `CG-M5-11`. See [M5 record](milestones/m5.md).
+**Packets:** `CG-M5-01` through `CG-M5-25`. See [M5 record](milestones/m5.md).
 
 ## Post-Core roadmap
 

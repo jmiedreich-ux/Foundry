@@ -10,7 +10,7 @@
 - The gallery exercises buttons, validation/reset, search, selection controls, dialog, drawer, menu, popover, tabs, banner, toast, loading, and reduced-motion behavior.
 - `node --check apps/lab/src/main.js` passed. The visual detector found an overused typeface, which was replaced before the final commit.
 - `docs/features/control-gallery/` now contains the approved decisions, question register, path coverage, M1–M5 records, ready M1 packets, and an explicit done ledger.
-- `docs/features/control-gallery/assignments.md` records the current M1–M5 advance allocation: 61 bounded local-agent packets and 17 coordinator/specialist packets. M3/M4 routing is governed by the newer 60–70% accepted local code-bearing-share target, not packet count alone.
+- `docs/features/control-gallery/assignments.md` records the current M1–M5 advance allocation: 75 bounded local-agent packets and 17 coordinator/specialist packets. M3/M4 routing is governed by the newer 60–70% accepted local code-bearing-share target, not packet count alone.
 - Every Control Gallery milestone now requires an actual agent-routing performance report, including the model used, elapsed time, rework, review, verification, and `UNTESTED` results.
 - GitHub issues #3–#7 now hold the approved packet checklists for Control Gallery milestones M1–M5; `docs/features/control-gallery/workstream.json` links each milestone to its issue.
 - CG-M1-01 is complete: Node 22.23.2 and npm 10.9.8 ran `npm install`, `npm run check`, `npm run build`, and a real Chromium gallery smoke successfully. The issue #3 task is checked; the first durable browser specification remains CG-M1-04 work.
