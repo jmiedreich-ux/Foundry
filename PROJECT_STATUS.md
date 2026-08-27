@@ -6,8 +6,8 @@ Control Gallery — Milestone 3: actions, choices, search, and feedback.
 
 ## Current state
 
-Control Gallery M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-07, the CG-M3-04.1 conservative Search and feedback contracts, and CG-M3-04.2 shared default-skin selectors are accepted on the M3 branch after independent review. Real RadioGroup, Search, StatusChip, and Banner browser proof remain owned by CG-M3-26 through CG-M3-29.
+Control Gallery M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-08, the CG-M3-04.1 conservative Search and feedback contracts, and CG-M3-04.2 shared default-skin selectors are accepted on the M3 branch after independent review. Real RadioGroup, Search, StatusChip, Banner, and Toast browser proof remain owned by CG-M3-26 through CG-M3-30.
 
 ## Next action
 
-CG-M3-08 Toast is claimed by the Codex coordinator; its bounded preflight is the next action.
+Paused after CG-M3-08 at the owner's request. CG-M3-09 EmptyState is the exact next action when work resumes.

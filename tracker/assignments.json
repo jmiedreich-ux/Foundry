@@ -154,7 +154,7 @@
       "packet": "CG-M3-08",
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/feedback/toast/**"],
-      "status": "in_progress"
+      "status": "completed"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

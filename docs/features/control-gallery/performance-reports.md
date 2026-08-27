@@ -309,6 +309,22 @@ The packet’s contract was clear, but its 337-line implementation plus live unc
 
 This packet added the durable local-agent rule that a dispatch names its available test harness. An agent must report a missing capability rather than importing a new test library or changing dependencies.
 
+#### CG-M3-08 — Toast
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `b1594e0`. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: all 338 Toast source/test/export lines. |
+| Estimate / actual size | 100–140 / 338 source/test/export lines. The forecast did not include the full live lifecycle coverage required for an announcement control. |
+| Implementation elapsed time | 1 min 45 sec from recorded preflight through source commit. |
+| Rework and review | No implementation rework. Independent review returned `APPROVE` on the submitted head. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | Toast checks 10/10, TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | Real-browser announcement, close/focus, bounded-repeat, long-content, and responsive behavior; CG-M3-30 owns them. |
+
+Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pause, or auto-dismiss behavior. It uses the per-file jsdom capability introduced by Banner to execute lifecycle tests without changing the global Vitest environment.
+
 ### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
 
 **Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.

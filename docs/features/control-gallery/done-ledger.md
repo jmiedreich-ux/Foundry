@@ -33,7 +33,7 @@ Use `PASS`, `N/A (reason)`, or `UNTESTED`. Do not leave cells blank at milestone
 
 ## M3
 
-In progress. CG-M3-01 through CG-M3-07 are accepted on the M3 branch. Their focused component, TypeScript, static, production-build, scope, and independent-review gates passed. Real browser proof remains `UNTESTED` where it is owned by CG-M3-23 through CG-M3-29; Banner dismissal, restore, and focus proof specifically belong to CG-M3-29.
+In progress. CG-M3-01 through CG-M3-08 are accepted on the M3 branch. Their focused component, TypeScript, static, production-build, scope, and independent-review gates passed. Real browser proof remains `UNTESTED` where it is owned by CG-M3-23 through CG-M3-30; Banner dismissal, restore, and focus proof specifically belong to CG-M3-29, and Toast announcement, close, and bounded-repeat proof to CG-M3-30.
 
 ## M4–M5
 
