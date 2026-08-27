@@ -130,6 +130,12 @@
       "packet": "CG-M3-04.2",
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/tokens/src/skins/default.css"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-05",
+      "owner": "Qwen (local)",
+      "paths": ["packages/react/src/inputs/search/**"],
       "status": "in_progress"
     }
   ],
