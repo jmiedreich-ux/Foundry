@@ -4,8 +4,8 @@ Create one completed section after each milestone. Record actual execution facts
 
 ## Required per-packet record
 
-| Packet | Assigned role | Intended type | Actual agent/model | Local or cloud | Files changed | Elapsed time | Review rounds | Rework count | Verification result | UNTESTED count | Outcome |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Packet | Assigned role | Intended type | Actual agent/model | Local or cloud | Files changed | Elapsed time | Review decision | Review impact | Review minutes | Review rounds | Rework count | Code attribution | Automated-gate escapes | Self-correction before review | Verification result | UNTESTED count | Outcome |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- | --- | ---: | --- |
 
 `Outcome` is one of: `accepted`, `returned for rework`, `escalated`, `stopped`, or `not started`.
 
@@ -216,6 +216,20 @@ muse-glimmer:30b    de878ce33ad8    16 GB    100% GPU     65536
 ### M3 packet reports
 
 Each completed M3 packet receives a short report in this section before the next ordered packet starts. The report distinguishes local code retained in the accepted result from coordinator completion work; it does not substitute for the milestone-close performance table.
+
+#### Review-impact protocol
+
+Every new packet report records the independent-review decision, measured review minutes when available, review rounds, local-authored lines retained in the accepted result, reviewer/coordinator lines added or replaced, defects that escaped automated gates, and whether the agent made any self-correction before review. A failed-test or failed-tool-call self-correction is called out separately when it occurred. The review-impact rating is about the amount of corrective work, not whether review occurred:
+
+| Rating | Meaning |
+| --- | --- |
+| R0 | Approved unchanged. |
+| R1 | Comments or polish only; no behavior change. |
+| R2 | One localized, non-contract correction with limited code or test change. |
+| R3 | Any correction to approved behavior, an invariant, or previously missing required coverage. |
+| R4 | Rejected or rebuilt because the core contract, scope, or implementation is wrong. |
+
+Report `N/A (not measured)` rather than inventing a review-duration value. A packet whose automated gates pass can still be R3 or R4 when review finds a contract defect those gates did not cover.
 
 #### CG-M3-02 — Checkbox
 
