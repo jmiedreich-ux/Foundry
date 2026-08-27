@@ -325,6 +325,21 @@ This packet added the durable local-agent rule that a dispatch names its availab
 
 Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pause, or auto-dismiss behavior. It uses the per-file jsdom capability introduced by Banner to execute lifecycle tests without changing the global Vitest environment.
 
+#### CG-M3-09 — EmptyState
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `1ce0a0f`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`, followed by Codex coordinator (cloud) for the post-review semantic-boundary repair. |
+| Final code ownership | Qwen retained the original component, tests, and export; the coordinator added 27 final source/test lines for the stable-semantics refusal boundary. Final packet size: 254 source/test/export lines. |
+| Estimate / actual size | 50–80 / 254 source/test/export lines. The forecast materially understated the required public-boundary and regression coverage. |
+| Local elapsed time | 4 min 32 sec from initial commit `e2f1cb4` through the permitted local correction `fb31ff0`; its initial dispatch included substantial context-reading time. |
+| Rework and review | Qwen's initial commit invented a disabled API; its one correction removed it and added a regression assertion. Independent review then found that a consumer could supply `aria-live`, violating the stable non-live contract. With the local correction budget used, the coordinator stripped type/runtime live, busy, alternate-label, loading, and open-state escapes and added cast-based regression coverage. Renewed review approved. |
+| Review impact | `R3` — independent review caught a required semantic/refusal invariant after the local correction; coordinator repair was narrow and retained the local component. |
+| Misses caught before acceptance | Unsupported disabled API; consumer live-region, busy, alternate accessible-name, loading, and open-state escapes. |
+| Verification | EmptyState checks 10/10, TypeScript, static check, production build, scope check, and diff check passed. Independent review approved `1ce0a0f`. |
+| UNTESTED | Gallery recovery flow and real-browser semantic, action, long-content, and responsive proof; CG-M3-19 and CG-M3-31 own them. |
+
 ### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
 
 **Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.
