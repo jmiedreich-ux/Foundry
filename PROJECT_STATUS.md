@@ -6,8 +6,8 @@ Control Gallery — Milestone 2: foundations and field controls.
 
 ## Current state
 
-Control Gallery M1 is accepted and closed. M2 foundations, reusable inputs, field examples, and their gallery integration are accepted. CG-M2-04 is assigned to the supervised local specifications agent for real Chromium coverage. Issue #4 is the active milestone checklist.
+Control Gallery M1 is accepted and closed. M2 implementation is accepted on its milestone branch: foundations, reusable inputs, gallery examples, integration, and real Chromium checks all pass. Issue #4 has every implementation task checked; independent review is next.
 
 ## Next action
 
-Complete CG-M2-04 — behavioral browser/component checks.
+Obtain the independent review decision for the M2 milestone branch, then open/merge its pull request if approved.

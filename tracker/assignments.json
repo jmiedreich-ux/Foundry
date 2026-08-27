@@ -86,9 +86,9 @@
     },
     {
       "packet": "CG-M2-04",
-      "owner": "Local OpenCode qwen3.6:27b specifications agent (supervised)",
+      "owner": "Codex coordinator (cloud; local-agent takeover)",
       "paths": ["tests/fields/**", "apps/lab/src/examples/fields/**/*.spec.*"],
-      "status": "in_progress"
+      "status": "completed"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
