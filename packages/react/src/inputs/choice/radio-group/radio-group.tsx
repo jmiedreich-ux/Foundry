@@ -53,9 +53,10 @@ function ensureUniqueOptions(options: readonly RadioOption[]) {
 export function resolveInitialRadioValue(
   options: readonly RadioOption[],
   required: boolean,
-  defaultValue: string | undefined
+  defaultValue: string | undefined,
+  disabled = false
 ) {
-  const enabledOptions = options.filter((option) => !option.disabled);
+  const enabledOptions = options.filter((option) => !disabled && !option.disabled);
 
   if (!required) {
     return enabledOptions.some((option) => option.value === defaultValue) ? defaultValue : undefined;
@@ -129,7 +130,7 @@ export const RadioGroup = forwardRef<HTMLFieldSetElement, RadioGroupProps>(funct
     throw new Error('A required RadioGroup value must identify an enabled option.');
   }
 
-  const initialValue = resolveInitialRadioValue(options, resolvedRequired, defaultValue);
+  const initialValue = resolveInitialRadioValue(options, resolvedRequired, defaultValue, resolvedDisabled);
   const [uncontrolledValue, setUncontrolledValue] = useState(initialValue);
   const selectedValue = isControlled && enabledOptions.some((option) => option.value === value)
     ? value
@@ -145,10 +146,10 @@ export const RadioGroup = forwardRef<HTMLFieldSetElement, RadioGroupProps>(funct
     const form = inputRefs.current.find(Boolean)?.form;
     if (!form || isControlled) return;
 
-    const handleReset = () => setUncontrolledValue(resolveInitialRadioValue(options, resolvedRequired, defaultValue));
+    const handleReset = () => setUncontrolledValue(resolveInitialRadioValue(options, resolvedRequired, defaultValue, resolvedDisabled));
     form.addEventListener('reset', handleReset);
     return () => form.removeEventListener('reset', handleReset);
-  }, [defaultValue, isControlled, options, resolvedRequired]);
+  }, [defaultValue, isControlled, options, resolvedDisabled, resolvedRequired]);
 
   const choose = (nextValue: string) => {
     if (!enabledOptions.some((option) => option.value === nextValue)) return;

@@ -67,11 +67,14 @@ describe('RadioGroup', () => {
     expect(() => renderToStaticMarkup(<RadioGroup name="empty" options={[]} required />)).toThrow('enabled option');
     expect(() => renderToStaticMarkup(<RadioGroup name="plan" options={options} required defaultValue="gamma" />)).toThrow('defaultValue');
     expect(() => renderToStaticMarkup(<RadioGroup name="plan" options={options} required value="missing" onValueChange={() => {}} />)).toThrow('value');
+    expect(() => renderToStaticMarkup(<RadioGroup name="plan" options={options} required disabled defaultValue="alpha" />)).toThrow('enabled option');
+    expect(() => renderToStaticMarkup(<Group disabled><Field label="Plan"><RadioGroup name="plan" options={options} required defaultValue="alpha" /></Field></Group>)).toThrow('enabled option');
   });
 
   it('calculates native reset values and roving keyboard targets deterministically', () => {
     expect(resolveInitialRadioValue(options, true, undefined)).toBe('alpha');
     expect(resolveInitialRadioValue(options, false, 'gamma')).toBeUndefined();
+    expect(() => resolveInitialRadioValue(options, true, 'alpha', true)).toThrow('enabled option');
     expect(getNextEnabledRadioIndex(options, false, 0, 'next')).toBe(1);
     expect(getNextEnabledRadioIndex(options, false, 1, 'next')).toBe(0);
     expect(getNextEnabledRadioIndex(options, false, 0, 'previous')).toBe(1);
