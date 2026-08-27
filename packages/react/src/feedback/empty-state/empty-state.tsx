@@ -53,6 +53,8 @@ export const EmptyState = forwardRef<HTMLElement, EmptyStateProps>(function Empt
   const unsafeProps = rest as ComponentPropsWithoutRef<'section'> & {
     'data-control'?: unknown;
     'data-disabled'?: unknown;
+    'data-loading'?: unknown;
+    'data-open'?: unknown;
     'data-size'?: unknown;
   };
   const {
