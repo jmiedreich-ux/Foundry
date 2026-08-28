@@ -4,8 +4,8 @@ const longLabel = 'This is an exceptionally long field label that demonstrates h
 
 function example(page: import('@playwright/test').Page, title: string) {
   return page
-    .locator('#family-inputs > section')
-    .filter({ has: page.getByRole('heading', { level: 3, name: title }) });
+    .getByRole('heading', { level: 3, name: title, exact: true })
+    .locator('..');
 }
 
 test.describe('M2 field controls', () => {
@@ -14,7 +14,16 @@ test.describe('M2 field controls', () => {
   });
 
   test('renders all field examples with programmatic labels and required semantics', async ({ page }) => {
-    await expect(page.locator('#family-inputs > section')).toHaveCount(5);
+    const fieldExampleTitles = [
+      'Controlled TextField',
+      'Uncontrolled Form with Reset',
+      'Required Controlled Field',
+      'Disabled Group',
+      'Long Field Label',
+    ];
+    for (const title of fieldExampleTitles) {
+      await expect(example(page, title)).toHaveCount(1);
+    }
 
     const controlled = page.getByRole('textbox', { name: 'Controlled input' });
     const required = page.getByRole('textbox', { name: 'Required field' });
