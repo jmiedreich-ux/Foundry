@@ -74,7 +74,8 @@
 - CG-M3-12 is accepted at M3 branch head `daa22f3`: Qwen authored the single 79-line Checkbox-example file with a controlled status outcome, native uncontrolled form-reset outcome, and disabled Group example. TypeScript, static check, production build, scope/diff checks, and independent review approved unchanged.
 - CG-M3-13 is accepted at M3 branch head `2f550f8`: Qwen authored the single 79-line Switch-example file with a controlled on/off outcome, native uncontrolled form-reset outcome, and disabled Group example. TypeScript, static check, production build, scope/diff checks, and independent review approved unchanged.
 - CG-M3-14 is accepted at M3 branch head `cc69558`: Qwen authored the one-file RadioGroup examples but required one commit-only correction after its initial handoff omitted a commit. Independent review then found its status showed internal option keys rather than visible labels; the coordinator made the two-line mapping repair and renewed review approved. TypeScript, static check, production build, scope/diff checks passed.
+- CG-M3-15 is accepted at M3 branch head `1bb3f57`: Qwen authored the single 50-line Search example with a controlled fixed local list, visible empty/match/no-match paths, and one polite atomic result summary. It required a commit-only correction after the initial handoff omitted a commit; independent review approved unchanged. TypeScript, static check, production build, scope/diff checks passed.
 
 ## Exact next action
 
-CG-M3-15 Search gallery examples is active in its bounded local Qwen packet after the M3 public-export prerequisite.
+CG-M3-16 StatusChip gallery examples is active in its bounded local Qwen packet after the M3 public-export prerequisite.

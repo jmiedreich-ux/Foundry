@@ -411,6 +411,20 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | Verification | TypeScript, static check, production build, scope check, and diff check passed before and after the coordinator correction. |
 | UNTESTED | N/A (rendered gallery integration belongs to CG-M3-22; real RadioGroup keyboard, selection, reset, focus, and responsive proof belongs to CG-M3-26). |
 
+#### CG-M3-15 — Search gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `1bb3f57`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`. |
+| Final code ownership | Qwen: all 50 added lines in `SearchExamples.tsx`; the coordinator changed no example source. |
+| Estimate / actual size | 80–120 / 50 added lines. |
+| Local elapsed time | About 6 minutes 59 seconds across the initial result and its required commit-only correction. |
+| Rework and review | The initial local result stopped without a commit; its one correction committed unchanged source. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | N/A (rendered gallery integration belongs to CG-M3-22; real Search query, clear, focus, and responsive proof belongs to CG-M3-27). |
+
 ### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
 
 **Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.
