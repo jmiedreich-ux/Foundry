@@ -53,6 +53,7 @@ export interface LoadingSkeletonProps extends StrippedDivProps {
   'aria-valuemin'?: never;
   'aria-valuenow'?: never;
   'aria-valuetext'?: never;
+  'data-skeleton-bar'?: never;
 }
 
 export const LoadingSkeleton = forwardRef<HTMLDivElement, LoadingSkeletonProps>(

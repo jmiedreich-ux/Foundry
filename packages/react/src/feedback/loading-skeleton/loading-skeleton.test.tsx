@@ -172,6 +172,7 @@ describe('LoadingSkeleton', () => {
       'aria-label'?: never;
       'aria-live'?: never;
       'aria-valuenow'?: never;
+      'data-skeleton-bar'?: never;
     }>();
   });
 
