@@ -196,6 +196,12 @@
       "packet": "CG-M3-14",
       "owner": "Qwen (local)",
       "paths": ["apps/lab/src/examples/choices/radio-group/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-15",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/choices/search/**"],
       "status": "in_progress"
     }
   ],

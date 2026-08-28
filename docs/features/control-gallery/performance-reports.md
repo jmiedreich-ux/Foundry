@@ -397,6 +397,20 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | Verification | TypeScript, static check, production build, scope check, and diff check passed. |
 | UNTESTED | N/A (rendered gallery integration belongs to CG-M3-22; real Switch pointer, keyboard, reset, focus, and responsive proof belongs to CG-M3-25). |
 
+#### CG-M3-14 — RadioGroup gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `cc69558`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`, then coordinator review repair. |
+| Final code ownership | Qwen: 99 added example lines; coordinator: 2 added and 1 replaced line to report the visible selected label rather than the internal option key. |
+| Estimate / actual size | 80–120 / 102 changed lines. |
+| Local elapsed time | About 6 minutes 8 seconds across the first result and its required commit-only correction. |
+| Rework and review | The initial local result stopped without a commit; its one correction committed unchanged source. Independent review then found that the controlled status showed `basic` rather than visible `Basic`; the coordinator repaired it and renewed review returned `APPROVE`. |
+| Review impact | `R3` — review corrected the required observable status behavior. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed before and after the coordinator correction. |
+| UNTESTED | N/A (rendered gallery integration belongs to CG-M3-22; real RadioGroup keyboard, selection, reset, focus, and responsive proof belongs to CG-M3-26). |
+
 ### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
 
 **Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.
