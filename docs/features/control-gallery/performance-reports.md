@@ -340,6 +340,21 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | Verification | EmptyState checks 10/10, TypeScript, static check, production build, scope check, and diff check passed. Independent review approved `1ce0a0f`. |
 | UNTESTED | Gallery recovery flow and real-browser semantic, action, long-content, and responsive proof; CG-M3-19 and CG-M3-31 own them. |
 
+#### CG-M3-10 — LoadingSkeleton
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `2ef245b`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b` authored a contained draft but timed out without its required commit; Codex coordinator (cloud) completed the implementation and review repairs. |
+| Final code ownership | Approximately 293 of 342 source/test/export lines retain Qwen-authored draft content; the coordinator added the export, fixed Control Base loading state, and retained the post-review public/runtime root-semantic guards. The accepted execution owner is the coordinator because the local handoff failed. |
+| Estimate / actual size | 70–100 / 342 source/test/export lines. The forecast materially understated required invalid-input, fixed-hook, and reduced-motion regression coverage. |
+| Local elapsed time | 7 min 50 sec recorded activity, from 2026-08-27T19:52:10-04:00 until the runner was stopped with no required commit. |
+| Rework and review | No local correction was allowed because the initial local result did not commit. The coordinator completed the contained draft. First independent review found consumer `data-skeleton-bar`, `aria-hidden`, `autoFocus`, and `contentEditable` escapes on the required status root. Renewed review then found the missing public `data-skeleton-bar?: never` refusal. Final renewal approved. |
+| Review impact | `R4` — the local execution failed its required handoff and the coordinator had to own completion; independent review caught two required root-semantics invariants. |
+| Misses caught before acceptance | Missing commit; consumer bar-hook, root hiding, focus, editability, and public bar-hook type escapes. |
+| Verification | LoadingSkeleton checks 15/15, TypeScript, static check, production build, scope check, and diff check passed. Independent review approved `2ef245b`. |
+| UNTESTED | Gallery loading flow and real-browser busy semantics, reduced-motion, long-content, and responsive proof; CG-M3-20 and CG-M3-32 own them. |
+
 ### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
 
 **Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.
@@ -371,6 +386,7 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | CG-M3-08 | Codex coordinator (cloud) | `packages/react/src/feedback/toast/**` | 100–140 | Cloud: Toast owns the milestone's live-message and lifecycle boundary. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS before implementation. | Codex coordinator (cloud) | PASS — 2026-08-27T19:10:52-04:00 | N/A |
 | CG-M3-09 | Qwen (local) | `packages/react/src/feedback/empty-state/**` | 50–80 | Local: one static semantic recovery component. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused EmptyState checks. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T19:37:12-04:00 | 1 |
 | CG-M3-10 | Qwen (local) | `packages/react/src/feedback/loading-skeleton/**` | 70–100 | Local: one bounded indeterminate loading component after shared skin rules exist. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused LoadingSkeleton checks. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T19:50:27-04:00 | 1 |
+| CG-M3-11 | Qwen (local) | `apps/lab/src/examples/actions/button/**` | 70–110 | Local: one independently rendered Button-example directory with the accepted Button contract. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs any focused example checks it adds. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T20:05:15-04:00 | 1 |
 
 CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScript, static check, production build, and diff check passed; independent review returned `APPROVE`. Default-skin visual distinction, gallery examples, public export, integration, and browser interaction remain owned by CG-M3-01.1, CG-M3-11, CG-M3-21, CG-M3-22, and CG-M3-23.
 

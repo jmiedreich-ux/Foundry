@@ -166,6 +166,12 @@
       "packet": "CG-M3-10",
       "owner": "Qwen (local)",
       "paths": ["packages/react/src/feedback/loading-skeleton/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-11",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/actions/button/**"],
       "status": "in_progress"
     }
   ],
