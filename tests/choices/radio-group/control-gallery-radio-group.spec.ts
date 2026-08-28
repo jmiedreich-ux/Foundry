@@ -88,6 +88,9 @@ test.describe('M3 RadioGroup gallery', () => {
     await expect(proRadio).toHaveAttribute('data-checked', '');
     await expect(status).toHaveText('Reset count: 0');
 
+    await expect(basicRadio).toHaveAttribute('required', '');
+    await expect(basicRadio).toHaveAttribute('aria-required', 'true');
+
     await basicRadio.click();
     await expect(basicRadio).toBeChecked();
     await expect(basicRadio).toHaveAttribute('data-checked', '');
