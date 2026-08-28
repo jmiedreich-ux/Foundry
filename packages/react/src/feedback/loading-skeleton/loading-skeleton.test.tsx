@@ -120,15 +120,19 @@ describe('LoadingSkeleton', () => {
           label: 'Safe label',
           role: 'progressbar',
           'aria-busy': 'false',
+          'aria-hidden': true,
           'aria-label': 'consumer-label',
           'aria-live': 'assertive',
           'aria-valuenow': 50,
           className: 'consumer-skeleton',
           style: { color: 'red' },
+          autoFocus: true,
+          contentEditable: true,
           'data-control': 'not-skeleton',
           'data-disabled': 'evil',
           'data-loading': 'evil',
           'data-open': 'evil',
+          'data-skeleton-bar': 'evil',
           'data-size': 'evil'
         } as unknown as LoadingSkeletonProps)}
       />
@@ -148,6 +152,10 @@ describe('LoadingSkeleton', () => {
     expect(markup).not.toContain('aria-valuenow');
     expect(markup).not.toContain('data-disabled');
     expect(markup).not.toContain('data-open');
+    expect(markup).not.toMatch(/<div[^>]*data-skeleton-bar/);
+    expect(markup).not.toMatch(/<div[^>]*aria-hidden/);
+    expect(markup).not.toMatch(/<div[^>]*contenteditable/i);
+    expect(markup).not.toMatch(/<div[^>]*autofocus/i);
   });
 
   /* ---- type boundary refusal ---- */
@@ -157,7 +165,10 @@ describe('LoadingSkeleton', () => {
       role?: never;
       className?: never;
       style?: never;
+      autoFocus?: never;
+      contentEditable?: never;
       'aria-busy'?: never;
+      'aria-hidden'?: never;
       'aria-label'?: never;
       'aria-live'?: never;
       'aria-valuenow'?: never;

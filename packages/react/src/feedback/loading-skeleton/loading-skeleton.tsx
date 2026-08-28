@@ -23,7 +23,10 @@ type StrippedDivProps = Omit<
   | 'className'
   | 'style'
   | 'tabIndex'
+  | 'autoFocus'
+  | 'contentEditable'
   | 'aria-busy'
+  | 'aria-hidden'
   | 'aria-label'
   | 'aria-live'
   | 'aria-valuemax'
@@ -40,7 +43,10 @@ export interface LoadingSkeletonProps extends StrippedDivProps {
   className?: never;
   style?: never;
   tabIndex?: never;
+  autoFocus?: never;
+  contentEditable?: never;
   'aria-busy'?: never;
+  'aria-hidden'?: never;
   'aria-label'?: never;
   'aria-live'?: never;
   'aria-valuemax'?: never;
@@ -63,6 +69,7 @@ export const LoadingSkeleton = forwardRef<HTMLDivElement, LoadingSkeletonProps>(
       'data-disabled'?: unknown;
       'data-loading'?: unknown;
       'data-open'?: unknown;
+      'data-skeleton-bar'?: unknown;
       'data-size'?: unknown;
     };
     const {
@@ -70,7 +77,10 @@ export const LoadingSkeleton = forwardRef<HTMLDivElement, LoadingSkeletonProps>(
       className: _className,
       style: _style,
       tabIndex: _tabIndex,
+      autoFocus: _autoFocus,
+      contentEditable: _contentEditable,
       'aria-busy': _ariaBusy,
+      'aria-hidden': _ariaHidden,
       'aria-label': _ariaLabel,
       'aria-live': _ariaLive,
       'aria-valuemax': _ariaValueMax,
@@ -81,6 +91,7 @@ export const LoadingSkeleton = forwardRef<HTMLDivElement, LoadingSkeletonProps>(
       'data-disabled': _dataDisabled,
       'data-loading': _dataLoading,
       'data-open': _dataOpen,
+      'data-skeleton-bar': _dataSkeletonBar,
       'data-size': _dataSize,
       ...safeProps
     } = unsafeProps;
