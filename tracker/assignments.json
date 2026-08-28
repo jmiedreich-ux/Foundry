@@ -184,6 +184,12 @@
       "packet": "CG-M3-12",
       "owner": "Qwen (local)",
       "paths": ["apps/lab/src/examples/choices/checkbox/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-13",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/choices/switch/**"],
       "status": "in_progress"
     }
   ],

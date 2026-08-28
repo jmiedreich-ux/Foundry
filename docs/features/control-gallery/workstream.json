@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-10, CG-M3-11 Button examples, CG-M3-21 public exports, the CG-M3-04.1 conservative Search and feedback contracts, and CG-M3-04.2 shared default-skin selectors are accepted on the M3 branch. Real control-gallery integration and browser proof remain owned by CG-M3-22 through CG-M3-32.",
-  "next": "CG-M3-12 Checkbox gallery examples is active in its bounded local Qwen packet after the public-export prerequisite.",
+  "position": "M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-10, CG-M3-11 Button examples, CG-M3-12 Checkbox examples, CG-M3-21 public exports, the CG-M3-04.1 conservative Search and feedback contracts, and CG-M3-04.2 shared default-skin selectors are accepted on the M3 branch. Real control-gallery integration and browser proof remain owned by CG-M3-22 through CG-M3-32.",
+  "next": "CG-M3-13 Switch gallery examples is active in its bounded local Qwen packet after the public-export prerequisite.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" },

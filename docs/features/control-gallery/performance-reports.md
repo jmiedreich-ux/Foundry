@@ -369,6 +369,20 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | Verification | TypeScript, static check, production build, scope check, and diff check passed. |
 | UNTESTED | N/A (focused component tests belong to Button; rendered gallery integration and real browser activation, loading/disabled, long-label, and responsive proof remain CG-M3-22 and CG-M3-23). |
 
+#### CG-M3-12 — Checkbox gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `daa22f3`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`. |
+| Final code ownership | Qwen: all 79 added lines in `CheckboxExamples.tsx`; the coordinator changed no example source. |
+| Estimate / actual size | 70–100 / 79 added lines. |
+| Local elapsed time | 2 minutes 5 seconds from dispatch to required commit. |
+| Rework and review | No rework. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | N/A (rendered gallery integration belongs to CG-M3-22; real Checkbox pointer, keyboard, reset, focus, and responsive proof belongs to CG-M3-24). |
+
 ### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
 
 **Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.
