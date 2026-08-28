@@ -28,6 +28,7 @@ test.describe('CG-M3-32 LoadingSkeleton gallery', () => {
     await expect(root).not.toHaveAttribute('aria-valuenow');
     await expect(root).not.toHaveAttribute('aria-valuemin');
     await expect(root).not.toHaveAttribute('aria-valuemax');
+    await expect(root).not.toHaveAttribute('aria-valuetext');
 
     const bars = root.locator('[data-skeleton-bar]');
     await expect(bars).toHaveCount(3);
@@ -65,6 +66,7 @@ test.describe('CG-M3-32 LoadingSkeleton gallery', () => {
     await expect(root).not.toHaveAttribute('aria-valuenow');
     await expect(root).not.toHaveAttribute('aria-valuemin');
     await expect(root).not.toHaveAttribute('aria-valuemax');
+    await expect(root).not.toHaveAttribute('aria-valuetext');
 
     const bars = root.locator('[data-skeleton-bar]');
     await expect(bars).toHaveCount(6);
