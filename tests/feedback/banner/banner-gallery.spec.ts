@@ -15,10 +15,10 @@ test.describe('CG-M3-29 Banner gallery', () => {
     page,
   }) => {
     const frame = example(page, 'Controlled Banner');
-    const banner = frame.locator('[data-control="banner"]');
+    const banner = frame.getByRole('region', { name: 'Warning', exact: true });
 
-    await expect(banner).toHaveCount(1);
     await expect(banner).toBeVisible();
+    await expect(banner).toHaveCount(1);
     await expect(banner).toHaveAttribute('data-control', 'banner');
     await expect(banner).toHaveAttribute('data-tone', 'warning');
     await expect(banner).toHaveAttribute('data-open', '');
@@ -27,15 +27,21 @@ test.describe('CG-M3-29 Banner gallery', () => {
     await expect(frame.getByRole('heading', { level: 2, name: 'Warning', exact: true })).toBeVisible();
     await expect(frame.getByRole('button', { name: 'Dismiss', exact: true })).toBeVisible();
     await expect(frame.getByRole('button', { name: 'Recovery action', exact: true })).toBeVisible();
+
+    await expect(banner.locator('p')).toBeVisible();
+    await expect(banner.locator('p')).toHaveText(
+      'This Banner is controlled by external React state. Clicking Dismiss will close it. You can reopen it using the restore button below.',
+    );
   });
 
-  test('recovery action keeps banner present and updates status', async ({ page }) => {
+  test('recovery action keeps exactly one banner present and updates status', async ({ page }) => {
     const frame = example(page, 'Controlled Banner');
     const banner = frame.locator('[data-control="banner"]');
     const recovery = frame.getByRole('button', { name: 'Recovery action', exact: true });
     const status = frame.getByRole('status');
 
     await recovery.click();
+    await expect(banner).toHaveCount(1);
     await expect(banner).toBeVisible();
     await expect(status).toHaveText('Recovery action invoked');
   });
@@ -76,6 +82,8 @@ test.describe('CG-M3-29 Banner gallery', () => {
     const banner = frame.locator('[data-control="banner"]');
     await expect(banner).toHaveCount(1);
     await expect(banner).toBeVisible();
+    await expect(banner).toHaveAttribute('data-control', 'banner');
+    await expect(banner).toHaveAttribute('data-size', 'md');
     await expect(banner).toHaveAttribute('data-tone', 'warning');
     await expect(banner).toHaveAttribute('data-open', '');
     await expect(frame.getByRole('button', { name: 'Dismiss', exact: true })).toBeVisible();
