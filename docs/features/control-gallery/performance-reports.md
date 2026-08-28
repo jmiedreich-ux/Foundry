@@ -594,6 +594,20 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 | Verification | Focused Chromium Checkbox checks 5/5, full Chromium suite 23/23, TypeScript, static check, production build, scope check, and diff check passed. |
 | UNTESTED | 0 within this packet; Checkbox component type/ref/Field boundary remains covered by CG-M3-02 component checks. |
 
+#### CG-M3-25 — Switch browser checks
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `f143fe1`. |
+| Assigned / actual executor | Qwen (local) / Qwen (local). |
+| Final code ownership | Qwen: all 105 added lines in `tests/choices/switch/control-gallery-switch.spec.ts`. |
+| Estimate / actual size | 70–100 / 105 lines. |
+| Implementation elapsed time | About 2 minutes from compact-contract dispatch through required commit. |
+| Rework and review | No rework. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | Focused Chromium Switch checks 5/5, full Chromium suite 28/28, TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | 0 within this packet; Switch component type/ref/Field boundary remains covered by CG-M3-03 component checks. |
+
 ## M4
 
 Not started.
