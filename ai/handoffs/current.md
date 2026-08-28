@@ -88,4 +88,8 @@
 
 ## Exact next action
 
-CG-M3-30 is accepted at M3 branch head `0d99ceb`: Qwen left an uncommitted Toast browser-test draft that failed its focus loop. The coordinator repaired the exact element comparison, committed it, and review required one further Toast-owned-Dismiss assertion. Focused Chromium 5/5, TypeScript, static check, production build, and diff check passed; renewed review approved. CG-M3-31 EmptyState browser checks is active in its bounded local Qwen packet.
+CG-M3-30 is accepted at M3 branch head `0d99ceb`: Qwen left an uncommitted Toast browser-test draft that failed its focus loop. The coordinator repaired the exact element comparison, committed it, and review required one further Toast-owned-Dismiss assertion. Focused Chromium 5/5, TypeScript, static check, production build, and diff check passed; renewed review approved.
+
+CG-M3-31 is accepted at M3 branch head `d4f7a6c`: Qwen authored the 144-line EmptyState real Chromium specification and completed one correction asserting the native section has no `role` override and its recovery action is the sole interactive descendant. Focused Chromium 6/6, TypeScript, static check, production build, and diff check passed; renewed review approved.
+
+CG-M3-32 LoadingSkeleton browser checks is active in its bounded local Qwen packet.
