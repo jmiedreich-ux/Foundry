@@ -4,8 +4,8 @@ Create one completed section after each milestone. Record actual execution facts
 
 ## Required per-packet record
 
-| Packet | Assigned role | Intended type | Actual agent/model | Local or cloud | Files changed | Elapsed time | Review rounds | Rework count | Verification result | UNTESTED count | Outcome |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Packet | Assigned role | Intended type | Actual agent/model | Local or cloud | Files changed | Elapsed time | Review decision | Review impact | Review minutes | Review rounds | Rework count | Code attribution | Automated-gate escapes | Self-correction before review | Verification result | UNTESTED count | Outcome |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- | --- | ---: | --- |
 
 `Outcome` is one of: `accepted`, `returned for rework`, `escalated`, `stopped`, or `not started`.
 
@@ -217,6 +217,20 @@ muse-glimmer:30b    de878ce33ad8    16 GB    100% GPU     65536
 
 Each completed M3 packet receives a short report in this section before the next ordered packet starts. The report distinguishes local code retained in the accepted result from coordinator completion work; it does not substitute for the milestone-close performance table.
 
+#### Review-impact protocol
+
+Every new packet report records the independent-review decision, measured review minutes when available, review rounds, local-authored lines retained in the accepted result, reviewer/coordinator lines added or replaced, defects that escaped automated gates, and whether the agent made any self-correction before review. A failed-test or failed-tool-call self-correction is called out separately when it occurred. The review-impact rating is about the amount of corrective work, not whether review occurred:
+
+| Rating | Meaning |
+| --- | --- |
+| R0 | Approved unchanged. |
+| R1 | Comments or polish only; no behavior change. |
+| R2 | One localized, non-contract correction with limited code or test change. |
+| R3 | Any correction to approved behavior, an invariant, or previously missing required coverage. |
+| R4 | Rejected or rebuilt because the core contract, scope, or implementation is wrong. |
+
+Report `N/A (not measured)` rather than inventing a review-duration value. A packet whose automated gates pass can still be R3 or R4 when review finds a contract defect those gates did not cover.
+
 #### CG-M3-02 — Checkbox
 
 | Measure | Result |
@@ -263,6 +277,182 @@ Qwen followed the new shared-control behavior rules in the returned source, but 
 
 This packet proves the value of recording a complete public contract before code: every reported defect was resolved inside the bounded RadioGroup directory before acceptance.
 
+#### CG-M3-05 — Search
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `2d910d8`. |
+| Assigned / actual executor | Qwen (local) / Qwen (local) attempted, then Codex coordinator (cloud) completed the packet. |
+| Final code ownership | Coordinator retained all 337 accepted lines; Qwen retained 0 lines because its run produced no source or commit. |
+| Estimate / actual size | 100–140 / 337 changed lines. This materially exceeded the local-routing forecast. |
+| Local elapsed time | 3 min 57 sec of recorded OpenCode activity, ending after exploration with no subsequent tool action, source, or commit. |
+| Rework and review | Two coordinator corrections: the first independent review found uncontrolled native-value clearing, runtime semantic/hook escaping, and disabled/read-only defects; renewed review found an accidental public helper export. Final independent review approved. |
+| Verification | Focused Search tests 7/7, TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | Real-browser typing, clear/callback order, native reset, focus, keyboard, and responsive behavior; CG-M3-27 owns it. |
+
+The packet’s contract was clear, but its 337-line implementation plus live uncontrolled-state behavior exceeded the current Qwen envelope. Keep Search-like stateful input controls coordinator-owned unless a future benchmark shows reliable bounded completion.
+
+#### CG-M3-07 — Banner
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `87748b3`. |
+| Assigned / actual executor | Qwen (local) / Qwen (local) authored the first scoped commit; its one correction made no commit, so Codex coordinator (cloud) completed the named repair and the component-test capability decision. |
+| Final code ownership | Qwen retained 313 of 476 Banner source/test/export lines (66%); coordinator retained 163 lines. The jsdom dependency and lockfile are excluded from this code-bearing attribution. |
+| Estimate / actual size | 100–140 / 476 Banner source/test/export lines. The forecast was materially exceeded, primarily because the accepted contract requires executable open-state transitions. |
+| Local elapsed time | Initial authoring duration: N/A (not captured). Permitted correction: 5 min 20 sec recorded OpenCode activity; it ended without a required commit. |
+| Rework and review | Coordinator source review found missing section labelling and Control Base/Group size/disabled behavior. Qwen's correction attempted a blocked subagent call, then imported an uninstalled test library and did not commit; it was stopped. The coordinator repaired the contract. First independent review requested executable dismiss/restore/refusal coverage; the coordinator added a per-file jsdom environment and live component checks. Renewed independent review approved. |
+| Review impact | `R4` — local result and correction did not satisfy the core component contract; coordinator repair and test-harness escalation were required. |
+| Misses caught before acceptance | Accessible name relationship, Group/Control Base state, component-owned `data-open` spread collision, and absent live open-state coverage. |
+| Verification | Banner checks 25/25, TypeScript, static check, production build, scope check, and diff check passed. Independent review approved `87748b3`. |
+| UNTESTED | Real-browser dismissal, controlled restore, focus behavior, long-content layout, and responsive behavior; CG-M3-29 owns them. |
+
+This packet added the durable local-agent rule that a dispatch names its available test harness. An agent must report a missing capability rather than importing a new test library or changing dependencies.
+
+#### CG-M3-08 — Toast
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `b1594e0`. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: all 338 Toast source/test/export lines. |
+| Estimate / actual size | 100–140 / 338 source/test/export lines. The forecast did not include the full live lifecycle coverage required for an announcement control. |
+| Implementation elapsed time | 1 min 45 sec from recorded preflight through source commit. |
+| Rework and review | No implementation rework. Independent review returned `APPROVE` on the submitted head. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | Toast checks 10/10, TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | Real-browser announcement, close/focus, bounded-repeat, long-content, and responsive behavior; CG-M3-30 owns them. |
+
+Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pause, or auto-dismiss behavior. It uses the per-file jsdom capability introduced by Banner to execute lifecycle tests without changing the global Vitest environment.
+
+#### CG-M3-09 — EmptyState
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `1ce0a0f`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`, followed by Codex coordinator (cloud) for the post-review semantic-boundary repair. |
+| Final code ownership | Qwen retained the original component, tests, and export; the coordinator added 27 final source/test lines for the stable-semantics refusal boundary. Final packet size: 254 source/test/export lines. |
+| Estimate / actual size | 50–80 / 254 source/test/export lines. The forecast materially understated the required public-boundary and regression coverage. |
+| Local elapsed time | 4 min 32 sec from initial commit `e2f1cb4` through the permitted local correction `fb31ff0`; its initial dispatch included substantial context-reading time. |
+| Rework and review | Qwen's initial commit invented a disabled API; its one correction removed it and added a regression assertion. Independent review then found that a consumer could supply `aria-live`, violating the stable non-live contract. With the local correction budget used, the coordinator stripped type/runtime live, busy, alternate-label, loading, and open-state escapes and added cast-based regression coverage. Renewed review approved. |
+| Review impact | `R3` — independent review caught a required semantic/refusal invariant after the local correction; coordinator repair was narrow and retained the local component. |
+| Misses caught before acceptance | Unsupported disabled API; consumer live-region, busy, alternate accessible-name, loading, and open-state escapes. |
+| Verification | EmptyState checks 10/10, TypeScript, static check, production build, scope check, and diff check passed. Independent review approved `1ce0a0f`. |
+| UNTESTED | Gallery recovery flow and real-browser semantic, action, long-content, and responsive proof; CG-M3-19 and CG-M3-31 own them. |
+
+#### CG-M3-10 — LoadingSkeleton
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `2ef245b`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b` authored a contained draft but timed out without its required commit; Codex coordinator (cloud) completed the implementation and review repairs. |
+| Final code ownership | Approximately 293 of 342 source/test/export lines retain Qwen-authored draft content; the coordinator added the export, fixed Control Base loading state, and retained the post-review public/runtime root-semantic guards. The accepted execution owner is the coordinator because the local handoff failed. |
+| Estimate / actual size | 70–100 / 342 source/test/export lines. The forecast materially understated required invalid-input, fixed-hook, and reduced-motion regression coverage. |
+| Local elapsed time | 7 min 50 sec recorded activity, from 2026-08-27T19:52:10-04:00 until the runner was stopped with no required commit. |
+| Rework and review | No local correction was allowed because the initial local result did not commit. The coordinator completed the contained draft. First independent review found consumer `data-skeleton-bar`, `aria-hidden`, `autoFocus`, and `contentEditable` escapes on the required status root. Renewed review then found the missing public `data-skeleton-bar?: never` refusal. Final renewal approved. |
+| Review impact | `R4` — the local execution failed its required handoff and the coordinator had to own completion; independent review caught two required root-semantics invariants. |
+| Misses caught before acceptance | Missing commit; consumer bar-hook, root hiding, focus, editability, and public bar-hook type escapes. |
+| Verification | LoadingSkeleton checks 15/15, TypeScript, static check, production build, scope check, and diff check passed. Independent review approved `2ef245b`. |
+| UNTESTED | Gallery loading flow and real-browser busy semantics, reduced-motion, long-content, and responsive proof; CG-M3-20 and CG-M3-32 own them. |
+
+#### CG-M3-11 — Button gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `7095423`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`. |
+| Final code ownership | Qwen: all 68 added lines in `ButtonExamples.tsx`; the coordinator changed no example source. |
+| Estimate / actual size | 70–110 / 68 added lines. |
+| Local elapsed time | About 3 minutes 15 seconds from the successful post-export dispatch through the committed correction. The earlier attempt was stopped before a legal public import existed and produced no accepted source. |
+| Rework and review | Initial commit `0c73401` passed gates. Independent review found that the proposed long label was only 24 characters. Qwen's one permitted correction `7095423` made it a 114-character label and updated the matching status text. Renewed independent review returned `APPROVE`. |
+| Review impact | `R3` — review found missing required long-label coverage; the localized correction was made by the local agent. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | N/A (focused component tests belong to Button; rendered gallery integration and real browser activation, loading/disabled, long-label, and responsive proof remain CG-M3-22 and CG-M3-23). |
+
+#### CG-M3-12 — Checkbox gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `daa22f3`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`. |
+| Final code ownership | Qwen: all 79 added lines in `CheckboxExamples.tsx`; the coordinator changed no example source. |
+| Estimate / actual size | 70–100 / 79 added lines. |
+| Local elapsed time | 2 minutes 5 seconds from dispatch to required commit. |
+| Rework and review | No rework. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | N/A (rendered gallery integration belongs to CG-M3-22; real Checkbox pointer, keyboard, reset, focus, and responsive proof belongs to CG-M3-24). |
+
+#### CG-M3-13 — Switch gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `2f550f8`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`. |
+| Final code ownership | Qwen: all 79 added lines in `SwitchExamples.tsx`; the coordinator changed no example source. |
+| Estimate / actual size | 70–100 / 79 added lines. |
+| Local elapsed time | 3 minutes 23 seconds from dispatch to required commit. |
+| Rework and review | No rework. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | N/A (rendered gallery integration belongs to CG-M3-22; real Switch pointer, keyboard, reset, focus, and responsive proof belongs to CG-M3-25). |
+
+#### CG-M3-14 — RadioGroup gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `cc69558`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`, then coordinator review repair. |
+| Final code ownership | Qwen: 99 added example lines; coordinator: 2 added and 1 replaced line to report the visible selected label rather than the internal option key. |
+| Estimate / actual size | 80–120 / 102 changed lines. |
+| Local elapsed time | About 6 minutes 8 seconds across the first result and its required commit-only correction. |
+| Rework and review | The initial local result stopped without a commit; its one correction committed unchanged source. Independent review then found that the controlled status showed `basic` rather than visible `Basic`; the coordinator repaired it and renewed review returned `APPROVE`. |
+| Review impact | `R3` — review corrected the required observable status behavior. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed before and after the coordinator correction. |
+| UNTESTED | N/A (rendered gallery integration belongs to CG-M3-22; real RadioGroup keyboard, selection, reset, focus, and responsive proof belongs to CG-M3-26). |
+
+#### CG-M3-15 — Search gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `1bb3f57`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`. |
+| Final code ownership | Qwen: all 50 added lines in `SearchExamples.tsx`; the coordinator changed no example source. |
+| Estimate / actual size | 80–120 / 50 added lines. |
+| Local elapsed time | About 6 minutes 59 seconds across the initial result and its required commit-only correction. |
+| Rework and review | The initial local result stopped without a commit; its one correction committed unchanged source. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | N/A (rendered gallery integration belongs to CG-M3-22; real Search query, clear, focus, and responsive proof belongs to CG-M3-27). |
+
+#### CG-M3-16 — StatusChip gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `51890ed`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`. |
+| Final code ownership | Qwen: all 39 added lines in `StatusChipExamples.tsx`; coordinator: no source lines. |
+| Estimate / actual size | 40–70 / 39 added lines. |
+| Local elapsed time | N/A (not captured across the initial run and commit-only correction). |
+| Rework and review | Initial result omitted its commit; one commit-only correction succeeded. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | N/A (gallery integration is CG-M3-22; browser semantics, long-label, and adjacent-flow proof is CG-M3-28). |
+
+### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
+
+**Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.
+
+| Packet | Historical base | Actual agent/model | Files changed | Recorded elapsed time | Review / rework | Failed-tool self-recovery | Verification result | UNTESTED | Benchmark outcome |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| CG-M3-02 Checkbox | `4c7b8ec` | OpenCode 1.18.21 / Ollama `qwen3.8:27b` | Three allowed Checkbox files, 175 added lines; initial commit `5d91ea7` | 15m 00s: initial 11m 31s; one correction session 3m 29s | One coordinator source-review round found missing live uncontrolled `data-checked`/reset synchronization and a missing public `role` refusal. Its only correction reread context but made no file change or commit. | Yes. The initial test wrongly expected SSR `defaultChecked` markup; Qwen recognized React emits `checked`, corrected the assertion, and completed its own gates without a coordinator message. | Qwen reported 7/7 focused checks, TypeScript, static, build, scope, and commit PASS. Coordinator source review rejected the result for the two contract misses. Browser proof belongs to CG-M3-24. | 1 | stopped / rejected; no benchmark code accepted |
+| CG-M3-03 Switch | `92bd549` | OpenCode 1.18.21 / Ollama `qwen3.8:27b` | Two allowed Switch files, 258 added lines; commits `8a54aee`, `da3f3e1` | 7m 56s: initial 6m 16s; correction 1m 40s | One coordinator source-review round required an explicit public `role?: never` refusal and matching type assertion; correction changed only those two lines. | Partial. Before a tool run, Qwen noticed that its proposed `role="checkbox"` test contradicted the prop boundary and removed it. It did not recover from a failed tool call. | Coordinator reran focused Switch tests 10/10, TypeScript, static check, production build, and scope/diff checks: PASS. Browser proof belongs to CG-M3-25. | 1 | accepted benchmark result; not merged into product source |
+| CG-M3-04 RadioGroup | `7a7d4ab` | OpenCode 1.18.21 / Ollama `qwen3.8:27b` | none | 1m 57s of recorded OpenCode activity; the process then emitted no further work and was stopped | No source review or correction was applicable because no diff or commit existed. | No. | Baseline preflight had passed before dispatch; no Qwen-authored source exists to test. CG-M3-26 remains the real-browser owner. | 9 | stopped; no source change |
+
+**Result:** Qwen 3.8 completed one of three replayed packets. It showed useful local self-correction on the Checkbox test assertion, but did not reliably carry the documented reusable-control contract through source review and made no RadioGroup implementation attempt. The Switch is a strong bounded-control result, but its 258 added lines again materially exceed the 80–110-line packet forecast. This benchmark does not change the current routing decision: use Qwen only under exact paths, required commits, the full gate set, source review, and a strict one-correction escalation rule.
+
+**Comparison boundary:** Qwen 3.6's production CG-M3-02 result took 13m 29s and required coordinator completion; its CG-M3-03 result took 4m 04s and retained 246 of 253 accepted lines. CG-M3-04 was coordinator-owned, so there is no Qwen 3.6 local RadioGroup run to compare. The replay is evidence about the local runtime, not an attribution change to accepted M3 code.
+
 ### CG-M3-01 dispatch forecast
 
 | Packet | Planned executor/runtime | Code-bearing paths | Estimated changed lines | Why local or cloud | Preflight command and expected result | Actual executor/runtime at dispatch | Preflight result and timestamp | Maximum corrections |
@@ -272,8 +462,38 @@ This packet proves the value of recording a complete public contract before code
 | CG-M3-02 | Qwen (local) | `packages/react/src/inputs/choice/checkbox/**` | 90–130 | Local: one native-control behavior with an exact, independent directory and existing M2 contract. | `npm exec tsc -- --noEmit && npm run build` → PASS; returned packet must also run its focused Checkbox test. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T02:53:51-04:00 | 1 |
 | CG-M3-03 | Qwen (local) | `packages/react/src/inputs/choice/switch/**` | 80–110 | Local: one native Switch that applies the recorded shared choice-control invariants without creating an API. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet must also run focused Switch tests. | Qwen (local) | PASS — 2026-08-27T03:29:20-04:00 | 1 |
 | CG-M3-04 | Codex coordinator (cloud) | `packages/react/src/inputs/choice/radio-group/**` | 220–300 | Cloud: RadioGroup establishes the shared selection and roving-keyboard contract that its examples and browser checks consume. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS before implementation. | Codex coordinator (cloud) | Pending recorded-contract review | N/A |
+| CG-M3-04.1 | Codex coordinator (cloud) | M3 contract records only | 120–180 | Cloud: the missing API/state/accessibility decisions must be explicit before any local source packet can start. | Markdown authority review and `git diff --check` → PASS | Codex coordinator (cloud) | PASS — independent contract review approved the recorded Search and feedback boundaries | N/A |
+| CG-M3-04.2 | Codex coordinator (cloud) | `packages/tokens/src/skins/default.css` | 90–140 | Cloud: shared skin selectors cannot be safely split across feedback controls. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS before implementation. | Codex coordinator (cloud) | PASS — 2026-08-27T11:41:14-04:00; providers 2/2, TypeScript, static check, build, selector scan, and independent review approved | N/A |
+| CG-M3-05 | Qwen (local) | `packages/react/src/inputs/search/**` | 100–140 | Local: one native Search field after its exact contract and shared skin are accepted. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused Search checks. | Qwen (local), then Codex coordinator (cloud) | PASS — 2026-08-27T11:55:48-04:00; focused Search 7/7, TypeScript, static check, build, scope/diff checks, and independent review approved | 1 |
+| CG-M3-06 | Qwen (local) | `packages/react/src/feedback/status-chip/**` | 50–80 | Local: one static advisory-status component with no shared infrastructure. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused StatusChip checks. | UNSET | UNSET | 1 |
+| CG-M3-07 | Qwen (local) | `packages/react/src/feedback/banner/**` | 100–140 | Local: one bounded persistent feedback component after the open-state contract is explicit. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused Banner checks. | UNSET | UNSET | 1 |
+| CG-M3-08 | Codex coordinator (cloud) | `packages/react/src/feedback/toast/**` | 100–140 | Cloud: Toast owns the milestone's live-message and lifecycle boundary. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS before implementation. | Codex coordinator (cloud) | PASS — 2026-08-27T19:10:52-04:00 | N/A |
+| CG-M3-09 | Qwen (local) | `packages/react/src/feedback/empty-state/**` | 50–80 | Local: one static semantic recovery component. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused EmptyState checks. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T19:37:12-04:00 | 1 |
+| CG-M3-10 | Qwen (local) | `packages/react/src/feedback/loading-skeleton/**` | 70–100 | Local: one bounded indeterminate loading component after shared skin rules exist. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused LoadingSkeleton checks. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T19:50:27-04:00 | 1 |
+| CG-M3-11 | Qwen (local) | `apps/lab/src/examples/actions/button/**` | 70–110 | Local: one independently rendered Button-example directory with the accepted Button contract. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs any focused example checks it adds. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T20:10:56-04:00, after the public-export prerequisite | 1 |
+| CG-M3-12 | Qwen (local) | `apps/lab/src/examples/choices/checkbox/**` | 70–100 | Local: one independently rendered Checkbox-example directory using the accepted Checkbox and public Field/Group contracts. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; the later gallery-integration/browser packets own rendered and browser specifications. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T20:19:01-04:00, after the public-export prerequisite | 1 |
+| CG-M3-13 | Qwen (local) | `apps/lab/src/examples/choices/switch/**` | 70–100 | Local: one independently rendered Switch-example directory using the accepted Switch and public Field/Group contracts. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; the later gallery-integration/browser packets own rendered and browser specifications. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T20:24:09-04:00, after the public-export prerequisite | 1 |
+| CG-M3-14 | Qwen (local) | `apps/lab/src/examples/choices/radio-group/**` | 80–120 | Local: one independently rendered RadioGroup-example directory using the accepted public RadioGroup, Field, and Group contracts. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; the later gallery-integration/browser packets own rendered and browser specifications. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T20:28:47-04:00, after the public-export prerequisite | 1 |
+| CG-M3-15 | Qwen (local) | `apps/lab/src/examples/choices/search/**` | 80–120 | Local: one independently rendered Search-example directory applying the approved fixed-local-list gallery contract. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; GalleryApp integration and browser specifications remain later packets. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T20:36:54-04:00, after the public-export prerequisite | 1 |
+| CG-M3-16 | Qwen (local) | `apps/lab/src/examples/feedback/status-chip/**` | 40–70 | Local: one static StatusChip-example directory using every approved tone and plain-text outcome. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; GalleryApp integration and browser specifications remain later packets. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-28T00:14:23-04:00, after the public-export prerequisite | 1 |
+| CG-M3-17 | Qwen (local) | `apps/lab/src/examples/feedback/banner/**` | 70–110 | Local: one controlled Banner example that visibly dismisses and restores under the accepted lifecycle contract. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; GalleryApp integration and browser specifications remain later packets. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-28T00:25:40-04:00, after the public-export prerequisite | 1 |
+| CG-M3-21 | Codex coordinator (cloud) | `packages/react/src/index.ts` | 10–20 | Cloud: public entry point is a shared package contract and must precede legal gallery imports. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS before implementation. | Codex coordinator (cloud) | PASS — 2026-08-27T20:09:07-04:00 | N/A |
 
 CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScript, static check, production build, and diff check passed; independent review returned `APPROVE`. Default-skin visual distinction, gallery examples, public export, integration, and browser interaction remain owned by CG-M3-01.1, CG-M3-11, CG-M3-21, CG-M3-22, and CG-M3-23.
+
+#### CG-M3-21 — Public exports
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `a572d47`. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: all 10 public-entry export lines. |
+| Estimate / actual size | 10–20 / 10 lines. |
+| Implementation elapsed time | 1 minute from verified preflight through source commit. |
+| Rework and review | No implementation rework. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | React checks 132/132, TypeScript, static check, production build, and diff check passed. |
+| UNTESTED | N/A (public-entry contract; M3 gallery integration and browser packets own rendered-consumer proof). |
 
 ## M4
 

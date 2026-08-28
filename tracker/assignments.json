@@ -119,6 +119,102 @@
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/inputs/choice/radio-group/**"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M3-04.1",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["docs/features/control-gallery/decisions.md", "docs/features/control-gallery/milestones/m3.md", "docs/features/control-gallery/question-register.md", "docs/features/control-gallery/assignments.md", "docs/features/control-gallery/performance-reports.md"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-04.2",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["packages/tokens/src/skins/default.css"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-05",
+      "owner": "Qwen (local)",
+      "paths": ["packages/react/src/inputs/search/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-06",
+      "owner": "Qwen (local)",
+      "paths": ["packages/react/src/feedback/status-chip/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-07",
+      "owner": "Qwen (local)",
+      "paths": ["packages/react/src/feedback/banner/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-08",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["packages/react/src/feedback/toast/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-09",
+      "owner": "Qwen (local)",
+      "paths": ["packages/react/src/feedback/empty-state/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-10",
+      "owner": "Qwen (local)",
+      "paths": ["packages/react/src/feedback/loading-skeleton/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-21",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["packages/react/src/index.ts"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-11",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/actions/button/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-12",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/choices/checkbox/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-13",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/choices/switch/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-14",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/choices/radio-group/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-15",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/choices/search/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-16",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/feedback/status-chip/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-17",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/feedback/banner/**"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
