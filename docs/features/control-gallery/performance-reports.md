@@ -579,6 +579,20 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 | Verification | Focused Chromium Button checks 5/5, full Chromium suite 18/18, TypeScript, static check, production build, scope check, and diff check passed. The first full preflight exposed stale broad M2 Field selectors after M3 integration; coordinator commit `c62f089` scoped those tests to their exact examples, then the suite passed. |
 | UNTESTED | 0 within this packet; Button's component/ref/type contract remains covered by CG-M3-01 component checks. |
 
+#### CG-M3-24 — Checkbox browser checks
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `c35bca7`. |
+| Assigned / actual executor | Qwen (local) / Qwen (local), with one coordinator reviewer-required assertion. |
+| Final code ownership | Qwen: 103 added lines in `tests/choices/checkbox/control-gallery-checkbox.spec.ts`; coordinator: 1 added assertion. |
+| Estimate / actual size | 70–100 / 104 lines. |
+| Implementation elapsed time | About 4 minutes 30 seconds from compact-contract dispatch through the committed correction; the coordinator's one-line review correction elapsed time was not separately captured. |
+| Rework and review | Qwen's first draft passed four of five focused checks but omitted the required commit; its one correction raised the Tab bound from 16 to 40, passed gates, and committed. Independent review required reasserting `data-checked` after native reset; coordinator added it and renewed review returned `APPROVE`. |
+| Review impact | `R3` — review added required uncontrolled reset-state coverage. |
+| Verification | Focused Chromium Checkbox checks 5/5, full Chromium suite 23/23, TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | 0 within this packet; Checkbox component type/ref/Field boundary remains covered by CG-M3-02 component checks. |
+
 ## M4
 
 Not started.
