@@ -26,7 +26,7 @@ test.describe('CG-M3-31 Empty State Recovery', () => {
     await expect(emptyState).toHaveAttribute('data-control', 'empty-state');
     await expect(emptyState).toHaveAttribute('data-size', 'md');
 
-    await expect(emptyState).not.toHaveAttribute('role', 'status');
+    await expect(emptyState).not.toHaveAttribute('role');
     await expect(emptyState).not.toHaveAttribute('aria-live');
     await expect(emptyState).not.toHaveAttribute('aria-busy');
     await expect(emptyState).not.toHaveAttribute('data-loading');
@@ -61,8 +61,10 @@ test.describe('CG-M3-31 Empty State Recovery', () => {
     await expect(clearButton).toBeVisible();
     await expect(clearButton).toHaveCount(1);
 
-    const allButtons = emptyState.getByRole('button');
-    await expect(allButtons).toHaveCount(1);
+    const allInteractives = emptyState.locator(
+      'button, a, input, select, textarea, [tabindex]'
+    );
+    await expect(allInteractives).toHaveCount(1);
   });
 
   test('clicking Clear All Filters retains one EmptyState and shows visible cleared message', async ({
