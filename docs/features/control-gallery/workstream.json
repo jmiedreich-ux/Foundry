@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-27 are accepted on the M3 branch, including all gallery examples, integration, and Button/Checkbox/Switch/RadioGroup/Search browser proof. The remaining real browser proof is owned by CG-M3-28 through CG-M3-32.",
-  "next": "CG-M3-28 StatusChip browser checks is active in its bounded local Qwen packet.",
+  "position": "M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-28 are accepted on the M3 branch, including all gallery examples, integration, and Button/Checkbox/Switch/RadioGroup/Search/StatusChip browser proof. The remaining real browser proof is owned by CG-M3-29 through CG-M3-32.",
+  "next": "CG-M3-29 Banner browser checks is active in its bounded local Qwen packet.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" },

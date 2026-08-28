@@ -83,7 +83,8 @@
 - CG-M3-25 is accepted at M3 branch head `f143fe1`: Qwen authored the 105-line real Chromium Switch specification and committed it on the first handoff. It proves controlled state, uncontrolled reset and `data-checked` recovery, disabled refusal, real Tab focus styling, and 320px overflow. Focused Chromium 5/5, full Chromium 28/28, TypeScript, static check, production build, and diff check passed; independent review approved unchanged. CG-M3-26 is now active.
 - CG-M3-26 is accepted at M3 branch head `456be6e`: Qwen authored the 168-line real Chromium RadioGroup specification, covering pointer selection, all specified roving keyboard paths, uncontrolled reset/data recovery, disabled refusal, real Tab focus, and 320px behavior. Review required one local correction to assert native required semantics on the first enabled radio. Focused Chromium 7/7, full Chromium 35/35, TypeScript, static check, production build, and diff check passed; renewed review approved.
 - CG-M3-27 is accepted at M3 branch head `5f2ebe7`: Qwen authored the 109-line real Chromium Search specification, then completed one bounded correction to add atomic status, exact result/status, component clear-hook, and narrow mobile-label assertions requested by independent review. Focused Chromium 6/6, TypeScript, static check, production build, and diff check passed; renewed review approved. CG-M3-28 is now active.
+- CG-M3-28 is accepted at M3 branch head `4a95ebf`: Qwen authored the 100-line real Chromium StatusChip specification, then completed one bounded correction to traverse Tab focus through the page and assert the static `data-size="md"` hook. Focused Chromium 5/5, TypeScript, static check, production build, and diff check passed; renewed review approved. CG-M3-29 is now active.
 
 ## Exact next action
 
-CG-M3-28 StatusChip browser checks is active in its bounded local Qwen packet.
+CG-M3-29 Banner browser checks is active in its bounded local Qwen packet.

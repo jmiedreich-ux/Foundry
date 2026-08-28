@@ -274,6 +274,12 @@
       "packet": "CG-M3-28",
       "owner": "Qwen (local)",
       "paths": ["tests/feedback/status-chip/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-29",
+      "owner": "Qwen (local)",
+      "paths": ["tests/feedback/banner/**"],
       "status": "in_progress"
     }
   ],
