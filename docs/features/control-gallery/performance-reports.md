@@ -609,6 +609,20 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 | Verification | Focused Chromium Switch checks 5/5, full Chromium suite 28/28, TypeScript, static check, production build, scope check, and diff check passed. |
 | UNTESTED | 0 within this packet; Switch component type/ref/Field boundary remains covered by CG-M3-03 component checks. |
 
+#### CG-M3-26 — RadioGroup browser checks
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `456be6e`. |
+| Assigned / actual executor | Qwen (local) / Qwen (local). |
+| Final code ownership | Qwen: all 168 added lines in `tests/choices/radio-group/control-gallery-radio-group.spec.ts`. |
+| Estimate / actual size | 90–130 / 168 lines. |
+| Implementation elapsed time | About 5 minutes across initial implementation and one local correction. |
+| Rework and review | Initial implementation and gates passed. Independent review required native `required` and `aria-required` proof on the first enabled uncontrolled radio; Qwen's one correction added it and renewed review returned `APPROVE`. |
+| Review impact | `R3` — review added required native-form coverage. |
+| Verification | Focused Chromium RadioGroup checks 7/7, full Chromium suite 35/35, TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | 0 within this packet; RadioGroup component type/ref/refusal boundary remains covered by CG-M3-04 component checks. |
+
 ## M4
 
 Not started.
