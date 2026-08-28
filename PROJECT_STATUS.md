@@ -2,12 +2,12 @@
 
 ## Current feature
 
-Control Gallery — Milestone 3: actions, choices, search, and feedback.
+Control Gallery — Milestone 3: actions, choices, search, and feedback, merged and awaiting owner acceptance.
 
 ## Current state
 
-All Control Gallery M3 packets are accepted on PR #27 after independent packet and milestone review. Final merge is pending.
+All 32 Control Gallery M3 packets are merged through PR #27 after independent packet and milestone review. Full Chromium passed 68/68; TypeScript, static check, production build, and diff check passed. Owner acceptance is pending.
 
 ## Next action
 
-Merge approved Control Gallery M3 PR #27, then synchronize the completed milestone records.
+Owner reviews and accepts the merged M3 Control Gallery; do not begin M4 without that approval.

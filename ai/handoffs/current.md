@@ -90,8 +90,8 @@ CG-M3-30 is accepted at M3 branch head `0d99ceb`: Qwen left an uncommitted Toast
 
 CG-M3-31 is accepted at M3 branch head `d4f7a6c`: Qwen authored the 144-line EmptyState real Chromium specification and completed one correction asserting the native section has no `role` override and its recovery action is the sole interactive descendant. Focused Chromium 6/6, TypeScript, static check, production build, and diff check passed; renewed review approved.
 
-CG-M3-32 is accepted at M3 branch head `5e8f8e8`: Qwen authored the 123-line LoadingSkeleton Chromium specification and completed one correction for root-level forbidden progress semantics; coordinator added the final `aria-valuetext` assertion after renewed review. Focused Chromium 5/5, TypeScript, static check, production build, and diff check passed. Full Chromium passed 68/68; PR #27 received independent milestone `APPROVE`.
+CG-M3-32 is accepted at M3 branch head `5e8f8e8`: Qwen authored the 123-line LoadingSkeleton Chromium specification and completed one correction for root-level forbidden progress semantics; coordinator added the final `aria-valuetext` assertion after renewed review. Focused Chromium 5/5, TypeScript, static check, production build, and diff check passed. Full Chromium passed 68/68; PR #27 received independent milestone `APPROVE` and merged at `033c9e1`.
 
 ## Exact next action
 
-Merge approved Control Gallery M3 PR #27, then synchronize the completed milestone records.
+Owner reviews and accepts the merged M3 Control Gallery; do not begin M4 without that approval.

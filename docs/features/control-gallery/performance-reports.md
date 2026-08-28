@@ -711,7 +711,7 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 
 ### M3 milestone closeout
 
-All 32 M3 packets are accepted. Final independent milestone review of PR #27 returned `APPROVE`. Final verification: full Chromium 68/68, TypeScript, static check, production build, and diff check all passed. No post-merge QA escape is known at this point.
+All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final independent milestone review returned `APPROVE`. Final verification: full Chromium 68/68, TypeScript, static check, production build, and diff check all passed. Owner acceptance is `PENDING`; no post-merge QA escape is known at this point.
 
 ## M4
 
