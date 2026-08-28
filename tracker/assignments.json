@@ -220,6 +220,12 @@
       "packet": "CG-M3-18",
       "owner": "Qwen (local)",
       "paths": ["apps/lab/src/examples/feedback/toast/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-19",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/feedback/empty-state/**"],
       "status": "in_progress"
     }
   ],
