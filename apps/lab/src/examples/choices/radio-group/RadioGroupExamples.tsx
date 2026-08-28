@@ -10,6 +10,7 @@ const planOptions = [
 
 function ControlledRadioGroupExample() {
   const [selected, setSelected] = React.useState('basic');
+  const selectedLabel = planOptions.find((option) => option.value === selected)?.label ?? selected;
 
   return (
     <ExampleFrame
@@ -24,7 +25,7 @@ function ControlledRadioGroupExample() {
           onValueChange={setSelected}
         />
       </Field>
-      <output role="status">Selected: {selected}</output>
+      <output role="status">Selected: {selectedLabel}</output>
     </ExampleFrame>
   );
 }
