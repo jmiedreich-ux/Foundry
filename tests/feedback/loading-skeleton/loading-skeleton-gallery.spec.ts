@@ -24,6 +24,11 @@ test.describe('CG-M3-32 LoadingSkeleton gallery', () => {
     await expect(root).toHaveAttribute('data-size', 'md');
     await expect(root).toHaveAttribute('data-loading', '');
 
+    await expect(root).not.toHaveAttribute('aria-live');
+    await expect(root).not.toHaveAttribute('aria-valuenow');
+    await expect(root).not.toHaveAttribute('aria-valuemin');
+    await expect(root).not.toHaveAttribute('aria-valuemax');
+
     const bars = root.locator('[data-skeleton-bar]');
     await expect(bars).toHaveCount(3);
 
@@ -35,7 +40,7 @@ test.describe('CG-M3-32 LoadingSkeleton gallery', () => {
     }
 
     const forbidden = root.locator(
-      'progressbar, [role="progressbar"], [aria-live], [aria-valuenow], [aria-valuemin], [aria-valuemax], button, a, input, [tabindex]',
+      'progress, [role="progressbar"], [aria-live], [aria-valuenow], [aria-valuemin], [aria-valuemax], button, a, input, [tabindex]',
     );
     await expect(forbidden).toHaveCount(0);
   });
@@ -55,6 +60,11 @@ test.describe('CG-M3-32 LoadingSkeleton gallery', () => {
     );
     await expect(root).toHaveAttribute('data-size', 'md');
     await expect(root).toHaveAttribute('data-loading', '');
+
+    await expect(root).not.toHaveAttribute('aria-live');
+    await expect(root).not.toHaveAttribute('aria-valuenow');
+    await expect(root).not.toHaveAttribute('aria-valuemin');
+    await expect(root).not.toHaveAttribute('aria-valuemax');
 
     const bars = root.locator('[data-skeleton-bar]');
     await expect(bars).toHaveCount(6);
