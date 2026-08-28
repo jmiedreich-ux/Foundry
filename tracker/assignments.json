@@ -262,6 +262,12 @@
       "packet": "CG-M3-26",
       "owner": "Qwen (local)",
       "paths": ["tests/choices/radio-group/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-27",
+      "owner": "Qwen (local)",
+      "paths": ["tests/choices/search/**"],
       "status": "in_progress"
     }
   ],
