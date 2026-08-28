@@ -355,6 +355,20 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | Verification | LoadingSkeleton checks 15/15, TypeScript, static check, production build, scope check, and diff check passed. Independent review approved `2ef245b`. |
 | UNTESTED | Gallery loading flow and real-browser busy semantics, reduced-motion, long-content, and responsive proof; CG-M3-20 and CG-M3-32 own them. |
 
+#### CG-M3-11 — Button gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `7095423`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`. |
+| Final code ownership | Qwen: all 68 added lines in `ButtonExamples.tsx`; the coordinator changed no example source. |
+| Estimate / actual size | 70–110 / 68 added lines. |
+| Local elapsed time | About 3 minutes 15 seconds from the successful post-export dispatch through the committed correction. The earlier attempt was stopped before a legal public import existed and produced no accepted source. |
+| Rework and review | Initial commit `0c73401` passed gates. Independent review found that the proposed long label was only 24 characters. Qwen's one permitted correction `7095423` made it a 114-character label and updated the matching status text. Renewed independent review returned `APPROVE`. |
+| Review impact | `R3` — review found missing required long-label coverage; the localized correction was made by the local agent. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | N/A (focused component tests belong to Button; rendered gallery integration and real browser activation, loading/disabled, long-label, and responsive proof remain CG-M3-22 and CG-M3-23). |
+
 ### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
 
 **Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.
