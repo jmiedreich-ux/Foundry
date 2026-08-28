@@ -292,6 +292,12 @@
       "packet": "CG-M3-31",
       "owner": "Qwen (local)",
       "paths": ["tests/feedback/empty-state/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-32",
+      "owner": "Qwen (local)",
+      "paths": ["tests/feedback/loading-skeleton/**"],
       "status": "in_progress"
     }
   ],

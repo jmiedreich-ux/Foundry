@@ -683,6 +683,19 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 | Verification | Focused Chromium Toast checks 5/5, TypeScript, static check, production build, and diff check passed. |
 | UNTESTED | 0 within this packet; Toast component lifecycle/refusal behavior remains covered by CG-M3-08 component checks. |
 
+#### CG-M3-31 — EmptyState browser checks
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `d4f7a6c`. |
+| Assigned / actual executor | Qwen (local) / Qwen (local). |
+| Final code ownership | Qwen: 152 added lines in `tests/feedback/empty-state/empty-state-gallery.spec.ts`. |
+| Estimate / actual size | 70–100 / 152 lines. |
+| Rework and review | Review required generic role-override refusal and complete sole-interactive-descendant proof; Qwen completed both requests in its one correction and renewed review returned `APPROVE`. |
+| Review impact | `R3` — semantic refusal and interaction-boundary coverage. |
+| Verification | Focused Chromium 6/6, TypeScript, static check, production build, and diff check passed. |
+| UNTESTED | 0 within this packet. |
+
 ## M4
 
 Not started.
