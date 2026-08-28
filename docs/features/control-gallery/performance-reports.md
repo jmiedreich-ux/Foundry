@@ -387,8 +387,23 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | CG-M3-09 | Qwen (local) | `packages/react/src/feedback/empty-state/**` | 50–80 | Local: one static semantic recovery component. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused EmptyState checks. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T19:37:12-04:00 | 1 |
 | CG-M3-10 | Qwen (local) | `packages/react/src/feedback/loading-skeleton/**` | 70–100 | Local: one bounded indeterminate loading component after shared skin rules exist. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs focused LoadingSkeleton checks. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T19:50:27-04:00 | 1 |
 | CG-M3-11 | Qwen (local) | `apps/lab/src/examples/actions/button/**` | 70–110 | Local: one independently rendered Button-example directory with the accepted Button contract. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; returned packet also runs any focused example checks it adds. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-27T20:05:15-04:00 | 1 |
+| CG-M3-21 | Codex coordinator (cloud) | `packages/react/src/index.ts` | 10–20 | Cloud: public entry point is a shared package contract and must precede legal gallery imports. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS before implementation. | Codex coordinator (cloud) | PASS — 2026-08-27T20:09:07-04:00 | N/A |
 
 CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScript, static check, production build, and diff check passed; independent review returned `APPROVE`. Default-skin visual distinction, gallery examples, public export, integration, and browser interaction remain owned by CG-M3-01.1, CG-M3-11, CG-M3-21, CG-M3-22, and CG-M3-23.
+
+#### CG-M3-21 — Public exports
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `a572d47`. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: all 10 public-entry export lines. |
+| Estimate / actual size | 10–20 / 10 lines. |
+| Implementation elapsed time | 1 minute from verified preflight through source commit. |
+| Rework and review | No implementation rework. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | React checks 132/132, TypeScript, static check, production build, and diff check passed. |
+| UNTESTED | N/A (public-entry contract; M3 gallery integration and browser packets own rendered-consumer proof). |
 
 ## M4
 

@@ -169,6 +169,12 @@
       "status": "completed"
     },
     {
+      "packet": "CG-M3-21",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["packages/react/src/index.ts"],
+      "status": "completed"
+    },
+    {
       "packet": "CG-M3-11",
       "owner": "Qwen (local)",
       "paths": ["apps/lab/src/examples/actions/button/**"],
