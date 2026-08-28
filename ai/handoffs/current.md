@@ -88,4 +88,4 @@
 
 ## Exact next action
 
-CG-M3-30 Toast browser checks is active in its bounded local Qwen packet.
+CG-M3-30 is accepted at M3 branch head `0d99ceb`: Qwen left an uncommitted Toast browser-test draft that failed its focus loop. The coordinator repaired the exact element comparison, committed it, and review required one further Toast-owned-Dismiss assertion. Focused Chromium 5/5, TypeScript, static check, production build, and diff check passed; renewed review approved. CG-M3-31 EmptyState browser checks is active in its bounded local Qwen packet.

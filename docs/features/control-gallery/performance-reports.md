@@ -669,6 +669,20 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 | Verification | Focused Chromium Banner checks 6/6, TypeScript, static check, production build, and diff check passed. |
 | UNTESTED | 0 within this packet; Banner component controlled/uncontrolled/refusal behavior remains covered by CG-M3-07 component checks. |
 
+#### CG-M3-30 — Toast browser checks
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `0d99ceb`. |
+| Assigned / actual executor | Qwen (local) / Codex coordinator (cloud; local handoff escalation). |
+| Final code ownership | Qwen draft: 143 lines; coordinator retained the draft, repaired its focus selector and added one review-required Toast-owned-Dismiss assertion. |
+| Estimate / actual size | 90–130 / 144 lines. |
+| Implementation elapsed time | About 7 minutes local activity; coordinator completion time not separately captured. |
+| Rework and review | Qwen stopped without the required commit after four of five focused checks passed. Coordinator repaired the exact target focus loop and committed. Review then required proof that Dismiss belongs to the Toast landmark while outside its live status; renewed review approved. |
+| Review impact | `R3` — review strengthened announcement/action structural coverage. |
+| Verification | Focused Chromium Toast checks 5/5, TypeScript, static check, production build, and diff check passed. |
+| UNTESTED | 0 within this packet; Toast component lifecycle/refusal behavior remains covered by CG-M3-08 component checks. |
+
 ## M4
 
 Not started.
