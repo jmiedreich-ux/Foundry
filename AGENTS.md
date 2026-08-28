@@ -31,6 +31,16 @@ Read architecture, component, or operations material only when the task touches 
 - Evidence is a rerunnable command plus its result. Never call unexecuted work verified.
 - Read the handoff first and append the established facts, assumptions, deferred work, and exact next action before stopping.
 
+## Local-agent quality protocol
+
+- A local packet is a bounded implementation contract, not an invitation to infer framework conventions. Before dispatch, record its exact writable paths, estimated code-bearing line range, prerequisite state, three to five observable assertions, required command gates, and required commit.
+- The packet names the available test harness and the test paths it owns. An agent does not import an uninstalled test library, add a dependency, or create a new test environment to satisfy a packet; it reports that missing capability for a coordinator decision.
+- Each packet links to the applicable reusable-control invariants. If a required rule is absent or conflicts with the packet, the agent stops and reports the missing decision; it does not invent an API, state transition, accessibility treatment, or styling escape.
+- Tests prove the contract's live transitions where a renderer can exercise them: controlled and uncontrolled entry, change, reset or remount recovery, disabled/refusal, and callback count. Static-markup checks may supplement these proofs but do not substitute for them.
+- The coordinator rejects a return with no scoped diff or no required commit before spending a correction round. One correction is allowed only when its target is named; an unchanged correction escalates immediately.
+- Review checks the implementation against the packet contract, shared invariants, public type boundary, runtime refusal boundary, and declared test paths—not merely against the agent's self-reported gates.
+- Every R3 or R4 review finding is converted into a shared invariant, packet-template assertion, or explicit open decision before another packet in the same control family is dispatched. Future packets inherit that rule rather than rediscover it.
+
 ## Definition of done
 
 Consider every item below and explicitly mark non-applicable items `N/A (reason)` and unexecuted items `UNTESTED`.
@@ -61,6 +71,13 @@ Consider every item below and explicitly mark non-applicable items `N/A (reason)
 - Run the relevant build, focused behavioral tests, static checks, and browser checks before a merge. Widen verification for shared contracts, package configuration, dependencies, or workflows.
 - Tests assert behavior against real running targets when a target is involved; do not build doubles that reimplement the rule under test.
 - Every change receives independent review by someone other than its author. Decisions are `APPROVE`, `REQUEST_CHANGES`, or `COMMENT`; new commits require a new review.
+- Performance records distinguish the ordinary existence of review from its impact. Every completed packet records its review decision, review rounds and minutes when measured, self-correction before review, local-authored lines retained in the accepted result, reviewer/coordinator lines added or replaced, defects that escaped automated gates, and a review-impact rating:
+  - `R0` — approved unchanged.
+  - `R1` — comments or polish only; no behavior change.
+  - `R2` — one localized, non-contract correction with limited code or test change.
+  - `R3` — any correction to approved behavior, an invariant, or previously missing required coverage.
+  - `R4` — rejected or rebuilt because the core contract, scope, or implementation is wrong.
+  A review-impact rating measures the work needed to reach an accepted result; it is not a negative rating simply because independent review occurred.
 - **Atlas records are kept current as work happens, without independent review.** After claiming, starting, or finishing a milestone or task — checking a box in its GitHub issue, moving a milestone's status, updating `position`/`next` in `workstream.json` — commit that update directly. These are status reflections of work already true, not behavior changes, so they're exempt from the independent-review rule above; Atlas's own build validation (`node src/build.mjs`) is the check that matters here.
 - At milestone completion, synchronize the issue, status, assignments, handoff, feature records, and affected durable docs. The handoff names one exact next action.
-- Every milestone closes with a performance report. Record each packet's assigned role, actual agent type/model, local or cloud execution, elapsed time, review rounds, rework count, verification result, and `UNTESTED` count. Record milestone totals, independent-review outcome, owner-acceptance outcome, and any post-merge QA escape. Do not optimize routing or change this process without an evidence-backed issue or approved decision.
+- Every milestone closes with a performance report. Record each packet's assigned role, actual agent type/model, local or cloud execution, elapsed time, review result and impact, review rounds, rework count, retained and replacement code attribution, verification result, automated-gate escapes, and `UNTESTED` count. Record milestone totals, independent-review outcome, owner-acceptance outcome, and any post-merge QA escape. Do not optimize routing or change this process without an evidence-backed issue or approved decision.
