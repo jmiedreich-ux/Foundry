@@ -43,6 +43,7 @@ test.describe('M3 Checkbox gallery', () => {
 
     await frame.getByRole('button', { name: 'Reset form', exact: true }).click();
     await expect(checkbox).toBeChecked();
+    await expect(checkbox).toHaveAttribute('data-checked', '');
     await expect(status).toHaveText('Reset count: 1');
   });
 
