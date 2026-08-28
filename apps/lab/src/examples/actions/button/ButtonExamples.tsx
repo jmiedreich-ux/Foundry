@@ -49,8 +49,8 @@ function CustomLabelDemonstration() {
     >
       <Button
         category="add"
-        label="Add New Project Category"
-        onClick={() => setStatus('activated: Add New Project Category')}
+        label="Add New Project Category With All Required Fields Including Name Description Priority and Associated Metadata Tags"
+        onClick={() => setStatus('activated: Add New Project Category With All Required Fields Including Name Description Priority and Associated Metadata Tags')}
       />
       <output role="status">{status}</output>
     </ExampleFrame>
