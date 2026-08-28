@@ -238,6 +238,12 @@
       "packet": "CG-M3-22",
       "owner": "Codex coordinator (cloud)",
       "paths": ["apps/lab/src/GalleryApp.tsx"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-23",
+      "owner": "Qwen (local)",
+      "paths": ["tests/actions/button/**"],
       "status": "in_progress"
     }
   ],

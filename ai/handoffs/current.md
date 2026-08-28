@@ -57,6 +57,8 @@
 - CG-M3-05 is accepted at M3 branch head `2d910d8`: native Search provides the reviewed controlled/uncontrolled value boundary, Field/Group semantics, reset recovery, fixed hooks, and an enabled non-empty clear action that returns focus. A Qwen local attempt ran for 3m57 but stopped after exploration with no source or commit; the coordinator completed the scoped three-file packet. Source review first caught native uncontrolled clearing, runtime hook/semantic escaping, and disabled/read-only behavior; the renewed review then caught and removed an accidental public helper export before final approval. Focused Search checks (7/7), TypeScript, static check, production build, and diff check passed. Real typing, clearing, reset, focus, and responsive browser proof remain `UNTESTED` until CG-M3-27.
 - Foundry performance reports now rate review impact separately from the normal independent-review decision. Every new packet records decision, R0–R4 impact, measured review time when available, retained/replacement code attribution, automated-gate escapes, and pre-review self-correction. `R3` covers a behavior, invariant, or required-coverage correction; `R4` is a rejected or rebuilt core result.
 
+- CG-M3-22 is accepted at M3 branch head `41e0d22`: coordinator-owned `GalleryApp.tsx` now renders every accepted M3 example exactly once in Actions, Inputs, or Feedback; Overlay and Navigation placeholders remain unchanged. TypeScript, static check, production build, scope/diff checks, and independent review passed. The M3 gallery is ready for owner visual review; CG-M3-23 through CG-M3-32 own the remaining browser proof.
+
 ## Deliberately deferred
 
 - Any Vennusign adoption or conversion plan.
@@ -79,4 +81,4 @@
 
 ## Exact next action
 
-CG-M3-22 gallery integration is active with the Codex coordinator.
+CG-M3-23 Button browser checks is active in its bounded local Qwen packet.
