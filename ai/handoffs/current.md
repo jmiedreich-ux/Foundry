@@ -79,4 +79,4 @@
 
 ## Exact next action
 
-CG-M3-17 Banner gallery examples is active in its bounded local Qwen packet after the M3 public-export prerequisite.
+CG-M3-18 Toast gallery examples is active in its bounded local Qwen packet after the M3 public-export prerequisite.
