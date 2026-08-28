@@ -550,6 +550,19 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 | Verification | React checks 132/132, TypeScript, static check, production build, and diff check passed. |
 | UNTESTED | N/A (public-entry contract; M3 gallery integration and browser packets own rendered-consumer proof). |
 
+#### CG-M3-22 — Gallery integration
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `41e0d22`. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: all 28 added and 2 replaced lines in `GalleryApp.tsx`. |
+| Implementation elapsed time | N/A (not separately captured). |
+| Rework and review | No implementation rework. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | Ten real-browser control specifications remain CG-M3-23 through CG-M3-32. |
+
 ## M4
 
 Not started.

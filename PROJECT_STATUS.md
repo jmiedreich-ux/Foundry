@@ -10,4 +10,4 @@ Control Gallery M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-10, th
 
 ## Next action
 
-CG-M3-22 gallery integration is active with the Codex coordinator.
+CG-M3-23 Button browser checks is active in its bounded local Qwen packet.
