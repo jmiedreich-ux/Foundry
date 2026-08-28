@@ -280,6 +280,12 @@
       "packet": "CG-M3-29",
       "owner": "Qwen (local)",
       "paths": ["tests/feedback/banner/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-30",
+      "owner": "Qwen (local)",
+      "paths": ["tests/feedback/toast/**"],
       "status": "in_progress"
     }
   ],
