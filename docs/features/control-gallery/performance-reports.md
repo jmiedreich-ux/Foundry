@@ -425,6 +425,19 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | Verification | TypeScript, static check, production build, scope check, and diff check passed. |
 | UNTESTED | N/A (rendered gallery integration belongs to CG-M3-22; real Search query, clear, focus, and responsive proof belongs to CG-M3-27). |
 
+#### CG-M3-16 — StatusChip gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `51890ed`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`. |
+| Final code ownership | Qwen: all 39 added lines in `StatusChipExamples.tsx`; coordinator: no source lines. |
+| Estimate / actual size | 40–70 / 39 added lines. |
+| Rework and review | Initial result omitted its commit; one commit-only correction succeeded. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | N/A (gallery integration is CG-M3-22; browser semantics, long-label, and adjacent-flow proof is CG-M3-28). |
+
 ### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
 
 **Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.

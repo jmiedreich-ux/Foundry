@@ -208,6 +208,12 @@
       "packet": "CG-M3-16",
       "owner": "Qwen (local)",
       "paths": ["apps/lab/src/examples/feedback/status-chip/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-17",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/feedback/banner/**"],
       "status": "in_progress"
     }
   ],
