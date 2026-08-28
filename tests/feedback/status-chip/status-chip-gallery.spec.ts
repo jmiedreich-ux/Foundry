@@ -31,6 +31,7 @@ test.describe('CG-M3-28 StatusChip gallery', () => {
       const chip = chips.nth(i);
       await expect(chip).toBeVisible();
       await expect(chip).toHaveAttribute('data-tone', tone);
+      await expect(chip).toHaveAttribute('data-size', 'md');
       await expect(chip).toHaveAttribute('role', 'status');
       await expect(chip).toHaveAttribute('aria-atomic', 'true');
       await expect(chip).toHaveAttribute('data-control', 'status-chip');
@@ -60,11 +61,16 @@ test.describe('CG-M3-28 StatusChip gallery', () => {
 
     await expect(chips).toHaveCount(4);
 
-    await page.keyboard.press('Tab');
-
-    for (let i = 0; i < 4; i += 1) {
-      const chip = chips.nth(i);
-      await expect(chip).not.toBeFocused();
+    for (let step = 0; step < 40; step += 1) {
+      await page.keyboard.press('Tab');
+      for (let i = 0; i < 4; i += 1) {
+        const chip = chips.nth(i);
+        await expect(chip).not.toBeFocused();
+      }
+      const activeTag = await page.evaluate('document.activeElement?.tagName.toLowerCase()');
+      if (activeTag === 'body') {
+        break;
+      }
     }
   });
 
