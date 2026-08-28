@@ -72,7 +72,8 @@
 - CG-M3-21 is accepted at M3 branch head `a572d47`: it publishes only the accepted M3 control components, public props, and approved variant/tone types from `@foundry/react`, retaining M1/M2 exports and withholding internal helpers. React checks 132/132, TypeScript, static check, production build, and diff check passed; independent review approved. It was advanced before examples solely to resolve their recorded legal-import dependency.
 - CG-M3-11 is accepted at M3 branch head `7095423`: Qwen authored the single Button-example file and its one correction expanded the deliberately long custom label to 114 characters with a matching status outcome. TypeScript, static check, production build, scope/diff checks, and independent review passed. M3-12 through M3-20 now explicitly depend on the already accepted M3-21 public export because all gallery examples legally import from `@foundry/react`.
 - CG-M3-12 is accepted at M3 branch head `daa22f3`: Qwen authored the single 79-line Checkbox-example file with a controlled status outcome, native uncontrolled form-reset outcome, and disabled Group example. TypeScript, static check, production build, scope/diff checks, and independent review approved unchanged.
+- CG-M3-13 is accepted at M3 branch head `2f550f8`: Qwen authored the single 79-line Switch-example file with a controlled on/off outcome, native uncontrolled form-reset outcome, and disabled Group example. TypeScript, static check, production build, scope/diff checks, and independent review approved unchanged.
 
 ## Exact next action
 
-CG-M3-13 Switch gallery examples is active in its bounded local Qwen packet after the M3 public-export prerequisite.
+CG-M3-14 RadioGroup gallery examples is active in its bounded local Qwen packet after the M3 public-export prerequisite.
