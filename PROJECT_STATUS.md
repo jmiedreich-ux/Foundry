@@ -10,4 +10,4 @@ Control Gallery M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-10, th
 
 ## Next action
 
-CG-M3-19 EmptyState gallery examples is active in its bounded local Qwen packet after the M3 public-export prerequisite.
+CG-M3-20 LoadingSkeleton gallery examples is active in its bounded local Qwen packet after the M3 public-export prerequisite.
