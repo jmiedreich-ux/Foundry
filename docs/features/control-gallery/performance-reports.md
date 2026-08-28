@@ -433,6 +433,7 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`. |
 | Final code ownership | Qwen: all 39 added lines in `StatusChipExamples.tsx`; coordinator: no source lines. |
 | Estimate / actual size | 40–70 / 39 added lines. |
+| Local elapsed time | N/A (not captured across the initial run and commit-only correction). |
 | Rework and review | Initial result omitted its commit; one commit-only correction succeeded. Independent review returned `APPROVE` unchanged. |
 | Review impact | `R0` — approved unchanged. |
 | Verification | TypeScript, static check, production build, scope check, and diff check passed. |
