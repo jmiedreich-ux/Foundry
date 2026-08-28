@@ -439,6 +439,19 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | Verification | TypeScript, static check, production build, scope check, and diff check passed. |
 | UNTESTED | N/A (gallery integration is CG-M3-22; browser semantics, long-label, and adjacent-flow proof is CG-M3-28). |
 
+#### CG-M3-17 — Banner gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `f8ff47d`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`, then coordinator repair. |
+| Final code ownership | Qwen: 58 initial lines; coordinator: 10 added and 8 replaced lines for the restore-state correction. |
+| Local elapsed time | N/A (not captured across initial run and commit-only correction). |
+| Rework and review | Initial result omitted its commit; one commit-only correction succeeded. Review found Restore available while already open and an inaccurate rendered-state claim; coordinator repair passed renewed review. |
+| Review impact | `R3` — required state/outcome behavior corrected. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | N/A (gallery integration is CG-M3-22; real-browser dismiss, restore, focus, long-content, and responsive proof is CG-M3-29). |
+
 ### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
 
 **Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.
