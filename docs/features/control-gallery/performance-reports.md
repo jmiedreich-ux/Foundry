@@ -538,6 +538,7 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | CG-M3-25 | Qwen (local) | `tests/choices/switch/**` | 70–100 | Local: one isolated real-browser specification for the already accepted Switch gallery. | `npm run test:browser && npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; the returned packet must also run its focused Switch specification. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-28T10:23:31-04:00 | 1 |
 | CG-M3-26 | Qwen (local) | `tests/choices/radio-group/**` | 90–130 | Local: one isolated real-browser specification for the accepted RadioGroup gallery and its documented keyboard/reset invariants. | `npm run test:browser && npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; the returned packet must also run its focused RadioGroup specification. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-28T11:19:12-04:00 | 1 |
 | CG-M3-27 | Qwen (local) | `tests/choices/search/**` | 80–120 | Local: one isolated real-browser specification for the accepted controlled Search gallery. | `npm run test:browser && npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; the returned packet must also run its focused Search specification. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-28T11:28:46-04:00 | 1 |
+| CG-M3-28 | Qwen (local) | `tests/feedback/status-chip/**` | 60–90 | Local: one isolated real-browser specification for the accepted advisory StatusChip gallery. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; the returned packet must also run its focused StatusChip specification. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-28T11:37:15-04:00 | 1 |
 
 CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScript, static check, production build, and diff check passed; independent review returned `APPROVE`. Default-skin visual distinction, gallery examples, public export, integration, and browser interaction remain owned by CG-M3-01.1, CG-M3-11, CG-M3-21, CG-M3-22, and CG-M3-23.
 
@@ -623,6 +624,20 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 | Review impact | `R3` — review added required native-form coverage. |
 | Verification | Focused Chromium RadioGroup checks 7/7, full Chromium suite 35/35, TypeScript, static check, production build, scope check, and diff check passed. |
 | UNTESTED | 0 within this packet; RadioGroup component type/ref/refusal boundary remains covered by CG-M3-04 component checks. |
+
+#### CG-M3-27 — Search browser checks
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `5f2ebe7`. |
+| Assigned / actual executor | Qwen (local) / Qwen (local). |
+| Final code ownership | Qwen: all 109 added lines in `tests/choices/search/control-gallery-search.spec.ts`. |
+| Estimate / actual size | 80–120 / 109 lines. |
+| Implementation elapsed time | About 6 minutes across initial implementation and one local correction. |
+| Rework and review | Initial implementation passed gates. Independent review required atomic live-status semantics, exact result and no-result status assertions, the component-owned clear hook, and the mobile label; Qwen made every requested change in its sole correction and renewed review returned `APPROVE`. |
+| Review impact | `R3` — review strengthened live-region, exact-outcome, component-hook, and responsive-label coverage. |
+| Verification | Focused Chromium Search checks 6/6, TypeScript, static check, production build, and diff check passed. |
+| UNTESTED | 0 within this packet; Search component controlled/uncontrolled/reset/refusal behavior remains covered by CG-M3-05 component checks. |
 
 ## M4
 
