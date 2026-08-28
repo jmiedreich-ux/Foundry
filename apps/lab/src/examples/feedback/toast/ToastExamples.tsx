@@ -25,7 +25,7 @@ function ControlledToastExample() {
           }
         }}
         title="Operation Complete"
-        description="Your changes have been saved successfully."
+        description="Your changes have been saved successfully and are now available to everyone with access to this workspace, including the selected reviewers and project collaborators."
         tone="success"
       />
       {!isOpen ? (
@@ -37,7 +37,7 @@ function ControlledToastExample() {
           />
         </div>
       ) : null}
-      <output role="status">{status}</output>
+      <output>{status}</output>
     </ExampleFrame>
   );
 }
