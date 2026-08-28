@@ -14,7 +14,7 @@ function ControlledBannerExample() {
   return (
     <ExampleFrame
       title="Controlled Banner"
-      description="A Banner whose visibility is driven by React state. It starts open with a warning tone. Dismissing uses the Banner's built-in dismiss. Restoring uses a separate public Button outside the Banner. One banner element exists at all times; restoration does not create additional banners. This demonstration verifies that controlled open state, dismiss callback, restore action, and outcome reporting all work together."
+      description="A Banner whose visibility is driven by React state. It starts open with a warning tone. Dismissing uses the Banner's built-in dismiss. When closed, a separate public Button restores the same Banner instance without creating another one. This demonstration verifies that controlled open state, dismiss callback, restore action, and outcome reporting all work together."
     >
       <Banner
         open={isOpen}
@@ -37,13 +37,15 @@ function ControlledBannerExample() {
           />
         }
       />
-      <div>
-        <Button
-          category="add"
-          label="Restore Banner"
-          onClick={handleRestore}
-        />
-      </div>
+      {!isOpen ? (
+        <div>
+          <Button
+            category="add"
+            label="Restore Banner"
+            onClick={handleRestore}
+          />
+        </div>
+      ) : null}
       <output role="status">{status}</output>
     </ExampleFrame>
   );
