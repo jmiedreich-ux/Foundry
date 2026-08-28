@@ -22,6 +22,7 @@ test.describe('M3 Search gallery', () => {
 
     await expect(frame.getByText('No filter applied. 10 categories available.')).toBeVisible();
     await expect(status).toHaveText('Showing all 10 categories.');
+    await expect(status).toHaveAttribute('aria-atomic', 'true');
   });
 
   test('filling act filters to Actions and updates status', async ({ page }) => {
@@ -33,7 +34,7 @@ test.describe('M3 Search gallery', () => {
 
     const items = frame.getByRole('listitem');
     await expect(items).toHaveCount(1);
-    await expect(items.first()).toContainText('Actions');
+    await expect(items.first()).toHaveText('Actions');
     await expect(status).toHaveText('1 of 10 match "act".');
     await expect(input).not.toHaveAttribute('data-empty');
   });
@@ -46,7 +47,7 @@ test.describe('M3 Search gallery', () => {
     await input.fill('zzz');
 
     await expect(frame.getByRole('paragraph').filter({ hasText: 'No results match "zzz"' })).toBeVisible();
-    await expect(status).toHaveText(/zzz/);
+    await expect(status).toHaveText('No results match "zzz".');
   });
 
   test('Clear search button restores empty state and focuses input', async ({ page }) => {
@@ -55,8 +56,10 @@ test.describe('M3 Search gallery', () => {
     const status = frame.getByRole('status');
 
     await input.fill('act');
-    await expect(frame.getByRole('button', { name: 'Clear search' })).toBeVisible();
-    await frame.getByRole('button', { name: 'Clear search' }).click();
+    const clearButton = frame.getByRole('button', { name: 'Clear search' });
+    await expect(clearButton).toBeVisible();
+    await expect(clearButton).toHaveAttribute('data-search-clear');
+    await clearButton.click();
 
     await expect(input).toBeEmpty();
     await expect(input).toHaveAttribute('data-empty', '');
@@ -99,6 +102,7 @@ test.describe('M3 Search gallery', () => {
 
     const frame = example(page, 'Controlled Search');
     await expect(frame.getByLabel('Filter categories')).toBeVisible();
+    await expect(frame.locator('label', { hasText: 'Filter categories' })).toBeVisible();
 
     const dimensions = await page.evaluate(() => ({
       scrollWidth: document.documentElement.scrollWidth,
