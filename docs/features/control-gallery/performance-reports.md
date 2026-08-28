@@ -564,6 +564,20 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 | Verification | TypeScript, static check, production build, scope check, and diff check passed. |
 | UNTESTED | Ten real-browser control specifications remain CG-M3-23 through CG-M3-32. |
 
+#### CG-M3-23 — Button browser checks
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `8d23376` after local-agent escalation. |
+| Assigned / actual executor | Qwen (local) / Codex coordinator (cloud; local-agent takeover). |
+| Final code ownership | Coordinator: all 113 added lines in `tests/actions/button/control-gallery-button.spec.ts`; Qwen: 0 accepted lines. |
+| Estimate / actual size | 70–100 / 113 lines. |
+| Implementation elapsed time | About 6 minutes 50 seconds of Qwen activity across the initial no-change run and its one no-change correction; coordinator implementation and verification elapsed time was not separately captured. |
+| Rework and review | Qwen's initial run and one named correction both stopped without a file or commit, so no further local round was allowed. Coordinator's first focused run removed a nonexistent Button `data-focus-visible` assertion. Independent review then required exact `data-variant` assertions; renewed review returned `APPROVE`. |
+| Review impact | `R3` — review added required browser coverage proving the actual four variant assignments. |
+| Verification | Focused Chromium Button checks 5/5, full Chromium suite 18/18, TypeScript, static check, production build, scope check, and diff check passed. The first full preflight exposed stale broad M2 Field selectors after M3 integration; coordinator commit `c62f089` scoped those tests to their exact examples, then the suite passed. |
+| UNTESTED | 0 within this packet; Button's component/ref/type contract remains covered by CG-M3-01 component checks. |
+
 ## M4
 
 Not started.

@@ -242,8 +242,14 @@
     },
     {
       "packet": "CG-M3-23",
-      "owner": "Qwen (local)",
+      "owner": "Codex coordinator (cloud; local-agent takeover)",
       "paths": ["tests/actions/button/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-24",
+      "owner": "Qwen (local)",
+      "paths": ["tests/choices/checkbox/**"],
       "status": "in_progress"
     }
   ],
