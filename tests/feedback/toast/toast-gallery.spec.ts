@@ -31,7 +31,7 @@ test.describe('CG-M3-30 Controlled Toast', () => {
       'Your changes have been saved successfully and are now available to everyone with access to this workspace, including the selected reviewers and project collaborators.',
     );
 
-    const dismiss = frame.getByRole('button', { name: 'Dismiss', exact: true });
+    const dismiss = toast.getByRole('button', { name: 'Dismiss', exact: true });
     await expect(dismiss).toBeVisible();
     await expect(status.locator('button')).toHaveCount(0);
   });
