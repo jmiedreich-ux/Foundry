@@ -232,6 +232,12 @@
       "packet": "CG-M3-20",
       "owner": "Qwen (local)",
       "paths": ["apps/lab/src/examples/feedback/loading-skeleton/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-22",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["apps/lab/src/GalleryApp.tsx"],
       "status": "in_progress"
     }
   ],
