@@ -34,7 +34,6 @@ Read architecture, component, or operations material only when the task touches 
 ## Local-agent quality protocol
 
 - A local packet is a bounded implementation contract, not an invitation to infer framework conventions. Before dispatch, record its exact writable paths, estimated code-bearing line range, prerequisite state, three to five observable assertions, required command gates, and required commit.
-- **Last step before reporting completion:** make the required scoped `git commit`. A passing uncommitted diff is not a completed packet.
 - The packet names the available test harness and the test paths it owns. An agent does not import an uninstalled test library, add a dependency, or create a new test environment to satisfy a packet; it reports that missing capability for a coordinator decision.
 - Each packet links to the applicable reusable-control invariants. If a required rule is absent or conflicts with the packet, the agent stops and reports the missing decision; it does not invent an API, state transition, accessibility treatment, or styling escape.
 - Tests prove the contract's live transitions where a renderer can exercise them: controlled and uncontrolled entry, change, reset or remount recovery, disabled/refusal, and callback count. Static-markup checks may supplement these proofs but do not substitute for them.
