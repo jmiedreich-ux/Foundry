@@ -478,6 +478,19 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | Verification | TypeScript, static check, production build, scope check, and diff check passed. |
 | UNTESTED | N/A (gallery integration is CG-M3-22; real-browser recovery, long-content, and responsive proof is CG-M3-31). |
 
+#### CG-M3-20 — LoadingSkeleton gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `d6c44f1`. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b`. |
+| Final code ownership | Qwen: all 30 added lines; coordinator: no source lines. |
+| Local elapsed time | N/A (not captured across initial run and commit-only correction). |
+| Rework and review | Initial result omitted its commit; one commit-only correction succeeded. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | TypeScript, static check, production build, scope check, and diff check passed. |
+| UNTESTED | N/A (gallery integration is CG-M3-22; real-browser busy, reduced-motion, long-label, and responsive proof is CG-M3-32). |
+
 ### Qwen 3.8 isolated M3 replay — CG-M3-02 through CG-M3-04, 2026-08-27
 
 **Status:** Owner-requested benchmark only. Each run used a detached historical worktree and was kept out of the accepted M3 branch, issue checklist, Atlas status, and product source. The runtime was OpenCode 1.18.21 / Ollama `qwen3.8:27b`; before dispatch it was resident at 65,536 context and 100% GPU. The protocol was the same bounded-path gate used for Qwen 3.6: focused tests, TypeScript, static check, production build, required commit, coordinator source review, and at most one coordinator-issued correction.
@@ -518,6 +531,7 @@ Toast intentionally adds no provider, queue, portal, stacking, timeout, hover-pa
 | CG-M3-17 | Qwen (local) | `apps/lab/src/examples/feedback/banner/**` | 70–110 | Local: one controlled Banner example that visibly dismisses and restores under the accepted lifecycle contract. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS; GalleryApp integration and browser specifications remain later packets. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-28T00:25:40-04:00, after the public-export prerequisite | 1 |
 | CG-M3-18 | Qwen (local) | `apps/lab/src/examples/feedback/toast/**` | 60–100 | Local: one controlled Toast example with manual close and restore under the single-toast contract. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-28T01:00:56-04:00 | 1 |
 | CG-M3-19 | Qwen (local) | `apps/lab/src/examples/feedback/empty-state/**` | 40–70 | Local: one stable EmptyState example with an explicit recovery action. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-28T01:47:51-04:00 | 1 |
+| CG-M3-20 | Qwen (local) | `apps/lab/src/examples/feedback/loading-skeleton/**` | 30–60 | Local: one static LoadingSkeleton example using approved lines and accessible label. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS. | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-28T02:31:15-04:00 | 1 |
 | CG-M3-21 | Codex coordinator (cloud) | `packages/react/src/index.ts` | 10–20 | Cloud: public entry point is a shared package contract and must precede legal gallery imports. | `npm exec tsc -- --noEmit && npm run check && npm run build` → PASS before implementation. | Codex coordinator (cloud) | PASS — 2026-08-27T20:09:07-04:00 | N/A |
 
 CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScript, static check, production build, and diff check passed; independent review returned `APPROVE`. Default-skin visual distinction, gallery examples, public export, integration, and browser interaction remain owned by CG-M3-01.1, CG-M3-11, CG-M3-21, CG-M3-22, and CG-M3-23.
