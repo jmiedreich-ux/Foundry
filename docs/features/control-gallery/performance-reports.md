@@ -696,6 +696,23 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 | Verification | Focused Chromium 6/6, TypeScript, static check, production build, and diff check passed. |
 | UNTESTED | 0 within this packet. |
 
+#### CG-M3-32 — LoadingSkeleton browser checks
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted at M3 branch head `5e8f8e8`. |
+| Assigned / actual executor | Qwen (local) / Qwen (local), with a two-line coordinator review correction. |
+| Final code ownership | Qwen: 128 accepted lines; coordinator: 2 assertions. |
+| Estimate / actual size | 70–100 / 130 lines. |
+| Rework and review | Qwen added root-level `aria-live`/`aria-value*` refusal and native `progress` rejection in its one correction. Renewed review required `aria-valuetext`; coordinator added it, and final review approved. |
+| Review impact | `R3` — strengthened all forbidden progress-semantic proof. |
+| Verification | Focused Chromium 5/5; full Chromium 68/68; TypeScript, static check, production build, and diff check passed. |
+| UNTESTED | 0 within this packet. |
+
+### M3 milestone closeout
+
+All 32 M3 packets are accepted. Final independent milestone review of PR #27 returned `APPROVE`. Final verification: full Chromium 68/68, TypeScript, static check, production build, and diff check all passed. No post-merge QA escape is known at this point.
+
 ## M4
 
 Not started.

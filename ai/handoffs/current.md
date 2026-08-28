@@ -86,10 +86,12 @@
 - CG-M3-28 is accepted at M3 branch head `4a95ebf`: Qwen authored the 100-line real Chromium StatusChip specification, then completed one bounded correction to traverse Tab focus through the page and assert the static `data-size="md"` hook. Focused Chromium 5/5, TypeScript, static check, production build, and diff check passed; renewed review approved. CG-M3-29 is now active.
 - CG-M3-29 is accepted at M3 branch head `08a2f60`: Qwen authored the 138-line real Chromium Banner specification. Its one correction made the three reviewer-requested assertions but failed to commit and created temporary debug probes, so the coordinator stopped it, verified the clean main-spec diff, and committed it under coordinator custody. Focused Chromium 6/6, TypeScript, static check, production build, and diff check passed; renewed review approved. CG-M3-30 is now active.
 
-## Exact next action
-
 CG-M3-30 is accepted at M3 branch head `0d99ceb`: Qwen left an uncommitted Toast browser-test draft that failed its focus loop. The coordinator repaired the exact element comparison, committed it, and review required one further Toast-owned-Dismiss assertion. Focused Chromium 5/5, TypeScript, static check, production build, and diff check passed; renewed review approved.
 
 CG-M3-31 is accepted at M3 branch head `d4f7a6c`: Qwen authored the 144-line EmptyState real Chromium specification and completed one correction asserting the native section has no `role` override and its recovery action is the sole interactive descendant. Focused Chromium 6/6, TypeScript, static check, production build, and diff check passed; renewed review approved.
 
-CG-M3-32 LoadingSkeleton browser checks is active in its bounded local Qwen packet.
+CG-M3-32 is accepted at M3 branch head `5e8f8e8`: Qwen authored the 123-line LoadingSkeleton Chromium specification and completed one correction for root-level forbidden progress semantics; coordinator added the final `aria-valuetext` assertion after renewed review. Focused Chromium 5/5, TypeScript, static check, production build, and diff check passed. Full Chromium passed 68/68; PR #27 received independent milestone `APPROVE`.
+
+## Exact next action
+
+Merge approved Control Gallery M3 PR #27, then synchronize the completed milestone records.

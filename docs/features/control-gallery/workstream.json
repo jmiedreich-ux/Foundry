@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1 and M2 are accepted and closed. CG-M3-01 through CG-M3-31 are accepted on the M3 branch, including all gallery examples, integration, and all but LoadingSkeleton browser proof.",
-  "next": "CG-M3-32 LoadingSkeleton browser checks is active in its bounded local Qwen packet.",
+  "position": "M1 and M2 are accepted and closed. All M3 packets are accepted on PR #27; final merge is the only remaining M3 action.",
+  "next": "Merge approved Control Gallery M3 PR #27, then synchronize the completed milestone records.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" },
@@ -37,10 +37,10 @@
       "label": "M3",
       "depth": 3,
       "title": "Actions, choices, search, and feedback",
-      "status": "next",
+      "status": "in_review",
       "plan": "milestones/m3.md",
       "issue": 5,
-      "pr": null,
+      "pr": 27,
       "acceptance": { "kind": "demo-script", "record": null }
     },
     {
