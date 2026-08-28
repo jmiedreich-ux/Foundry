@@ -37,7 +37,7 @@ function ControlledToastExample() {
           />
         </div>
       ) : null}
-      <output>{status}</output>
+      <p>{status}</p>
     </ExampleFrame>
   );
 }
