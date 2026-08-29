@@ -52,6 +52,10 @@ async function key(node: HTMLElement, value: string) {
   })));
 }
 
+function menuItems(host: HTMLElement) {
+  return [...host.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')];
+}
+
 describe('Menu', () => {
   it('opens a labelled menu and enters first or last item from its trigger', async () => {
     const host = await mount(<Harness />);
@@ -59,7 +63,7 @@ describe('Menu', () => {
 
     await act(async () => trigger.click());
     const menu = host.querySelector<HTMLElement>('[data-testid="menu"]')!;
-    const items = [...menu.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')];
+    const items = menuItems(menu);
 
     expect(trigger.getAttribute('aria-haspopup')).toBe('menu');
     expect(trigger.getAttribute('aria-controls')).toBe(menu.id);
@@ -88,19 +92,27 @@ describe('Menu', () => {
     await act(async () => trigger.click());
     const one = host.querySelector<HTMLButtonElement>('[data-testid="one"]')!;
     const off = host.querySelector<HTMLButtonElement>('[data-testid="off"]')!;
+    const items = menuItems(host);
 
     await key(one, 'ArrowDown');
     expect(document.activeElement).toBe(off);
     expect(off.getAttribute('aria-disabled')).toBe('true');
+    expect(items.map((item) => item.tabIndex)).toEqual([-1, 0, -1]);
     await key(off, 'Enter');
     expect(select).not.toHaveBeenCalled();
     await key(off, 'Home');
     expect(document.activeElement).toBe(one);
+    expect(items.map((item) => item.tabIndex)).toEqual([0, -1, -1]);
     await key(one, 'End');
     expect(document.activeElement?.textContent).toBe('Two');
+    expect(items.map((item) => item.tabIndex)).toEqual([-1, -1, 0]);
     await key(one, 'Home');
     await key(one, 'Enter');
     expect(select).toHaveBeenCalledTimes(1);
+
+    await act(async () => trigger.click());
+    await key(host.querySelector<HTMLButtonElement>('[data-testid="one"]')!, ' ');
+    expect(select).toHaveBeenCalledTimes(2);
   });
   it('runs consumer click before selection and refuses a prevented activation', async () => {
     const calls: string[] = [];
@@ -141,6 +153,7 @@ describe('Menu', () => {
     outside.focus();
     await act(async () => outside.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true })));
     expect(document.activeElement).toBe(outside);
+    expect(host.querySelector('[role="menu"]')).toBeNull();
     outside.remove();
   });
   it('does not prevent Tab and refuses invalid root modes', async () => {
@@ -184,6 +197,27 @@ describe('Menu', () => {
     const host = await mount(<OverlayRoot><MenuRoot defaultOpen>
       <MenuContent><MenuClose data-testid="close" /></MenuContent>
     </MenuRoot></OverlayRoot>);
+    const outside = document.createElement('button');
+    document.body.append(outside);
+    outside.focus();
+
+    await act(async () => host.querySelector<HTMLButtonElement>('[data-testid="close"]')!.click());
+    expect(document.activeElement).toBe(outside);
+    outside.remove();
+  });
+  it('does not restore a disconnected captured trigger', async () => {
+    function StaleTriggerHarness() {
+      const [showTrigger, setShowTrigger] = useState(true);
+      return <OverlayRoot><MenuRoot>
+        <button type="button" data-testid="detach" onClick={() => setShowTrigger(false)}>Detach trigger</button>
+        {showTrigger && <MenuTrigger data-testid="trigger">Actions</MenuTrigger>}
+        <MenuContent><MenuClose data-testid="close" /></MenuContent>
+      </MenuRoot></OverlayRoot>;
+    }
+
+    const host = await mount(<StaleTriggerHarness />);
+    await act(async () => host.querySelector<HTMLButtonElement>('[data-testid="trigger"]')!.click());
+    await act(async () => host.querySelector<HTMLButtonElement>('[data-testid="detach"]')!.click());
     const outside = document.createElement('button');
     document.body.append(outside);
     outside.focus();
