@@ -105,6 +105,7 @@ export function TabsRoot({ children, defaultValue, onValueChange, value }: TabsR
   const select = useCallback((nextValue: string) => {
     const next = triggers.find((trigger) => trigger.value === nextValue);
     if (!next || next.disabled) return;
+    pendingFocus.current = null;
     if (!controlled) setUncontrolledValue(nextValue);
     onValueChange?.(nextValue);
   }, [controlled, onValueChange, triggers]);
@@ -119,11 +120,8 @@ export function TabsRoot({ children, defaultValue, onValueChange, value }: TabsR
   }, [selectedValue]);
   const move = useCallback((currentValue: string, key: TabKey) => {
     const nextValue = moveTabSelection(triggers, currentValue, key);
-    pendingFocus.current = nextValue;
     select(nextValue);
-    queueMicrotask(() => {
-      if (pendingFocus.current === nextValue) pendingFocus.current = null;
-    });
+    pendingFocus.current = nextValue;
   }, [select, triggers]);
   const idIndex = useCallback((tabValue: string) => triggers.findIndex((trigger) => trigger.value === tabValue), [triggers]);
   const triggerId = useCallback((tabValue: string) => `${baseId}-tab-${idIndex(tabValue)}`, [baseId, idIndex]);

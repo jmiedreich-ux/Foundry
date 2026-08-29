@@ -134,6 +134,25 @@ describe('Tabs', () => {
     expect(document.activeElement).toBe(one);
   });
 
+  it('moves focus when a controlled parent accepts a keyboard request asynchronously', async () => {
+    function AsyncControlledTabs() {
+      const [value, setValue] = useState('one');
+      return <Tabs controlled={{ value, onValueChange: (nextValue) => { setTimeout(() => setValue(nextValue), 0); } }} />;
+    }
+    const host = await mount(<AsyncControlledTabs />);
+    const one = host.querySelector<HTMLButtonElement>('[data-testid="one"]')!;
+    const two = host.querySelector<HTMLButtonElement>('[data-testid="two"]')!;
+    one.focus();
+
+    await key(one, 'ArrowRight');
+    expect(selected(host)).toBe(one);
+    expect(document.activeElement).toBe(one);
+    await act(async () => { await new Promise((resolve) => setTimeout(resolve, 0)); });
+
+    expect(selected(host)).toBe(two);
+    expect(document.activeElement).toBe(two);
+  });
+
   it('refuses invalid root modes and invalid tab compositions', async () => {
     const mixed = { value: 'one', defaultValue: 'one', onValueChange: () => {} } as unknown as TabsRootProps;
     const missingCallback = { value: 'one' } as unknown as TabsRootProps;
