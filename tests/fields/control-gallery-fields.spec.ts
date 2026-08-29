@@ -54,7 +54,7 @@ test.describe('M2 field controls', () => {
     const alert = requiredExample.getByRole('alert');
     await expect(alert).toHaveText('This field is required.');
     await expect(input).toHaveAttribute('data-invalid', '');
-    await expect(input).toHaveCSS('border-color', 'rgb(220, 38, 38)');
+    await expect(input).toHaveCSS('border-color', 'rgb(185, 28, 28)');
 
     const errorId = await alert.getAttribute('id');
     expect(errorId).toBeTruthy();
@@ -90,7 +90,9 @@ test.describe('M2 field controls', () => {
     const input = disabled.getByRole('textbox', { name: 'Disabled field' });
     await expect(input).toBeDisabled();
     await expect(input).toHaveAttribute('data-disabled', '');
-    await expect(input).toHaveCSS('opacity', '0.6');
+    await expect(input).toHaveCSS('opacity', '1');
+    await expect(input).toHaveCSS('background-color', 'rgb(226, 232, 240)');
+    await expect(input).toHaveCSS('color', 'rgb(51, 65, 85)');
   });
 
   test('real Tab traversal reaches a field control with Foundry focus treatment', async ({ page }) => {
