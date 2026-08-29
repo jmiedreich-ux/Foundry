@@ -356,7 +356,7 @@
     },
     {
       "packet": "CG-M4-06",
-      "owner": "Qwen (local)",
+      "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/navigation/tabs/**"],
       "status": "in_progress"
     },
@@ -368,7 +368,7 @@
     },
     {
       "packet": "CG-M4-06.2",
-      "owner": "Qwen (local)",
+      "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/navigation/tabs/tabs.tsx", "packages/react/src/navigation/tabs/tabs.test.tsx"],
       "status": "in_progress"
     }
