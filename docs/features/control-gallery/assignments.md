@@ -65,6 +65,8 @@ For M3–M5, the named local runtime is **OpenCode 1.18.21 / Ollama `qwen3.6:27b
 | M4 | CG-M4-04 | Popover agent | Local 24B–35B coding agent | Yes | Popover only. |
 | M4 | CG-M4-05 | Menu contract specialist | Premium cloud coordinator | No | Menu only. |
 | M4 | CG-M4-06 | Tabs agent | Local 24B–35B coding agent | Yes | Tabs only. |
+| M4 | CG-M4-06.1 | Tabs composition-model agent | Local 24B–35B coding agent | Yes | Pure Tabs composition and movement only. |
+| M4 | CG-M4-06.2 | Tabs compound-rendering agent | Local 24B–35B coding agent | Yes | Tabs React compounds only, after M4-06.1. |
 | M4 | CG-M4-07 | Card agent | Local 9B–24B coding agent | Yes | Card only. |
 | M4 | CG-M4-08 | Dialog-gallery agent | Local 24B coding agent | Yes | Dialog examples only. |
 | M4 | CG-M4-09 | Drawer-gallery agent | Local 24B coding agent | Yes | Drawer examples only. |
