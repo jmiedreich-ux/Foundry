@@ -117,4 +117,4 @@ CG-M4-06.1 merged through PR #41 (`78672aa`). Qwen authored the pure 109-line co
 
 ## Exact next action
 
-CG-M4-06.2: record the no-change Qwen attempt, then choose and approve a smaller rendering boundary or a different local model before dispatch.
+CG-M4-06.2: remote Maestro retries the unchanged two-file Tabs-rendering packet in a clean isolated worktree. The first Maestro attempt created two 18-byte placeholders and stopped with no test or commit; that worktree remains rejected evidence. This is one owner-authorized fresh retry, not a correction of the rejected files. A placeholder or no-commit return is rejected.

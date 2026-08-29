@@ -3,7 +3,7 @@
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
   "position": "M1, M2, and M3 are accepted and closed. M4 is in progress: CG-M4-01 through CG-M4-05 merged through PRs #32, #33, #34, #36, and #38 after independent review.",
-  "next": "CG-M4-06.2: record the no-change Qwen attempt, then choose and approve a smaller rendering boundary or a different local model before dispatch.",
+  "next": "CG-M4-06.2: remote Maestro retries the unchanged two-file Tabs-rendering packet in a clean isolated worktree; a placeholder or no-commit return is rejected.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" },

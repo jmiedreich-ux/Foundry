@@ -10,4 +10,4 @@ M1–M3 are accepted and closed. CG-M4-01 through CG-M4-05 are merged through PR
 
 ## Next action
 
-CG-M4-06.2: record the no-change Qwen attempt, then choose and approve a smaller rendering boundary or a different local model before dispatch.
+CG-M4-06.2: rerun the unchanged two-file rendering packet once with remote Maestro in a clean isolated worktree; do not accept placeholder files or a return without a scoped commit.
