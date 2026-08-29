@@ -322,7 +322,7 @@
       "packet": "CG-M3-V04",
       "owner": "Owner",
       "paths": ["final Control Gallery presentation"],
-      "status": "awaiting_owner"
+      "status": "completed"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

@@ -711,7 +711,7 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 
 ### M3 milestone closeout
 
-All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final independent milestone review returned `APPROVE`. Final verification: full Chromium 68/68, TypeScript, static check, production build, and diff check all passed. Owner feedback later identified a presentation QA escape; issue #30 records its visual-completion remedy, merged in PR #31. Owner acceptance remains `PENDING`.
+All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final independent milestone review returned `APPROVE`. Final verification: full Chromium 68/68, TypeScript, static check, production build, and diff check all passed. Owner feedback later identified a presentation QA escape; issue #30 records its visual-completion remedy, merged in PR #31. The owner accepted the final presentation on 2026-08-28. Milestone totals: 32 behavior packets plus 4 visual-completion packets; independent review is `APPROVE`; owner acceptance is `PASS`; the one post-merge presentation QA escape is resolved by PR #31.
 
 ### M3 visual-completion follow-up
 
@@ -753,6 +753,19 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Review impact | `R0` — approved unchanged. |
 | Verification | Reviewer confirmed scope stayed within the three declared V02 files and confirmed `git diff --check`; coordinator gates are recorded under V02. |
 | UNTESTED | Owner final presentation acceptance only. |
+
+#### CG-M3-V04 — Owner final presentation acceptance
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Owner accepted the final Control Gallery presentation on 2026-08-28; M3 is closed. |
+| Assigned / actual executor | Owner / Owner. |
+| Final code ownership | N/A (acceptance-only packet). |
+| Implementation elapsed time | N/A (acceptance-only packet). |
+| Rework and review | Owner reviewed the independently approved PR #31 result and required no further correction. |
+| Review impact | `R0` — accepted unchanged. |
+| Verification | Owner acceptance follows V02's passing TypeScript, static check, production build, full Chromium 68/68, Impeccable scans, and V03 independent `APPROVE`. |
+| UNTESTED | 0. |
 
 ## M4
 
