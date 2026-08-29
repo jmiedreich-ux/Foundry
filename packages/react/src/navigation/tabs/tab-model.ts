@@ -11,6 +11,9 @@ export function validateTabsComposition(
 	if (triggers.length === 0 || panelValues.length === 0) throw new Error('triggers and panel values must not be empty');
 
 	const triggerValues = triggers.map((t) => t.value);
+	if (triggerValues.some((value) => value.length === 0) || panelValues.some((value) => value.length === 0)) {
+		throw new Error('trigger and panel values must not be empty');
+	}
 	if (new Set(triggerValues).size !== triggerValues.length) throw new Error('duplicate trigger values');
 	if (new Set(panelValues).size !== panelValues.length) throw new Error('duplicate panel values');
 

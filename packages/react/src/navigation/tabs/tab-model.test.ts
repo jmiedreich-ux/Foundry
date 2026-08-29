@@ -12,6 +12,7 @@ describe('validateTabsComposition', () => {
 	it('throws for empty triggers or panels', () => {
 		expect(() => validateTabsComposition([], ['a'], '')).toThrow();
 		expect(() => validateTabsComposition([{ value: 'a' }], [], '')).toThrow();
+		expect(() => validateTabsComposition([{ value: '' }], [''], '')).toThrow();
 	});
 
 	it('throws for duplicate trigger values', () => {
