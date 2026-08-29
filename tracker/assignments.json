@@ -347,6 +347,12 @@
       "owner": "Qwen (local)",
       "paths": ["packages/react/src/overlays/popover/**"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M4-05",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["packages/react/src/overlays/menu/**"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
