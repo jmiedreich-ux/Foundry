@@ -42,7 +42,7 @@ export type MenuRootProps = PropsWithChildren<MenuMode & { onOpenChange?: (open:
 export function MenuRoot({ children, defaultOpen, onOpenChange, open }: MenuRootProps) {
   if (typeof open === 'boolean' && typeof defaultOpen === 'boolean') throw new Error('MenuRoot accepts either open or defaultOpen, not both.');
   const controlled = typeof open === 'boolean';
-  if (controlled && !onOpenChange) throw new Error('MenuRoot requires onOpenChange when open is provided.');
+  if (controlled && typeof onOpenChange !== 'function') throw new Error('MenuRoot requires onOpenChange when open is provided.');
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen ?? false);
   const [entry, setEntry] = useState<Entry>('first');
   const effectiveOpen = controlled ? open : uncontrolledOpen;

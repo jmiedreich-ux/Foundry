@@ -169,6 +169,8 @@ describe('Menu', () => {
     const invalid = { open: true, defaultOpen: false, onOpenChange: () => {} } as unknown as MenuRootProps;
     await expect(mount(<OverlayRoot><MenuRoot {...invalid} /></OverlayRoot>)).rejects.toThrow('either open or defaultOpen');
     await expect(mount(<OverlayRoot><MenuRoot open /></OverlayRoot>)).rejects.toThrow('requires onOpenChange');
+    const nonFunctionCallback = { open: true, onOpenChange: true } as unknown as MenuRootProps;
+    await expect(mount(<OverlayRoot><MenuRoot {...nonFunctionCallback} /></OverlayRoot>)).rejects.toThrow('requires onOpenChange');
   });
   it('keeps controlled state with its parent and strips consumer semantic and styling escapes', async () => {
     const requests = vi.fn();
