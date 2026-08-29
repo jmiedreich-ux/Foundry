@@ -334,7 +334,7 @@
       "packet": "CG-M4-02",
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/overlays/dialog/**"],
-      "status": "planned"
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

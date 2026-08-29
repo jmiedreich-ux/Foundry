@@ -102,6 +102,8 @@ CG-M3-32 is accepted at M3 branch head `5e8f8e8`: Qwen authored the 123-line Loa
 
 - CG-M4-01 merged through PR #32 (`02e497b`) after two independent-review rounds. The internal foundation owns last-in-first-out layer registration, valid-trigger restoration, and focusable-descendant/initial-focus/Tab-cycle helpers. Initial review found that an effectively disabled button inside a disabled fieldset escaped the literal-attribute filter; the coordinator corrected it with `:disabled` and a regression test. Focused foundation 6/6, full React 138/138, TypeScript, static check, production build, full Chromium 68/68, and diff check passed. No gallery overlay exists yet, so new-overlay browser behavior remains N/A for this packet. CG-M4-02 is ready but unclaimed.
 
+- CG-M4-02 is claimed by the cloud coordinator. Its only scope is the Dialog focus and close contract under `packages/react/src/overlays/dialog/**`; it may consume but not alter the M4-01 foundation. No later M4 packet may begin.
+
 ## Exact next action
 
-CG-M4-02: claim the Dialog focus and close contract packet; do not start a later M4 packet.
+CG-M4-02: define and implement the Dialog focus and close contract; do not start a later M4 packet.
