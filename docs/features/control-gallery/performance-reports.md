@@ -783,6 +783,20 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Automated-gate escape | Effective native disabled state inherited through a fieldset; the original focused test covered only a directly disabled button. |
 | UNTESTED | New-overlay browser behavior is N/A for this packet: it renders no gallery-facing overlay. CG-M4-02 onward own those real-browser paths. |
 
+#### CG-M4-02 — Dialog contract
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #33 at `2918929`: internal compound Dialog root, trigger, content, and close contract. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: 259 implementation/index lines and 133 test lines retained; no local-agent code. |
+| Implementation elapsed time | N/A (not separately captured). |
+| Rework and review | Three review rounds. Review first required runtime stripping for trigger/close and live focus-cycle/stale-trigger coverage; renewed review then found the stripping test mounted no unsafe components and requested repeat-open/native-close proof. The coordinator made two focused test/source corrections; final review approved. |
+| Review impact | `R3` — strengthened runtime refusal and recovery/focus invariants. |
+| Verification | Focused Dialog 5/5; full React suite 143/143; TypeScript, static check, production build, full Chromium 68/68, and diff check passed. |
+| Automated-gate escape | Runtime role/style/class escapes and recovery cases were not fully exercised by the initial focused suite. |
+| UNTESTED | New Dialog Chromium behavior is N/A for this packet: CG-M4-16 owns its gallery-facing browser specification. |
+
 ## M5
 
 Not started.
