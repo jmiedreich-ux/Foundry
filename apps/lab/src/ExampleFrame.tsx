@@ -11,10 +11,10 @@ export function ExampleFrame({ title, description, children }: ExampleFrameProps
   const descId = React.useId();
 
   return (
-    <section aria-labelledby={titleId} aria-describedby={descId}>
+    <section className="example-frame" aria-labelledby={titleId} aria-describedby={descId}>
       <h3 id={titleId}>{title}</h3>
-      <p id={descId}>{description}</p>
-      <div>
+      <p className="example-frame__description" id={descId}>{description}</p>
+      <div className="example-frame__content">
         {children}
       </div>
     </section>
