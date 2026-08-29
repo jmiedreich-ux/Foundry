@@ -876,6 +876,20 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Automated-gate escape | Initial gates did not expose controlled-parent decline/delayed/out-of-order focus paths, static refusal of arbitrary `aria-*` and `data-selected`, or zero/multiple TabsList composition. Independent review added each as an executable regression. |
 | UNTESTED | Real gallery Tabs behavior is N/A for this internal packet; CG-M4-12 and CG-M4-20 own its gallery and Chromium specification. |
 
+#### CG-M4-07 — Card
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #45 at `308bba5`: internal semantic Card container. |
+| Assigned / actual executor | Qwen (local) / Codex coordinator (cloud; local-agent takeover). |
+| Final code ownership | Coordinator: 103 implementation/index lines and 118 test lines retained. Qwen's uncommitted draft is not accepted. |
+| Implementation elapsed time | Qwen run: about 9 minutes before rejection. Coordinator implementation and review: about 17 minutes, excluding record synchronization. |
+| Rework and review | Qwen was rejected before commit after a forbidden `npm install`. The coordinator rebuilt the packet. Three review rounds: two `REQUEST_CHANGES`, then `APPROVE`; corrections closed complete event/state/native-escape refusal, blank-content validation, and live mounted-DOM proof. |
+| Review impact | `R3` — strengthened the inert-container contract, including native `inert`, `draggable`, and `popover` refusal. |
+| Verification | Focused Card 8/8; final full React suite 199/199; TypeScript, static check, production build, and diff check passed. |
+| Automated-gate escape | Static SSR checks alone did not prove handler refusal or forwarded-ref target; independent review required jsdom proof. |
+| UNTESTED | Card gallery/browser behavior is N/A in this source packet: CG-M4-13 and CG-M4-21 own it. |
+
 ## M5
 
 Not started.
