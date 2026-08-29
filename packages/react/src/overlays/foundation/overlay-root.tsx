@@ -39,7 +39,7 @@ function hasUnavailableAncestor(element: HTMLElement) {
 }
 
 function isFocusable(element: HTMLElement) {
-  if (element.matches('[disabled], [aria-disabled="true"], [hidden], [tabindex="-1"]')) {
+  if (element.matches(':disabled, [aria-disabled="true"], [hidden], [tabindex="-1"]')) {
     return false;
   }
 

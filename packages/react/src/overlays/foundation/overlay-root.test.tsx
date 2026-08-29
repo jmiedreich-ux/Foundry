@@ -132,7 +132,7 @@ describe('overlay foundation', () => {
 
   it('filters unavailable descendants and focuses the first remaining control', () => {
     const container = document.createElement('div');
-    container.innerHTML = '<button disabled>Disabled</button><button hidden>Hidden</button><span inert><button>Inert</button></span><button>Ready</button>';
+    container.innerHTML = '<button disabled>Disabled</button><fieldset disabled><button>Inherited disabled</button></fieldset><button hidden>Hidden</button><span inert><button>Inert</button></span><button>Ready</button>';
     document.body.append(container);
 
     expect(getFocusableDescendants(container).map((element) => element.textContent)).toEqual(['Ready']);
