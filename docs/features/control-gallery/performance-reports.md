@@ -769,7 +769,19 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 
 ## M4
 
-Not started.
+#### CG-M4-01 — Overlay foundation
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #32 at `02e497b`: internal `OverlayRoot` layer registry, valid-trigger restoration, and shared focus helpers only. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: 189 implementation lines and 168 test lines retained; no local-agent code. |
+| Implementation elapsed time | 6m 20s from claim commit `7419156` to corrected source commit `4ab07ca`. |
+| Rework and review | Initial independent review returned `REQUEST_CHANGES`: the helper checked only a literal `disabled` attribute and missed native disabled state inherited from a disabled fieldset. One coordinator correction changed the shared filter to `:disabled` and added the fieldset regression; renewed review returned `APPROVE`. |
+| Review impact | `R3` — repaired a required focus invariant and missing regression coverage. |
+| Verification | Focused foundation 6/6; full React suite 138/138; TypeScript, static check, production build, full Chromium 68/68, and diff check passed. |
+| Automated-gate escape | Effective native disabled state inherited through a fieldset; the original focused test covered only a directly disabled button. |
+| UNTESTED | New-overlay browser behavior is N/A for this packet: it renders no gallery-facing overlay. CG-M4-02 onward own those real-browser paths. |
 
 ## M5
 
