@@ -116,6 +116,24 @@ describe('overlay foundation', () => {
     expect(document.activeElement).toBe(secondInside);
   });
 
+  it('does not infer a trigger from the active element when an overlay opens without capture', async () => {
+    const close = () => {};
+    const inferredTrigger = document.createElement('button');
+    const currentFocus = document.createElement('button');
+    document.body.append(inferredTrigger, currentFocus);
+    inferredTrigger.focus();
+    const container = await mount(<LayerHarness firstOpen secondOpen={false} closeFirst={close} closeSecond={close} />);
+    currentFocus.focus();
+
+    await act(async () => {
+      mountedRoots[0].root.render(<LayerHarness firstOpen={false} secondOpen={false} closeFirst={close} closeSecond={close} />);
+    });
+
+    expect(document.activeElement).toBe(currentFocus);
+    inferredTrigger.remove();
+    currentFocus.remove();
+  });
+
   it('restores only connected, enabled, non-inert triggers', () => {
     const trigger = document.createElement('button');
     document.body.append(trigger);
