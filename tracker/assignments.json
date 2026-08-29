@@ -323,6 +323,12 @@
       "owner": "Owner",
       "paths": ["final Control Gallery presentation"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M4-01",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["packages/react/src/overlays/foundation/**"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

@@ -100,6 +100,8 @@ CG-M3-32 is accepted at M3 branch head `5e8f8e8`: Qwen authored the 123-line Loa
 
 - The owner accepted the final M3 presentation on 2026-08-28. CG-M3-V04 is complete; issue #30 is closed. M3 is accepted and closed, including the post-merge presentation escape remedied by PR #31. M4 is now planned but not started.
 
+- CG-M4-01 is claimed by the cloud coordinator. Its sole scope is the shared overlay root, layer, focus-capture, and trigger-return contract under `packages/react/src/overlays/foundation/**`; no later M4 packet may begin.
+
 ## Exact next action
 
-CG-M4-01: claim the overlay root, layer, and focus contract packet; do not start a later M4 packet.
+CG-M4-01: define and implement the overlay root, layer, and focus contract; do not start a later M4 packet.
