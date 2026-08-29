@@ -60,14 +60,14 @@ describe('Card', () => {
         title: 'Fixed', className: 'consumer-class', style: { color: 'red' }, role: 'button',
         'aria-live': 'polite', 'data-control': 'wrong', 'data-size': 'wrong', disabled: true,
         invalid: true, loading: true, readOnly: true, hidden: true, autoFocus: true, tabIndex: 0,
-        contentEditable: true, 'data-disabled': 'wrong', 'data-invalid': 'wrong', 'data-loading': 'wrong',
+        contentEditable: true, draggable: true, inert: true, popover: 'auto', 'data-disabled': 'wrong', 'data-invalid': 'wrong', 'data-loading': 'wrong',
         'data-open': 'wrong', 'data-selected': 'wrong', 'data-readonly': 'wrong',
         onClick: () => {}, onKeyDown: () => {}, onMouseEnter: () => {}, onPointerDown: () => {}
       } as unknown as CardProps)} />
     );
     expect(markup).toContain('data-control="card"');
     expect(markup).toContain('data-size="md"');
-    for (const refused of ['consumer-class', 'color', 'role="button"', 'aria-live', 'wrong', 'hidden', 'autofocus', 'tabindex', 'contenteditable']) {
+    for (const refused of ['consumer-class', 'color', 'role="button"', 'aria-live', 'wrong', 'hidden', 'autofocus', 'tabindex', 'contenteditable', 'draggable', 'inert', 'popover']) {
       expect(markup).not.toContain(refused);
     }
   });
@@ -100,7 +100,9 @@ describe('Card', () => {
     expectTypeOf<CardProps['contentEditable']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['data-disabled']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['disabled']>().toEqualTypeOf<never | undefined>();
+    expectTypeOf<CardProps['draggable']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['hidden']>().toEqualTypeOf<never | undefined>();
+    expectTypeOf<CardProps['inert']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['invalid']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['loading']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['onClick']>().toEqualTypeOf<never | undefined>();
@@ -108,6 +110,7 @@ describe('Card', () => {
     expectTypeOf<CardProps['onMouseEnter']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['onPointerDown']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['readOnly']>().toEqualTypeOf<never | undefined>();
+    expectTypeOf<CardProps['popover']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['role']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['style']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['tabIndex']>().toEqualTypeOf<never | undefined>();

@@ -14,6 +14,7 @@ type NativeArticleProps = Omit<
   | 'className'
   | 'contentEditable'
   | 'hidden'
+  | 'inert'
   | 'onBlur'
   | 'onClick'
   | 'onDoubleClick'
@@ -27,6 +28,8 @@ type NativeArticleProps = Omit<
   | 'onPointerMove'
   | 'onPointerUp'
   | 'role'
+  | 'draggable'
+  | 'popover'
   | 'style'
   | 'tabIndex'
 >;
@@ -44,6 +47,7 @@ export interface CardProps extends NativeArticleProps, RefusedAriaProps, Refused
   'data-disabled'?: never;
   'data-focus-visible'?: never;
   hidden?: never;
+  inert?: never;
   invalid?: never;
   'data-invalid'?: never;
   loading?: never;
@@ -52,6 +56,8 @@ export interface CardProps extends NativeArticleProps, RefusedAriaProps, Refused
   readOnly?: never;
   'data-readonly'?: never;
   role?: never;
+  draggable?: never;
+  popover?: never;
   'data-selected'?: never;
   style?: never;
   tabIndex?: never;
@@ -63,7 +69,7 @@ function safeArticleProps(props: Record<string, unknown>) {
   return Object.fromEntries(Object.entries(props).filter(([name]) => (
     !name.startsWith('aria-')
     && !name.startsWith('on')
-    && !['autoFocus', 'className', 'contentEditable', 'data-checked', 'data-control', 'data-disabled', 'data-focus-visible', 'data-invalid', 'data-loading', 'data-open', 'data-readonly', 'data-selected', 'data-size', 'disabled', 'hidden', 'invalid', 'loading', 'readOnly', 'role', 'style', 'tabIndex'].includes(name)
+    && !['autoFocus', 'className', 'contentEditable', 'data-checked', 'data-control', 'data-disabled', 'data-focus-visible', 'data-invalid', 'data-loading', 'data-open', 'data-readonly', 'data-selected', 'data-size', 'disabled', 'draggable', 'hidden', 'inert', 'invalid', 'loading', 'popover', 'readOnly', 'role', 'style', 'tabIndex'].includes(name)
   )));
 }
 
