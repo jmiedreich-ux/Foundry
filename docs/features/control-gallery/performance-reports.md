@@ -818,6 +818,22 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Self-correction before review | No behavior self-correction. Qwen's only correction completed its missing required commit after running the gates. |
 | UNTESTED | Drawer-specific gallery Chromium behavior is N/A in this source packet; CG-M4-09 and CG-M4-17 own that real-browser path. |
 
+#### CG-M4-04 — Popover
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Escalated and merged in PR #36 at `e88bc5b`: internal non-modal native auto-Popover contract. |
+| Assigned / actual executor | Qwen (local) / Qwen initial draft and one correction, followed by Codex coordinator (cloud) takeover. |
+| Final code ownership | Coordinator: all 268 implementation and 364 test lines in the accepted commit, per the accepted-commit attribution rule. Qwen draft code was not accepted as a completed local packet because neither local run delivered its required passing commit. |
+| Implementation elapsed time | Qwen initial attempt 12m 56s; Qwen correction 9m 54s; coordinator repair/review time not separately captured. |
+| Rework and review | Qwen's first two-file draft was 655 lines, had 7/10 focused failures and five TypeScript errors, and lacked a commit. Its only correction reduced focused failures to 4/10 but again stopped without a commit. The coordinator repaired the remaining mechanics, then initial source review required real native re-show, no-initial-focus, and valid-trigger proofs. Renewed review approved. |
+| Review impact | `R3` — closed controlled native-dismissal, focus, and recovery coverage gaps. |
+| Size variance / exception | 632 accepted lines against a 100–140-line forecast (4.5× upper bound). The owner’s standing full-authority delegation permits this recorded coordinator escalation exception; it is not a local-routing success or a precedent for future packets, which retain the 40–140-line limit. |
+| Verification | Focused Popover 10/10; full React 161/161; TypeScript, static check, production build, full Chromium 68/68, and diff check passed. |
+| Automated-gate escape | Initial local report claimed no passing evidence; coordinator found seven focused failures and five TypeScript errors. After takeover, source review found three missing behavioral proofs despite passing gates. |
+| Self-correction before review | Qwen correction repaired the controlled/refusal/Tab tests but left native-toggle failure and no required commit. |
+| UNTESTED | Real Popover light/outside-dismissal and recovery in the gallery browser are N/A for this source packet; CG-M4-10 and CG-M4-18 own that behavior. |
+
 ## M5
 
 Not started.
