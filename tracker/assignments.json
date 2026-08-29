@@ -374,7 +374,7 @@
     },
     {
       "packet": "CG-M4-07",
-      "owner": "Qwen (local)",
+      "owner": "Codex coordinator (cloud; local-agent takeover)",
       "paths": ["packages/react/src/navigation/card/card.tsx", "packages/react/src/navigation/card/card.test.tsx", "packages/react/src/navigation/card/index.ts"],
       "status": "in_progress"
     }
