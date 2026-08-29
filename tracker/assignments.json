@@ -364,13 +364,13 @@
       "packet": "CG-M4-06.1",
       "owner": "Qwen (local)",
       "paths": ["packages/react/src/navigation/tabs/tab-model.ts", "packages/react/src/navigation/tabs/tab-model.test.ts"],
-      "status": "in_progress"
+      "status": "completed"
     },
     {
       "packet": "CG-M4-06.2",
       "owner": "Qwen (local)",
       "paths": ["packages/react/src/navigation/tabs/tabs.tsx", "packages/react/src/navigation/tabs/tabs.test.tsx"],
-      "status": "planned"
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
