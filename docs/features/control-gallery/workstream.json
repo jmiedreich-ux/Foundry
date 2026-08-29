@@ -3,7 +3,7 @@
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
   "position": "M1, M2, and M3 are accepted and closed. M4 is in progress: CG-M4-01 through CG-M4-05 merged through PRs #32, #33, #34, #36, and #38 after independent review.",
-  "next": "CG-M4-06: split the approved Tabs behavior into smaller sequential local packets, obtain independent plan review, then dispatch only the first bounded packet to Qwen.",
+  "next": "CG-M4-06.1: Qwen implements only the pure Tabs composition model and its focused test, then returns one scoped commit and unedited gate results for coordinator verification.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" },
