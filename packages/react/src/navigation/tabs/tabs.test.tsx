@@ -153,6 +153,29 @@ describe('Tabs', () => {
     expect(document.activeElement).toBe(two);
   });
 
+  it('focuses only the latest accepted controlled keyboard request when commits arrive out of order', async () => {
+    const commits: Array<() => void> = [];
+    function DeferredTabs() {
+      const [value, setValue] = useState('one');
+      return <Tabs controlled={{ value, onValueChange: (nextValue) => { commits.push(() => setValue(nextValue)); } }} />;
+    }
+    const host = await mount(<DeferredTabs />);
+    const one = host.querySelector<HTMLButtonElement>('[data-testid="one"]')!;
+    const two = host.querySelector<HTMLButtonElement>('[data-testid="two"]')!;
+    const three = host.querySelector<HTMLButtonElement>('[data-testid="three"]')!;
+    one.focus();
+
+    await key(one, 'ArrowRight');
+    await key(one, 'ArrowLeft');
+    await act(async () => commits[0]!());
+    expect(selected(host)).toBe(two);
+    expect(document.activeElement).toBe(one);
+    await act(async () => commits[1]!());
+
+    expect(selected(host)).toBe(three);
+    expect(document.activeElement).toBe(three);
+  });
+
   it('refuses invalid root modes and invalid tab compositions', async () => {
     const mixed = { value: 'one', defaultValue: 'one', onValueChange: () => {} } as unknown as TabsRootProps;
     const missingCallback = { value: 'one' } as unknown as TabsRootProps;
