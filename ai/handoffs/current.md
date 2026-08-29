@@ -106,6 +106,8 @@ CG-M3-32 is accepted at M3 branch head `5e8f8e8`: Qwen authored the 123-line Loa
 
 - CG-M4-02 merged through PR #33 (`2918929`) after three independent-review rounds. The internal compound Dialog uses a named native modal dialog; supports controlled or uncontrolled state, trigger state, initial/contained focus, Escape and explicit close, outside-click refusal, native close events, repeat recovery, safe trigger restoration, and runtime refusal of semantic/style escapes. The final full React suite passed 143/143; TypeScript, static check, production build, full Chromium 68/68, and diff check passed. CG-M4-03 is ready for its assigned Qwen implementation.
 
+- CG-M4-03 is dispatched to Qwen. Its exact writable boundary is `packages/react/src/overlays/drawer/**`; the approved Drawer-only contract, 100–140 line estimate, assertions, gates, required commit, and one-correction limit are recorded in `milestones/m4.md`. No later M4 packet may begin.
+
 ## Exact next action
 
-CG-M4-03: dispatch the Drawer packet to Qwen with its exact path boundary and prerequisites; do not start a later M4 packet.
+CG-M4-03: Qwen implements the Drawer-only packet and returns its one scoped commit for coordinator verification; do not start a later M4 packet.

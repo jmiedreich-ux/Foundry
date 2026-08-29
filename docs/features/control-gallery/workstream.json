@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1, M2, and M3 are accepted and closed. M4 is in progress: CG-M4-01 and CG-M4-02 merged through PRs #32 and #33 after independent review. CG-M4-03 is ready for Qwen.",
-  "next": "CG-M4-03: dispatch the Drawer packet to Qwen with its exact path boundary and prerequisites; do not start a later M4 packet.",
+  "position": "M1, M2, and M3 are accepted and closed. M4 is in progress: CG-M4-01 and CG-M4-02 merged through PRs #32 and #33 after independent review. CG-M4-03 is dispatched to Qwen with a Drawer-only contract.",
+  "next": "CG-M4-03: Qwen implements the Drawer-only packet and returns its one scoped commit for coordinator verification; do not start a later M4 packet.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" },
