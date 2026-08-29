@@ -6,8 +6,8 @@ Control Gallery — Milestone 4: overlay and navigation controls, in progress.
 
 ## Current state
 
-M1–M3 are accepted and closed. CG-M4-01 through CG-M4-05 are merged through PRs #32, #33, #34, #36, and #38 after independent review. CG-M4-06.1 is merged through PR #41; CG-M4-06.2 Tabs compound rendering is now the only active Tabs packet.
+M1–M3 are accepted and closed. CG-M4-01 through CG-M4-05 are merged through PRs #32, #33, #34, #36, and #38 after independent review. CG-M4-06.1 is merged through PR #41; CG-M4-06.2's Qwen rendering run stalled with no files or commit and must be re-planned before another dispatch.
 
 ## Next action
 
-CG-M4-06.2: Qwen implements only `packages/react/src/navigation/tabs/tabs.tsx` and `tabs.test.ts`, consuming the accepted composition model.
+CG-M4-06.2: record the no-change Qwen attempt, then choose and approve a smaller rendering boundary or a different local model before dispatch.
