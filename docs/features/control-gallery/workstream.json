@@ -3,7 +3,7 @@
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
   "position": "M1, M2, and M3 are accepted and closed. M4 is in progress: CG-M4-01 through CG-M4-07 merged through PRs #32, #33, #34, #36, #38, #43, and #45; Card required coordinator takeover after a rejected local run.",
-  "next": "CG-M4-08: dispatch Qwen with the bounded Dialog gallery-example packet.",
+  "next": "CG-M4-14: publish accepted M4 controls from the library entry point; gallery examples are blocked until that public API exists.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" },

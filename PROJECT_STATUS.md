@@ -10,4 +10,4 @@ M1–M3 are accepted and closed. CG-M4-01 through CG-M4-06 are merged through PR
 
 ## Next action
 
-CG-M4-08: dispatch Qwen with the bounded Dialog gallery-example packet; do not route it to Maestro.
+CG-M4-14: publish accepted M4 controls from the library entry point; gallery examples are blocked until that public API exists.
