@@ -72,12 +72,13 @@ export function DialogRoot({ children, defaultOpen, onOpenChange, open }: Dialog
 
 type NativeTriggerProps = Omit<
   ComponentPropsWithoutRef<'button'>,
-  'aria-controls' | 'aria-expanded' | 'aria-haspopup' | 'className' | 'onClick' | 'style' | 'type'
+  'aria-controls' | 'aria-expanded' | 'aria-haspopup' | 'className' | 'onClick' | 'role' | 'style' | 'type'
 >;
 
 export type DialogTriggerProps = NativeTriggerProps & {
   onClick?: ComponentPropsWithoutRef<'button'>['onClick'];
   className?: never;
+  role?: never;
   style?: never;
 };
 
@@ -86,10 +87,12 @@ export const DialogTrigger = forwardRef<HTMLButtonElement, DialogTriggerProps>(f
   ref
 ) {
   const { captureTrigger, contentId, open, requestOpen } = useDialogContext();
+  const unsafeProps = rest as ComponentPropsWithoutRef<'button'>;
+  const { className: _className, role: _role, style: _style, ...safeProps } = unsafeProps;
 
   return (
     <button
-      {...rest}
+      {...safeProps}
       ref={ref}
       type="button"
       disabled={disabled}
@@ -210,11 +213,12 @@ export const DialogContent = forwardRef<HTMLDialogElement, DialogContentProps>(f
   );
 });
 
-type NativeCloseProps = Omit<ComponentPropsWithoutRef<'button'>, 'className' | 'onClick' | 'style' | 'type'>;
+type NativeCloseProps = Omit<ComponentPropsWithoutRef<'button'>, 'className' | 'onClick' | 'role' | 'style' | 'type'>;
 
 export type DialogCloseProps = NativeCloseProps & {
   onClick?: ComponentPropsWithoutRef<'button'>['onClick'];
   className?: never;
+  role?: never;
   style?: never;
 };
 
@@ -224,10 +228,12 @@ export const DialogClose = forwardRef<HTMLButtonElement, DialogCloseProps>(funct
 ) {
   const { requestOpen } = useDialogContext();
   const { labels } = useLocale();
+  const unsafeProps = rest as ComponentPropsWithoutRef<'button'>;
+  const { className: _className, role: _role, style: _style, ...safeProps } = unsafeProps;
 
   return (
     <button
-      {...rest}
+      {...safeProps}
       ref={ref}
       type="button"
       onClick={(event) => {

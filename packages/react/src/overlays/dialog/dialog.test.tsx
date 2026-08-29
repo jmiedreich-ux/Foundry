@@ -4,7 +4,7 @@ import { act, useState, type ReactNode } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { OverlayRoot } from '../foundation/overlay-root.js';
-import { DialogClose, DialogContent, DialogRoot, DialogTrigger, type DialogRootProps } from './dialog.js';
+import { DialogClose, DialogContent, DialogRoot, DialogTrigger, type DialogCloseProps, type DialogRootProps, type DialogTriggerProps } from './dialog.js';
 
 Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
 
@@ -53,15 +53,14 @@ describe('Dialog', () => {
 
   it('closes on Escape, restores its valid trigger, and refuses an outside click', async () => {
     const onOpenChange = vi.fn();
-    const container = await mount(<Harness defaultOpen onOpenChange={onOpenChange} />);
-    const dialog = container.querySelector<HTMLDialogElement>('[data-testid="dialog"]')!;
-    await act(async () => { dialog.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
-    expect(container.querySelector('[data-testid="dialog"]')).toBe(dialog);
+    const container = await mount(<Harness onOpenChange={onOpenChange} />);
     const trigger = container.querySelector<HTMLButtonElement>('[data-testid="trigger"]')!;
     trigger.focus();
     await act(async () => { trigger.click(); });
-    const opened = container.querySelector<HTMLDialogElement>('[data-testid="dialog"]')!;
-    await act(async () => { opened.dispatchEvent(new Event('cancel', { bubbles: true, cancelable: true })); });
+    const dialog = container.querySelector<HTMLDialogElement>('[data-testid="dialog"]')!;
+    await act(async () => { dialog.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+    expect(container.querySelector('[data-testid="dialog"]')).toBe(dialog);
+    await act(async () => { dialog.dispatchEvent(new Event('cancel', { bubbles: true, cancelable: true })); });
     expect(container.querySelector('[data-testid="dialog"]')).toBeNull();
     expect(document.activeElement).toBe(trigger);
     expect(onOpenChange).toHaveBeenLastCalledWith(false);
@@ -74,6 +73,10 @@ describe('Dialog', () => {
     close.focus();
     await act(async () => { close.dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, cancelable: true, key: 'Tab' })); });
     expect(document.activeElement?.getAttribute('data-testid')).toBe('first');
+    const first = container.querySelector<HTMLButtonElement>('[data-testid="first"]')!;
+    first.focus();
+    await act(async () => { first.dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, cancelable: true, key: 'Tab', shiftKey: true })); });
+    expect(document.activeElement).toBe(close);
 
     const empty = await mount(<OverlayRoot><DialogRoot defaultOpen><DialogContent data-testid="empty" title="Empty" /></DialogRoot></OverlayRoot>);
     const emptyDialog = empty.querySelector<HTMLDialogElement>('[data-testid="empty"]')!;
@@ -94,5 +97,25 @@ describe('Dialog', () => {
     expect(container.querySelector('[data-testid="controlled-dialog"]')).toBeNull();
     const invalidProps = { open: true, defaultOpen: false } as unknown as DialogRootProps;
     await expect(mount(<OverlayRoot><DialogRoot {...invalidProps} /></OverlayRoot>)).rejects.toThrow('either open or defaultOpen');
+  });
+
+  it('does not invent a focus fallback for a disconnected trigger and strips runtime escapes', async () => {
+    function StaleTriggerHarness() {
+      const [showTrigger, setShowTrigger] = useState(true);
+      return <OverlayRoot><DialogRoot>{showTrigger ? <DialogTrigger data-testid="stale-trigger">Open</DialogTrigger> : null}<button data-testid="remove" onClick={() => setShowTrigger(false)}>Remove trigger</button><button data-testid="outside">Outside</button><DialogContent data-testid="stale-dialog" title="Stale"><DialogClose data-testid="stale-close" /></DialogContent></DialogRoot></OverlayRoot>;
+    }
+    const unsafeProps = { role: 'link', className: 'escape', style: { color: 'red' } } as unknown as DialogTriggerProps & DialogCloseProps;
+    const container = await mount(<StaleTriggerHarness />);
+    const trigger = container.querySelector<HTMLButtonElement>('[data-testid="stale-trigger"]')!;
+    trigger.focus();
+    await act(async () => { trigger.click(); });
+    const outside = container.querySelector<HTMLButtonElement>('[data-testid="outside"]')!;
+    await act(async () => { container.querySelector<HTMLButtonElement>('[data-testid="remove"]')!.click(); });
+    outside.focus();
+    await act(async () => { container.querySelector<HTMLDialogElement>('[data-testid="stale-dialog"]')!.dispatchEvent(new Event('cancel', { bubbles: true, cancelable: true })); });
+    expect(document.activeElement).toBe(outside);
+    const safe = await mount(<Harness><DialogTrigger {...unsafeProps}>Unsafe trigger</DialogTrigger><DialogClose {...unsafeProps} /></Harness>);
+    expect(safe.querySelector('.escape')).toBeNull();
+    expect(safe.querySelector('[role="link"]')).toBeNull();
   });
 });
