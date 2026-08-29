@@ -47,9 +47,18 @@ a:focus-visible {
   padding: var(--foundry-space-4);
 }
 
-.gallery-layout section {
+.gallery-layout > main > section {
+  padding: var(--foundry-space-4) var(--foundry-space-3);
+  border-bottom: 1px solid var(--foundry-color-border);
+}
+
+.gallery-layout > main > section > section {
   padding: var(--foundry-space-4) 0;
   border-bottom: 1px solid var(--foundry-color-border);
+}
+
+.gallery-layout p {
+  max-inline-size: 72ch;
 }
 
 .gallery-layout h1,

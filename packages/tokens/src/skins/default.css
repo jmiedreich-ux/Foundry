@@ -6,7 +6,7 @@
   --foundry-color-muted: #526176;
   --foundry-color-border: #cbd5e1;
   --foundry-color-action: #2563eb;
-  --foundry-color-danger: #dc2626;
+  --foundry-color-danger: #b91c1c;
   --foundry-color-success: #166534;
   --foundry-focus-ring: #93c5fd;
   --foundry-radius-control: 7px;
@@ -30,7 +30,13 @@
 
 :where(:root, [data-foundry-skin="default"]) :is(button, input, select)[data-disabled] {
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: 1;
+}
+
+:where(:root, [data-foundry-skin="default"]) :is(button, input:not([type="checkbox"]):not([type="radio"]), select)[data-disabled] {
+  border-color: #94a3b8;
+  background: #e2e8f0;
+  color: #334155;
 }
 
 :where(:root, [data-foundry-skin="default"]) button[data-variant] {
@@ -74,7 +80,7 @@
   border-radius: var(--foundry-radius-control);
   background: transparent;
   color: var(--foundry-color-action);
-  padding: var(--foundry-space-1) var(--foundry-space-2);
+  padding: var(--foundry-space-2);
 }
 
 :where(:root, [data-foundry-skin="default"]) [data-control="status-chip"] {
@@ -83,7 +89,7 @@
   border-radius: var(--foundry-radius-control);
   background: var(--foundry-color-surface);
   color: var(--foundry-color-text);
-  padding: var(--foundry-space-1) var(--foundry-space-2);
+  padding: var(--foundry-space-2);
 }
 
 :where(:root, [data-foundry-skin="default"]) :is([data-control="status-chip"], [data-control="banner"], [data-control="toast"])[data-tone="success"] {
