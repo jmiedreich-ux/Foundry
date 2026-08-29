@@ -1,11 +1,30 @@
+// @vitest-environment jsdom
+
+import { act, createRef, type ReactNode } from 'react';
+import { createRoot, type Root } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { describe, expect, expectTypeOf, it } from 'vitest';
+import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest';
 import { Group } from '../../foundation/field.js';
 import { Card, type CardProps } from './card.js';
+
+(globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
+const mounted: Array<{ root: Root; container: HTMLDivElement }> = [];
+async function mount(node: ReactNode) {
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  mounted.push({ root, container });
+  await act(async () => { root.render(node); });
+  return container;
+}
+afterEach(async () => {
+  await act(async () => { mounted.splice(0).forEach(({ root, container }) => { root.unmount(); container.remove(); }); });
+});
 
 describe('Card', () => {
   it('requires a non-empty title and labels its article from the generated heading', () => {
     expect(() => renderToStaticMarkup(<Card title="" />)).toThrow('non-empty title');
+    expect(() => renderToStaticMarkup(<Card title="   " />)).toThrow('non-empty title');
     const markup = renderToStaticMarkup(<Card title="Summary" />);
     const titleId = markup.match(/<h2 id="([^"]+)">Summary<\/h2>/)?.[1];
     expect(titleId).toBeTruthy();
@@ -18,6 +37,7 @@ describe('Card', () => {
     expect(descriptionId).toBeTruthy();
     expect(described).toContain(`<p id="${descriptionId}">Details</p>`);
     expect(renderToStaticMarkup(<Card title="Summary" description="" />)).not.toContain('aria-describedby');
+    expect(renderToStaticMarkup(<Card title="Summary" description="   " />)).not.toContain('aria-describedby');
     expect(renderToStaticMarkup(<Card title="Summary" description={null} />)).not.toContain('aria-describedby');
   });
 
@@ -40,14 +60,28 @@ describe('Card', () => {
         title: 'Fixed', className: 'consumer-class', style: { color: 'red' }, role: 'button',
         'aria-live': 'polite', 'data-control': 'wrong', 'data-size': 'wrong', disabled: true,
         invalid: true, loading: true, readOnly: true, hidden: true, autoFocus: true, tabIndex: 0,
-        onClick: () => {}, onKeyDown: () => {}, onPointerDown: () => {}
+        contentEditable: true, 'data-disabled': 'wrong', 'data-invalid': 'wrong', 'data-loading': 'wrong',
+        'data-open': 'wrong', 'data-selected': 'wrong', 'data-readonly': 'wrong',
+        onClick: () => {}, onKeyDown: () => {}, onMouseEnter: () => {}, onPointerDown: () => {}
       } as unknown as CardProps)} />
     );
     expect(markup).toContain('data-control="card"');
     expect(markup).toContain('data-size="md"');
-    for (const refused of ['consumer-class', 'color', 'role="button"', 'aria-live', 'wrong', 'hidden', 'autofocus', 'tabindex']) {
+    for (const refused of ['consumer-class', 'color', 'role="button"', 'aria-live', 'wrong', 'hidden', 'autofocus', 'tabindex', 'contenteditable']) {
       expect(markup).not.toContain(refused);
     }
+  });
+
+  it('does not install refused event handlers and forwards its ref to the rendered article', async () => {
+    const onClick = vi.fn();
+    const onPointerDown = vi.fn();
+    const ref = createRef<HTMLElement>();
+    const container = await mount(<Card {...({ title: 'Inert', onClick, onPointerDown } as unknown as CardProps)} ref={ref} />);
+    const article = container.querySelector('article')!;
+    await act(async () => { article.click(); article.dispatchEvent(new Event('pointerdown', { bubbles: true })); });
+    expect(onClick).not.toHaveBeenCalled();
+    expect(onPointerDown).not.toHaveBeenCalled();
+    expect(ref.current).toBe(article);
   });
 
   it('preserves safe id and ordinary data attributes, long content, and an article ref type', () => {
@@ -63,12 +97,15 @@ describe('Card', () => {
     expectTypeOf<CardProps['aria-live']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['autoFocus']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['className']>().toEqualTypeOf<never | undefined>();
+    expectTypeOf<CardProps['contentEditable']>().toEqualTypeOf<never | undefined>();
+    expectTypeOf<CardProps['data-disabled']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['disabled']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['hidden']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['invalid']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['loading']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['onClick']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['onKeyDown']>().toEqualTypeOf<never | undefined>();
+    expectTypeOf<CardProps['onMouseEnter']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['onPointerDown']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['readOnly']>().toEqualTypeOf<never | undefined>();
     expectTypeOf<CardProps['role']>().toEqualTypeOf<never | undefined>();
