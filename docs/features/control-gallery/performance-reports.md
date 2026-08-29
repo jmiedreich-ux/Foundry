@@ -797,6 +797,21 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Automated-gate escape | Runtime role/style/class escapes and recovery cases were not fully exercised by the initial focused suite. |
 | UNTESTED | New Dialog Chromium behavior is N/A for this packet: CG-M4-16 owns its gallery-facing browser specification. |
 
+#### CG-M4-03 — Drawer
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #34 at `383a055`: internal compound Drawer root, trigger, content, and close contract. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b` (local). |
+| Final code ownership | Qwen: 252 implementation lines and 141 initial test lines retained. Coordinator: 15 Drawer regression-test lines retained; the 19-line foundation correction belongs to PR #35, not this Drawer packet. |
+| Implementation elapsed time | 7m 14s from Qwen's initial authored commit time (22:38:19) to its required scoped commit (22:45:33), excluding coordinator verification and review. |
+| Rework and review | Qwen's initial result was source-correctly scoped but returned without its required commit; its one correction ran the stated gates and committed without source change. Independent review returned `REQUEST_CHANGES` for an M4-01 shared-contract defect, not a Drawer-source defect. The coordinator repaired the foundation in separate PR #35, added the required Drawer regression after rebase, and renewed review returned `APPROVE`. |
+| Review impact | `R3` — repaired a focus-recovery invariant and added default-open/no-capture coverage. |
+| Verification | Focused Drawer 7/7; foundation plus Drawer 14/14; full React 151/151; TypeScript, static check, production build, full Chromium 68/68, and diff check passed. |
+| Automated-gate escape | The initial focused suites did not cover an overlay that starts open without prior trigger capture; source review found the mismatch with the documented foundation contract. |
+| Self-correction before review | No behavior self-correction. Qwen's only correction completed its missing required commit after running the gates. |
+| UNTESTED | Drawer-specific gallery Chromium behavior is N/A in this source packet; CG-M4-09 and CG-M4-17 own that real-browser path. |
+
 ## M5
 
 Not started.

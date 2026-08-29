@@ -15,7 +15,7 @@ The Control Gallery is Foundry's living acceptance surface. It demonstrates real
 | M1 | Runnable gallery foundation and testing harness | completed |
 | M2 | Foundational contracts and field controls | accepted and closed |
 | M3 | Buttons, selection controls, search, and feedback | accepted and closed; behavior merged through PR #27 and visual follow-up through PR #31 |
-| M4 | Overlays and navigation controls | CG-M4-01 and CG-M4-02 merged through PRs #32 and #33; CG-M4-03 ready |
+| M4 | Overlays and navigation controls | CG-M4-01 through CG-M4-03 merged through PRs #32, #33, and #34; CG-M4-04 ready |
 | M5 | Cross-control acceptance, accessibility, and release handoff | planned |
 
 Each milestone is independently mergeable and uses the sequence: contracts/tokens → component behavior → gallery integration → browser specifications → independent review.
