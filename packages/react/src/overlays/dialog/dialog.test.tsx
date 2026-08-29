@@ -49,6 +49,12 @@ describe('Dialog', () => {
     expect(dialog.getAttribute('aria-labelledby')).toBeTruthy();
     expect(document.activeElement?.textContent).toBe('First action');
     expect(onOpenChange).toHaveBeenCalledWith(true);
+    await act(async () => { container.querySelector<HTMLButtonElement>('[data-testid="close"]')!.click(); });
+    expect(container.querySelector('[data-testid="dialog"]')).toBeNull();
+    await act(async () => { trigger.click(); });
+    expect(document.activeElement?.textContent).toBe('First action');
+    await act(async () => { container.querySelector<HTMLDialogElement>('[data-testid="dialog"]')!.dispatchEvent(new Event('close', { bubbles: true })); });
+    expect(container.querySelector('[data-testid="dialog"]')).toBeNull();
   });
 
   it('closes on Escape, restores its valid trigger, and refuses an outside click', async () => {
@@ -114,8 +120,14 @@ describe('Dialog', () => {
     outside.focus();
     await act(async () => { container.querySelector<HTMLDialogElement>('[data-testid="stale-dialog"]')!.dispatchEvent(new Event('cancel', { bubbles: true, cancelable: true })); });
     expect(document.activeElement).toBe(outside);
-    const safe = await mount(<Harness><DialogTrigger {...unsafeProps}>Unsafe trigger</DialogTrigger><DialogClose {...unsafeProps} /></Harness>);
-    expect(safe.querySelector('.escape')).toBeNull();
-    expect(safe.querySelector('[role="link"]')).toBeNull();
+    const safe = await mount(<OverlayRoot><DialogRoot defaultOpen><DialogTrigger {...unsafeProps} data-testid="unsafe-trigger">Unsafe trigger</DialogTrigger><DialogContent title="Unsafe"><DialogClose {...unsafeProps} data-testid="unsafe-close" /></DialogContent></DialogRoot></OverlayRoot>);
+    const unsafeTrigger = safe.querySelector<HTMLButtonElement>('[data-testid="unsafe-trigger"]')!;
+    const unsafeClose = safe.querySelector<HTMLButtonElement>('[data-testid="unsafe-close"]')!;
+    expect(unsafeTrigger.getAttribute('class')).toBeNull();
+    expect(unsafeTrigger.getAttribute('role')).toBeNull();
+    expect(unsafeTrigger.getAttribute('style')).toBeNull();
+    expect(unsafeClose.getAttribute('class')).toBeNull();
+    expect(unsafeClose.getAttribute('role')).toBeNull();
+    expect(unsafeClose.getAttribute('style')).toBeNull();
   });
 });
