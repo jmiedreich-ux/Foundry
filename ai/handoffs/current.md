@@ -92,6 +92,8 @@ CG-M3-31 is accepted at M3 branch head `d4f7a6c`: Qwen authored the 144-line Emp
 
 CG-M3-32 is accepted at M3 branch head `5e8f8e8`: Qwen authored the 123-line LoadingSkeleton Chromium specification and completed one correction for root-level forbidden progress semantics; coordinator added the final `aria-valuetext` assertion after renewed review. Focused Chromium 5/5, TypeScript, static check, production build, and diff check passed. Full Chromium passed 68/68; PR #27 received independent milestone `APPROVE` and merged at `033c9e1`.
 
+- Post-M3 visual QA follow-up #28 is complete: PR #29 changed only the default skin, gallery layout CSS, and the existing field browser specification. It corrected danger and disabled contrast, control-owned horizontal padding, compact control padding, and long prose measure. TypeScript, static check, production build, full Chromium 68/68, and Impeccable source, desktop, and mobile scans passed; independent review approved `4252dde` before merge `8a648c6`.
+
 ## Exact next action
 
 Owner reviews and accepts the merged M3 Control Gallery; do not begin M4 without that approval.

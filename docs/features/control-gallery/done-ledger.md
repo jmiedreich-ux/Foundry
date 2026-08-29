@@ -33,7 +33,14 @@ Use `PASS`, `N/A (reason)`, or `UNTESTED`. Do not leave cells blank at milestone
 
 ## M3
 
-In progress. CG-M3-01 through CG-M3-08 are accepted on the M3 branch. Their focused component, TypeScript, static, production-build, scope, and independent-review gates passed. Real browser proof remains `UNTESTED` where it is owned by CG-M3-23 through CG-M3-30; Banner dismissal, restore, and focus proof specifically belong to CG-M3-29, and Toast announcement, close, and bounded-repeat proof to CG-M3-30.
+| Check | Status | Evidence / reason |
+| --- | --- | --- |
+| Control contracts and gallery examples | PASS | All 32 M3 packets were accepted and merged through PR #27. |
+| Browser behavior, keyboard operation, reset/recovery, long content, and narrow width | PASS | Full real Chromium suite passed 68/68 before PR #27 merged. |
+| TypeScript, static check, production build, and diff check | PASS | Passed on the merged M3 head. |
+| Default-skin visual QA | PASS | Follow-up issue #28 was resolved in reviewed PR #29. Impeccable source, 1280×800 desktop, and 390×844 mobile scans returned clean. |
+| Independent review | PASS | Packet and milestone review approved PR #27; the later default-skin follow-up received independent approval before PR #29 merged. |
+| Owner acceptance workbook | UNTESTED | Owner review of the merged M3 gallery is pending. |
 
 ## M4–M5
 
