@@ -861,6 +861,20 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Automated-gate escape | N/A — the required post-change gates were not reached. Coordinator inspection found an empty render-time registry validation and unavailable registry references in the abandoned draft. |
 | UNTESTED | All Tabs behavior is UNTESTED. The approved behavior will be re-sliced before another local dispatch. |
 
+#### CG-M4-06.2 — Tabs compound rendering
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #43 at `5fe3231`: internal TabsRoot, TabsList, TabsTrigger, and TabsPanel rendering from the accepted Qwen-authored composition model. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). Qwen remains the executor for later suitable packets. |
+| Final code ownership | Coordinator: 207 implementation lines and 230 focused-test lines retained across the two approved paths. |
+| Implementation elapsed time | 36m 48s from coordinator claim commit `975a9d3` (02:00:05) to final source commit `f153410` (02:36:53), excluding post-merge record synchronization. |
+| Rework and review | Five independent review rounds: four `REQUEST_CHANGES`, then `APPROVE`. Corrections added exact-one-list refusal, static ARIA/state refusal, controlled decline and delayed-acceptance focus handling, and an out-of-order controlled-parent race policy where the currently committed parent value is authoritative. |
+| Review impact | `R3` — repaired controlled focus/selection invariants, composition topology, and public runtime/type refusal coverage. |
+| Verification | Focused Tabs 9/9; full React 191/191; TypeScript, static check, production build, full existing Chromium 68/68, and diff check passed on final head. |
+| Automated-gate escape | Initial gates did not expose controlled-parent decline/delayed/out-of-order focus paths, static refusal of arbitrary `aria-*` and `data-selected`, or zero/multiple TabsList composition. Independent review added each as an executable regression. |
+| UNTESTED | Real gallery Tabs behavior is N/A for this internal packet; CG-M4-12 and CG-M4-20 own its gallery and Chromium specification. |
+
 ## M5
 
 Not started.

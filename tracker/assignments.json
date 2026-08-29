@@ -358,7 +358,7 @@
       "packet": "CG-M4-06",
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/navigation/tabs/**"],
-      "status": "in_progress"
+      "status": "completed"
     },
     {
       "packet": "CG-M4-06.1",
@@ -370,7 +370,7 @@
       "packet": "CG-M4-06.2",
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/navigation/tabs/tabs.tsx", "packages/react/src/navigation/tabs/tabs.test.tsx"],
-      "status": "in_progress"
+      "status": "completed"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
