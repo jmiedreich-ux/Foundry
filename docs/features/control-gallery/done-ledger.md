@@ -38,7 +38,7 @@ Use `PASS`, `N/A (reason)`, or `UNTESTED`. Do not leave cells blank at milestone
 | Control contracts and gallery examples | PASS | All 32 M3 packets were accepted and merged through PR #27. |
 | Browser behavior, keyboard operation, reset/recovery, long content, and narrow width | PASS | Full real Chromium suite passed 68/68 before PR #27 merged. |
 | TypeScript, static check, production build, and diff check | PASS | Passed on the merged M3 head. |
-| Default-skin visual QA | UNTESTED | Narrow scanner follow-up #28 passed, but owner feedback found broader hierarchy, rhythm, grouping, density, and polish defects. Issue #30 now owns independent visual acceptance before owner presentation. |
+| Default-skin visual QA | PASS | Owner feedback identified a post-merge presentation escape after #28's narrow scanner pass. Issue #30's visual brief, PR #31, clean Impeccable source/1440×900/390×844 scans, four required rendered viewports, and independent visual `APPROVE` resolved it. |
 | Independent review | PASS | Packet and milestone review approved PR #27; the later default-skin follow-up received independent approval before PR #29 merged. |
 | Owner acceptance workbook | UNTESTED | Owner review of the merged M3 gallery is pending. |
 

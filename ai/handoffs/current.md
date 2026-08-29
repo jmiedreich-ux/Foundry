@@ -96,6 +96,8 @@ CG-M3-32 is accepted at M3 branch head `5e8f8e8`: Qwen authored the 123-line Loa
 
 - Owner feedback found that the merged M3 gallery's overall spacing, hierarchy, grouping, density, and polish remain below its presentation bar despite passing behavior, browser, and narrow scanner gates. Issue #30 establishes CG-M3-V01 through V03: project-neutral visual authority first, then a coordinator-owned gallery/default-skin pass, then independent rendered-evidence review before one owner-ready final presentation. M4 remains blocked. The Front of House archive is a principles-only reference; no Vennusign source, tokens, styling, copy, or motifs may enter Foundry.
 
+- CG-M3-V02 is merged through PR #31 (`8a6246e`): coordinator-owned changes are limited to `ExampleFrame.tsx`, gallery layout CSS, and the default skin. The pass establishes distinct gallery/family/example/control/outcome levels, a two-column desktop and single-column narrow layout, composed navigation, grouped controls/outcomes, readable measures, and state treatments without API or behavior change. TypeScript, static check, production build, full Chromium 68/68, and Impeccable source/1440×900/390×844 scans passed. CG-M3-V03 independent review inspected full-gallery evidence at 1440×900, 1024×768, 768×1024, and 390×844 plus focused family views, returned `APPROVE`, and found no R3/R4 presentation defect. The sole remaining action is owner acceptance.
+
 ## Exact next action
 
-CG-M3-V02: implement the documented gallery-shell and default-skin presentation pass from issue #30; do not begin M4.
+CG-M3-V04: owner reviews the independently approved final Control Gallery presentation; do not begin M4.

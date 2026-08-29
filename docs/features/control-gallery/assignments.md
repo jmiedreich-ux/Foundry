@@ -58,6 +58,7 @@ For M3–M5, the named local runtime is **OpenCode 1.18.21 / Ollama `qwen3.6:27b
 | M3 follow-up | CG-M3-V01 | Visual-direction coordinator | Premium cloud coordinator | No | Visual brief, rubric, evidence process, and controlled records only. |
 | M3 follow-up | CG-M3-V02 | Gallery presentation coordinator | Premium cloud coordinator | No | Approved gallery-shell and default-skin presentation only; no public API or control behavior. |
 | M3 follow-up | CG-M3-V03 | Independent visual reviewer | Separate cloud reviewer | No | Rendered-evidence review and bounded correction decision only. |
+| M3 follow-up | CG-M3-V04 | Owner | Owner review | No | One final acceptance decision on the independently reviewed presentation. |
 | M4 | CG-M4-01 | Overlay-foundation specialist | Premium cloud coordinator | No | Overlay root, layer, and focus contract only. |
 | M4 | CG-M4-02 | Dialog contract specialist | Premium cloud coordinator | No | Dialog only. |
 | M4 | CG-M4-03 | Drawer agent | Local 24B–35B coding agent | Yes | Drawer only. |

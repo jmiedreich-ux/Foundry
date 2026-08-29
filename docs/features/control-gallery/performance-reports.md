@@ -711,7 +711,7 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 
 ### M3 milestone closeout
 
-All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final independent milestone review returned `APPROVE`. Final verification: full Chromium 68/68, TypeScript, static check, production build, and diff check all passed. Owner acceptance is `PENDING`; no post-merge QA escape is known at this point.
+All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final independent milestone review returned `APPROVE`. Final verification: full Chromium 68/68, TypeScript, static check, production build, and diff check all passed. Owner feedback later identified a presentation QA escape; issue #30 records its visual-completion remedy, merged in PR #31. Owner acceptance remains `PENDING`.
 
 ### M3 visual-completion follow-up
 
@@ -727,6 +727,32 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Review impact | N/A (no rendered implementation in this packet). |
 | Verification | JSON parse of `tracker/assignments.json` and `workstream.json`, plus `git diff --check`, passed before the authority-record commit. |
 | UNTESTED | All rendered presentation criteria; CG-M3-V02 and CG-M3-V03 own implementation and independent visual evidence. |
+
+#### CG-M3-V02 — Gallery presentation pass
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #31 at `8a6246e`; distinct presentation hierarchy and responsive gallery rhythm without public API, behavior, M4, or Front of House scope. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: all 253 additions and 21 deletions across `ExampleFrame.tsx`, `styles.css`, and `default.css`. |
+| Implementation elapsed time | N/A (not separately captured). |
+| Rework and review | Automated gates first caught a generic input selector overriding the invalid border; it was repaired before the passing full run. Impeccable then identified a side-tab accent, tight leading, overlong feedback prose, and colored hover glow; each was corrected before independent review. Independent review returned `APPROVE` unchanged. |
+| Review impact | `R0` — approved unchanged; pre-review self-correction resolved all automated findings. |
+| Verification | TypeScript, static check, production build, `git diff --check`, full Chromium 68/68, and Impeccable source/1440×900/390×844 scans passed. |
+| UNTESTED | Owner final presentation acceptance only. |
+
+#### CG-M3-V03 — Independent visual review
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Independent cloud reviewer returned `APPROVE` on exact source head `805f950`, now merged through PR #31. |
+| Assigned / actual executor | Independent cloud visual reviewer / separate cloud reviewer. |
+| Final code ownership | N/A (review-only packet). |
+| Implementation elapsed time | N/A (review-only packet). |
+| Rework and review | The reviewer inspected required full-gallery evidence at 1440×900, 1024×768, 768×1024, and 390×844 and focused Actions, Inputs, Feedback views. It found no R3/R4 presentation defect and requested no correction. |
+| Review impact | `R0` — approved unchanged. |
+| Verification | Reviewer confirmed scope stayed within the three declared V02 files and confirmed `git diff --check`; coordinator gates are recorded under V02. |
+| UNTESTED | Owner final presentation acceptance only. |
 
 ## M4
 

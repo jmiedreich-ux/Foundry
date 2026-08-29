@@ -2,12 +2,12 @@
 
 ## Current feature
 
-Control Gallery — Milestone 3: actions, choices, search, and feedback, behavior merged; visual-completion follow-up active.
+Control Gallery — Milestone 3: actions, choices, search, and feedback, behavior and visual-completion follow-up merged; final owner acceptance pending.
 
 ## Current state
 
-All 32 Control Gallery M3 packets are merged through PR #27 after independent packet and milestone review. Full Chromium passed 68/68; TypeScript, static check, production build, and diff check passed. Owner feedback identified presentation defects beyond the narrow scanner findings, so issue #30 now owns the visual-completion gate before final owner acceptance.
+All 32 Control Gallery M3 packets are merged through PR #27 after independent packet and milestone review. Full Chromium passed 68/68; TypeScript, static check, production build, and diff check passed. Owner feedback identified a presentation escape beyond the narrow scanner findings; issue #30's visual-completion pass merged through PR #31 after clean Impeccable scans and independent rendered-evidence approval. Final owner acceptance is pending.
 
 ## Next action
 
-CG-M3-V02: implement the documented gallery-shell and default-skin presentation pass, then complete independent rendered-evidence review; do not begin M4.
+CG-M3-V04: owner reviews the independently approved final Control Gallery presentation; do not begin M4.

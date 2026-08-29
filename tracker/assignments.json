@@ -310,13 +310,19 @@
       "packet": "CG-M3-V02",
       "owner": "Codex coordinator (cloud)",
       "paths": ["apps/lab/src/GalleryLayout.tsx", "apps/lab/src/ExampleFrame.tsx", "apps/lab/src/styles.css", "packages/tokens/src/skins/default.css"],
-      "status": "in_progress"
+      "status": "completed"
     },
     {
       "packet": "CG-M3-V03",
       "owner": "Independent cloud visual reviewer",
       "paths": ["generated visual-review evidence", "GitHub issue #30"],
-      "status": "planned"
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M3-V04",
+      "owner": "Owner",
+      "paths": ["final Control Gallery presentation"],
+      "status": "awaiting_owner"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
