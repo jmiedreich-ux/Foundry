@@ -44,4 +44,4 @@ Use `PASS`, `N/A (reason)`, or `UNTESTED`. Do not leave cells blank at milestone
 
 ## M4–M5
 
-Not started. Each milestone adds a complete check table before implementation begins.
+M4 is in progress. CG-M4-01 through CG-M4-06 are merged; M4's complete check table is added at milestone close. M5 has not started.
