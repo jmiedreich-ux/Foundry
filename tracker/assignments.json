@@ -341,6 +341,12 @@
       "owner": "Qwen (local)",
       "paths": ["packages/react/src/overlays/drawer/**"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M4-04",
+      "owner": "Qwen (local)",
+      "paths": ["packages/react/src/overlays/popover/**"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

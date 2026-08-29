@@ -769,6 +769,12 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 
 ## M4
 
+### M4 local-routing forecast
+
+| Packet | Planned executor/runtime | Code-bearing paths | Estimated changed lines | Why local or cloud | Preflight command and expected result | Actual executor/runtime at dispatch | Preflight result and timestamp | Maximum corrections |
+| --- | --- | --- | ---: | --- | --- | --- | --- | ---: |
+| CG-M4-04 | Qwen / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | `packages/react/src/overlays/popover/**` | 100–140 | One internal control in an already reviewed overlay contract; no shared foundation, export, gallery, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → PASS | Qwen / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | PASS — 2026-08-28T22:51:45-04:00 | 1 |
+
 #### CG-M4-01 — Overlay foundation
 
 | Measure | Result |
