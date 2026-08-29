@@ -848,6 +848,19 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Automated-gate escape | The initial full gate did not prove stale-trigger recovery, Space activation, post-movement roving state, outside close removal, or non-function controlled callback refusal; independent review found all five. |
 | UNTESTED | Real Menu gallery Chromium behavior is N/A in this internal source packet; CG-M4-11 and CG-M4-19 own that path. |
 
+#### CG-M4-06 — Tabs (first local attempt; not accepted)
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Rejected before review. Qwen stopped without the required commit or focused test file; no source from this attempt is accepted. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b` at 65,536 context and 100% GPU. |
+| Files changed | One uncommitted allowed-path draft only: `packages/react/src/navigation/tabs/tabs.tsx` (6,985 bytes). |
+| Implementation elapsed time | Approximately 10 minutes from dispatch; the runner did not provide a successful completion handoff. |
+| Rework and review | 0 / 0. The packet's no-commit escalation rule prevents a correction of this full-packet attempt. |
+| Verification | Baseline TypeScript, static check, production build, and diff preflight passed before dispatch. Qwen did not produce a test file, required commit, or acceptable post-change gate evidence. |
+| Automated-gate escape | N/A — the required post-change gates were not reached. Coordinator inspection found an empty render-time registry validation and unavailable registry references in the abandoned draft. |
+| UNTESTED | All Tabs behavior is UNTESTED. The approved behavior will be re-sliced before another local dispatch. |
+
 ## M5
 
 Not started.
