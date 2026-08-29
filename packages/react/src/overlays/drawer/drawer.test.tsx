@@ -133,6 +133,21 @@ describe('Drawer', () => {
     expect(unsafeClose.getAttribute('style')).toBeNull();
   });
 
+  it('does not restore an inferred trigger when it starts open without a trigger interaction', async () => {
+    const inferredTrigger = document.createElement('button');
+    const currentFocus = document.createElement('button');
+    document.body.append(inferredTrigger, currentFocus);
+    inferredTrigger.focus();
+    const container = await mount(<OverlayRoot><DrawerRoot defaultOpen><DrawerTrigger>Open</DrawerTrigger><DrawerContent title="Open without capture"><DrawerClose data-testid="uncaptured-close" /></DrawerContent></DrawerRoot></OverlayRoot>);
+    currentFocus.focus();
+
+    await act(async () => { container.querySelector<HTMLButtonElement>('[data-testid="uncaptured-close"]')!.click(); });
+
+    expect(document.activeElement).toBe(currentFocus);
+    inferredTrigger.remove();
+    currentFocus.remove();
+  });
+
   it('exposes side attribute and controlled/uncontrolled conflict', async () => {
     const container = await mount(<OverlayRoot><DrawerRoot defaultOpen side="start"><DrawerTrigger>Open</DrawerTrigger><DrawerContent data-testid="drawer" title="Side" /></DrawerRoot></OverlayRoot>);
     expect(container.querySelector<HTMLDialogElement>('[data-testid="drawer"]')?.getAttribute('data-drawer-side')).toBe('start');
