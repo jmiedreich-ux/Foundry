@@ -713,6 +713,21 @@ CG-M3-01 is accepted at branch commit `2fb0008`: component checks 4/4, TypeScrip
 
 All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final independent milestone review returned `APPROVE`. Final verification: full Chromium 68/68, TypeScript, static check, production build, and diff check all passed. Owner acceptance is `PENDING`; no post-merge QA escape is known at this point.
 
+### M3 visual-completion follow-up
+
+#### CG-M3-V01 — Visual brief and review gate
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Accepted as the documented authority at `1559ffa`; it records the presentation boundary, visual brief, independent-review rubric, and owner-final-review sequence in issue #30 and the M3 feature records. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | N/A (documentation and controlled records only). |
+| Implementation elapsed time | N/A (not separately captured). |
+| Rework and review | No implementation rework. Independent rendered-evidence review is deliberately owned by CG-M3-V03 after a visual implementation exists. |
+| Review impact | N/A (no rendered implementation in this packet). |
+| Verification | JSON parse of `tracker/assignments.json` and `workstream.json`, plus `git diff --check`, passed before the authority-record commit. |
+| UNTESTED | All rendered presentation criteria; CG-M3-V02 and CG-M3-V03 own implementation and independent visual evidence. |
+
 ## M4
 
 Not started.

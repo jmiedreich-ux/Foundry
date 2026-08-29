@@ -304,13 +304,13 @@
       "packet": "CG-M3-V01",
       "owner": "Codex coordinator (cloud)",
       "paths": ["docs/features/control-gallery/milestones/m3.md", "docs/features/control-gallery/decisions.md", "docs/features/control-gallery/question-register.md", "docs/features/control-gallery/assignments.md", "docs/features/control-gallery/performance-reports.md"],
-      "status": "in_progress"
+      "status": "completed"
     },
     {
       "packet": "CG-M3-V02",
       "owner": "Codex coordinator (cloud)",
       "paths": ["apps/lab/src/GalleryLayout.tsx", "apps/lab/src/ExampleFrame.tsx", "apps/lab/src/styles.css", "packages/tokens/src/skins/default.css"],
-      "status": "planned"
+      "status": "in_progress"
     },
     {
       "packet": "CG-M3-V03",

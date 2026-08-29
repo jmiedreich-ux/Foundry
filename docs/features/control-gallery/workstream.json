@@ -3,7 +3,7 @@
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
   "position": "M1 and M2 are accepted and closed. M3 behavior is merged through PR #27; visual-completion follow-up #30 is active before owner presentation.",
-  "next": "CG-M3-V01: approve the gallery visual brief and evidence rubric, then implement and independently review the presentation pass; do not begin M4.",
+  "next": "CG-M3-V02: implement the documented gallery-shell and default-skin presentation pass, then obtain independent rendered-evidence review; do not begin M4.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" },

@@ -10,4 +10,4 @@ All 32 Control Gallery M3 packets are merged through PR #27 after independent pa
 
 ## Next action
 
-CG-M3-V01: approve the visual brief and evidence rubric in issue #30, then complete the internally reviewed presentation pass; do not begin M4.
+CG-M3-V02: implement the documented gallery-shell and default-skin presentation pass, then complete independent rendered-evidence review; do not begin M4.

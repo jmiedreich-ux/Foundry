@@ -98,4 +98,4 @@ CG-M3-32 is accepted at M3 branch head `5e8f8e8`: Qwen authored the 123-line Loa
 
 ## Exact next action
 
-CG-M3-V01: complete the owner-reviewable gallery visual brief and evidence rubric in issue #30; do not begin M4.
+CG-M3-V02: implement the documented gallery-shell and default-skin presentation pass from issue #30; do not begin M4.
