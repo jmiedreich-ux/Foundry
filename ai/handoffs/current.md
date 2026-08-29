@@ -94,6 +94,8 @@ CG-M3-32 is accepted at M3 branch head `5e8f8e8`: Qwen authored the 123-line Loa
 
 - Post-M3 visual QA follow-up #28 is complete: PR #29 changed only the default skin, gallery layout CSS, and the existing field browser specification. It corrected danger and disabled contrast, control-owned horizontal padding, compact control padding, and long prose measure. TypeScript, static check, production build, full Chromium 68/68, and Impeccable source, desktop, and mobile scans passed; independent review approved `4252dde` before merge `8a648c6`.
 
+- Owner feedback found that the merged M3 gallery's overall spacing, hierarchy, grouping, density, and polish remain below its presentation bar despite passing behavior, browser, and narrow scanner gates. Issue #30 establishes CG-M3-V01 through V03: project-neutral visual authority first, then a coordinator-owned gallery/default-skin pass, then independent rendered-evidence review before one owner-ready final presentation. M4 remains blocked. The Front of House archive is a principles-only reference; no Vennusign source, tokens, styling, copy, or motifs may enter Foundry.
+
 ## Exact next action
 
-Owner reviews and accepts the merged M3 Control Gallery; do not begin M4 without that approval.
+CG-M3-V01: complete the owner-reviewable gallery visual brief and evidence rubric in issue #30; do not begin M4.
