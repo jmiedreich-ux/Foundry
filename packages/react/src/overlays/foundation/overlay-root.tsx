@@ -148,11 +148,6 @@ function useOverlayRoot() {
   return value;
 }
 
-function activeElementFor(document: Document | undefined) {
-  const activeElement = document?.activeElement;
-  return activeElement instanceof HTMLElement ? activeElement : null;
-}
-
 export interface UseOverlayLayerOptions {
   open: boolean;
   id?: string;
@@ -175,7 +170,7 @@ export function useOverlayLayer({ open, id: suppliedId, trigger }: UseOverlayLay
     }
 
     if (!capturedTrigger.current) {
-      capturedTrigger.current = trigger ?? activeElementFor(globalThis.document);
+      capturedTrigger.current = trigger ?? null;
     }
 
     return registerLayer({ id, trigger: capturedTrigger.current });
