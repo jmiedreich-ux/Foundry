@@ -121,6 +121,19 @@ describe('Tabs', () => {
     expect(selected(controlled)).toBe(controlledThree);
   });
 
+  it('keeps focus on the committed controlled selection when a parent declines a keyboard request', async () => {
+    const requests = vi.fn();
+    const host = await mount(<Tabs controlled={{ value: 'one', onValueChange: requests }} />);
+    const one = host.querySelector<HTMLButtonElement>('[data-testid="one"]')!;
+    one.focus();
+
+    await key(one, 'ArrowRight');
+
+    expect(requests).toHaveBeenCalledWith('two');
+    expect(selected(host)).toBe(one);
+    expect(document.activeElement).toBe(one);
+  });
+
   it('refuses invalid root modes and invalid tab compositions', async () => {
     const mixed = { value: 'one', defaultValue: 'one', onValueChange: () => {} } as unknown as TabsRootProps;
     const missingCallback = { value: 'one' } as unknown as TabsRootProps;
@@ -131,10 +144,17 @@ describe('Tabs', () => {
     await expect(mount(<TabsRoot defaultValue="" />)).rejects.toThrow('non-empty defaultValue');
     await expect(mount(<TabsRoot defaultValue="two"><TabsList label="Sections"><TabsTrigger value="one">One</TabsTrigger><TabsTrigger value="two" disabled>Two</TabsTrigger></TabsList><TabsPanel value="one">One</TabsPanel><TabsPanel value="two">Two</TabsPanel></TabsRoot>)).rejects.toThrow('selected value is disabled');
     await expect(mount(<TabsRoot defaultValue="one"><TabsList label="Sections"><TabsTrigger value="one">One</TabsTrigger></TabsList><TabsPanel value="two">Two</TabsPanel></TabsRoot>)).rejects.toThrow('matching panel');
+    await expect(mount(<TabsRoot defaultValue="one"><TabsTrigger value="one">One</TabsTrigger><TabsPanel value="one">One</TabsPanel></TabsRoot>)).rejects.toThrow('exactly one TabsList');
+    await expect(mount(<TabsRoot defaultValue="one"><TabsList label="First"><TabsTrigger value="one">One</TabsTrigger></TabsList><TabsList label="Second"><TabsPanel value="one">One</TabsPanel></TabsList></TabsRoot>)).rejects.toThrow('exactly one TabsList');
   });
 
   it('refuses runtime semantic, ARIA, state, and styling overrides', async () => {
     expectTypeOf<TabsTriggerProps>().toMatchTypeOf<{ className?: never; role?: never; style?: never }>();
+    expectTypeOf<TabsTriggerProps>().not.toMatchTypeOf<{ 'aria-label': string }>();
+    expectTypeOf<TabsTriggerProps>().not.toMatchTypeOf<{ 'data-selected': string }>();
+    expectTypeOf<TabsPanelProps>().not.toMatchTypeOf<{ 'aria-label': string }>();
+    expectTypeOf<TabsPanelProps>().not.toMatchTypeOf<{ 'data-selected': string }>();
+    expectTypeOf<TabsListProps>().not.toMatchTypeOf<{ 'aria-label': string }>();
     const unsafeList = { role: 'presentation', 'aria-label': 'Wrong', className: 'bad', style: { color: 'red' } } as unknown as TabsListProps;
     const unsafeTrigger = { role: 'switch', 'aria-controls': 'wrong', 'aria-selected': false, 'data-selected': 'wrong', className: 'bad', style: { color: 'red' } } as unknown as TabsTriggerProps;
     const unsafePanel = { role: 'dialog', 'aria-labelledby': 'wrong', hidden: false, 'data-selected': 'wrong', className: 'bad', style: { color: 'red' } } as unknown as TabsPanelProps;
