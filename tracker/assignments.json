@@ -371,6 +371,12 @@
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/navigation/tabs/tabs.tsx", "packages/react/src/navigation/tabs/tabs.test.tsx"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M4-07",
+      "owner": "Qwen (local)",
+      "paths": ["packages/react/src/navigation/card/card.tsx", "packages/react/src/navigation/card/card.test.tsx", "packages/react/src/navigation/card/index.ts"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

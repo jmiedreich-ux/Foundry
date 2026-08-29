@@ -121,4 +121,4 @@ CG-M4-06.1 merged through PR #41 (`78672aa`). Qwen authored the pure 109-line co
 
 Standing owner direction: continue CG-M4 packets in their approved order after each accepted merge and record synchronization without awaiting a per-packet confirmation. Stop only for missing approved design authority, failed verification, a required review correction, an external blocker, or an owner pause.
 
-CG-M4-07: prepare the bounded Card contract and Qwen delivery packet. Do not dispatch Maestro; leave all later M4 ownership assignments unchanged.
+CG-M4-07: Card authority is merged through PR #44 (`c98a94e`); Qwen is implementing the approved bounded Card packet in `packages/react/src/navigation/card/card.tsx`, `card.test.tsx`, and `index.ts` only. Do not dispatch Maestro; leave all later M4 ownership assignments unchanged. After acceptance, move directly to CG-M4-08.

@@ -10,4 +10,4 @@ M1–M3 are accepted and closed. CG-M4-01 through CG-M4-06 are merged through PR
 
 ## Next action
 
-CG-M4-07: prepare the bounded Card contract and Qwen delivery packet; do not route it to Maestro.
+CG-M4-07: Qwen is implementing the approved bounded Card packet; do not route it to Maestro.
