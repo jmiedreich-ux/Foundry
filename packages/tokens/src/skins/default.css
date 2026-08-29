@@ -1,21 +1,21 @@
 :root,
 [data-foundry-skin="default"] {
-  --foundry-color-canvas: #f8fafc;
+  --foundry-color-canvas: #f4f7fb;
   --foundry-color-surface: #ffffff;
   --foundry-color-text: #182230;
   --foundry-color-muted: #526176;
-  --foundry-color-border: #cbd5e1;
+  --foundry-color-border: #d5dde8;
   --foundry-color-action: #2563eb;
   --foundry-color-danger: #b91c1c;
   --foundry-color-success: #166534;
   --foundry-focus-ring: #93c5fd;
-  --foundry-radius-control: 7px;
-  --foundry-radius-surface: 10px;
+  --foundry-radius-control: 8px;
+  --foundry-radius-surface: 12px;
   --foundry-space-1: 4px;
   --foundry-space-2: 8px;
   --foundry-space-3: 12px;
   --foundry-space-4: 16px;
-  --foundry-shadow-surface: 0 8px 24px rgb(15 23 42 / 10%);
+  --foundry-shadow-surface: 0 1px 2px rgb(15 23 42 / 6%), 0 8px 20px rgb(15 23 42 / 6%);
   --foundry-motion-fast: 150ms;
 }
 
@@ -40,14 +40,22 @@
 }
 
 :where(:root, [data-foundry-skin="default"]) button[data-variant] {
+  min-height: calc(var(--foundry-space-4) * 2 + var(--foundry-space-1));
   border: 1px solid transparent;
   border-radius: var(--foundry-radius-control);
   padding: var(--foundry-space-2) var(--foundry-space-3);
+  font-weight: 600;
+  line-height: 1.35;
+  transition: background-color var(--foundry-motion-fast) ease, border-color var(--foundry-motion-fast) ease, box-shadow var(--foundry-motion-fast) ease;
 }
 
 :where(:root, [data-foundry-skin="default"]) button[data-variant="primary"] {
   background: var(--foundry-color-action);
   color: #fff;
+}
+
+:where(:root, [data-foundry-skin="default"]) button[data-variant="primary"]:hover:not(:disabled) {
+  background: #1d4ed8;
 }
 
 :where(:root, [data-foundry-skin="default"]) button[data-variant="secondary"] {
@@ -56,9 +64,17 @@
   color: var(--foundry-color-text);
 }
 
+:where(:root, [data-foundry-skin="default"]) button[data-variant="secondary"]:hover:not(:disabled) {
+  background: #f1f5f9;
+}
+
 :where(:root, [data-foundry-skin="default"]) button[data-variant="destructive"] {
   background: var(--foundry-color-danger);
   color: #fff;
+}
+
+:where(:root, [data-foundry-skin="default"]) button[data-variant="destructive"]:hover:not(:disabled) {
+  background: #991b1b;
 }
 
 :where(:root, [data-foundry-skin="default"]) button[data-variant="link"] {
@@ -67,12 +83,32 @@
   text-decoration: underline;
 }
 
-:where(:root, [data-foundry-skin="default"]) input[data-control="search"] {
+:where(:root, [data-foundry-skin="default"]) button:not([data-variant]) {
+  min-height: calc(var(--foundry-space-4) * 2 + var(--foundry-space-1));
   border: 1px solid var(--foundry-color-border);
   border-radius: var(--foundry-radius-control);
   background: var(--foundry-color-surface);
   color: var(--foundry-color-text);
   padding: var(--foundry-space-2) var(--foundry-space-3);
+  font-weight: 600;
+}
+
+:where(:root, [data-foundry-skin="default"]) :is(input[type="text"], input[data-control="search"], select) {
+  width: min(100%, 34rem);
+  min-height: calc(var(--foundry-space-4) * 2 + var(--foundry-space-1));
+  border: 1px solid var(--foundry-color-border);
+  border-radius: var(--foundry-radius-control);
+  background: var(--foundry-color-surface);
+  color: var(--foundry-color-text);
+  padding: var(--foundry-space-2) var(--foundry-space-3);
+}
+
+:where(:root, [data-foundry-skin="default"]) :is(input[type="text"], input[data-control="search"], select)[data-invalid] {
+  border-color: var(--foundry-color-danger);
+}
+
+:where(:root, [data-foundry-skin="default"]) input[data-control="search"] {
+  padding-right: calc(var(--foundry-space-4) * 3);
 }
 
 :where(:root, [data-foundry-skin="default"]) button[data-search-clear] {
@@ -90,6 +126,45 @@
   background: var(--foundry-color-surface);
   color: var(--foundry-color-text);
   padding: var(--foundry-space-2);
+}
+
+:where(:root, [data-foundry-skin="default"]) :is(input[type="checkbox"], input[type="radio"]) {
+  inline-size: 1.1rem;
+  block-size: 1.1rem;
+  accent-color: var(--foundry-color-action);
+  vertical-align: text-bottom;
+}
+
+:where(:root, [data-foundry-skin="default"]) input[role="switch"] {
+  inline-size: 2.5rem;
+  block-size: 1.35rem;
+}
+
+:where(:root, [data-foundry-skin="default"]) fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: var(--foundry-space-3);
+  border: 1px solid var(--foundry-color-border);
+  border-radius: var(--foundry-radius-control);
+}
+
+:where(:root, [data-foundry-skin="default"]) legend {
+  padding: 0 var(--foundry-space-1);
+  color: var(--foundry-color-muted);
+  font-weight: 600;
+}
+
+:where(:root, [data-foundry-skin="default"]) label {
+  color: var(--foundry-color-text);
+}
+
+:where(:root, [data-foundry-skin="default"]) [data-size] > label {
+  font-weight: 600;
+}
+
+:where(:root, [data-foundry-skin="default"]) :is([data-invalid]) + [role="alert"], [role="alert"] {
+  color: var(--foundry-color-danger);
+  font-weight: 600;
 }
 
 :where(:root, [data-foundry-skin="default"]) :is([data-control="status-chip"], [data-control="banner"], [data-control="toast"])[data-tone="success"] {
@@ -116,6 +191,10 @@
   background: var(--foundry-color-surface);
   color: var(--foundry-color-text);
   padding: var(--foundry-space-3);
+}
+
+:where(:root, [data-foundry-skin="default"]) :is([data-control="banner"], [data-control="toast"], [data-control="empty-state"]) p {
+  max-inline-size: 72ch;
 }
 
 :where(:root, [data-foundry-skin="default"]) [data-control="toast"] {
