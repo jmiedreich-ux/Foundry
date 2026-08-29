@@ -834,6 +834,20 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Self-correction before review | Qwen correction repaired the controlled/refusal/Tab tests but left native-toggle failure and no required commit. |
 | UNTESTED | Real Popover light/outside-dismissal and recovery in the gallery browser are N/A for this source packet; CG-M4-10 and CG-M4-18 own that behavior. |
 
+#### CG-M4-05 — Menu
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #38 at `3dcd8f9`: internal compound Menu keyboard and dismissal contract. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: 119 implementation lines and 231 focused-test lines retained; no local-agent code. |
+| Implementation elapsed time | 3m 43s from initial scoped source commit `b83f8a1` to final accepted source commit `8b8e16d`; the separately merged PR #37 foundation correction preceded the Menu rebase. |
+| Rework and review | Two Menu correction commits and three independent review rounds. First review required stale-trigger, Space, exact roving-state, and outside-close proof; renewed review required immediate refusal of a non-function controlled callback; final review approved. |
+| Review impact | `R3` — closed recovery, keyboard, and runtime-refusal proofs absent from the first passing gate. |
+| Verification | Focused Menu 8/8; full React suite 170/170; TypeScript, static check, production build, full existing Chromium 68/68, and diff check passed. |
+| Automated-gate escape | The initial full gate did not prove stale-trigger recovery, Space activation, post-movement roving state, outside close removal, or non-function controlled callback refusal; independent review found all five. |
+| UNTESTED | Real Menu gallery Chromium behavior is N/A in this internal source packet; CG-M4-11 and CG-M4-19 own that path. |
+
 ## M5
 
 Not started.

@@ -6,8 +6,8 @@ Control Gallery — Milestone 4: overlay and navigation controls, in progress.
 
 ## Current state
 
-M1–M3 are accepted and closed. CG-M4-01 through CG-M4-04 are merged through PRs #32, #33, #34, and #36 after independent review. CG-M4-05 Menu is claimed by the coordinator under its approved keyboard/dismissal contract; no later M4 packet has started.
+M1–M3 are accepted and closed. CG-M4-01 through CG-M4-05 are merged through PRs #32, #33, #34, #36, and #38 after independent review. CG-M4-06 Tabs has no approved behavioral contract yet, so its local implementation is not claimed or dispatched.
 
 ## Next action
 
-CG-M4-05: implement only `packages/react/src/overlays/menu/**`, then run its focused and full gates before independent review; do not start a later M4 packet.
+CG-M4-06: record the bounded Tabs behavioral contract and obtain its independent design review before claiming or dispatching `packages/react/src/navigation/tabs/**`.

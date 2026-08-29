@@ -352,7 +352,13 @@
       "packet": "CG-M4-05",
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/overlays/menu/**"],
-      "status": "in_progress"
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M4-06",
+      "owner": "Qwen (local)",
+      "paths": ["packages/react/src/navigation/tabs/**"],
+      "status": "planned"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
