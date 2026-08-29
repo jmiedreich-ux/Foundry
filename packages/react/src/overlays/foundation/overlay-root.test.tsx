@@ -49,6 +49,7 @@ function Layer({ id, open, onClose }: { id: string; open: boolean; onClose: () =
       {open ? (
         <section data-testid={`${id}-layer`} data-top={isTopLayer ? '' : undefined}>
           <button data-testid={`${id}-inside`}>Inside {id}</button>
+          <button data-testid={`${id}-clear-trigger`} onClick={() => captureTrigger(null)}>Clear {id} trigger</button>
           <button data-testid={`${id}-close`} onClick={onClose}>Close {id}</button>
         </section>
       ) : null}
@@ -132,6 +133,25 @@ describe('overlay foundation', () => {
     expect(document.activeElement).toBe(currentFocus);
     inferredTrigger.remove();
     currentFocus.remove();
+  });
+
+  it('allows an open layer to clear restoration without changing focus', async () => {
+    const close = () => {};
+    const container = await mount(<LayerHarness firstOpen={false} secondOpen={false} closeFirst={close} closeSecond={close} />);
+    const trigger = container.querySelector<HTMLButtonElement>('[data-testid="first-trigger"]')!;
+    trigger.click();
+    await act(async () => {
+      mountedRoots[0].root.render(<LayerHarness firstOpen secondOpen={false} closeFirst={close} closeSecond={close} />);
+    });
+    const outside = document.createElement('button');
+    document.body.append(outside);
+    await act(async () => { container.querySelector<HTMLButtonElement>('[data-testid="first-clear-trigger"]')!.click(); });
+    outside.focus();
+    await act(async () => {
+      mountedRoots[0].root.render(<LayerHarness firstOpen={false} secondOpen={false} closeFirst={close} closeSecond={close} />);
+    });
+    expect(document.activeElement).toBe(outside);
+    outside.remove();
   });
 
   it('restores only connected, enabled, non-inert triggers', () => {

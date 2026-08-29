@@ -113,7 +113,7 @@ export function OverlayRoot({ children }: PropsWithChildren) {
       throw new Error(`Overlay layer "${layer.id}" is already registered.`);
     }
 
-    const registeredLayer = { ...layer };
+    const registeredLayer = layer;
     const nextLayers = [...layersRef.current, registeredLayer];
     layersRef.current = nextLayers;
     setLayers(nextLayers);
@@ -159,9 +159,13 @@ export function useOverlayLayer({ open, id: suppliedId, trigger }: UseOverlayLay
   const id = suppliedId ?? generatedId;
   const { layers, registerLayer } = useOverlayRoot();
   const capturedTrigger = useRef<HTMLElement | null>(trigger ?? null);
+  const activeLayer = useRef<OverlayLayerRecord | null>(null);
 
   const captureTrigger = useCallback((nextTrigger: HTMLElement | null) => {
     capturedTrigger.current = nextTrigger;
+    if (activeLayer.current) {
+      activeLayer.current.trigger = nextTrigger;
+    }
   }, []);
 
   useEffect(() => {
@@ -173,7 +177,13 @@ export function useOverlayLayer({ open, id: suppliedId, trigger }: UseOverlayLay
       capturedTrigger.current = trigger ?? null;
     }
 
-    return registerLayer({ id, trigger: capturedTrigger.current });
+    const layer = { id, trigger: capturedTrigger.current };
+    activeLayer.current = layer;
+    const unregister = registerLayer(layer);
+    return () => {
+      activeLayer.current = null;
+      unregister();
+    };
   }, [id, open, registerLayer]);
 
   return {
