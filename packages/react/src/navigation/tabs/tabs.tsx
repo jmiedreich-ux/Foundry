@@ -102,27 +102,37 @@ export function TabsRoot({ children, defaultValue, onValueChange, value }: TabsR
   const baseId = useId().replaceAll(':', '');
   const triggerRefs = useRef(new Map<string, HTMLButtonElement>());
   const pendingFocus = useRef<string | null>(null);
-  const select = useCallback((nextValue: string) => {
+  const keyboardRequestPending = useRef(false);
+  const previousSelectedValue = useRef(selectedValue);
+  const requestSelection = useCallback((nextValue: string, focusOnCommit: boolean) => {
     const next = triggers.find((trigger) => trigger.value === nextValue);
     if (!next || next.disabled) return;
-    pendingFocus.current = null;
+    pendingFocus.current = focusOnCommit ? nextValue : null;
+    keyboardRequestPending.current = focusOnCommit;
     if (!controlled) setUncontrolledValue(nextValue);
     onValueChange?.(nextValue);
   }, [controlled, onValueChange, triggers]);
+  const select = useCallback((nextValue: string) => requestSelection(nextValue, false), [requestSelection]);
   const setTriggerRef = useCallback((tabValue: string, node: HTMLButtonElement | null) => {
     if (node) triggerRefs.current.set(tabValue, node);
     else triggerRefs.current.delete(tabValue);
   }, []);
   useLayoutEffect(() => {
-    if (pendingFocus.current !== selectedValue) return;
-    triggerRefs.current.get(selectedValue)?.focus({ preventScroll: true });
-    pendingFocus.current = null;
-  }, [selectedValue]);
+    const selectionChanged = previousSelectedValue.current !== selectedValue;
+    previousSelectedValue.current = selectedValue;
+    if (pendingFocus.current === selectedValue) {
+      triggerRefs.current.get(selectedValue)?.focus({ preventScroll: true });
+      pendingFocus.current = null;
+      return;
+    }
+    if (controlled && keyboardRequestPending.current && selectionChanged) {
+      triggerRefs.current.get(selectedValue)?.focus({ preventScroll: true });
+    }
+  }, [controlled, selectedValue]);
   const move = useCallback((currentValue: string, key: TabKey) => {
     const nextValue = moveTabSelection(triggers, currentValue, key);
-    select(nextValue);
-    pendingFocus.current = nextValue;
-  }, [select, triggers]);
+    requestSelection(nextValue, true);
+  }, [requestSelection, triggers]);
   const idIndex = useCallback((tabValue: string) => triggers.findIndex((trigger) => trigger.value === tabValue), [triggers]);
   const triggerId = useCallback((tabValue: string) => `${baseId}-tab-${idIndex(tabValue)}`, [baseId, idIndex]);
   const panelId = useCallback((tabValue: string) => `${baseId}-panel-${idIndex(tabValue)}`, [baseId, idIndex]);

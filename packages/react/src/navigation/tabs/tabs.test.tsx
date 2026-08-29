@@ -153,7 +153,7 @@ describe('Tabs', () => {
     expect(document.activeElement).toBe(two);
   });
 
-  it('focuses only the latest accepted controlled keyboard request when commits arrive out of order', async () => {
+  it('treats each committed controlled value as authoritative when keyboard requests resolve out of order', async () => {
     const commits: Array<() => void> = [];
     function DeferredTabs() {
       const [value, setValue] = useState('one');
@@ -167,13 +167,12 @@ describe('Tabs', () => {
 
     await key(one, 'ArrowRight');
     await key(one, 'ArrowLeft');
-    await act(async () => commits[0]!());
-    expect(selected(host)).toBe(two);
-    expect(document.activeElement).toBe(one);
     await act(async () => commits[1]!());
-
     expect(selected(host)).toBe(three);
     expect(document.activeElement).toBe(three);
+    await act(async () => commits[0]!());
+    expect(selected(host)).toBe(two);
+    expect(document.activeElement).toBe(two);
   });
 
   it('refuses invalid root modes and invalid tab compositions', async () => {
