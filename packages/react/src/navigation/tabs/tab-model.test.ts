@@ -12,7 +12,8 @@ describe('validateTabsComposition', () => {
 	it('throws for empty triggers or panels', () => {
 		expect(() => validateTabsComposition([], ['a'], '')).toThrow();
 		expect(() => validateTabsComposition([{ value: 'a' }], [], '')).toThrow();
-		expect(() => validateTabsComposition([{ value: '' }], [''], '')).toThrow();
+		expect(() => validateTabsComposition([{ value: '' }], ['a'], '')).toThrow();
+		expect(() => validateTabsComposition([{ value: 'a' }], [''], 'a')).toThrow();
 	});
 
 	it('throws for duplicate trigger values', () => {
@@ -28,7 +29,7 @@ describe('validateTabsComposition', () => {
 	});
 
 	it('throws for panel without matching trigger', () => {
-		expect(() => validateTabsComposition([{ value: 'x' }], ['y'], 'x')).toThrow();
+		expect(() => validateTabsComposition([{ value: 'x' }], ['x', 'y'], 'x')).toThrow();
 	});
 
 	it('throws when all triggers are disabled', () => {
@@ -59,8 +60,12 @@ describe('moveTabSelection', () => {
 
 	it('does not mutate inputs', () => {
 		const t = [{ value: 'a' }, { value: 'b', disabled: true }, { value: 'c' }];
+		const p = ['a', 'b', 'c'];
 		const snapshot = JSON.stringify(t);
+		const panelSnapshot = JSON.stringify(p);
+		validateTabsComposition(t, p, 'a');
 		moveTabSelection(t, 'a', 'ArrowRight');
 		expect(JSON.stringify(t)).toBe(snapshot);
+		expect(JSON.stringify(p)).toBe(panelSnapshot);
 	});
 });
