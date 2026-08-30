@@ -776,7 +776,7 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | CG-M4-04 | Qwen / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | `packages/react/src/overlays/popover/**` | 100–140 | One internal control in an already reviewed overlay contract; no shared foundation, export, gallery, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → PASS | Qwen / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | PASS — 2026-08-28T22:51:45-04:00 | 1 |
 | CG-M4-09 | Qwen (local) / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | `apps/lab/src/examples/overlays/drawer/DrawerExamples.tsx` | 70–110 | One independent gallery-example file consuming only the accepted public Drawer API; no shared control, export, integration, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → PASS | Remote OpenCode `maestro/Qwen-Code-Assistant` rejected after no diff/commit; local OpenCode 1.18.21 / Ollama `qwen3.6:27b` accepted | Remote and local preflight PASS — 2026-08-30 | 1 |
 | CG-M4-10 | Qwen (local) / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | `apps/lab/src/examples/overlays/popover/PopoverExamples.tsx` | 70–110 | One independent gallery-example file consuming only the accepted public Popover API; no shared control, export, integration, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → PASS | Remote OpenCode `maestro/Qwen-Code-Assistant` rejected once after no diff/commit; local OpenCode 1.18.21 / Ollama `qwen3.6:27b` accepted | Remote and local preflight PASS — 2026-08-30 | 1 |
-| CG-M4-11 | Qwen (local) / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | `apps/lab/src/examples/overlays/menu/MenuExamples.tsx` | 90–130 | One independent gallery-example file consuming only the accepted public Menu API; real command selection needs visible outcome but no shared control, export, integration, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → expected PASS | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-30 | 1 |
+| CG-M4-11 | Qwen (local) / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | `apps/lab/src/examples/overlays/menu/MenuExamples.tsx` | 90–130 | One independent gallery-example file consuming only the accepted public Menu API; real command selection needs visible outcome but no shared control, export, integration, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → PASS | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-30 | 1 |
 
 #### CG-M4-01 — Overlay foundation
 
@@ -937,6 +937,21 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Verification | TypeScript, static check, production build, and diff check passed on `69e9487` before PR #49 merged. |
 | Automated-gate escape | N/A — no post-gate defect was found in independent source review. |
 | UNTESTED | Real Popover outside/light-dismissal browser behavior is N/A in this packet; CG-M4-18 owns that browser specification. |
+
+#### CG-M4-11 — Menu gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #50 at `bedbf96`: two bounded Menu gallery examples. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b` (local). |
+| Final code ownership | Local Qwen: 113 retained example lines in `apps/lab/src/examples/overlays/menu/MenuExamples.tsx`. |
+| Implementation elapsed time | 4m 04s from prepared-worktree start (21:20:12) to scoped commit `0af6d40` (21:24:16), excluding review and record synchronization. |
+| Rework and review | Qwen returned one scoped commit. One independent source-review round returned `APPROVE`; source rework count: 0. After that commit, Qwen made forbidden, uncommitted controlled-record edits; the coordinator stopped it and excluded them. |
+| Review impact | `R0` for accepted source — approved unchanged. Process finding: implementation agents must return handoff facts rather than edit coordinator-owned records. Review minutes: not separately captured. |
+| Owner acceptance | UNTESTED — owner has not yet reviewed the new Menu examples in the integrated gallery. |
+| Verification | TypeScript, static check, production build, and diff check passed on `0af6d40` before PR #50 merged. |
+| Automated-gate escape | The existing agent prompt did not explicitly resolve the general handoff-append rule against coordinator-owned records; Qwen attempted false completion updates after its scoped commit. Those uncommitted changes were caught before PR creation. |
+| UNTESTED | Real Menu gallery keyboard and dismissal behavior is N/A in this packet; CG-M4-19 owns that browser specification. |
 
 ## M5
 
