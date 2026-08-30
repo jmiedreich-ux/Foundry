@@ -1015,6 +1015,21 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Automated-gate escape | The initial test suite accepted role/open assertions that could also describe a non-modal dialog; independent review required `DIALOG` plus `:modal` browser proof and an explicit-close reopen path. |
 | UNTESTED | 0 within this packet. Component type/refusal behavior remains covered by CG-M4-02; M4-17 through M4-21 own the remaining M4 controls. |
 
+#### CG-M4-17 — Drawer browser checks
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #55 at `cfe11f9`: five real Chromium Drawer-gallery checks. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: 145 retained test lines in `tests/overlays/drawer/drawer-gallery.spec.ts`. |
+| Implementation elapsed time | 1m 09s from claim commit `5a5a139` (21:53:33) to scoped source commit `42a18ff` (21:54:42), excluding verification, review, and record synchronization. |
+| Rework and review | One independent source-review round returned `APPROVE`; no source rework. |
+| Review impact | `R0` — approved unchanged. Review minutes: not separately captured. |
+| Owner acceptance | UNTESTED — the newly tested Drawer gallery has not yet received owner review. |
+| Verification | Focused Chromium Drawer checks 5/5; full Chromium 78/78; TypeScript, static check, production build, and diff check passed on `42a18ff`. |
+| Automated-gate escape | N/A — no post-gate implementation defect was found in independent review. |
+| UNTESTED | 0 within this packet. Component type/refusal behavior remains covered by CG-M4-03; M4-18 through M4-21 own the remaining M4 controls. |
+
 ## M5
 
 Not started.

@@ -10,4 +10,4 @@ M1–M3 are accepted and closed. CG-M4-01 through CG-M4-06 are merged through PR
 
 ## Next action
 
-CG-M4-17: the Codex coordinator is implementing real-browser Drawer focus-containment, Escape, and trigger-restoration checks. CG-M4-16 merged through PR #54 with five focused Dialog Chromium checks plus a 73/73 full suite, TypeScript, static check, production build, and diff check; independent review required and then approved native-modal and explicit-close-reopen proof.
+CG-M4-18: local Qwen is implementing real-browser Popover trigger, native outside-dismissal, controlled recovery, focus, and responsive checks. CG-M4-17 merged through PR #55 with five focused Drawer Chromium checks plus a 78/78 full suite, TypeScript, static check, production build, and diff check; independent review approved the native-modal, side, focus, recovery, and responsive proof unchanged.

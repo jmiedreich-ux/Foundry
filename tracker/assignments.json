@@ -436,6 +436,12 @@
       "packet": "CG-M4-17",
       "owner": "Codex coordinator (cloud)",
       "paths": ["tests/overlays/drawer/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M4-18",
+      "owner": "Qwen (local)",
+      "paths": ["tests/overlays/popover/**"],
       "status": "in_progress"
     }
   ],
