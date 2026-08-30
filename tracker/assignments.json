@@ -424,6 +424,12 @@
       "packet": "CG-M4-15",
       "owner": "Codex coordinator (cloud)",
       "paths": ["apps/lab/src/GalleryApp.tsx"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M4-16",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["tests/overlays/dialog/**"],
       "status": "in_progress"
     }
   ],

@@ -985,6 +985,21 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Automated-gate escape | The configured TypeScript gate did not flag the unused type import; independent source review caught it. |
 | UNTESTED | Real Card browser semantics and responsive proof are N/A in this packet; CG-M4-21 owns them. |
 
+#### CG-M4-15 — Gallery integration
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #53 at `d7fae94`: renders Dialog, Drawer, Popover, and Menu examples in Overlays, and Tabs and Card examples in Navigation. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: 19 added and 7 removed lines in `apps/lab/src/GalleryApp.tsx`. |
+| Implementation elapsed time | 1m 24s from claim commit `de4af71` (21:46:26) to scoped source commit `4cbc188` (21:47:50), excluding verification, review, and record synchronization. |
+| Rework and review | One independent source-review round returned `APPROVE`; no source rework. |
+| Review impact | `R0` — approved unchanged. Review minutes: not separately captured. |
+| Owner acceptance | UNTESTED — the newly integrated M4 gallery has not yet received owner review. |
+| Verification | TypeScript, static check, production build, diff check, and full Chromium 68/68 passed on the accepted rerun. The first parallel full-suite run had one unrelated reduced-motion focus-test failure; its isolated five-test file and the accepted full rerun passed without source change. |
+| Automated-gate escape | N/A — no post-gate implementation defect was found in independent review. |
+| UNTESTED | M4-specific Dialog, Drawer, Popover, Menu, Tabs, and Card browser behavior remains owned by CG-M4-16 through CG-M4-21. |
+
 ## M5
 
 Not started.

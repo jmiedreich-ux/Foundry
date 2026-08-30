@@ -10,4 +10,4 @@ M1–M3 are accepted and closed. CG-M4-01 through CG-M4-06 are merged through PR
 
 ## Next action
 
-CG-M4-15: the Codex coordinator is implementing the shared `GalleryApp.tsx` integration for every accepted M4 example. CG-M4-13 merged through PR #52 after local Qwen added the two static Card examples; its one cleanup correction removed an unused type import, and renewed independent review approved the final source head. TypeScript, static check, production build, and diff check passed. Card browser proof remains CG-M4-21.
+CG-M4-16: the Codex coordinator is implementing real-browser Dialog focus-containment, Escape, and trigger-restoration checks. CG-M4-15 merged through PR #53 after integrating every accepted M4 example in its correct gallery family; TypeScript, static check, production build, diff check, and the accepted full Chromium rerun (68/68) passed with independent-review approval.
