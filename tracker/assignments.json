@@ -382,7 +382,7 @@
       "packet": "CG-M4-14",
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/index.ts"],
-      "status": "in_progress"
+      "status": "completed"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
