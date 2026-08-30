@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { SkinProvider, LocaleProvider } from '@foundry/react';
-import { ExampleFrame } from './ExampleFrame';
 import { FamilyNavigation } from './FamilyNavigation';
 import { GalleryLayout } from './GalleryLayout';
 import { MotionSetting } from './MotionSetting';
@@ -15,6 +14,12 @@ import { LoadingSkeletonExamples } from './examples/feedback/loading-skeleton/Lo
 import { StatusChipExamples } from './examples/feedback/status-chip/StatusChipExamples';
 import { ToastExamples } from './examples/feedback/toast/ToastExamples';
 import { FieldExamples } from './examples/fields/FieldExamples';
+import { CardExamples } from './examples/navigation/card/CardExamples';
+import { TabsExamples } from './examples/navigation/tabs/TabsExamples';
+import { DialogExamples } from './examples/overlays/dialog/DialogExamples';
+import { DrawerExamples } from './examples/overlays/drawer/DrawerExamples';
+import { MenuExamples } from './examples/overlays/menu/MenuExamples';
+import { PopoverExamples } from './examples/overlays/popover/PopoverExamples';
 
 const families = [
   { id: 'family-actions', title: 'Actions', description: 'Action control examples will appear here.' },
@@ -57,12 +62,19 @@ export function GalleryApp() {
                     <EmptyStateExamples />
                     <LoadingSkeletonExamples />
                   </>
-                ) : (
-                  <ExampleFrame
-                    title={`${family.title} examples`}
-                    description={family.description}
-                  />
-                )}
+                ) : family.id === 'family-overlays' ? (
+                  <>
+                    <DialogExamples />
+                    <DrawerExamples />
+                    <PopoverExamples />
+                    <MenuExamples />
+                  </>
+                ) : family.id === 'family-navigation' ? (
+                  <>
+                    <TabsExamples />
+                    <CardExamples />
+                  </>
+                ) : null}
               </section>
             ))}
           </main>
