@@ -16,5 +16,8 @@ export { DialogClose, DialogContent, DialogRoot, DialogTrigger, type DialogClose
 export { DrawerClose, DrawerContent, DrawerRoot, DrawerTrigger, type DrawerCloseProps, type DrawerContentProps, type DrawerRootProps, type DrawerTriggerProps } from './overlays/drawer/drawer.js';
 export { PopoverClose, PopoverContent, PopoverRoot, PopoverTrigger, type PopoverCloseProps, type PopoverContentProps, type PopoverRootProps, type PopoverTriggerProps } from './overlays/popover/popover.js';
 export { MenuClose, MenuContent, MenuItem, MenuRoot, MenuTrigger, type MenuContentProps, type MenuItemProps, type MenuRootProps, type MenuTriggerProps } from './overlays/menu/menu.js';
+export type MenuCloseProps = ComponentProps<typeof MenuClose>;
 export { TabsList, TabsPanel, TabsRoot, TabsTrigger, type TabsListProps, type TabsPanelProps, type TabsRootProps, type TabsTriggerProps } from './navigation/tabs/tabs.js';
 export { Card, type CardProps } from './navigation/card/card.js';
+import type { ComponentProps } from 'react';
+import { MenuClose } from './overlays/menu/menu.js';
