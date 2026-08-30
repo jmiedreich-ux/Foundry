@@ -383,6 +383,12 @@
       "owner": "Codex coordinator (cloud)",
       "paths": ["packages/react/src/index.ts"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M4-08",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/overlays/dialog/DialogExamples.tsx"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
