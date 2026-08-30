@@ -10,4 +10,4 @@ M1–M3 are accepted and closed. CG-M4-01 through CG-M4-06 are merged through PR
 
 ## Next action
 
-Paused before CG-M4-09 (Drawer gallery examples) by owner direction. CG-M4-08 is merged through PR #47 after Qwen implementation, passing TypeScript/static/build/diff gates, and independent source-review approval.
+CG-M4-09: remote Qwen is implementing the bounded Drawer gallery-example packet. CG-M4-08 is merged through PR #47 after Qwen implementation, passing TypeScript/static/build/diff gates, and independent source-review approval.

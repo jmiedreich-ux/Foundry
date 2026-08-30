@@ -389,6 +389,12 @@
       "owner": "Qwen (local)",
       "paths": ["apps/lab/src/examples/overlays/dialog/DialogExamples.tsx"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M4-09",
+      "owner": "Qwen (remote RunPod)",
+      "paths": ["apps/lab/src/examples/overlays/drawer/DrawerExamples.tsx"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

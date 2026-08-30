@@ -774,6 +774,7 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Packet | Planned executor/runtime | Code-bearing paths | Estimated changed lines | Why local or cloud | Preflight command and expected result | Actual executor/runtime at dispatch | Preflight result and timestamp | Maximum corrections |
 | --- | --- | --- | ---: | --- | --- | --- | --- | ---: |
 | CG-M4-04 | Qwen / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | `packages/react/src/overlays/popover/**` | 100–140 | One internal control in an already reviewed overlay contract; no shared foundation, export, gallery, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → PASS | Qwen / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | PASS — 2026-08-28T22:51:45-04:00 | 1 |
+| CG-M4-09 | Qwen (remote RunPod) / OpenCode `maestro/Qwen-Code-Assistant` | `apps/lab/src/examples/overlays/drawer/DrawerExamples.tsx` | 70–110 | One independent gallery-example file consuming only the accepted public Drawer API; no shared control, export, integration, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → expected PASS | OpenCode `maestro/Qwen-Code-Assistant` | PASS — remote model available at claim on 2026-08-30 | 1 |
 
 #### CG-M4-01 — Overlay foundation
 
