@@ -442,7 +442,7 @@
       "packet": "CG-M4-18",
       "owner": "Qwen (local)",
       "paths": ["tests/overlays/popover/**"],
-      "status": "in_progress"
+      "status": "completed"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

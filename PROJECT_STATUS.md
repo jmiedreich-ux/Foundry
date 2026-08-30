@@ -10,4 +10,4 @@ M1–M3 are accepted and closed. CG-M4-01 through CG-M4-06 are merged through PR
 
 ## Next action
 
-Paused by owner at CG-M4-18. The local Qwen Popover-browser-check run was stopped before its required scoped commit or acceptance; its isolated worktree is preserved as unaccepted evidence. Resume with coordinator inspection of that worktree, then either a bounded correction or escalation under the no-commit rule. CG-M4-17 merged through PR #55 with five focused Drawer Chromium checks plus a 78/78 full suite, TypeScript, static check, production build, and diff check; independent review approved unchanged.
+Paused by owner after CG-M4-18. M4-18 merged through PR #56 after the local Qwen run was stopped before its required commit and the coordinator completed the browser packet. Focused Popover Chromium 5/5, full Chromium 83/83, TypeScript, static check, production build, and diff check passed; independent review approved. Resume at CG-M4-19 only.

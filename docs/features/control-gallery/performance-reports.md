@@ -1030,6 +1030,19 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Automated-gate escape | N/A — no post-gate implementation defect was found in independent review. |
 | UNTESTED | 0 within this packet. Component type/refusal behavior remains covered by CG-M4-03; M4-18 through M4-21 own the remaining M4 controls. |
 
+#### CG-M4-18 — Popover browser checks
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #56 at `57f8e42`: five real Chromium Popover-gallery checks. |
+| Assigned / actual executor | Qwen (local) / Codex coordinator (cloud; local-agent takeover). |
+| Final code ownership | Coordinator: 98 retained test lines in `tests/overlays/popover/popover-gallery.spec.ts`. Qwen stopped before a required commit; its draft is unaccepted. |
+| Implementation elapsed time | Qwen initial run: 2m 50s before owner pause. Coordinator completion/review time: not separately captured. |
+| Rework and review | Qwen made an uncommitted draft and was stopped by owner before its required commit; under the no-commit rule it received no correction. The coordinator completed the packet. One independent review returned `APPROVE`. |
+| Review impact | `R0` for the coordinator result — approved unchanged. |
+| Verification | Focused Chromium Popover checks 5/5; full Chromium 83/83; TypeScript, static check, production build, and diff check passed. |
+| UNTESTED | 0 within this packet. Component type/refusal behavior remains covered by CG-M4-04; M4-19 through M4-21 own the remaining controls. |
+
 ## M5
 
 Not started.
