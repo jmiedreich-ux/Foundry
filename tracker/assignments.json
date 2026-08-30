@@ -398,7 +398,7 @@
     },
     {
       "packet": "CG-M4-10",
-      "owner": "Qwen (local)",
+      "owner": "Qwen (remote RunPod)",
       "paths": ["apps/lab/src/examples/overlays/popover/PopoverExamples.tsx"],
       "status": "in_progress"
     }
