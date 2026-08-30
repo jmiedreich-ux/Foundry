@@ -50,6 +50,9 @@ test.describe('CG-M4-16 Dialog gallery', () => {
     await expect(dialog).toHaveAttribute('data-control', 'dialog');
     await expect(dialog).toHaveAttribute('data-open', '');
     await expect(dialog).toHaveAttribute('open', '');
+    await expect(
+      dialog.evaluate((element) => element.tagName === 'DIALOG' && element.matches(':modal')),
+    ).resolves.toBe(true);
     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
     await expect(close).toBeFocused();
     await expect(frame.getByRole('status')).toHaveText('Dialog is open');
@@ -96,6 +99,10 @@ test.describe('CG-M4-16 Dialog gallery', () => {
     await expect(dialog).toHaveCount(0);
     await expect(trigger).toBeFocused();
     await expect(frame.getByRole('status')).toHaveText('Dialog is closed');
+
+    await trigger.click();
+    await expect(dialog).toBeVisible();
+    await expect(frame.getByRole('status')).toHaveText('Dialog is open');
   });
 
   test('controlled trigger and close report each requested state and restore the valid trigger', async ({
