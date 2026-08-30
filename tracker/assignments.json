@@ -395,6 +395,12 @@
       "owner": "Qwen (local)",
       "paths": ["apps/lab/src/examples/overlays/drawer/DrawerExamples.tsx"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M4-10",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/overlays/popover/PopoverExamples.tsx"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
