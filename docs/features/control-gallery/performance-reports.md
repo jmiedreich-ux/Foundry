@@ -778,7 +778,7 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | CG-M4-10 | Qwen (local) / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | `apps/lab/src/examples/overlays/popover/PopoverExamples.tsx` | 70–110 | One independent gallery-example file consuming only the accepted public Popover API; no shared control, export, integration, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → PASS | Remote OpenCode `maestro/Qwen-Code-Assistant` rejected once after no diff/commit; local OpenCode 1.18.21 / Ollama `qwen3.6:27b` accepted | Remote and local preflight PASS — 2026-08-30 | 1 |
 | CG-M4-11 | Qwen (local) / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | `apps/lab/src/examples/overlays/menu/MenuExamples.tsx` | 90–130 | One independent gallery-example file consuming only the accepted public Menu API; real command selection needs visible outcome but no shared control, export, integration, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → PASS | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-30 | 1 |
 | CG-M4-12 | Qwen (local) / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | `apps/lab/src/examples/navigation/tabs/TabsExamples.tsx` | 100–140 | One independent gallery-example file consuming only the accepted public Tabs API; matched composition and both state modes need visible outcomes but no shared control, export, integration, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → PASS | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-30 | 1 |
-| CG-M4-13 | Qwen (local) / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | `apps/lab/src/examples/navigation/card/CardExamples.tsx` | 50–80 | One independent gallery-example file consuming only the accepted inert Card API; no interaction, shared control, export, integration, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → expected PASS | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-30 | 1 |
+| CG-M4-13 | Qwen (local) / OpenCode 1.18.21 and Ollama `qwen3.6:27b` | `apps/lab/src/examples/navigation/card/CardExamples.tsx` | 50–80 | One independent gallery-example file consuming only the accepted inert Card API; no interaction, shared control, export, integration, or browser-test ownership. | `npm exec tsc -- --noEmit && npm run check && npm run build && git diff --check` → PASS | OpenCode 1.18.21 / Ollama `qwen3.6:27b` | PASS — 2026-08-30 | 1 |
 
 #### CG-M4-01 — Overlay foundation
 
@@ -969,6 +969,21 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Verification | TypeScript, static check, production build, and diff check passed on `92cf19f` before PR #51 merged. |
 | Automated-gate escape | The initial agent read path misspelled the feature directory, then self-corrected before writing. The explicit coordinator-record prohibition prevented the M4-11 post-commit record-write escape. |
 | UNTESTED | Real Tabs keyboard, focus, and responsive behavior is N/A in this packet; CG-M4-20 owns that browser specification. |
+
+#### CG-M4-13 — Card gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #52 at `01546c1`: one complete static Card example and one valid minimal Card example. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b` (local). |
+| Final code ownership | Local Qwen: 40 retained example lines in `apps/lab/src/examples/navigation/card/CardExamples.tsx`. |
+| Implementation elapsed time | 5m 06s from prepared-worktree start (21:35:01) to its final scoped commit `ce2533c` (21:40:07), excluding review and record synchronization. |
+| Rework and review | Qwen returned the required scoped commit, then made one targeted local cleanup correction removing an unused type import. Initial independent review returned `COMMENT`; renewed review of the corrected head returned `APPROVE`. No behavior changed. |
+| Review impact | `R1` — polish-only cleanup; the complete/minimal static Card behavior remained unchanged. Review minutes: not separately captured. |
+| Owner acceptance | UNTESTED — owner has not yet reviewed the Card examples in the integrated gallery. |
+| Verification | TypeScript, static check, production build, and diff check passed on `ce2533c` before PR #52 merged. |
+| Automated-gate escape | The configured TypeScript gate did not flag the unused type import; independent source review caught it. |
+| UNTESTED | Real Card browser semantics and responsive proof are N/A in this packet; CG-M4-21 owns them. |
 
 ## M5
 

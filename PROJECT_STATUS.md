@@ -10,4 +10,4 @@ M1–M3 are accepted and closed. CG-M4-01 through CG-M4-06 are merged through PR
 
 ## Next action
 
-CG-M4-13: local Qwen is implementing the bounded Card gallery-example packet. CG-M4-12 is merged through PR #51 after local Qwen implementation, passing TypeScript/static/build/diff gates and independent source-review approval; it returned only its text handoff and did not touch coordinator records.
+CG-M4-15: the Codex coordinator is integrating all accepted M4 examples into `GalleryApp.tsx`. CG-M4-13 merged through PR #52 after local Qwen added the two static Card examples; its one cleanup correction removed an unused type import, and renewed independent review approved the final source head. TypeScript, static check, production build, and diff check passed. Card browser proof remains CG-M4-21.
