@@ -10,4 +10,4 @@ M1–M3 are accepted and closed. CG-M4-01 through CG-M4-06 are merged through PR
 
 ## Next action
 
-CG-M4-18: local Qwen is implementing real-browser Popover trigger, native outside-dismissal, controlled recovery, focus, and responsive checks. CG-M4-17 merged through PR #55 with five focused Drawer Chromium checks plus a 78/78 full suite, TypeScript, static check, production build, and diff check; independent review approved the native-modal, side, focus, recovery, and responsive proof unchanged.
+Paused by owner at CG-M4-18. The local Qwen Popover-browser-check run was stopped before its required scoped commit or acceptance; its isolated worktree is preserved as unaccepted evidence. Resume with coordinator inspection of that worktree, then either a bounded correction or escalation under the no-commit rule. CG-M4-17 merged through PR #55 with five focused Drawer Chromium checks plus a 78/78 full suite, TypeScript, static check, production build, and diff check; independent review approved unchanged.
