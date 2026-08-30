@@ -388,7 +388,7 @@
       "packet": "CG-M4-08",
       "owner": "Qwen (local)",
       "paths": ["apps/lab/src/examples/overlays/dialog/DialogExamples.tsx"],
-      "status": "in_progress"
+      "status": "completed"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."

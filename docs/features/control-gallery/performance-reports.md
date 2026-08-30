@@ -890,6 +890,21 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Automated-gate escape | Static SSR checks alone did not prove handler refusal or forwarded-ref target; independent review required jsdom proof. |
 | UNTESTED | Card gallery/browser behavior is N/A in this source packet: CG-M4-13 and CG-M4-21 own it. |
 
+#### CG-M4-08 — Dialog gallery examples
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #47 at `fb15e3e`: two bounded Dialog gallery examples. |
+| Assigned / actual executor | Qwen (local) / OpenCode 1.18.21 with Ollama `qwen3.6:27b` (local). |
+| Final code ownership | Qwen: 87 retained example lines in `apps/lab/src/examples/overlays/dialog/DialogExamples.tsx`. |
+| Implementation elapsed time | UNTESTED — the run start was not durably captured; the authored commit timestamp predates the recorded claim and is not valid elapsed-time evidence. |
+| Rework and review | Qwen returned one scoped commit. One independent source-review round returned `APPROVE`; no rework. |
+| Review impact | `R1` — review confirmed the packet's two real state paths, public import boundary, and compound nesting; no correction required. |
+| Owner acceptance | UNTESTED — owner has not yet reviewed the new Dialog examples in the integrated gallery. |
+| Verification | TypeScript, static check, production build, and diff check passed on commit `88a22ed` before PR #47 merged. |
+| Automated-gate escape | N/A — no post-gate defect was found in independent source review. |
+| UNTESTED | Real Dialog gallery Chromium behavior is N/A in this packet; CG-M4-16 owns that browser specification. |
+
 ## M5
 
 Not started.
