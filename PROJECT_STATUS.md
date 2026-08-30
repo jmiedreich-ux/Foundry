@@ -10,4 +10,4 @@ M1–M3 are accepted and closed. CG-M4-01 through CG-M4-06 are merged through PR
 
 ## Next action
 
-CG-M4-10: local Qwen is implementing the bounded Popover gallery-example packet after two rejected remote no-diff returns. The prior local dispatch was stopped by the owner before it changed a file, so this is the first local production attempt for the packet.
+CG-M4-11: local Qwen is ready to implement the bounded Menu gallery-example packet. CG-M4-10 is merged through PR #49 after local Qwen implementation, passing TypeScript/static/build/diff gates and independent source-review approval; remote Qwen returned no diff or commit in two parity comparisons.
