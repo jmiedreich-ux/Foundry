@@ -407,6 +407,12 @@
       "owner": "Qwen (local)",
       "paths": ["apps/lab/src/examples/overlays/menu/MenuExamples.tsx"],
       "status": "completed"
+    },
+    {
+      "packet": "CG-M4-12",
+      "owner": "Qwen (local)",
+      "paths": ["apps/lab/src/examples/navigation/tabs/TabsExamples.tsx"],
+      "status": "in_progress"
     }
   ],
   "policy": "Read AGENTS.md before claiming work. One owner per file area; stop and re-plan on overlap."
