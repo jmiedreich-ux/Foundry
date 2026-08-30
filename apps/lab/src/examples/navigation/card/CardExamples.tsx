@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, type CardProps } from '@foundry/react';
+import { Card } from '@foundry/react';
 import { ExampleFrame } from '../../../ExampleFrame';
 
 function CompleteCardExample() {
