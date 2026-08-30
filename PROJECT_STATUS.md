@@ -10,4 +10,4 @@ M1–M3 are accepted and closed. CG-M4-01 through CG-M4-06 are merged through PR
 
 ## Next action
 
-CG-M4-10: remote Qwen is running one final isolated bounded Popover gallery-example comparison. The local Qwen dispatch was stopped by the owner before it changed a file, so no local result exists for this packet yet.
+CG-M4-10: local Qwen is implementing the bounded Popover gallery-example packet after two rejected remote no-diff returns. The prior local dispatch was stopped by the owner before it changed a file, so this is the first local production attempt for the packet.
