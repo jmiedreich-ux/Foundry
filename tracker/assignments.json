@@ -430,6 +430,12 @@
       "packet": "CG-M4-16",
       "owner": "Codex coordinator (cloud)",
       "paths": ["tests/overlays/dialog/**"],
+      "status": "completed"
+    },
+    {
+      "packet": "CG-M4-17",
+      "owner": "Codex coordinator (cloud)",
+      "paths": ["tests/overlays/drawer/**"],
       "status": "in_progress"
     }
   ],

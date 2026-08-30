@@ -10,4 +10,4 @@ M1–M3 are accepted and closed. CG-M4-01 through CG-M4-06 are merged through PR
 
 ## Next action
 
-CG-M4-16: the Codex coordinator is implementing real-browser Dialog focus-containment, Escape, and trigger-restoration checks. CG-M4-15 merged through PR #53 after integrating every accepted M4 example in its correct gallery family; TypeScript, static check, production build, diff check, and the accepted full Chromium rerun (68/68) passed with independent-review approval.
+CG-M4-17: the Codex coordinator is implementing real-browser Drawer focus-containment, Escape, and trigger-restoration checks. CG-M4-16 merged through PR #54 with five focused Dialog Chromium checks plus a 73/73 full suite, TypeScript, static check, production build, and diff check; independent review required and then approved native-modal and explicit-close-reopen proof.

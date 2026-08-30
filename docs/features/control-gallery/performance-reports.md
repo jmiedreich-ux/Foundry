@@ -1000,6 +1000,21 @@ All 32 M3 packets are accepted and merged through PR #27 (`033c9e1`). Final inde
 | Automated-gate escape | N/A — no post-gate implementation defect was found in independent review. |
 | UNTESTED | M4-specific Dialog, Drawer, Popover, Menu, Tabs, and Card browser behavior remains owned by CG-M4-16 through CG-M4-21. |
 
+#### CG-M4-16 — Dialog browser checks
+
+| Measure | Result |
+| --- | --- |
+| Outcome | Merged in PR #54 at `f2ad6f2`: five real Chromium Dialog-gallery checks. |
+| Assigned / actual executor | Codex coordinator (cloud) / Codex coordinator (cloud). |
+| Final code ownership | Coordinator: 143 retained test lines in `tests/overlays/dialog/dialog-gallery.spec.ts`. |
+| Implementation elapsed time | 2m 43s from claim commit `43b3913` (21:49:25) to final source commit `28266a9` (21:52:08), excluding verification, review, and record synchronization. |
+| Rework and review | Initial independent review returned `REQUEST_CHANGES` because the first tests did not prove native modal entry or explicit-close reopening. One coordinator correction added those two assertions; renewed review returned `APPROVE`. |
+| Review impact | `R3` — added required native-modal and recovery behavior proof. Review minutes: not separately captured. |
+| Owner acceptance | UNTESTED — the newly tested Dialog gallery has not yet received owner review. |
+| Verification | Focused Chromium Dialog checks 5/5; full Chromium 73/73; TypeScript, static check, production build, and diff check passed on `28266a9`. |
+| Automated-gate escape | The initial test suite accepted role/open assertions that could also describe a non-modal dialog; independent review required `DIALOG` plus `:modal` browser proof and an explicit-close reopen path. |
+| UNTESTED | 0 within this packet. Component type/refusal behavior remains covered by CG-M4-02; M4-17 through M4-21 own the remaining M4 controls. |
+
 ## M5
 
 Not started.
