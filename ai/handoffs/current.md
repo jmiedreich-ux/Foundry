@@ -117,7 +117,7 @@ CG-M4-06.1 merged through PR #41 (`78672aa`). Qwen authored the pure 109-line co
 
 - CG-M4-06.2 merged through PR #43 (`5fe3231`). The Codex coordinator completed the approved two-file internal Tabs rendering contract after a failed Qwen rendering run and rejected Maestro attempts. It uses the accepted model, requires exactly one labelled list, validates controlled/uncontrolled and all composition refusal paths, fixes generated ARIA/state hooks, moves enabled selection and focus together, and covers controlled parent decline, delayed acceptance, and out-of-order callback commits. Five independent review rounds produced four bounded corrections; the final review approved `f153410`. Focused Tabs 9/9, full React 191/191, TypeScript, static check, production build, full Chromium 68/68, and diff check passed. The owner approved the completed packet on 2026-08-29. Real Tabs gallery browser behavior remains owned by CG-M4-12 and CG-M4-20. Preserve the rejected Maestro worktrees as evidence; later bounded M4 packets remain assigned to Qwen.
 
-## Exact next action
+## Historical execution direction
 
 Standing owner direction: continue CG-M4 packets in their approved order after each accepted merge and record synchronization without awaiting a per-packet confirmation. Stop only for missing approved design authority, failed verification, a required review correction, an external blocker, or an owner pause.
 
@@ -150,3 +150,13 @@ Owner paused all work during the initial CG-M4-18 local-Qwen run. The runner was
 CG-M4-18 subsequently merged through PR #56 (`57f8e42`) after owner direction to finish the outstanding packet. Qwen's stopped, uncommitted draft did not qualify for correction; the coordinator completed a separate 98-line browser spec. It proves native auto-Popover state, non-modal focus and Tab escape, Escape/light dismissal and trigger restoration, explicit close/reopen, controlled native-dismissal synchronization, and 320px overflow. Focused Chromium 5/5, full Chromium 83/83, TypeScript, static check, production build, and diff check passed; independent review returned `APPROVE`.
 
 Owner pause is active before CG-M4-19. On resume, CG-M4-19 is the exact next action: local Qwen owns only `tests/overlays/menu/**` under the established prepared-worktree, exact-path, commit, gate, text-only-handoff, and one-correction protocol. Do not start it while paused.
+
+## Independent full-repository review — 2026-08-31
+
+An independent read-only review of Foundry `main` commit `5e01f5a0d02c78ced41a915042b49dd8ffd666c9` returned `REQUEST_CHANGES`. The coordinator corroborated the findings and reproduced the controlled-Tabs focus defect independently. Supplemental feedback from the Google Doc `Foundry — Repo Review (2026-08-31)` was then checked against source and accepted decisions. That added the reproduced three-sibling close-control children defect and a narrower Popover trigger-boundary finding; unproven or policy-changing recommendations remain explicit architecture risks rather than being mislabeled as defects. The durable review is `docs/features/control-gallery/independent-code-review-2026-08-31.md`; it records ten confirmed findings (`FCR-001` through `FCR-010`), one M5 release-readiness finding, verification evidence, supplemental-review reconciliation, and the required architecture-disposition output. No product source, test, package, workflow, or approved decision changed, and the review authorizes no fix.
+
+The owner pause before CG-M4-19 remains active. Existing M1-M4 acceptance is not silently reopened; the architecture review must explicitly decide that per finding.
+
+## Exact next action
+
+Complete the architecture disposition review for every `FCR-*` finding and the release-readiness/risk items in the durable review. For each item, return `ACCEPT`, `REJECT`, or `DEFER`, identify the controlling decision or invariant, assign the owning milestone/issue and correction order, state whether prior acceptance is reopened, and name the required verification and renewed independent-review gates. Do not dispatch fixes or resume CG-M4-19 until that disposition and a separate owner authorization exist.

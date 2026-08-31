@@ -15,7 +15,7 @@ The Control Gallery is Foundry's living acceptance surface. It demonstrates real
 | M1 | Runnable gallery foundation and testing harness | completed |
 | M2 | Foundational contracts and field controls | accepted and closed |
 | M3 | Buttons, selection controls, search, and feedback | accepted and closed; behavior merged through PR #27 and visual follow-up through PR #31 |
-| M4 | Overlays and navigation controls | CG-M4-01 through CG-M4-06 merged through PRs #32, #33, #34, #36, #38, and #43; CG-M4-07 contract review in progress |
+| M4 | Overlays and navigation controls | CG-M4-01 through CG-M4-18 merged; owner pause active before CG-M4-19; repository-wide review returned `REQUEST_CHANGES` and awaits architecture disposition |
 | M5 | Cross-control acceptance, accessibility, and release handoff | planned |
 
 Each milestone is independently mergeable and uses the sequence: contracts/tokens → component behavior → gallery integration → browser specifications → independent review.
@@ -31,3 +31,4 @@ Each milestone is independently mergeable and uses the sequence: contracts/token
 - [Per-task reports](performance-reports.md#m3-packet-reports)
 - [Work packets](work-packets/README.md)
 - [Done ledger](done-ledger.md)
+- [Independent full-repository code review — 2026-08-31](independent-code-review-2026-08-31.md) — `REQUEST_CHANGES`; corroborated supplemental Google Drive feedback incorporated; architecture disposition pending

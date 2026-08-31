@@ -15,7 +15,7 @@ to its own records under `docs/features/<feature>/`; the detail lives there.
 
 | Codename | What it is | Position | Gate |
 |---|---|---|---|
-| **Control Gallery** | Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control (React/TypeScript), so a developer or reviewer can exercise the contract before a product adopts it | **M1 and M2 are accepted and closed.** M3's Button contract and default-skin treatment are accepted on its branch. Checkbox is active with Qwen (local). | Complete `CG-M3-02` (Checkbox semantics, controlled/uncontrolled state, and reset behavior). |
+| **Control Gallery** | Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control (React/TypeScript), so a developer or reviewer can exercise the contract before a product adopts it | **M1–M3 are accepted and closed. M4 is merged through CG-M4-18 and paused before CG-M4-19.** The 2026-08-31 independent full-repository review, including corroborated supplemental Google Drive feedback, returned `REQUEST_CHANGES`; existing acceptance remains unchanged until architecture disposition. | Complete the architecture disposition review for `FCR-001` through `FCR-010` and the release-readiness/risk items. Do not resume CG-M4-19 while the owner pause remains active. |
 
 Design authority for a feature is approved and recorded directly under
 `docs/features/<feature>/` (see `AGENTS.md`); Control Gallery's own `decisions.md` is that

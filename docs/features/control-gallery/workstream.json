@@ -2,12 +2,13 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "M1, M2, and M3 are accepted and closed. M4 is in progress: CG-M4-01 through CG-M4-18 are merged through PRs #32, #33, #34, #36, #38, #43, #45, #46, #47, #48, #49, #50, #51, #52, #53, #54, #55, and #56; Card required coordinator takeover after a rejected local source run, while its bounded gallery examples were accepted from Qwen.",
-  "next": "Paused by owner before CG-M4-19: local Qwen will add Menu browser checks when work resumes.",
+  "position": "M1, M2, and M3 are accepted and closed. M4 is in progress: CG-M4-01 through CG-M4-18 are merged through PRs #32, #33, #34, #36, #38, #43, #45, #46, #47, #48, #49, #50, #51, #52, #53, #54, #55, and #56. Owner pause remains active before CG-M4-19. The 2026-08-31 independent full-repository review of main commit 5e01f5a, including corroborated supplemental Google Drive feedback, returned REQUEST_CHANGES; existing milestone acceptance remains unchanged pending architecture disposition.",
+  "next": "Complete architecture disposition for FCR-001 through FCR-010 and the release-readiness/risk items. Do not authorize fixes or resume CG-M4-19 while the owner pause remains active.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery decisions (approved)", "where": "docs/features/control-gallery/decisions.md" },
-    { "name": "Control Gallery per-task reports", "where": "docs/features/control-gallery/performance-reports.md#m3-packet-reports" }
+    { "name": "Control Gallery per-task reports", "where": "docs/features/control-gallery/performance-reports.md#m3-packet-reports" },
+    { "name": "Independent full-repository code review — 2026-08-31", "where": "docs/features/control-gallery/independent-code-review-2026-08-31.md" }
   ],
   "milestones": [
     {
