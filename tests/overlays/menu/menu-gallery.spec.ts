@@ -125,16 +125,21 @@ test.describe('CG-M4-19 Menu gallery', () => {
     const menu = menuIn(frame);
     await expect(menu).toHaveCount(0);
     await expect(frame.getByRole('status')).toHaveText('Menu is closed');
+    // Unlike Escape/explicit close (asserted above), outside dismissal does
+    // not restore focus to the trigger — matches menu.test.tsx's own real
+    // contract (`document.activeElement` stays wherever the outside
+    // interaction landed, never forced back to the trigger).
+    await expect(trigger).not.toBeFocused();
 
     await trigger.click();
     await page.evaluate(() => {
-      (window as Record<string, boolean>).__tabPrevented = false;
+      (window as unknown as Record<string, boolean>).__tabPrevented = false;
       document.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'Tab') (window as Record<string, boolean>).__tabPrevented = e.defaultPrevented;
+        if (e.key === 'Tab') (window as unknown as Record<string, boolean>).__tabPrevented = e.defaultPrevented;
       }, true);
     });
     await page.keyboard.press('Tab');
-    const tabNotPrevented = await page.evaluate(() => (window as Record<string, boolean>).__tabPrevented);
+    const tabNotPrevented = await page.evaluate(() => (window as unknown as Record<string, boolean>).__tabPrevented);
     expect(tabNotPrevented).toBe(false);
     await expect(menu).toHaveCount(0);
   });
