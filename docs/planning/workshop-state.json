@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "repository": "jmiedreich-ux/Foundry",
+  "source_revision": "78495ed6b16eb52aec5a283f86f0842651cae59e",
+  "status": "discussing",
+  "paths": {
+    "overview": "PRODUCT.md",
+    "architecture": "docs/features/control-gallery/decisions.md",
+    "milestones": "docs/features/control-gallery/milestones.md",
+    "guide": "docs/features/control-gallery/README.md",
+    "state": "docs/planning/workshop-state.json"
+  },
+  "publication": {
+    "route": "local commit; remote publication has not been authorized",
+    "authorization_source": "Owner request: use project-architecture-workshop to review coverage, 2026-09-17",
+    "last_verified_document_revision": "78495ed6b16eb52aec5a283f86f0842651cae59e",
+    "status": "local draft",
+    "pending_paths": [
+      "docs/planning/workshop-state.json"
+    ],
+    "delivery_level": "local",
+    "verified_local_files": []
+  },
+  "current_topic": "Control Gallery architecture-disposition review for the independent repository review in PR #57",
+  "covered_topics": [
+    "authoritative source inventory",
+    "PR #57 review-intake boundary",
+    "M5 coverage versus FCR remediation coverage"
+  ],
+  "next_action": "Obtain the owner's decision on whether Core v1 includes a distributable @foundry/react package, then create the disposition register for FCR-001 through FCR-010 and release readiness.",
+  "decisions": [
+    {
+      "id": "CG-PAUSE-M4-19",
+      "subject": "CG-M4-19 remains paused",
+      "authority": "owner",
+      "evidence": "ai/handoffs/current.md#exact-next-action",
+      "canonical_ref": "ai/handoffs/current.md#exact-next-action",
+      "supersedes": null
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "CG-ARQ-001",
+      "subject": "Core v1 distribution boundary",
+      "missing_decision": "Whether Core v1 must ship @foundry/react as a distributable package at M5, rather than remaining an internal gallery and source workspace.",
+      "affected_outcome": "FCR release-readiness finding; package-output, CI, consumer-smoke, README, and license planning.",
+      "owner": "Foundry owner",
+      "status": "open"
+    }
+  ],
+  "inspections": [
+    {
+      "source_revision": "78495ed6b16eb52aec5a283f86f0842651cae59e",
+      "paths": [
+        "AGENTS.md",
+        "PRODUCT.md",
+        "ROADMAP.md",
+        "PROJECT_STATUS.md",
+        "ai/handoffs/current.md",
+        "tracker/assignments.json",
+        "docs/features/control-gallery/README.md",
+        "docs/features/control-gallery/decisions.md",
+        "docs/features/control-gallery/milestones.md",
+        "docs/features/control-gallery/milestones/m4.md",
+        "docs/features/control-gallery/milestones/m5.md",
+        "docs/features/control-gallery/workstream.json"
+      ],
+      "evidence_level": "source-supported",
+      "findings": [
+        "M5 defines cross-control acceptance but not ownership or sequencing for the ten confirmed FCR corrections, CI, or package-release readiness.",
+        "No repository workshop-state record or single architecture-disposition register existed before this workshop.",
+        "PR #57 is a draft with no recorded independent GitHub review; its reviewed snapshot is 5e01f5a0d02c78ced41a915042b49dd8ffd666c9."
+      ],
+      "canonical_evidence": "https://github.com/jmiedreich-ux/Foundry/pull/57"
+    }
+  ],
+  "review_policy": {
+    "maximum_rounds_per_pass": 2
+  },
+  "reviews": []
+}

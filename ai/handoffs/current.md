@@ -152,3 +152,5 @@ CG-M4-18 subsequently merged through PR #56 (`57f8e42`) after owner direction to
 Owner pause is active before CG-M4-19. On resume, CG-M4-19 is the exact next action: local Qwen owns only `tests/overlays/menu/**` under the established prepared-worktree, exact-path, commit, gate, text-only-handoff, and one-correction protocol. Do not start it while paused.
 
 Workspace maintenance, 2026-09-17: the owner authorized removal of every non-primary Foundry Git worktree and stale worktree registration, including benchmark and rejected-agent evidence directories. Their Git branch refs and committed history remain; only the local worktree directories were removed. Do not expect a preserved isolated worktree when referring to earlier packet evidence.
+
+Architecture workshop, 2026-09-17: source-supported intake identified that M5 covers acceptance but does not yet assign the ten PR #57 FCR corrections, CI/release readiness, or a disposition-to-verification map. `docs/planning/workshop-state.json` is the local workshop state. M4-19 remains paused; the next architecture question is whether Core v1 must ship `@foundry/react` as a distributable package at M5.
