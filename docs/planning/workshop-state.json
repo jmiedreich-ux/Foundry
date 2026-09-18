@@ -13,18 +13,11 @@
   "publication": {
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
-    "last_verified_document_revision": "aee98b93d67bf67e93c9abc62c717ff622a01e4b",
-    "status": "published checkpoint; interaction-foundation decision pending push to draft pull request #59",
+    "last_verified_document_revision": "9925fe70a58d38de823de11bde4ca9e00d9fe08f",
+    "status": "interaction-foundation decision published to draft pull request #59",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
-    "pending_paths": [
-      "PROJECT_STATUS.md",
-      "ROADMAP.md",
-      "docs/features/control-gallery/decisions.md",
-      "docs/features/control-gallery/workstream.json",
-      "docs/features/control-gallery/milestones/library-quality-foundation.md",
-      "docs/planning/workshop-state.json"
-    ],
+    "pending_paths": [],
     "expected_base": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
     "delivery_level": "github_branch",
     "verified_local_files": [
