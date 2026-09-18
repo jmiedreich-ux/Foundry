@@ -68,30 +68,55 @@ Server and client provider inputs must agree. A mismatch is a consumer error: de
 
 | Profile | Accepted | Foundry-owned or refused |
 | --- | --- | --- |
-| Identity | `id`, non-reserved `data-*`, test IDs, additive `aria-describedby` | role, element replacement, reserved data hooks, owned IDs and ARIA relationships |
-| Button | identity, `name`, `value`, `form`, `formAction`, `formMethod`, `formNoValidate`, `formTarget`, `autoFocus`, focus/blur, and `onClick` | `type` defaults to `button`; disabled/loading behavior and state hooks are owned |
-| Text input | identity, `name`, `form`, `autoComplete`, `inputMode`, `maxLength`, `minLength`, `pattern`, `placeholder`, spellcheck, focus/blur, and native input/change observation | unsupported input types, value-state callback replacement, field-owned label/error relationships |
-| Select | identity, `name`, `form`, `autoComplete`, focus/blur, and native change observation | `multiple`, native row-count `size`, and field-owned relationships |
-| Static surface | identity and additive descriptive ARIA | focusability, drag/drop, interaction handlers on the root, hidden state, popup state, and semantic replacement |
-| Popup or collection part | identity plus the specifically documented consumer event | foundation event details, positioning internals, owned keyboard handlers, relationships, role, tab index, and semantic replacement |
+| No host | `children` and the exact configuration/state props named for the export | Native attributes, refs, and DOM events; the component renders no owned element. |
+| Identity | `id`, non-reserved `data-*`, test IDs, and additive `aria-describedby` | Role, element replacement, reserved data hooks, owned IDs, and owned ARIA relationships. |
+| Action button | Identity; `aria-label`/`aria-labelledby`; `type?: "button" | "submit" | "reset"` default `button`; `name`, `value`, `form`, `formAction`, `formMethod`, `formNoValidate`, `formTarget`, `autoFocus`; focus/blur; `onClick` | Element and role; type validation/default; disabled/loading semantics; state hooks. |
+| Control button | Identity; `aria-label`/`aria-labelledby` when visible content is insufficient; focus/blur; `onClick`; documented `disabled` | Element, role, `type="button"`, relationships, keyboard behavior, and state hooks; form submission attributes are refused. |
+| Text input | Identity; accessible-name props when no `Field` owns them; `name`, `form`, `autoComplete`, `inputMode`, `maxLength`, `minLength`, `pattern`, `placeholder`, `spellCheck`; focus/blur; native input/change observation | Element, supported `type`, value transition, Field-owned label/error relationships, and state hooks. |
+| Select | Identity; accessible-name props when no `Field` owns them; `name`, `form`, `autoComplete`; focus/blur; native change observation | Element, single-selection transition, `multiple`, native row-count `size`, Field-owned relationships, and state hooks. |
+| Checkable input | Identity; accessible-name props when no `Field` owns them; `name`, `value`, `form`; focus/blur; native change observation | Element, `type="checkbox"`, checked transition, `indeterminate`, role where applicable, Field-owned relationships, and state hooks. |
+| Radio group | Identity; `form`; focus/blur on the fieldset | Fieldset/legend and input markup, input names/values, selection handlers, relationships, roving keys, and state hooks. |
+| Static surface | Identity and additive descriptive ARIA | Focusability, drag/drop, root interaction handlers, hidden/popup state, element/role replacement, owned name relationships, and state hooks. |
+| Popup surface | Identity and additive descriptive ARIA | Portal/positioner props, element/role, modal state, title/description relationships, tab index, positioning internals, keyboard/dismissal handlers, and state hooks. |
+| Collection container | Identity and additive descriptive ARIA | Element/role, accessible-name and item relationships, tab index, keyboard/typeahead handlers, orientation semantics, and state hooks. |
+| Collection item | Identity plus its specifically documented selection event | Element/role, tab index, keyboard/pointer activation, collection value/position, relationships, and state hooks. |
 
 When consumer cancellation is meaningful, the consumer event runs first and `preventDefault()` cancels the Foundry default. Native observation handlers run after the Foundry state request and cannot replace its callback.
 
+Every component has exactly one profile:
+
+| Profile | Components |
+| --- | --- |
+| No host | `FoundryProvider`, `LocaleProvider`, `ToastProvider`, `DialogRoot`, `DrawerRoot`, `PopoverRoot`, `MenuRoot`, `TabsRoot`; `useToast` is a hook and has no forwarding surface. |
+| Identity | `Field`, `Group`, `MenuGroup`, `MenuSeparator` |
+| Action button | `Button` |
+| Control button | `DialogTrigger`, `DialogClose`, `DrawerTrigger`, `DrawerClose`, `PopoverTrigger`, `PopoverClose`, `MenuTrigger`, `TabsTrigger` |
+| Text input | `TextField`; `SearchField` forwards this profile to its search input and exposes no forwarding surface for its internal clear button. |
+| Select | `NativeSelect` |
+| Checkable input | `Checkbox`, `Switch` |
+| Radio group | `RadioGroup` |
+| Static surface | `StatusChip`, `Banner`, `EmptyState`, `LoadingSkeleton`, `Card`, `TabsPanel` |
+| Popup surface | `DialogContent`, `DrawerContent`, `PopoverContent` |
+| Collection container | `MenuContent`, `TabsList` |
+| Collection item | `MenuItem` |
+
+The readonly schema arrays and all public types have no DOM forwarding surface.
+
 ## Foundation, fields, and actions
 
-`Field` renders a `div`, forwards an `HTMLDivElement` ref, and accepts `label`, optional `description`, optional `error`, `required`, `disabled`, `size`, identity props, and exactly one labelable React element. It owns label, description, error, marker, and generated relationships. A child accessible-name or error relationship that conflicts with `Field` is rejected. `error` produces invalid semantics but is not live by default. It never owns the entered value.
+`Field` renders a `div`, forwards an `HTMLDivElement` ref, uses the Identity profile, and accepts `label: ReactNode`, `description?: ReactNode`, `error?: ReactNode`, `required?: boolean`, `disabled?: boolean`, `size?: ControlSize` defaulting to `md`, and exactly one labelable React element as `children`. It owns label, description, error, marker, and generated relationships. A child accessible-name or error relationship that conflicts with `Field` is rejected. `error` produces invalid semantics but is not live by default. It never owns the entered value.
 
-`Group` renders `fieldset` and visible `legend`, forwards `HTMLFieldSetElement`, and accepts `label`, `disabled`, `size`, identity props, and related native fields only. Group `disabled=true` dominates every descendant and cannot be escaped by a child. An explicit child size overrides group size. Unsupported descendants and nested grouping used only for layout are rejected.
+`Group` renders `fieldset` and visible `legend`, forwards `HTMLFieldSetElement`, uses the Identity profile, and accepts `label: ReactNode`, `disabled?: boolean`, `size?: ControlSize` defaulting to `md`, and one or more related native fields as `children`. Group `disabled=true` dominates every descendant and cannot be escaped by a child. An explicit child size overrides group size. Unsupported descendants and nested grouping used only for layout are rejected.
 
-| Export | Element/ref | State, content, and recovery | Migration |
+| Export | Element/ref and profile | Exact public state/form/size props and behavior | Migration |
 | --- | --- | --- | --- |
-| `Button` | `button`; `HTMLButtonElement` | Ordinary children. Icon-only use requires `aria-label`. `disabled` uses native refusal. `loading` remains focusable, sets `aria-disabled` and `aria-busy`, refuses repeat activation, preserves its accessible name, and announces localized `loading` once on each false-to-true transition through a transient visually hidden polite status sibling with no layout wrapper. | Retain name; remove domain-label categories. |
-| `TextField` | text-like `input`; `HTMLInputElement` | Controlled native `value`/`onChange` or `defaultValue`; controlled `readOnly` exception. Types are text, email, password, tel, and url. Browser autofill and native form reset remain operative. | Retain; add type/runtime state union. |
-| `NativeSelect` | single `select`; `HTMLSelectElement` | Controlled `value`/native `onChange` or `defaultValue`; consumer `option`/`optgroup` children; `disabled`, `required`, `invalid`, and Foundry `size`. Empty selection is consumer-owned. | Rename current `Select`; reserve `Select` for a styled listbox. |
-| `Checkbox` | checkbox `input`; `HTMLInputElement` | `CheckboxState` is `boolean | "mixed"`. Controlled state requires `onCheckedChange`; uncontrolled uses `defaultChecked`. Mixed sets the DOM `indeterminate` property and `aria-checked="mixed"`; the next user activation requests `true`. | Retain; add mixed state, size, and callback requirement. |
-| `Switch` | checkbox `input` with `role="switch"`; `HTMLInputElement` | Boolean controlled state with `onCheckedChange`, or `defaultChecked`; mixed is refused. Native form value and reset apply. | Retain; add size and callback requirement. |
-| `RadioGroup` | `fieldset` and radio inputs; `HTMLFieldSetElement` | `RadioOption` is `{ value: string; label: ReactNode; description?: ReactNode; disabled?: boolean }`. Requires non-empty `name`, visible `label`, at least one option, and unique non-empty values. Controlled `value: string | null` requires `onValueChange`; uncontrolled `defaultValue?: string | null`. Required may begin empty. Right/Down select next, Left/Up select previous, Home/End select first/last, horizontal keys follow direction, and each move requests selection once. | Retain data API; remove required auto-selection. |
-| `SearchField` | fragment containing search `input` and conditional clear `button`; ref is `HTMLInputElement` | Controlled `value`/`onValueChange` or `defaultValue`; controlled `readOnly` exception. Clear requests `""` once, then calls optional `onClear`; input focus is preserved whether accepted or declined. Empty, disabled, or read-only state has no clear button. | Rename `Search`; localize clear and fix callback order. |
+| `Button` | `button`; `HTMLButtonElement`; Action button | `children: ReactNode`; `variant?: ButtonVariant` default `primary`; `size?: ControlSize` default `md`; `disabled?: boolean` default false; `loading?: boolean` default false. Icon-only use requires an accessible-name prop. Disabled uses native refusal. Loading remains focusable, sets `aria-disabled` and `aria-busy`, refuses repeat activation, preserves its accessible name, and announces localized `loading` once on each false-to-true transition through a transient visually hidden polite status sibling with no layout wrapper. | Retain name; remove domain-label categories. |
+| `TextField` | text-like `input`; `HTMLInputElement`; Text input | Controlled `{ value: string; onChange(event: ChangeEvent<HTMLInputElement>): void }` or uncontrolled `{ defaultValue?: string; onChange?(event: ChangeEvent<HTMLInputElement>): void }`; a controlled value may omit `onChange` only with `readOnly: true`. Also `type?: "text" | "email" | "password" | "tel" | "url"` default `text`; `disabled?`, `required?`, `readOnly?` default false; `invalid?: boolean | string` default false; `size?: ControlSize` default `md`. Browser autofill and native form reset remain operative. | Retain; add type/runtime state union. |
+| `NativeSelect` | single `select`; `HTMLSelectElement`; Select | `children` are one or more `option`/`optgroup` elements; controlled `{ value: string; onChange(event: ChangeEvent<HTMLSelectElement>): void }` or uncontrolled `{ defaultValue?: string; onChange?(event: ChangeEvent<HTMLSelectElement>): void }`; `disabled?`, `required?` default false; `invalid?: boolean | string` default false; `size?: ControlSize` default `md`. Empty string is a permitted consumer-owned value. | Rename current `Select`; reserve `Select` for a styled listbox. |
+| `Checkbox` | checkbox `input`; `HTMLInputElement`; Checkable input | Controlled `{ checked: CheckboxState; onCheckedChange(next: CheckboxState): void }` or uncontrolled `{ defaultChecked?: CheckboxState; onCheckedChange?(next: CheckboxState): void }`, default false; `name?`, `value?: string` default `"on"`, `form?`; `required?`, `disabled?` default false; `invalid?: boolean | string` default false; `size?: ControlSize` default `md`. Mixed sets DOM `indeterminate` and `aria-checked="mixed"`; next user activation requests `true`. Native reset restores the mounted default. | Retain; add mixed state, size, and callback requirement. |
+| `Switch` | checkbox `input` with `role="switch"`; `HTMLInputElement`; Checkable input | Controlled `{ checked: boolean; onCheckedChange(next: boolean): void }` or uncontrolled `{ defaultChecked?: boolean; onCheckedChange?(next: boolean): void }`, default false; `name?`, `value?: string` default `"on"`, `form?`; `required?`, `disabled?` default false; `invalid?: boolean | string` default false; `size?: ControlSize` default `md`. Mixed is refused; native reset restores the mounted default. | Retain; add size and callback requirement. |
+| `RadioGroup` | `fieldset` and radio inputs; `HTMLFieldSetElement`; Radio group | `name: string`, `label: ReactNode`, `options: RadioOption[]`, `form?`; controlled `{ value: string | null; onValueChange }` or uncontrolled `{ defaultValue?: string | null; onValueChange? }`; `required?`, `disabled?` default false; `invalid?: boolean | string` default false; `size?: ControlSize` default `md`. `RadioOption` is `{ value: string; label: ReactNode; description?: ReactNode; disabled?: boolean }`; at least one unique non-empty value is required. Required may begin empty. Right/Down select next, Left/Up previous, Home/End first/last, horizontal keys follow direction, and each move requests once. | Retain data API; remove required auto-selection. |
+| `SearchField` | fragment containing search `input` and conditional clear `button`; ref `HTMLInputElement`; Text input applies to the input | Controlled `{ value: string; onValueChange(next: string): void }` or uncontrolled `{ defaultValue?: string; onValueChange?(next: string): void }`; a controlled value may omit `onValueChange` only with `readOnly: true`. Also `name?`, `form?`, `disabled?`, `required?`, `readOnly?` default false; `invalid?: boolean | string` default false; `size?: ControlSize` default `md`; `onClear?(): void`. Clear requests `""` once, then calls `onClear`; focus is preserved whether accepted or declined. Empty, disabled, or read-only state has no clear button. | Rename `Search`; localize clear and fix callback order. |
 
 ## Feedback and content surfaces
 
@@ -126,13 +151,37 @@ Parts must belong to their nearest matching root; cross-family or orphan parts t
 
 Duplicate required parts, invalid cardinality, empty Menu, and missing Tabs pairs are composition errors. A dynamically removed part follows the recovery rules below and then the remaining composition is validated again.
 
+Compound `children` and non-state props are exact:
+
+| Export | Required public composition props |
+| --- | --- |
+| `DialogRoot` | `children: ReactNode` plus the exact open-state union. |
+| `DrawerRoot` | Dialog root props plus `side?: "start" | "end"`, default `end`. |
+| `PopoverRoot` | `children: ReactNode` plus the exact open-state union. |
+| `MenuRoot` | `children: ReactNode`, `disabled?: boolean` default false, plus the exact open-state union. |
+| `TabsRoot` | `children: ReactNode`, `orientation?: TabsOrientation` default `horizontal`, `activation?: TabsActivationMode` default `automatic`, plus the documented value-state union. |
+| Dialog/Drawer/Popover triggers | `children: ReactNode`, `disabled?: boolean`; Control button profile. |
+| Dialog/Drawer/Popover closes | `children?: ReactNode`, `disabled?: boolean`; Control button profile. Missing children render the applicable localized close label. |
+| `DialogContent`, `DrawerContent` | `children?: ReactNode`, `title: string`, `description?: string`, `headingLevel?: HeadingLevel`, `initialFocus?: FocusTarget`, `finalFocus?: FocusTarget`; Popup surface profile. |
+| `PopoverContent` | `children?: ReactNode`, `title: string`, `description?: string`, `headingLevel?: HeadingLevel`, and the placement props below; Popup surface profile. |
+| `MenuTrigger` | `children: ReactNode`, `disabled?: boolean`; Control button profile. |
+| `MenuContent` | One or more allowed menu-part children and the placement props below; Collection container profile. |
+| `MenuItem` | `children: ReactNode`, `textValue?: string`, `disabled?: boolean`, `onSelect?(event: MenuSelectEvent): void`; Collection item profile. |
+| `MenuGroup` | One or more `MenuItem` children and `label?: ReactNode`; Identity profile. Groups cannot nest. |
+| `MenuSeparator` | No children; Identity profile. |
+| `TabsList` | One or more `TabsTrigger` children and `label: string`; Collection container profile. |
+| `TabsTrigger` | `children: ReactNode`, `value: string`, `disabled?: boolean`; Control button profile. |
+| `TabsPanel` | `children?: ReactNode`, `value: string`; Static surface profile. |
+
 `FocusTarget` is `HTMLElement | RefObject<HTMLElement | null> | (() => HTMLElement | null)`. `PlacementSide` is `"top" | "bottom" | "left" | "right" | "inline-start" | "inline-end"`; `PlacementAlign` is `"start" | "center" | "end"`. Floating content defaults to side `bottom`, align `center`, side offset 8 CSS pixels, align offset 0, and collision padding 8. It flips on the side axis, shifts on alignment, tracks scroll/resize/layout changes, and is capped to the available viewport or clipping boundary.
+
+The exact public placement fields are `side?: PlacementSide`, `align?: PlacementAlign`, `sideOffset?: number`, `alignOffset?: number`, and `collisionPadding?: number`. Offsets and padding must be finite and non-negative. Consumers cannot replace the anchor, positioner, collision boundary, positioning method, or tracking behavior in Core v1.
 
 ## Dialog and Drawer
 
 Roots are DOM-free and default closed. Controlled `open` requires `onOpenChange`; uncontrolled state uses `defaultOpen`. Public callbacks receive only the requested boolean. Foundry translates dependency reasons internally.
 
-Trigger and close parts are native buttons with `HTMLButtonElement` refs and the Button forwarding profile. Content is a portaled semantic dialog element with `HTMLElement` ref, required visible title, optional description, heading level, and optional `initialFocus` and `finalFocus`. It is modal: outside content is inert, document scroll is locked, Tab is contained, outside pointer dismissal is refused without a callback, and only the topmost modal handles Escape. Content is not a native `HTMLDialogElement`.
+Trigger and close parts are native buttons with `HTMLButtonElement` refs and the Control button profile. Content is a portaled `div` with `role="dialog"`, `aria-modal="true"`, `HTMLDivElement` ref, Popup surface profile, required visible title, optional description, heading level, and optional `initialFocus` and `finalFocus`. It is modal: outside content is inert, document scroll is locked, Tab is contained, outside pointer dismissal is refused without a callback, and only the topmost modal handles Escape. Content is not a native `HTMLDialogElement`.
 
 | Request or transition | Callback and state | Focus result |
 | --- | --- | --- |
@@ -147,7 +196,7 @@ Final restoration order is a valid explicit `finalFocus`, the connected enabled 
 
 ## Popover
 
-`PopoverRoot` is DOM-free, non-modal, default closed, and uses the same exact open-state union. Trigger and close are native buttons. Content is a portaled `div` with dialog semantics, `HTMLElement` ref, required title, optional description, heading level, and the bounded placement props.
+`PopoverRoot` is DOM-free, non-modal, default closed, and uses the same exact open-state union. Trigger and close are native buttons with the Control button profile. Content is a portaled `div` with `role="dialog"`, no `aria-modal`, an `HTMLDivElement` ref, the Popup surface profile, required title, optional description, heading level, and the exact placement props.
 
 Opening leaves focus on the trigger. Escape or an explicit close requests close and, when accepted while focus is inside, restores the valid trigger. Outside pointer requests close but preserves the pointer target's focus. Tab follows document order; after focus leaves the popup it requests close without restoration. A declined controlled close leaves the popup open and never steals focus back.
 
@@ -157,7 +206,7 @@ If the anchor disconnects, Foundry issues one close request for that loss episod
 
 `MenuRootProps` is the exact controlled/uncontrolled open union plus `children` and `disabled?`; default is closed. A disabled closed root refuses all requests. Becoming disabled while uncontrolled and open closes without a callback and restores a valid trigger; controlled `open=true` with `disabled=true` is a conflicting state and is rejected. Menu is non-modal.
 
-Trigger is a native button. Enter/Space opens at the first enabled item; ArrowDown opens at first and ArrowUp at last. Content is a portaled `div` with `role="menu"`, `HTMLElement` ref, placement props, and trigger labelling. Item is an `HTMLElement` with `role="menuitem"`, non-empty content, optional `textValue`, `disabled`, and `onSelect(event: MenuSelectEvent)`. `MenuSelectEvent` exposes the originating `KeyboardEvent | PointerEvent`, `preventDefault()`, and readonly `defaultPrevented`. Non-text item content requires a non-empty `textValue`.
+Trigger is a native button with the Control button profile. Enter/Space opens at the first enabled item; ArrowDown opens at first and ArrowUp at last. Content is a portaled `div` with `role="menu"`, `HTMLDivElement` ref, Collection container profile, exact placement props, and trigger labelling. Item is a `div` with `role="menuitem"`, `HTMLDivElement` ref, Collection item profile, non-empty content, optional `textValue`, `disabled`, and `onSelect(event: MenuSelectEvent)`. `MenuSelectEvent` exposes the originating `KeyboardEvent | PointerEvent`, `preventDefault()`, and readonly `defaultPrevented`. Non-text item content requires a non-empty `textValue`.
 
 Arrow navigation wraps and may focus disabled items; activation of a disabled item is refused without selection or close. Home/End move to the first/last item. Typeahead uses locale-aware, case-insensitive prefix matching over `textValue` or plain text, a 500 ms buffer, repeated-character cycling, and includes disabled matches for focus while preserving activation refusal. An all-disabled menu opens with the content itself focused; selection is unavailable. Empty menus are composition errors.
 
@@ -165,7 +214,7 @@ An unprevented enabled selection invokes `onSelect` once, then requests close on
 
 ## Tabs
 
-`TabsOrientation` is `"horizontal" | "vertical"`; `TabsActivationMode` is `"automatic" | "manual"`. `TabsRoot` is DOM-free and accepts controlled `value: string | null` with required `onValueChange`, or uncontrolled `defaultValue?: string | null`, plus orientation default `horizontal`, activation default `automatic`, and children. Omitted uncontrolled default selects the first enabled tab without a callback. `TabsList` is one labelled `div` with `role="tablist"` and `HTMLElement` ref. `TabsTrigger` is a native button with `HTMLButtonElement` ref, unique non-empty value, ordinary content, and disabled state. `TabsPanel` is a `div` with `HTMLDivElement` ref and matching value.
+`TabsOrientation` is `"horizontal" | "vertical"`; `TabsActivationMode` is `"automatic" | "manual"`. `TabsRoot` is DOM-free and accepts controlled `{ value: string | null; onValueChange(next: string | null): void; defaultValue?: never }` or uncontrolled `{ defaultValue?: string | null; onValueChange?(next: string | null): void; value?: never }`, plus the composition props above. Omitted uncontrolled default selects the first enabled tab without a callback. `TabsList` is one labelled `div` with `role="tablist"`, `HTMLDivElement` ref, and Collection container profile. `TabsTrigger` is a native button with `HTMLButtonElement` ref and Control button profile. `TabsPanel` is a `div` with `HTMLDivElement` ref, Static surface profile, and matching value.
 
 Horizontal arrows follow logical direction; vertical uses Up/Down. Home/End and arrow navigation wrap among enabled triggers. Focus moves immediately. Automatic mode then requests selection once; manual mode waits for Enter/Space. A declined controlled selection never rolls focus back. Pointer activation focuses and requests selection once in either mode.
 

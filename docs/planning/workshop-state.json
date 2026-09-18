@@ -2,7 +2,7 @@
   "schema_version": 1,
   "repository": "jmiedreich-ux/Foundry",
   "source_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
-  "status": "paused",
+  "status": "reviewing",
   "paths": {
     "overview": "PRODUCT.md",
     "architecture": "docs/features/control-gallery/decisions.md",
@@ -15,12 +15,13 @@
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
     "last_verified_document_revision": "db7cf5afa10f79998e6465027c733da1e3356d82",
-    "status": "bounded contract correction published; fidelity and consistency passed targeted review, completeness still has material findings after the final allowed round",
+    "status": "owner-authorized exceptional F3/F4 correction is being prepared for one final targeted completeness recheck",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
     "pending_paths": [
       "PROJECT_STATUS.md",
       "ai/handoffs/current.md",
+      "docs/features/control-gallery/control-contracts.md",
       "docs/features/control-gallery/workstream.json",
       "docs/planning/workshop-state.json"
     ],
@@ -54,9 +55,10 @@
     "draft Core v1 public export and migration matrix",
     "complete first-round control-contract fidelity, completeness, and consistency review",
     "targeted second-round fidelity and consistency approval",
-    "exhausted second-round completeness review with forwarding and native-control prop gaps retained"
+    "exhausted second-round completeness review with forwarding and native-control prop gaps retained",
+    "owner-authorized exceptional completeness recheck limited to F3 and F4"
   ],
-  "next_action": "Obtain the owner's review-budget disposition for the two retained completeness findings before changing the contract or preparing the Maestro evaluation.",
+  "next_action": "Publish the exact F3/F4 correction and obtain the owner-authorized exceptional targeted completeness recheck before preparing the Maestro evaluation.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -105,6 +107,14 @@
       "evidence": "Official library documentation and current package metadata were compared against Foundry's Dialog, Menu, Tabs, Field, Toast, SSR, packaging, and controlled-request needs on 2026-09-17.",
       "canonical_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation",
       "supersedes": null
+    },
+    {
+      "id": "CG-REVIEW-EXCEPTION-001",
+      "subject": "One exceptional Core v1 completeness recheck",
+      "authority": "owner",
+      "evidence": "Owner replied 'yes do it' after being asked to authorize one additional targeted completeness review for F3 and F4.",
+      "canonical_ref": "docs/planning/workshop-state.json#review-policy",
+      "supersedes": null
     }
   ],
   "open_questions": [
@@ -138,7 +148,7 @@
       "selection_point": "After the interaction foundation is selected and before correction packets are issued.",
       "required_evidence": "Reviewed control and part matrix with migration disposition.",
       "draft_ref": "docs/features/control-gallery/control-contracts.md",
-      "status": "paused"
+      "status": "reviewing"
     },
     {
       "id": "CG-ARQ-004",
@@ -168,7 +178,9 @@
       "owner": "Foundry owner",
       "selection_point": "Before another control-contract edit or the Base UI proof packet.",
       "required_evidence": "Recorded owner direction; if another round is authorized, a passing independent targeted completeness result at the corrected exact commit.",
-      "status": "open"
+      "status": "resolved",
+      "resolution": "Owner authorized one exceptional targeted completeness recheck limited to F3 and F4.",
+      "resolution_ref": "CG-REVIEW-EXCEPTION-001"
     }
   ],
   "inspections": [
@@ -196,7 +208,16 @@
     }
   ],
   "review_policy": {
-    "maximum_rounds_per_pass": 2
+    "maximum_rounds_per_pass": 2,
+    "exceptions": [
+      {
+        "budget_key": "core-v1-contract-completeness",
+        "maximum_rounds": 3,
+        "scope": "One targeted recheck of F3 and F4 only.",
+        "authority": "Foundry owner",
+        "evidence": "Owner authorization in conversation after the round-two completeness result."
+      }
+    ]
   },
   "reviews": [
     {
