@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "repository": "jmiedreich-ux/Foundry",
-  "source_revision": "809dc11cbed024d2768339f6a34d24aee2c1138c",
-  "status": "discussing",
+  "source_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
+  "status": "reviewing",
   "paths": {
     "overview": "PRODUCT.md",
     "architecture": "docs/features/control-gallery/decisions.md",
@@ -11,48 +11,90 @@
     "state": "docs/planning/workshop-state.json"
   },
   "publication": {
-    "route": "local commit; remote publication has not been authorized",
-    "authorization_source": "Owner request: use project-architecture-workshop to review coverage, 2026-09-17",
-    "last_verified_document_revision": "78495ed6b16eb52aec5a283f86f0842651cae59e",
-    "status": "local draft",
+    "route": "GitHub branch and pull request",
+    "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
+    "last_verified_document_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
+    "status": "first architecture checkpoint pending publication",
     "pending_paths": [
+      "PRODUCT.md",
+      "PROJECT_STATUS.md",
+      "ROADMAP.md",
+      "docs/features/control-gallery/README.md",
+      "docs/features/control-gallery/decisions.md",
+      "docs/features/control-gallery/milestones.md",
+      "docs/features/control-gallery/question-register.md",
+      "docs/features/control-gallery/workstream.json",
+      "docs/features/control-gallery/milestones/library-quality-foundation.md",
+      "docs/features/control-gallery/milestones/overlays-and-navigation.md",
+      "docs/features/control-gallery/milestones/acceptance-and-release.md",
       "docs/planning/workshop-state.json"
     ],
-    "delivery_level": "local",
-    "verified_local_files": []
+    "expected_base": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
+    "delivery_level": "github_pending",
+    "verified_local_files": [
+      { "path": "PRODUCT.md", "sha256": "d4a999a8511e3a975f0e6846c79ed7311849808c14bca26130de7673ac265324" },
+      { "path": "PROJECT_STATUS.md", "sha256": "8a7f590ef99f1650d4b9a36d04a0568e20c5443dcc741a43f78b91274ca24b19" },
+      { "path": "ROADMAP.md", "sha256": "1ddbd45a42940d4204dfa16680c8577bbff6d251446d82b3b39ca33a0f49913c" },
+      { "path": "docs/features/control-gallery/README.md", "sha256": "02deb877d3e79a363ee732f203472344acadfeccf7218d195401718608951dab" },
+      { "path": "docs/features/control-gallery/decisions.md", "sha256": "2b47de7fecb6e297b00a4742e8d2ba8aaecb67d3facde994ecb5ae2f06ca392f" },
+      { "path": "docs/features/control-gallery/milestones.md", "sha256": "b4a3adf5cbd53914f68ed5e2aebca92aacf838e2d8e1d2dcb2eb8438ab6399b4" },
+      { "path": "docs/features/control-gallery/question-register.md", "sha256": "3265c3d25174fe294b69839c0dbad97a49a3f91d720a6f9094191d73afcc39a3" },
+      { "path": "docs/features/control-gallery/workstream.json", "sha256": "914e782217b0190926b276be7b30ad85e03e9ad9180bea20192e15a615d06c15" },
+      { "path": "docs/features/control-gallery/milestones/library-quality-foundation.md", "sha256": "0571c385e84caf7ff54b92a075a48015fe7f526753753e6616a73c9b25578964" },
+      { "path": "docs/features/control-gallery/milestones/overlays-and-navigation.md", "sha256": "cbb0b4839affc616bab2d59799a0848f8c02977c7f7d95944889927ca38f6c61" },
+      { "path": "docs/features/control-gallery/milestones/acceptance-and-release.md", "sha256": "4d623debbebd93abf4cb3e6190aee453d251982c650e2432fcf3a6abfa011dcd" }
+    ]
   },
-  "current_topic": "Control Gallery planning structure and architecture-disposition review",
+  "current_topic": "Core v1 library quality foundation",
   "covered_topics": [
-    "authoritative source inventory",
-    "PR #57 review-intake boundary",
-    "cross-control acceptance versus remediation coverage",
-    "project-milestone naming",
-    "reader-facing delivery-stage structure"
+    "complete production-source and test inventory",
+    "mature-library and WAI-ARIA reference review",
+    "native versus headless interaction boundary",
+    "public state, ref, refusal, and localization invariants",
+    "skin isolation and visual-quality direction",
+    "support, package, browser, and assistive-technology direction",
+    "plain reader-facing delivery stages"
   ],
-  "next_action": "Define the release-gate contract and assign the cross-control correction sequence before implementation resumes.",
+  "next_action": "Select the internal headless interaction foundation and record its responsibility map, representative proof protocol, evidence location, and acceptance authority before defining per-control migration contracts.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
       "subject": "Menu browser checks remain paused",
       "authority": "owner",
-      "evidence": "ai/handoffs/current.md#exact-next-action",
-      "canonical_ref": "ai/handoffs/current.md#exact-next-action",
+      "evidence": "Owner pause recorded in ai/handoffs/current.md.",
+      "canonical_ref": "docs/features/control-gallery/milestones/overlays-and-navigation.md#remaining-work",
       "supersedes": null
     },
     {
       "id": "CG-ARCH-001",
-      "subject": "Project-milestone naming",
+      "subject": "Reader-facing delivery stages use plain titles",
       "authority": "owner",
-      "evidence": "Owner direction: use plain titles rather than stage shorthand, 2026-09-17.",
+      "evidence": "Owner direction on 2026-09-17 to reorder the stages and avoid milestone-code shorthand in reader-facing documentation.",
       "canonical_ref": "docs/features/control-gallery/milestones.md",
       "supersedes": null
     },
     {
       "id": "CG-ARCH-002",
-      "subject": "Core v1 distribution boundary",
+      "subject": "Core v1 is an installable styled package",
       "authority": "delegated chief software architect",
-      "evidence": "Owner delegated architecture decisions and asked to begin the architecture path, 2026-09-17.",
-      "canonical_ref": "docs/features/control-gallery/decisions.md#quality-baseline-and-delivery-direction",
+      "evidence": "Owner delegated technical architecture decisions on 2026-09-17.",
+      "canonical_ref": "docs/features/control-gallery/decisions.md#core-v1-quality-contract",
+      "supersedes": null
+    },
+    {
+      "id": "CG-ARCH-003",
+      "subject": "Complex interactions use a hidden proven headless foundation",
+      "authority": "delegated chief software architect",
+      "evidence": "Source and reference-library review showed that extending duplicated custom focus, dismissal, collection, and positioning mechanisms would not meet the required quality bar.",
+      "canonical_ref": "docs/features/control-gallery/decisions.md#architecture-layers",
+      "supersedes": null
+    },
+    {
+      "id": "CG-ARCH-004",
+      "subject": "GitHub is the documentation publication authority",
+      "authority": "owner",
+      "evidence": "Owner direction on 2026-09-17 that documentation is kept on GitHub while source may exist locally and on GitHub.",
+      "canonical_ref": "PRODUCT.md#authoritative-sources",
       "supersedes": null
     }
   ],
@@ -62,38 +104,178 @@
       "subject": "Release license",
       "missing_decision": "Which license grants the rights for the Foundry package to be published and adopted.",
       "affected_outcome": "Package publication and consumer adoption.",
-      "owner": "Foundry owner or delegated chief software architect",
+      "owner": "Foundry owner",
+      "selection_point": "Before Core v1 release packaging is accepted.",
+      "required_evidence": "Published license file and matching package metadata.",
+      "status": "open"
+    },
+    {
+      "id": "CG-ARQ-002",
+      "subject": "Internal interaction foundation selection",
+      "missing_decision": "Select Radix Primitives, React Aria Components, or Base UI and fix the native, adapter, portal, focus, dismissal, positioning, and collection responsibility boundary.",
+      "affected_outcome": "All complex-control migration contracts.",
+      "owner": "delegated chief software architect",
+      "selection_point": "Before any complex-control Maestro packet is prepared.",
+      "required_evidence": "Decision matrix and representative Dialog, Menu, Tabs, Field, and Toast proof protocol.",
+      "status": "open"
+    },
+    {
+      "id": "CG-ARQ-003",
+      "subject": "Per-control public contract and migration matrix",
+      "missing_decision": "Define each Core v1 export, semantic element, owned and forwarded props, state forms, callbacks, resets, refusals, and ref target.",
+      "affected_outcome": "Bounded correction packets for every existing control.",
+      "owner": "delegated chief software architect",
+      "selection_point": "After the interaction foundation is selected and before correction packets are issued.",
+      "required_evidence": "Reviewed control and part matrix with migration disposition.",
+      "status": "open"
+    },
+    {
+      "id": "CG-ARQ-004",
+      "subject": "Token and skin schema",
+      "missing_decision": "Define token keys and types, owned parts, recipes, scoping, portal propagation, validation, and rendered approval evidence.",
+      "affected_outcome": "Default-skin rebuild and visual acceptance.",
+      "owner": "delegated chief software architect",
+      "selection_point": "Before skin implementation packets are issued.",
+      "required_evidence": "Reviewed schema, recipe matrix, and rendered-approval protocol.",
+      "status": "open"
+    },
+    {
+      "id": "CG-ARQ-005",
+      "subject": "Package and executable gate contract",
+      "missing_decision": "Fix artifact layout, exports, dependency placement, supported environments, canonical commands, pass criteria, and retained evidence.",
+      "affected_outcome": "Installability, CI, consumer proof, and release handoff.",
+      "owner": "delegated chief software architect",
+      "selection_point": "Before package or workflow implementation packets are issued.",
+      "required_evidence": "Reviewed manifest matrix and command-to-gate table.",
       "status": "open"
     }
   ],
   "inspections": [
     {
-      "source_revision": "78495ed6b16eb52aec5a283f86f0842651cae59e",
+      "source_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
       "paths": [
-        "AGENTS.md",
-        "PRODUCT.md",
-        "ROADMAP.md",
-        "PROJECT_STATUS.md",
-        "ai/handoffs/current.md",
-        "tracker/assignments.json",
-        "docs/features/control-gallery/README.md",
-        "docs/features/control-gallery/decisions.md",
-        "docs/features/control-gallery/milestones.md",
-        "docs/features/control-gallery/milestones/overlays-and-navigation.md",
-        "docs/features/control-gallery/milestones/acceptance-and-release.md",
-        "docs/features/control-gallery/workstream.json"
+        "packages/react/src",
+        "packages/tokens/src",
+        "apps/lab/src",
+        "tests",
+        "package.json",
+        "packages/react/package.json",
+        "packages/tokens/package.json",
+        ".github/workflows",
+        "docs/features/control-gallery"
       ],
       "evidence_level": "source-supported",
       "findings": [
-        "The cross-control acceptance stage does not yet assign ownership or sequencing for the ten confirmed review findings, CI, or package-release readiness.",
-        "No repository workshop-state record or single architecture-disposition register existed before this workshop.",
-        "PR #57 is a draft with no recorded independent GitHub review; its reviewed snapshot is 5e01f5a0d02c78ced41a915042b49dd8ffd666c9."
+        "The functional catalog exists, but its public state, styling, accessibility, package, and verification rules are inconsistent across control families.",
+        "Complex controls duplicate focus, dismissal, collection, and positioning responsibilities that mature headless libraries already maintain.",
+        "The default skin has implicit and consumer-wide CSS effects and does not provide complete recipes for the overlay and navigation family.",
+        "The repository does not yet expose a release package or one canonical product gate set."
       ],
-      "canonical_evidence": "https://github.com/jmiedreich-ux/Foundry/pull/57"
+      "canonical_evidence": "docs/features/control-gallery/decisions.md#current-architecture-disposition"
     }
   ],
   "review_policy": {
     "maximum_rounds_per_pass": 2
   },
-  "reviews": []
+  "reviews": [
+    {
+      "id": "CG-REVIEW-FIDELITY-01",
+      "subject": "Initial quality-foundation draft",
+      "pass_type": "decision_fidelity",
+      "mode": "full",
+      "parent_review_id": null,
+      "scope": "Owner requirements against the active architecture and status documents.",
+      "budget_key": "quality-foundation-fidelity",
+      "round": 1,
+      "reviewer": { "agent": "/root/decision_fidelity_review", "session": "separate", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": null, "base_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121", "document_hashes": {}, "packet_hash": "6bf1146655cf406f1cd954e9b223da0f663107dabf7eb9276f59b698a0c52e4d", "filtered_passages": ["Prior review report and history excluded."], "original_decision_evidence": ["Owner requirements supplied directly in the review packet."] },
+      "sources_examined": [
+        { "path": "PRODUCT.md", "revision": "working-tree", "headings": ["Current State", "Authoritative Sources"] },
+        { "path": "docs/features/control-gallery/decisions.md", "revision": "working-tree", "headings": ["Core v1 quality contract", "Current architecture disposition", "Capability path"] },
+        { "path": "docs/features/control-gallery/milestones.md", "revision": "working-tree", "headings": ["Control Gallery delivery stages"] },
+        { "path": "docs/features/control-gallery/question-register.md", "revision": "working-tree", "headings": ["Open architecture questions"] }
+      ],
+      "journeys": [],
+      "not_assessed": ["Runtime correctness and architectural completeness."],
+      "missing_evidence": ["The response mapped requirements but did not return the required complete journey trace."],
+      "findings": [
+        { "id": "FID-01", "subject": "Quality ambition", "classification": "non_blocking", "missing_or_contradictory_information": "Exceptional polish and ease of use were not explicit acceptance dimensions.", "location": "PRODUCT.md and docs/features/control-gallery/decisions.md", "affected_outcome": "Owner quality intent", "impact": "Technical conformance could be mistaken for the requested product quality.", "minimum_correction": "State and evaluate polish and first-use usability.", "disposition": "corrected", "canonical_reference": "docs/features/control-gallery/decisions.md#core-v1-quality-contract" },
+        { "id": "FID-02", "subject": "GitHub documentation authority", "classification": "non_blocking", "missing_or_contradictory_information": "The publication rule was absent.", "location": "PRODUCT.md", "affected_outcome": "Documentation custody", "impact": "A local draft could be mistaken for durable authority.", "minimum_correction": "Record GitHub as the publication authority.", "disposition": "corrected", "canonical_reference": "PRODUCT.md#authoritative-sources" },
+        { "id": "FID-03", "subject": "Premature approval label", "classification": "non_blocking", "missing_or_contradictory_information": "The design link said approved while architecture remained in review.", "location": "docs/features/control-gallery/workstream.json", "affected_outcome": "Status truth", "impact": "Atlas could show invented approval.", "minimum_correction": "Remove the approval qualifier.", "disposition": "corrected", "canonical_reference": "docs/features/control-gallery/workstream.json" }
+      ],
+      "result": "incomplete",
+      "conclusion": "Useful fidelity findings were returned and corrected, but the missing journey trace prevents this attempt from establishing completed review coverage.",
+      "coverage_complete": false,
+      "round_consumed": false,
+      "correction_refs": ["PRODUCT.md", "docs/features/control-gallery/decisions.md", "docs/features/control-gallery/milestones/acceptance-and-release.md", "docs/features/control-gallery/workstream.json"],
+      "invalidated_by": "The reviewed working-tree snapshot changed after the findings."
+    },
+    {
+      "id": "CG-REVIEW-COMPLETE-01",
+      "subject": "Initial quality-foundation draft",
+      "pass_type": "architectural_completeness",
+      "mode": "full",
+      "parent_review_id": null,
+      "scope": "Implementation readiness of the active architecture and milestone documents.",
+      "budget_key": "quality-foundation-completeness",
+      "round": 1,
+      "reviewer": { "agent": "/root/architecture_completeness_review", "session": "separate", "independence": "exposed_to_prior_inspection_findings", "authorship_eligible": false, "prohibited_input_exposure": true },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": null, "base_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121", "document_hashes": {}, "packet_hash": "38106e370848d71c0a2d790a8a653c04ea92755dcdf4a91038311092a2ad76eb", "filtered_passages": [], "original_decision_evidence": [] },
+      "sources_examined": [
+        { "path": "docs/features/control-gallery/decisions.md", "revision": "working-tree", "headings": ["Core v1 quality contract", "Current architecture disposition", "Capability path"] },
+        { "path": "docs/features/control-gallery/milestones/library-quality-foundation.md", "revision": "working-tree", "headings": ["Outcome", "Included", "Completion evidence"] },
+        { "path": "packages/react/src", "revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121", "headings": ["representative control source"] },
+        { "path": "packages/react/package.json", "revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121", "headings": ["package manifest"] }
+      ],
+      "journeys": [],
+      "not_assessed": ["Live build, browser, packed-consumer, hydration, and assistive-technology operation."],
+      "missing_evidence": ["The reviewer encountered prohibited prior inspection findings, so the attempt is not eligible as a fresh independent pass."],
+      "findings": [
+        { "id": "COMP-01", "subject": "Per-control public contract", "classification": "blocking", "missing_or_contradictory_information": "No canonical Core v1 control and part contract matrix exists.", "location": "docs/features/control-gallery/decisions.md", "affected_outcome": "Maestro-ready correction packets", "impact": "Implementers would invent control-specific behavior.", "minimum_correction": "Define every export, semantic element, prop boundary, state form, reset, callback, refusal, ref, and migration disposition.", "disposition": "open_architecture_work", "canonical_reference": "CG-ARQ-003" },
+        { "id": "COMP-02", "subject": "Headless foundation boundary", "classification": "blocking", "missing_or_contradictory_information": "The candidate and responsibility split are not selected.", "location": "docs/features/control-gallery/decisions.md#architecture-layers", "affected_outcome": "Complex-control architecture", "impact": "Portal, focus, dismissal, layer, and positioning behavior remains ambiguous.", "minimum_correction": "Select the dependency and define the responsibility and proof boundaries.", "disposition": "open_architecture_work", "canonical_reference": "CG-ARQ-002" },
+        { "id": "COMP-03", "subject": "Token and skin schema", "classification": "blocking", "missing_or_contradictory_information": "The schema, part inventory, recipes, scope, portal propagation, and approval artifact are not defined.", "location": "docs/features/control-gallery/decisions.md#skin-and-visual-ownership", "affected_outcome": "Skin implementation", "impact": "Visual implementation would require invention.", "minimum_correction": "Create the reviewed skin contract and recipe matrix.", "disposition": "open_architecture_work", "canonical_reference": "CG-ARQ-004" },
+        { "id": "COMP-04", "subject": "Package and gate contract", "classification": "blocking", "missing_or_contradictory_information": "Artifacts, exports, dependency placement, environments, commands, and evidence are not exact.", "location": "docs/features/control-gallery/decisions.md#support-and-release-gates", "affected_outcome": "Installable Core v1", "impact": "Package and CI packets are not bounded.", "minimum_correction": "Create manifest and command-to-gate matrices.", "disposition": "open_architecture_work", "canonical_reference": "CG-ARQ-005" },
+        { "id": "COMP-05", "subject": "Advancement sequence", "classification": "blocking", "missing_or_contradictory_information": "Architecture approval, proof, disposition, gates, and packet eligibility are not sequenced precisely.", "location": "docs/features/control-gallery/milestones/library-quality-foundation.md", "affected_outcome": "Quality-foundation completion", "impact": "The milestone gate is circular.", "minimum_correction": "Define proof lifecycle and packet eligibility after foundation selection.", "disposition": "open_architecture_work", "canonical_reference": "docs/features/control-gallery/milestones/library-quality-foundation.md" }
+      ],
+      "result": "incomplete",
+      "conclusion": "The findings define the remaining architecture workload, but prohibited-input exposure prevents this attempt from satisfying independent completeness review.",
+      "coverage_complete": false,
+      "round_consumed": false,
+      "correction_refs": [],
+      "invalidated_by": "The reviewed working-tree snapshot changed after the findings."
+    },
+    {
+      "id": "CG-REVIEW-CONSISTENCY-01",
+      "subject": "Initial quality-foundation draft",
+      "pass_type": "cross_document_consistency",
+      "mode": "full",
+      "parent_review_id": null,
+      "scope": "Authority, milestone identity, lifecycle, links, and machine-readable alignment.",
+      "budget_key": "quality-foundation-consistency",
+      "round": 1,
+      "reviewer": { "agent": "/root/cross_document_consistency_review", "session": "separate", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": null, "base_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121", "document_hashes": {}, "packet_hash": null, "filtered_passages": ["Prior review report and history excluded."], "original_decision_evidence": [] },
+      "sources_examined": [
+        { "path": "PRODUCT.md", "revision": "working-tree", "headings": ["Current State", "Authoritative Sources"] },
+        { "path": "PROJECT_STATUS.md", "revision": "working-tree", "headings": ["Current feature", "Current state", "Next action"] },
+        { "path": "docs/features/control-gallery/workstream.json", "revision": "working-tree", "headings": ["position", "next", "milestones"] },
+        { "path": "docs/planning/workshop-state.json", "revision": "working-tree", "headings": ["publication", "next_action", "decisions", "open_questions"] }
+      ],
+      "journeys": [],
+      "not_assessed": ["Operational behavior and architectural completeness."],
+      "missing_evidence": ["The response returned a consistency matrix but not the required complete journey trace."],
+      "findings": [
+        { "id": "CONS-01", "subject": "Stable milestone identities", "classification": "blocking", "missing_or_contradictory_information": "Existing machine IDs were reassigned to different GitHub issues and tasks.", "location": "docs/features/control-gallery/workstream.json", "affected_outcome": "Atlas task ownership", "impact": "Existing task identities would be associated with the wrong milestone.", "minimum_correction": "Keep existing IDs and use a new ID for the inserted stage.", "disposition": "corrected", "canonical_reference": "docs/features/control-gallery/workstream.json" },
+        { "id": "CONS-02", "subject": "Workshop lifecycle truth", "classification": "non_blocking", "missing_or_contradictory_information": "Revision, pending files, current action, approval, and license authority were stale or contradictory.", "location": "docs/planning/workshop-state.json", "affected_outcome": "Reliable workshop recovery", "impact": "A later session would resume from false state.", "minimum_correction": "Replace state with the current base, complete draft set, exact next action, and owner-only license authority.", "disposition": "corrected", "canonical_reference": "docs/planning/workshop-state.json" },
+        { "id": "CONS-03", "subject": "Single active milestone", "classification": "non_blocking", "missing_or_contradictory_information": "Both quality foundation and paused overlay work were marked in progress.", "location": "docs/features/control-gallery/workstream.json", "affected_outcome": "One-milestone flow", "impact": "Machine state contradicted the pause and process.", "minimum_correction": "Mark overlay work paused while quality architecture is active.", "disposition": "corrected", "canonical_reference": "docs/features/control-gallery/workstream.json" },
+        { "id": "CONS-04", "subject": "Superseded overview choice", "classification": "non_blocking", "missing_or_contradictory_information": "The overview said retain versus replace remained open after rebase had been decided.", "location": "PRODUCT.md#current-state", "affected_outcome": "Architecture summary", "impact": "Readers could infer an already closed option remained open.", "minimum_correction": "State that only foundation selection remains open.", "disposition": "corrected", "canonical_reference": "PRODUCT.md#current-state" }
+      ],
+      "result": "incomplete",
+      "conclusion": "Material consistency findings were corrected, but the missing journey trace prevents this attempt from establishing completed review coverage.",
+      "coverage_complete": false,
+      "round_consumed": false,
+      "correction_refs": ["PRODUCT.md", "docs/features/control-gallery/workstream.json", "docs/planning/workshop-state.json"],
+      "invalidated_by": "The reviewed working-tree snapshot changed after the findings."
+    }
+  ]
 }

@@ -6,7 +6,11 @@ Dialog, Drawer, Popover, Menu, Tabs, and Card provide their approved focus, dism
 
 ## Remaining work
 
-Menu, Tabs, and Card browser checks remain. Menu browser checks are paused by owner. The architecture review of the independent repository findings must establish any required corrections before work resumes.
+Menu, Tabs, and Card browser checks remain. Menu browser checks are paused by owner. Before work resumes, the library quality foundation must select the internal interaction foundation and define the complete overlay/navigation API, positioning, focus, dismissal, and skin recipes. Existing observable behavior is evidence; the current hand-built internals are not presumed to be retained.
+
+## Dependencies
+
+The library quality foundation is complete and its representative complex-control proof is accepted.
 
 ## Completion evidence
 

@@ -16,7 +16,7 @@ Design-system authors, product engineers, and quality reviewers who need to insp
 
 ## Product Purpose
 
-Foundry is an independent control library and its working gallery. It makes each supported control discoverable, testable, and ready to compose without inheriting a host product's visual system.
+Foundry is an independent control library and its working gallery. It makes each supported control exceptionally polished, discoverable, testable, and easy to compose without inheriting a host product's visual system.
 
 ## Positioning
 
@@ -47,6 +47,19 @@ The supplied Foundry architecture, design-to-skin, and usage-guide documents def
 2. Controls are accessible by default and predictable under keyboard use.
 3. Visual skins stay separate from control contracts.
 4. The gallery makes states and constraints easy to verify.
+
+## Current State
+
+The gallery and the initial control catalog exist, but Core v1 is not release-ready. Source inspection found cross-control API, styling, accessibility, packaging, and browser-support gaps. Implementation is paused while the architecture defines the quality foundation and selects the proven headless foundation on which complex interaction internals will be rebased behind the Foundry API.
+
+## Authoritative Sources
+
+- Control behavior and library architecture: `docs/features/control-gallery/decisions.md`
+- Delivery order and outcomes: `docs/features/control-gallery/milestones.md`
+- Owner decisions still required: `docs/features/control-gallery/question-register.md`
+- Workshop state and exact next action: `docs/planning/workshop-state.json`
+
+Authoritative documentation is versioned and published through GitHub. A local checkout is working state, not a separate documentation authority. Source may exist both locally during active work and in GitHub.
 
 ## Accessibility & Inclusion
 

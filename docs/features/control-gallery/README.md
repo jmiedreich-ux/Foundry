@@ -4,7 +4,7 @@ The Control Gallery is Foundry’s living acceptance surface. It lets developers
 
 ## Current state
 
-Gallery foundation, field controls, and actions/selection/search/feedback are complete. Overlay and navigation controls are paused after Popover browser checks. Menu browser checks must not resume until the owner lifts the pause.
+The functional gallery baseline is complete through Popover. The library quality foundation is now in architecture review so Core v1 has a coherent interaction, accessibility, skin, package, and release contract before more control implementation. Overlay and navigation work remains paused; Menu browser checks must not resume until the owner lifts the pause and the quality foundation is complete.
 
 ## Planning sources
 
