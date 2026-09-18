@@ -4,6 +4,7 @@ This register contains only decisions that require owner authority. Technical de
 
 | Question | Why it matters |
 | --- | --- |
+| May the token and skin contract receive one further recipe-inventory correction and targeted recheck? | The exceptional review closed font sizing and modal layering, but exact bundle parameters and direct state records remain incomplete; implementation would still require invention. |
 | Which release license does Foundry use? | The distributable package needs an owner-approved grant before publication. |
 
 ## Deferred work

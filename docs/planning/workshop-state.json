@@ -17,7 +17,7 @@
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
     "last_verified_document_revision": "a2eaec3023be247806699cf28dd4f8cdb7e46cc9",
-    "status": "Owner-authorized exceptional token and skin correction published; targeted rechecks pending",
+    "status": "Exceptional token and skin review bound reached with recipe inventory incomplete; owner process decision required",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
     "pending_paths": [
@@ -78,9 +78,11 @@
     "closed token and skin source API, forced-color, serialization, and all five cross-document findings",
     "exhausted second-round token and skin completeness review with recipe expressiveness, rendered font-size, and owned floating-layer gaps retained",
     "corrected the status-only consistency finding returned at the second-round checkpoint",
-    "owner-authorized exceptional token and skin correction limited to TS-I1, TS-I3, TS-I4, and TS-R2-1"
+    "owner-authorized exceptional token and skin correction limited to TS-I1, TS-I3, TS-I4, and TS-R2-1",
+    "exceptional token and skin recheck closed rendered font sizing and modal-owned layering but retained incomplete recipe applications and direct state records",
+    "corrected stale publication wording found by the exceptional status-consistency recheck"
   ],
-  "next_action": "Publish the bounded token and skin correction, then run the owner-authorized targeted completeness and status-consistency rechecks limited to TS-I1, TS-I3, TS-I4, and TS-R2-1.",
+  "next_action": "Obtain the owner's process decision on one further bounded recipe-inventory correction and targeted completeness recheck, plus a status-only consistency recheck of the synchronized records.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -249,6 +251,16 @@
       "status": "resolved",
       "resolution": "Owner authorized one exceptional bounded correction and targeted completeness and status-consistency recheck limited to TS-I1, TS-I3, TS-I4, and TS-R2-1.",
       "resolution_ref": "CG-REVIEW-EXCEPTION-002"
+    },
+    {
+      "id": "CG-ARQ-008",
+      "subject": "Final token and skin recipe-review disposition",
+      "missing_decision": "Authorize one further bounded correction and targeted completeness recheck for missing recipe parameters and exact direct visual/state records, plus a status-only consistency recheck, or explicitly accept the remaining material limitation.",
+      "affected_outcome": "Approval of the token and skin contract and eligibility to define implementation packets.",
+      "owner": "Foundry owner",
+      "selection_point": "Before another token-contract edit or any token, skin, provider, or recipe implementation packet.",
+      "required_evidence": "Recorded owner direction; if authorized, passing targeted completeness and consistency results at one exact corrected commit.",
+      "status": "open"
     }
   ],
   "inspections": [
@@ -1092,6 +1104,58 @@
       ],
       "result": "material_changes_required",
       "conclusion": "All five targeted architecture inconsistencies are closed; the only direct regression was a stale publication instruction in the controlled status record, corrected after this review.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["PROJECT_STATUS.md", "ROADMAP.md", "docs/features/control-gallery/workstream.json", "ai/handoffs/current.md"],
+      "invalidated_by": "Status synchronization after the exact reviewed checkpoint."
+    },
+    {
+      "id": "CG-TOKEN-SKIN-COMPLETENESS-R3",
+      "subject": "Core v1 token and skin contract",
+      "pass_type": "architectural_completeness",
+      "mode": "targeted",
+      "parent_review_id": "CG-TOKEN-SKIN-COMPLETENESS-R2",
+      "scope": "Owner-authorized exceptional recheck of TS-I1, TS-I3, and TS-I4 plus directly affected dependencies.",
+      "budget_key": "token-skin-completeness",
+      "round": 3,
+      "reviewer": { "agent": "/root/contract_completeness_review", "session": "separate resumed reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "b8bc6a46a8c0580777ef60b034a0fcfdd266e318", "document_hashes": { "docs/features/control-gallery/token-and-skin.md": "dc9c82092d5815b043a296ab7b9a1c58def8094414a7ca625fd36676ce9b2961", "docs/features/control-gallery/base-ui-integration.md": "fcbf38b175a33ab7bb3ed3c282d0d48d560c5eba36a0e758bf4bd7609a9a1ba5", "docs/features/control-gallery/control-contracts.md": "384f07b1dc27b1d9debf40b90672aa6143992dc92b287d1b92fccf94af81d9a6" }, "filtered_passages": ["Workshop state, handoff, PR discussion, other reviews, and unrelated status history excluded."], "original_decision_evidence": ["Parent findings TS-I1, TS-I3, TS-I4 and explicit owner round-three authorization supplied under the targeted-check exception."] },
+      "sources_examined": ["docs/features/control-gallery/token-and-skin.md recipe, geometry, and layering sections", "directly affected provider/layer statements in control-contracts.md and base-ui-integration.md"],
+      "journeys": [{ "name": "exceptional targeted implementation boundary", "trace": "Recipe source through expansion/validation, rendered native font-size proof, and modal-owned floating allocation through inactive, close, reactivation, and recovery paths were retraced." }],
+      "not_assessed": ["TS-I2, TS-I5, TS-I6, unrelated contracts, implementation, generated CSS, runtime, browser execution, visual acceptance, package commands, and release evidence."],
+      "missing_evidence": ["Complete parameterized applications for every required bundle and exact normalized definitions for every referenced direct visual/state record."],
+      "findings": [
+        { "id": "TS-I1", "classification": "blocking", "disposition": "open_at_exception_bound", "summary": "Several bundle applications omit required parameters, while chevron, physical-side, item-width, separator, selected-indicator, Toast-positioning, focus, mark, outline, and state-geometry records remain references rather than normalized records.", "minimum_correction": "Supply every bundle parameter and define every referenced direct record with exact part, conditions, layer, priority, property, and value." },
+        { "id": "TS-I3", "disposition": "closed", "canonical_reference": "docs/features/control-gallery/token-and-skin.md#private-runtime-variables" },
+        { "id": "TS-I4", "disposition": "closed", "canonical_reference": "docs/features/control-gallery/token-and-skin.md#motion-and-layering" }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "Rendered font sizing and modal-owned floating layering are complete within the targeted coverage; the recipe manifest remains non-implementable without inventing omitted parameters and direct records.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": [],
+      "invalidated_by": null
+    },
+    {
+      "id": "CG-TOKEN-SKIN-CONSISTENCY-R3",
+      "subject": "Core v1 token and skin status representation",
+      "pass_type": "cross_document_consistency",
+      "mode": "targeted",
+      "parent_review_id": "CG-TOKEN-SKIN-CONSISTENCY-R2",
+      "scope": "Owner-authorized exceptional recheck of TS-R2-1 and directly affected publication, status, next-action, implementation-authorization, and pause records.",
+      "budget_key": "token-skin-consistency",
+      "round": 3,
+      "reviewer": { "agent": "/root/integration_consistency_fresh", "session": "fresh separate reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "b8bc6a46a8c0580777ef60b034a0fcfdd266e318", "document_hashes": { "PROJECT_STATUS.md": "dcc81ecd2b0c81b6de5d2d9291319770e0900c8048628933e91b3908bb4767b9", "ROADMAP.md": "cf4e7716287cb6dc1224e2de88e68b50ad3e4910b70a85367cc970f2a4244d5c", "docs/features/control-gallery/workstream.json": "14fe9f26ff7cc910f89d158da4ec55ff13c0b9d5095b5d284124f91e243cee28" }, "filtered_passages": ["Workshop state, handoff, PR discussion, prior conclusions, token architecture details, and unrelated records excluded."], "original_decision_evidence": ["TS-R2-1 and explicit owner round-three authorization supplied under the targeted-check exception."] },
+      "sources_examined": ["PROJECT_STATUS.md", "ROADMAP.md", "docs/features/control-gallery/workstream.json", "feature README", "library-quality-foundation milestone", "local and origin exact-head refs"],
+      "journeys": [{ "name": "publication and status representation", "trace": "Correction publication, current review state, exact next action, implementation prohibition, and Menu pause were compared with the published branch head." }],
+      "not_assessed": ["Token architecture, behavior contracts, implementation, runtime, tests, PR discussion, workshop state, handoff, and unrelated records."],
+      "missing_evidence": [],
+      "findings": [
+        { "id": "TS-R2-1", "classification": "material", "disposition": "corrected_after_exception_bound_without_recheck", "summary": "PROJECT_STATUS.md, ROADMAP.md, and workstream.json still described publication as future work although local and origin already pointed to the reviewed commit.", "minimum_correction": "State that the correction is published and make the next action only the remaining review or owner disposition.", "correction_ref": "PROJECT_STATUS.md#next-action" }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "The status records agreed with each other but contradicted the already-published Git state; this synchronization corrects the wording after the authorized round was consumed.",
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": ["PROJECT_STATUS.md", "ROADMAP.md", "docs/features/control-gallery/workstream.json", "ai/handoffs/current.md"],
