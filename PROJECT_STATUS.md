@@ -6,8 +6,8 @@ Control Gallery — Library quality foundation, architecture in progress.
 
 ## Current state
 
-The functional gallery baseline is complete through Popover. The Core v1 public contract is approved, Base UI 1.8.0 is selected, and its production integration contract has completed first-pass review and is under bounded correction. Overlay and navigation implementation remains paused.
+The functional gallery baseline is complete through Popover. The Core v1 public contract and Base UI 1.8.0 production integration are independently approved. Overlay and navigation implementation remains paused.
 
 ## Next action
 
-Run targeted fidelity, completeness, and consistency rechecks of the corrected Base UI production integration contract. Do not resume Menu browser checks.
+Define the token and skin schema, including owned parts, recipes, scoping, portal propagation, validation, and rendered approval evidence. Do not resume Menu browser checks.
