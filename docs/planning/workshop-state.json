@@ -2,7 +2,7 @@
   "schema_version": 1,
   "repository": "jmiedreich-ux/Foundry",
   "source_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
-  "status": "reviewing",
+  "status": "drafting",
   "paths": {
     "overview": "PRODUCT.md",
     "architecture": "docs/features/control-gallery/decisions.md",
@@ -15,13 +15,12 @@
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
     "last_verified_document_revision": "db7cf5afa10f79998e6465027c733da1e3356d82",
-    "status": "owner-authorized exceptional F3/F4 correction is being prepared for one final targeted completeness recheck",
+    "status": "Core v1 control contract approved after the owner-authorized exceptional completeness recheck; status synchronization pending",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
     "pending_paths": [
       "PROJECT_STATUS.md",
       "ai/handoffs/current.md",
-      "docs/features/control-gallery/control-contracts.md",
       "docs/features/control-gallery/workstream.json",
       "docs/planning/workshop-state.json"
     ],
@@ -56,9 +55,10 @@
     "complete first-round control-contract fidelity, completeness, and consistency review",
     "targeted second-round fidelity and consistency approval",
     "exhausted second-round completeness review with forwarding and native-control prop gaps retained",
-    "owner-authorized exceptional completeness recheck limited to F3 and F4"
+    "owner-authorized exceptional completeness recheck limited to F3 and F4",
+    "approved Core v1 public control and migration contract"
   ],
-  "next_action": "Publish the exact F3/F4 correction and obtain the owner-authorized exceptional targeted completeness recheck before preparing the Maestro evaluation.",
+  "next_action": "Define the bounded disposable Maestro evaluation contract for Base UI 1.8.0, including exact journeys, gates, retained evidence, rejection rules, and React Aria fallback trigger.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -148,7 +148,8 @@
       "selection_point": "After the interaction foundation is selected and before correction packets are issued.",
       "required_evidence": "Reviewed control and part matrix with migration disposition.",
       "draft_ref": "docs/features/control-gallery/control-contracts.md",
-      "status": "reviewing"
+      "status": "resolved",
+      "resolution_ref": "docs/features/control-gallery/control-contracts.md"
     },
     {
       "id": "CG-ARQ-004",
@@ -513,6 +514,32 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": [],
+      "invalidated_by": null
+    },
+    {
+      "id": "CG-CONTRACT-COMPLETENESS-R3",
+      "subject": "Core v1 control contract",
+      "pass_type": "architectural_completeness",
+      "mode": "targeted",
+      "parent_review_id": "CG-CONTRACT-COMPLETENESS-R2",
+      "scope": "Owner-authorized exceptional recheck of F3 and F4 and only their directly affected dependencies.",
+      "budget_key": "core-v1-contract-completeness",
+      "round": 3,
+      "reviewer": { "agent": "/root/contract_completeness_review", "session": "separate resumed reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "2d169b70d4a804c3a161ce0d87c262e05acd18c4", "document_hashes": { "docs/features/control-gallery/control-contracts.md": "eb5ff5cf431e0a21461cf0a803b0999a4b2fd7bd" }, "filtered_passages": ["Workshop state, handoff, PR discussion, other findings, and other architecture documents excluded."], "original_decision_evidence": ["Parent findings F3 and F4 and explicit owner round-three authorization supplied under the targeted-check exception."] },
+      "sources_examined": ["control-contract Shared invariants, Forwarding profiles, Foundation fields/actions, Compound topology, Dialog/Drawer, and directly affected Popover/Menu/Tabs sections", "exact current Button, TextField, Select, Checkbox, Switch, RadioGroup, and Search declarations"],
+      "journeys": [{ "name": "exact prop and composition boundary", "trace": "Every public component was mapped to one forwarding profile; checkable inputs, compound children/non-state props, modal element/ref, and all seven native control state/form/invalid/size/default/callback surfaces were traced to exact contract definitions and current migration evidence." }],
+      "not_assessed": ["F1, F2, F5 through F10, other architecture documents, implementation/tests, live proof, tokens, package gates, license, workshop state, handoff, and PR discussion."],
+      "missing_evidence": ["Implementation and the executable Base UI proof remain future work and do not limit this documentation result."],
+      "findings": [
+        { "id": "F3", "disposition": "closed", "canonical_reference": "docs/features/control-gallery/control-contracts.md#forwarding-profiles" },
+        { "id": "F4", "disposition": "closed", "canonical_reference": "docs/features/control-gallery/control-contracts.md#foundation-fields-and-actions" }
+      ],
+      "result": "pass",
+      "conclusion": "F3 and F4 are closed at the exact corrected commit; no direct regression was found within the exceptional targeted coverage.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/control-contracts.md"],
       "invalidated_by": null
     }
   ]

@@ -6,8 +6,8 @@ Control Gallery — Library quality foundation, architecture in progress.
 
 ## Current state
 
-The functional gallery baseline is complete through Popover. The corrected Core v1 control contract passed decision-fidelity and cross-document-consistency review. Its second completeness check retained two material API gaps; the owner authorized one exceptional recheck after a correction limited to exact forwarding profiles and complete native/compound props. Overlay and navigation implementation remains paused.
+The functional gallery baseline is complete through Popover. The Core v1 public control and migration contract has passed decision-fidelity, architectural-completeness, and cross-document-consistency review. Base UI 1.8.0 remains a proof candidate rather than approved production infrastructure. Overlay and navigation implementation remains paused.
 
 ## Next action
 
-Publish the bounded F3/F4 correction and obtain the exceptional targeted completeness result. Do not prepare the Base UI proof or resume Menu browser checks unless that result passes.
+Define the bounded disposable Maestro evaluation contract for Base UI 1.8.0, including exact journeys, gates, retained evidence, rejection rules, and the React Aria fallback trigger. Do not resume Menu browser checks.

@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "The functional gallery baseline is complete through Popover. The control contract passed fidelity and consistency review; an owner-authorized exceptional completeness recheck is pending for two corrected API gaps. Overlay and navigation implementation remains paused.",
-  "next": "Publish and independently recheck the bounded forwarding-profile and native/compound-prop correction before the Base UI 1.8.0 Maestro evaluation or production implementation.",
+  "position": "The functional gallery baseline is complete through Popover. The Core v1 public control and migration contract is independently approved; Base UI 1.8.0 remains a proof candidate. Overlay and navigation implementation remains paused.",
+  "next": "Define the bounded disposable Base UI 1.8.0 Maestro evaluation contract, including journeys, gates, evidence, rejection rules, and the React Aria fallback trigger.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery architecture decisions", "where": "docs/features/control-gallery/decisions.md" },
