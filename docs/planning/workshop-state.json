@@ -14,22 +14,29 @@
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
     "last_verified_document_revision": "aee98b93d67bf67e93c9abc62c717ff622a01e4b",
-    "status": "published to draft pull request #59",
+    "status": "published checkpoint; interaction-foundation decision pending push to draft pull request #59",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
-    "pending_paths": [],
+    "pending_paths": [
+      "PROJECT_STATUS.md",
+      "ROADMAP.md",
+      "docs/features/control-gallery/decisions.md",
+      "docs/features/control-gallery/workstream.json",
+      "docs/features/control-gallery/milestones/library-quality-foundation.md",
+      "docs/planning/workshop-state.json"
+    ],
     "expected_base": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
     "delivery_level": "github_branch",
     "verified_local_files": [
       { "path": "PRODUCT.md", "sha256": "d4a999a8511e3a975f0e6846c79ed7311849808c14bca26130de7673ac265324" },
-      { "path": "PROJECT_STATUS.md", "sha256": "8a7f590ef99f1650d4b9a36d04a0568e20c5443dcc741a43f78b91274ca24b19" },
-      { "path": "ROADMAP.md", "sha256": "1ddbd45a42940d4204dfa16680c8577bbff6d251446d82b3b39ca33a0f49913c" },
+      { "path": "PROJECT_STATUS.md", "sha256": "5b806961947ffa780d1a47cad3d2f0fd7e1fefd9dc2e47788766f1760eeb5163" },
+      { "path": "ROADMAP.md", "sha256": "76f50ff685cfb3fd2b45e03cb4316bcf447b182cf1ea21c2722b02a14da6b541" },
       { "path": "docs/features/control-gallery/README.md", "sha256": "02deb877d3e79a363ee732f203472344acadfeccf7218d195401718608951dab" },
-      { "path": "docs/features/control-gallery/decisions.md", "sha256": "2b47de7fecb6e297b00a4742e8d2ba8aaecb67d3facde994ecb5ae2f06ca392f" },
+      { "path": "docs/features/control-gallery/decisions.md", "sha256": "c231246114156f1af401c9e7db75ba040d277de0fab4d89dd8d8495a027bb294" },
       { "path": "docs/features/control-gallery/milestones.md", "sha256": "b4a3adf5cbd53914f68ed5e2aebca92aacf838e2d8e1d2dcb2eb8438ab6399b4" },
       { "path": "docs/features/control-gallery/question-register.md", "sha256": "3265c3d25174fe294b69839c0dbad97a49a3f91d720a6f9094191d73afcc39a3" },
-      { "path": "docs/features/control-gallery/workstream.json", "sha256": "914e782217b0190926b276be7b30ad85e03e9ad9180bea20192e15a615d06c15" },
-      { "path": "docs/features/control-gallery/milestones/library-quality-foundation.md", "sha256": "0571c385e84caf7ff54b92a075a48015fe7f526753753e6616a73c9b25578964" },
+      { "path": "docs/features/control-gallery/workstream.json", "sha256": "6c69a4d5ba0230bc14953f9945d6a89ef911bc2c8de04eb07861505595691bb3" },
+      { "path": "docs/features/control-gallery/milestones/library-quality-foundation.md", "sha256": "eaff70c4f4af1ea9b16bec9201bb9594ae7637364edf5a21252b1dc987a93a01" },
       { "path": "docs/features/control-gallery/milestones/overlays-and-navigation.md", "sha256": "cbb0b4839affc616bab2d59799a0848f8c02977c7f7d95944889927ca38f6c61" },
       { "path": "docs/features/control-gallery/milestones/acceptance-and-release.md", "sha256": "4d623debbebd93abf4cb3e6190aee453d251982c650e2432fcf3a6abfa011dcd" }
     ]
@@ -42,9 +49,10 @@
     "public state, ref, refusal, and localization invariants",
     "skin isolation and visual-quality direction",
     "support, package, browser, and assistive-technology direction",
-    "plain reader-facing delivery stages"
+    "plain reader-facing delivery stages",
+    "Base UI interaction-foundation selection and responsibility boundary"
   ],
-  "next_action": "Select the internal headless interaction foundation and record its responsibility map, representative proof protocol, evidence location, and acceptance authority before defining per-control migration contracts.",
+  "next_action": "Prepare the bounded Maestro evaluation contract for Base UI 1.8.0, then define the per-control public contract and migration matrix while implementation remains paused.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -85,6 +93,14 @@
       "evidence": "Owner direction on 2026-09-17 that documentation is kept on GitHub while source may exist locally and on GitHub.",
       "canonical_ref": "PRODUCT.md#authoritative-sources",
       "supersedes": null
+    },
+    {
+      "id": "CG-ARCH-005",
+      "subject": "Base UI is the hidden interaction foundation",
+      "authority": "delegated chief software architect",
+      "evidence": "Official library documentation and current package metadata were compared against Foundry's Dialog, Menu, Tabs, Field, Toast, SSR, packaging, and controlled-request needs on 2026-09-17.",
+      "canonical_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation",
+      "supersedes": null
     }
   ],
   "open_questions": [
@@ -106,7 +122,8 @@
       "owner": "delegated chief software architect",
       "selection_point": "Before any complex-control Maestro packet is prepared.",
       "required_evidence": "Decision matrix and representative Dialog, Menu, Tabs, Field, and Toast proof protocol.",
-      "status": "open"
+      "status": "resolved",
+      "resolution_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation"
     },
     {
       "id": "CG-ARQ-003",

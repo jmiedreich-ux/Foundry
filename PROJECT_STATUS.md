@@ -10,4 +10,4 @@ The functional gallery baseline is complete through Popover. Source and referenc
 
 ## Next action
 
-Complete independent architecture review, select and prove the internal interaction foundation, and define the token, skin, package, and release-gate boundaries. Do not resume Menu browser checks while the owner pause remains active.
+Prepare the bounded Maestro evaluation that proves the selected Base UI interaction foundation, then define the per-control migration contracts. Do not resume Menu browser checks while the owner pause remains active.

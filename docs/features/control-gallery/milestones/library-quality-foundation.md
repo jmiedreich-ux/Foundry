@@ -6,7 +6,7 @@ Foundry has one reviewed control contract, an approved internal interaction foun
 
 ## Included
 
-- choose and prove the internal foundation for complex interactions;
+- prove the selected Base UI foundation for complex interactions through the representative journeys in [the architecture decision](../decisions.md#selected-interaction-foundation);
 - establish owned markup hooks, controlled-state rules, focus treatment, size recipes, localization, heading composition, and safe native-prop boundaries;
 - remove implicit and consumer-wide CSS effects;
 - define package output, peer dependencies, supported runtimes, canonical commands, and pull-request checks; and
@@ -14,7 +14,7 @@ Foundry has one reviewed control contract, an approved internal interaction foun
 
 ## Completion evidence
 
-Architecture fidelity, completeness, and consistency reviews pass. The selected interaction foundation proves the representative Dialog, Menu, Tabs, Field, and Toast journeys without exposing its API. The package and skin contracts are detailed enough for bounded implementation without inventing behavior.
+Architecture fidelity, completeness, and consistency reviews pass. The selected interaction foundation proves the representative Dialog, Menu, Tabs, Field, and Toast journeys without exposing its API. The per-control, package, gate, token, and skin contracts are detailed enough for bounded implementation without inventing behavior.
 
 ## Status
 

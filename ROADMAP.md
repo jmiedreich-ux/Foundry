@@ -15,7 +15,7 @@ to its own records under `docs/features/<feature>/`; the detail lives there.
 
 | Codename | What it is | Position | Gate |
 |---|---|---|---|
-| **Control Gallery** | Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control (React/TypeScript), so a developer or reviewer can exercise the contract before a product adopts it | The functional baseline is complete through Popover. The library quality foundation is in architecture review; overlay and navigation implementation remains paused. | Approve the quality contract and internal interaction foundation before producing Maestro implementation packets. |
+| **Control Gallery** | Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control (React/TypeScript), so a developer or reviewer can exercise the contract before a product adopts it | The functional baseline is complete through Popover. The library quality foundation is in architecture review; overlay and navigation implementation remains paused. | Prove the selected Base UI foundation through a bounded Maestro evaluation, then define the per-control migration contracts. |
 
 Design authority for a feature is approved and recorded directly under
 `docs/features/<feature>/` (see `AGENTS.md`); Control Gallery's own `decisions.md` is that

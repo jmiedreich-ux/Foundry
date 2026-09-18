@@ -50,7 +50,33 @@ Core v1 is a styled, installable library, not a gallery-only collection of sourc
 4. The token package defines semantic values and component recipes. A skin supplies all visual values.
 5. The gallery consumes the packed public package and skin in the same way as an application.
 
-No new custom overlay, collection-navigation, focus-scope, or floating-positioning mechanism is added while the internal foundation is being selected. The current hand-built overlay and Tabs internals are evidence of required behavior, not release architecture that must be preserved.
+No new custom overlay, collection-navigation, focus-scope, or floating-positioning mechanism is added before the selected foundation passes its proof gate. The current hand-built overlay and Tabs internals are evidence of required behavior, not release architecture that must be preserved.
+
+### Selected interaction foundation
+
+Base UI is the internal foundation, beginning with an exact `@base-ui/react` 1.8.0 evaluation. It best fits Foundry's boundary because one maintained package covers the representative Dialog, Menu, Tabs, Field, and Toast journeys; provides subpath exports with no package side effects; builds positioning on Floating UI; and reports change reasons through cancellable event details. Those event details let a Foundry adapter distinguish trigger, Escape, outside, focus, and imperative requests without exposing Base UI's API.
+
+| Candidate | Strongest evidence | Reason not selected |
+| --- | --- | --- |
+| Base UI | Complete representative catalog, reasoned/cancellable change events, stable part data, direct Drawer and floating-control depth, subpath packaging | Selected; its younger stable line requires the proof gate below. |
+| React Aria Components | Deep accessibility, internationalization, collection, testing, and future input coverage | Its interaction and collection model would exert more pressure on Foundry's existing public event and composition contracts. It remains the first fallback if Base UI fails the proof. |
+| Radix Primitives | Long-lived compound primitives with strong focus, dismissal, and composition behavior | Change causality is distributed across part handlers, Drawer is not a direct primitive, and the umbrella package pulls a broader primitive graph. |
+
+Foundry owns the public contract and Base UI owns only internal mechanics:
+
+| Area | Foundry owns | Base UI owns |
+| --- | --- | --- |
+| State and events | Controlled/uncontrolled exclusivity, required callbacks, request-once semantics, parent decline, stale-request cancellation, public callback shape | Internal state for uncontrolled controls and typed reason/cancel details for interaction requests |
+| Semantics and composition | Allowed parts, visible titles, localized system labels, public refs, safe forwarded props, refusal messages | Required roles, relationships, generated IDs, collection registration, and internal part refs |
+| Overlays | Portal destination and skin propagation, product defaults, documented modal/non-modal behavior | Portal mechanics, focus scope, inert/outside interaction, scroll lock, nested Escape handling, presence, and restoration mechanics |
+| Floating controls | Public placement choices and Foundry token hooks | Anchoring, flipping, shifting, collision boundaries, available size, and scroll/resize updates |
+| Visual system | Every class, token, part alias, state recipe, motion value, and z-layer policy | No consumer-visible styling; Base UI state is translated to stable Foundry hooks |
+
+Ordinary Button, Link, TextField, native Select, Checkbox, and Radio controls continue to use native elements. Foundry's current side panel uses Base UI Dialog mechanics with a Foundry placement recipe; Base UI Drawer is reserved for a future gesture or snap-point contract. Popover, Menu, Tabs, Toast, Dialog, and the side panel use the selected internal foundation. `OverlayRoot` becomes the Foundry portal, direction, locale, and skin boundary rather than a second focus or dismissal engine.
+
+The selection advances only after a disposable Maestro evaluation proves the same public Foundry adapters in Chromium, Firefox, WebKit, server render, and hydrate paths. The proof covers controlled acceptance and decline; stale requests; nested and missing-trigger recovery; no-focusable fallback; Escape, outside, Tab, and explicit dismissal; scroll lock and inertness; collision and resize updates; Menu typeahead and disabled items; Tabs orientation, direction, activation, removal, nesting, and panel fallback; native Field labeling, validation, reset, and autofill interoperation; and Toast queue, timer pause, action, dismissal, and keyboard access. Evidence is published with the architecture; evaluation source is discarded rather than merged. The delegated architect accepts the result after independent review. A failed Base UI proof is followed by the same proof against React Aria Components, not by mixing foundations or extending the custom internals.
+
+The quality stage advances in this order: approve this selection and proof contract; complete the disposable proof through Maestro; record the retain/replace result; finish the per-control contract and migration matrix; approve the token/skin and package/gate contracts; then issue production packets. No proof code becomes production code and no production packet starts from an unreviewed proof result.
 
 ### Public API and state
 
