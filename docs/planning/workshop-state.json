@@ -16,8 +16,8 @@
   "publication": {
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
-    "last_verified_document_revision": "3ee13ee4f76df5be85f28cab01f4d3d81a3071be",
-    "status": "Owner-authorized exceptional token and skin correction in progress",
+    "last_verified_document_revision": "a2eaec3023be247806699cf28dd4f8cdb7e46cc9",
+    "status": "Owner-authorized exceptional token and skin correction published; targeted rechecks pending",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
     "pending_paths": [
@@ -36,16 +36,16 @@
     "delivery_level": "github_branch",
     "verified_local_files": [
       { "path": "PRODUCT.md", "sha256": "bdcbd267b4579196b51be8a0c2ff526002b9a7b7fe94bbcebac3368ed02d411f" },
-      { "path": "PROJECT_STATUS.md", "sha256": "e3dfbdfdd6db155a38f6846022014de2d03723777d289bb939fb004de86934c7" },
-      { "path": "ROADMAP.md", "sha256": "b05347b2e888bd7bbddbd7155dab97e788216094acd96f78f8e450a265f6984a" },
+      { "path": "PROJECT_STATUS.md", "sha256": "dcc81ecd2b0c81b6de5d2d9291319770e0900c8048628933e91b3908bb4767b9" },
+      { "path": "ROADMAP.md", "sha256": "cf4e7716287cb6dc1224e2de88e68b50ad3e4910b70a85367cc970f2a4244d5c" },
       { "path": "docs/features/control-gallery/README.md", "sha256": "50567ec430e006e191887b76badd50d971351ac4862af75a399d52ccf8969869" },
       { "path": "docs/features/control-gallery/decisions.md", "sha256": "a23612152d1aa7e7cf539631912247c19b595dac22f1af18634ff4e2588ab28e" },
       { "path": "docs/features/control-gallery/control-contracts.md", "sha256": "384f07b1dc27b1d9debf40b90672aa6143992dc92b287d1b92fccf94af81d9a6" },
       { "path": "docs/features/control-gallery/base-ui-integration.md", "sha256": "fcbf38b175a33ab7bb3ed3c282d0d48d560c5eba36a0e758bf4bd7609a9a1ba5" },
-      { "path": "docs/features/control-gallery/token-and-skin.md", "sha256": "6e69c8158339ee3a34c8377c2c91891b03ded3c2d56bf0090d051eee77025709" },
+      { "path": "docs/features/control-gallery/token-and-skin.md", "sha256": "dc9c82092d5815b043a296ab7b9a1c58def8094414a7ca625fd36676ce9b2961" },
       { "path": "docs/features/control-gallery/milestones.md", "sha256": "b4a3adf5cbd53914f68ed5e2aebca92aacf838e2d8e1d2dcb2eb8438ab6399b4" },
       { "path": "docs/features/control-gallery/question-register.md", "sha256": "3265c3d25174fe294b69839c0dbad97a49a3f91d720a6f9094191d73afcc39a3" },
-      { "path": "docs/features/control-gallery/workstream.json", "sha256": "03db4b6df466682668e5cada7e6f9a5e660cf2dcec91d1bc13291cef931e6768" },
+      { "path": "docs/features/control-gallery/workstream.json", "sha256": "14fe9f26ff7cc910f89d158da4ec55ff13c0b9d5095b5d284124f91e243cee28" },
       { "path": "docs/features/control-gallery/milestones/library-quality-foundation.md", "sha256": "3ef7c6538bdaa49c1c4c0908540aa4fd17960231eb2e30ffa09ecd7ac13bc6b4" },
       { "path": "docs/features/control-gallery/milestones/overlays-and-navigation.md", "sha256": "4aa38ccd5e754008d9ce452d9f7407aa10e97465c4c70b907ae59ba622200ad1" },
       { "path": "docs/features/control-gallery/milestones/acceptance-and-release.md", "sha256": "4d623debbebd93abf4cb3e6190aee453d251982c650e2432fcf3a6abfa011dcd" }
