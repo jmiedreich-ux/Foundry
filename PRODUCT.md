@@ -55,6 +55,7 @@ The gallery and the initial control catalog exist, but Core v1 is not release-re
 ## Authoritative Sources
 
 - Control behavior and library architecture: `docs/features/control-gallery/decisions.md`
+- Per-export public and migration contract: `docs/features/control-gallery/control-contracts.md`
 - Delivery order and outcomes: `docs/features/control-gallery/milestones.md`
 - Owner decisions still required: `docs/features/control-gallery/question-register.md`
 - Workshop state and exact next action: `docs/planning/workshop-state.json`

@@ -7,7 +7,7 @@ Foundry has one reviewed control contract, an approved internal interaction foun
 ## Included
 
 - prove the selected Base UI foundation for complex interactions through the representative journeys in [the architecture decision](../decisions.md#selected-interaction-foundation);
-- establish owned markup hooks, controlled-state rules, focus treatment, size recipes, localization, heading composition, and safe native-prop boundaries;
+- establish the per-export public and migration boundary in [Core v1 control contracts](../control-contracts.md), including owned hooks, controlled state, focus, localization, heading composition, and safe native props;
 - remove implicit and consumer-wide CSS effects;
 - define package output, peer dependencies, supported runtimes, canonical commands, and pull-request checks; and
 - turn each accepted correction into a small Maestro-ready implementation outcome with observable assertions and gates.

@@ -78,6 +78,8 @@ The selection advances only after a disposable Maestro evaluation proves the sam
 
 The quality stage advances in this order: approve this selection and proof contract; complete the disposable proof through Maestro; record the retain/replace result; finish the per-control contract and migration matrix; approve the token/skin and package/gate contracts; then issue production packets. No proof code becomes production code and no production packet starts from an unreviewed proof result.
 
+The canonical per-export public boundary and migration dispositions are maintained in [Core v1 control contracts](control-contracts.md). That matrix governs control packets; this document governs the cross-control architecture.
+
 ### Public API and state
 
 - Controlled and uncontrolled forms are mutually exclusive in public types and at runtime. A controlled value requires its change callback; a controlled read-only field is the documented exception.

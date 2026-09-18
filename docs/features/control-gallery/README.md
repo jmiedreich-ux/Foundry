@@ -9,6 +9,7 @@ The functional gallery baseline is complete through Popover. The library quality
 ## Planning sources
 
 - [Architecture decisions](decisions.md)
+- [Core v1 control contracts](control-contracts.md)
 - [Delivery stages](milestones.md)
 - [Open questions](question-register.md)
 - [Coverage expectations](path-coverage.md)
