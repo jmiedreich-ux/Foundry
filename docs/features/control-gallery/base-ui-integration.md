@@ -8,7 +8,7 @@ Base UI supplies tested interaction mechanics. Foundry supplies the public compo
 
 ## Dependency boundary
 
-The initial production dependency is exactly `@base-ui/react` 1.8.0. The reviewed npm artifact has MIT license, registry integrity `sha512-P0/1sxo6SBVZOklKMIedvTWqw2s2IQzi9x5bIVsXu980cuSOD4NeuRSs+/L7LZQfDkZP/uRZyGPyfFl/B1oH+Q==`, and source tag `v1.8.0` at `5af893738de5c4513f8a315ffc54b979c165d1b5`.
+The initial production dependency is exactly `@base-ui/react` 1.8.0. The reviewed npm artifact has MIT license and registry integrity `sha512-P0/1sxo6SBVZOklKMIedvTWqw2s2IQzi9x5bIVsXu980cuSOD4NeuRSs+/L7LZQfDkZP/uRZyGPyfFl/B1oH+Q==`. Its annotated source tag `v1.8.0` is object `5af893738de5c4513f8a315ffc54b979c165d1b5`, peeled to commit `47b40521eab921c2756bf9bdb0b0f07fbfdb8c8c`.
 
 - `@base-ui/react` is an exact direct runtime dependency of `@foundry/react`, not a peer dependency.
 - React and React DOM remain Foundry peer dependencies. Base UI types never appear in Foundry declarations.
@@ -24,7 +24,7 @@ The Base UI imports live behind private Foundry adapters. Public family modules 
 | Concern | Foundry owns | Base UI owns |
 | --- | --- | --- |
 | Public API | Export names, props, callback shapes, refs, errors, and declarations | Nothing public |
-| State | Controlled and uncontrolled rules, request count, decline, stale requests, reset, dynamic recovery, and disabled refusal | Internal interaction state after a Foundry-approved request |
+| State | Controlled and uncontrolled public state, effective values, request count, decline, stale requests, reset, dynamic recovery, and disabled refusal | Ephemeral interaction state after a Foundry-approved effective-state render |
 | Semantics | Required topology, visible names, headings, system labels, stable Foundry IDs and relationships | Primitive roles, focus guards, collection registration, and generated internal IDs used only within a Base-backed adapter |
 | Overlays | Modal or non-modal policy, portal destination, restoration order, dismissal policy, and layer result | Focus containment, inertness, scroll lock, outside-interaction detection, nested Escape handling, and presence |
 | Floating controls | Public placement fields, defaults, anchor-loss result, and Foundry sizing hooks | Measurement, flip, shift, collision data, and scroll, resize, and layout tracking |
@@ -40,10 +40,10 @@ Every Base-backed root receives an explicit Foundry effective state, even when t
 
 For each Base UI change request the adapter:
 
-1. reads the Base UI reason and native event;
+1. reads the Base UI reason and associated event, normalizing any dependency wrapper before public use;
 2. refuses an unsupported, duplicate, disabled, or stale request without a public callback;
 3. records the trigger and focus policy needed if the request is accepted;
-4. updates Foundry's uncontrolled state or calls the controlled callback exactly once; and
+4. for uncontrolled state, queues the Foundry state update and then invokes the optional public callback once when supplied; for controlled state, invokes the required public callback once; and
 5. cancels Base UI's immediate commit so the next Foundry effective state is the single authority.
 
 An accepted request reaches Base UI through the next effective-state render. A declined controlled request leaves Base UI and the DOM at the prior state. A parent prop update is synchronization, not a request, and emits no callback.
@@ -129,10 +129,13 @@ The internal structure is Root → Trigger + Portal → Positioner → Popup con
 - Root is controlled by the shared state bridge with `modal={false}`, vertical orientation, looping focus, hover opening disabled, and the public disabled state.
 - Trigger keyboard entry and Base UI collection navigation supply first/last entry, arrows, Home/End, disabled-item focus, and the 500 ms typeahead buffer.
 - Typeahead uses Base UI's case-insensitive Unicode prefix matching over `label`, populated from Foundry `textValue` or plain text. It is intentionally not locale-specific in Core v1.
-- Disabled items remain focusable within menu navigation but never select. When every item is disabled, the first item receives focus and every activation is refused.
-- Item maps `textValue` to Base UI `label`. Base UI `itemPress` details identify the selected registered Foundry item and its native `MouseEvent`, `PointerEvent`, or `KeyboardEvent`.
-- The adapter calls that item's `onSelect` before the root close callback. Preventing the Foundry selection event cancels Base UI's change details, so the menu stays open and focused. Otherwise the root receives one close request.
+- Disabled items remain focusable within menu navigation but never select. When every item is disabled, Base UI's no-candidate focus fallback focuses the popup itself; later navigation may focus a disabled item, but every activation is refused.
+- Item maps `textValue` to Base UI `label`. A private per-item click handler closes over the registered Foundry item identity and runs before Base UI's item handler. It unwraps the native click event from React; for an Enter or Space activation, it instead uses the native `KeyboardEvent` captured for the same item and task before Base UI synthesizes its click.
+- The keyboard capture is valid only for the same open episode, registered item, and synchronous activation. It is cleared after any click, refused activation, item removal, menu close, or the current microtask, so a pointer action or stale synthetic click cannot inherit it.
+- The private item handler calls that item's `onSelect` before any root close request. Prevention calls Base UI's documented `preventBaseUIHandler()` on the item event, leaving the menu open and focused. A thrown callback also prevents the Base handler and propagates. Otherwise Base UI emits one `itemPress` close request, and the shared state bridge invokes the root callback once.
 - Escape restores focus only after an accepted close. Outside press and Tab/focus-out preserve destination focus. Controlled decline preserves the Base UI focus result and does not force focus back.
+- If the focused item is removed, a private flat-item registry moves focus without a state callback to the remaining item at the same former index, then a later item, then earlier items in reverse; disabled items remain eligible discovery targets. Reordering preserves focus by item identity. Removing the last item, the trigger declaration, or the content declaration is a composition error after recovery and cleanup.
+- If the declared trigger remains but its element disconnects, the adapter issues one close request for that loss episode. Accepted close has no restoration target. A declined controlled close hides and inerts the positioner until reconnection; reconnection restores positioning without another callback.
 - Placement uses the same fixed positioner policy as Popover.
 
 ## Tabs
@@ -151,7 +154,9 @@ The adapter always supplies Base UI `Tabs.Root` with Foundry's effective value. 
 
 Foundry uses Base UI Toast parts but not Base UI's timeout, urgency, visible-limit, or global-F6 policy as its public manager.
 
-The private Foundry queue owns all records and opaque IDs. Only visible records are mirrored into the nearest Base UI manager, always with Base UI timeout `0`, low priority, and swipe disabled. Waiting records have no Base UI record, timer, DOM, or announcement. Promotion creates the Base UI record with the existing Foundry ID.
+The private Foundry queue owns all records and opaque IDs. Only visible records are mirrored into the nearest Base UI manager, always with Base UI timeout `0`, low priority, and swipe disabled. Base UI `Toast.Provider.limit` is the mounted Foundry `visibleLimit`, so Base never applies a second visibility policy. Base UI ignores ending records for that limit; promotion may therefore overlap an ending record without making a Foundry-visible toast limited or inert. Waiting records have no Base UI record, timer, DOM, or announcement. Promotion creates the Base UI record with the existing Foundry ID.
+
+Toast configuration is validated and captured when its provider mounts. Changing `duration`, `visibleLimit`, or `queueLimit` on the same mounted provider is a contract error; a keyed remount creates a new queue and follows the documented provider-unmount cleanup. All three numeric values are finite safe integers in their permitted ranges.
 
 - Foundry enforces visible and waiting limits before mutation, FIFO promotion, terminal-ID refusal, deduplication in place, update rules, and first-terminal-action wins.
 - Foundry timers use remaining time and pause independently while the corresponding toast has hover or focus and while its document is hidden. Promotion starts a fresh full duration. Reduced motion changes transition time only.
@@ -164,14 +169,15 @@ The private Foundry queue owns all records and opaque IDs. Only visible records 
 
 ## Production sequence
 
-The integration is delivered in this dependency order after the remaining token, skin, package, and command contracts are approved:
+The following is the one canonical production order after the remaining token, skin, package, and command contracts are approved. It is repeated in the public migration contract and governs Maestro packets:
 
-1. Add the exact dependency, private adapter boundary, state bridge, direction resolver, provider, and portal lifecycle.
-2. Rebase Dialog and Drawer on the shared modal adapter.
-3. Add the shared positioner policy, then rebase Popover and Menu.
-4. Rebase Tabs with the private composition and recovery registry.
-5. Replace the static Toast with the Foundry queue over Base UI Toast parts.
-6. Build the packed package, move the gallery to packed public imports, and run the complete cross-family release evidence.
+1. Add the exact Base UI dependency, private adapter boundary, state bridge, direction resolver, provider, portal lifecycle, and explicit public exports.
+2. Correct native fields, actions, and names, including Button content, `NativeSelect`, `SearchField`, state unions, reset recovery, and system labels; do not route them through Base UI.
+3. Rebase Dialog and Drawer on the shared modal adapter.
+4. Add the shared positioner policy, then rebase Popover and Menu; remove `MenuClose` and add the approved structure.
+5. Rebase Tabs with the private composition and recovery registry.
+6. Replace static Toast with the Foundry queue over Base UI Toast parts and correct feedback heading/live semantics.
+7. Build the packed package, move the gallery to packed public imports, and run the complete cross-family release evidence. Compatibility aliases may exist only inside one migration branch; none ship in Core v1.
 
 Each step is independently mergeable and independently reviewed. A later step cannot bypass a failed shared dependency. Existing hand-built focus, dismissal, collection, or positioning mechanisms are removed when their replacement is accepted; they do not run beside Base UI.
 
@@ -189,9 +195,9 @@ The package and executable-gate contract will bind these outcomes to canonical c
 | Native-control regression | Text, search, select, checkbox, switch, and radio prove labels, descriptions, errors, required/disabled state, autofill observation, native form reset, and unchanged value callback counts after provider and package changes. |
 | Dialog and Drawer | Chromium, Firefox, and WebKit prove focus fallback, Tab containment, explicit and Escape close, outside refusal, controlled decline, nested Escape, trigger removal, restoration order, inertness, scroll lock, side/direction, and listener cleanup. |
 | Popover | All three browsers prove no open-time focus move, Tab/outside/Escape/explicit close policies, controlled decline, collision flip/shift, scroll and resize tracking, clipping caps, target migration, anchor disconnect/reconnect, and cleanup. |
-| Menu | All three browsers prove keyboard entry, arrows/Home/End, direction, wrapping, disabled and all-disabled behavior, text and non-text typeahead, 500 ms reset and repeated-character cycling, selection prevention, controlled decline, outside/Tab/Escape focus results, placement, and cleanup. |
+| Menu | All three browsers prove keyboard entry, arrows/Home/End, direction, wrapping, disabled and all-disabled popup fallback, text and non-text typeahead, 500 ms reset and repeated-character cycling, pointer/mouse/keyboard event provenance, selection prevention, controlled decline, focused-item and trigger removal, outside/Tab/Escape focus results, placement, reconnection, and cleanup. |
 | Tabs | Component and browser evidence proves automatic/manual activation, horizontal/vertical and left-to-right/right-to-left arrows, disabled discovery/refusal, controlled decline, initial and dynamic recovery, invalid values, removal while focused, nested roots, exact panel mounting, and panel Tab fallback. |
-| Toast | Component and browser evidence proves FIFO limits, overflow refusal, waiting promotion, dedupe/update, terminal races, timer pause/resume and document visibility, silent updates, action prevention/errors, dismiss/Escape, F6/Shift+F6 across nested queues, unmount recovery, reduced motion, and timer/listener cleanup. |
+| Toast | Component and browser evidence proves mounted-config refusal, Base-limit neutrality, FIFO limits, overflow refusal, waiting promotion including transition overlap, dedupe/update, terminal races, timer pause/resume and document visibility, silent updates, action prevention/errors, dismiss/Escape, F6/Shift+F6 across nested queues, unmount recovery, reduced motion, and timer/listener cleanup. |
 | Accessibility and layout | Real accessibility-tree checks cover names, roles, relationships, live output, and hidden/inert state; packed gallery checks cover 320 px, 400% zoom, forced colors, reduced motion, long content, and smallest/largest supported widths. |
 | Resource cleanup | Repeated mount/open/close/unmount leaves no Foundry-created portal, focus guard, scroll lock, inert marker, observer, document listener, queue record, or timer. Shared browser checks fail on console errors or leaked resources. |
 

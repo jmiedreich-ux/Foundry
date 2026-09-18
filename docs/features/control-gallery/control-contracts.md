@@ -128,9 +128,9 @@ The readonly schema arrays and all public types have no DOM forwarding surface.
 
 ### Toast queue
 
-`ToastProviderConfig` is `{ duration?: number; visibleLimit?: number; queueLimit?: number }`; defaults are 5000 ms, three visible, and 100 waiting. Zero duration means persistent. Limits must be positive integers. `ToastProviderProps` adds `children`. `FoundryProvider` uses the same configuration through its `toast` prop.
+`ToastProviderConfig` is `{ duration?: number; visibleLimit?: number; queueLimit?: number }`; defaults are 5000 ms, three visible, and 100 waiting. Zero duration means persistent. Duration is a non-negative safe integer; limits are positive safe integers. `ToastProviderProps` adds `children`. `FoundryProvider` uses the same configuration through its `toast` prop. Configuration is captured at provider mount; changing it without a keyed remount is a contract error.
 
-`ToastOptions` is `{ title: string; description?: string; tone?: ToastTone; action?: ToastAction; duration?: number; dedupeKey?: string }`. Title, action label, and any dedupe key are trimmed non-empty strings. `ToastAction` is `{ label: string; onAction(event: ToastActionEvent): void }`. The event exposes `preventDefault()` and readonly `defaultPrevented`. `ToastUpdate` is the optional mutable subset of Toast options except `dedupeKey`. `ToastId` is an opaque string. `ToastManager` is `{ show(options): ToastId; update(id, update): boolean; dismiss(id): boolean; dismissAll(): void }`.
+`ToastOptions` is `{ title: string; description?: string; tone?: ToastTone; action?: ToastAction; duration?: number; dedupeKey?: string }`. Title, action label, and any dedupe key are trimmed non-empty strings. A per-toast duration is a non-negative safe integer. `ToastAction` is `{ label: string; onAction(event: ToastActionEvent): void }`. The event exposes `preventDefault()` and readonly `defaultPrevented`. `ToastUpdate` is the optional mutable subset of Toast options except `dedupeKey`. `ToastId` is an opaque string. `ToastManager` is `{ show(options): ToastId; update(id, update): boolean; dismiss(id): boolean; dismissAll(): void }`.
 
 The first `visibleLimit` records are visible FIFO; later records wait FIFO without a timer or announcement. A dismissal promotes exactly one waiting record. Showing past `visibleLimit + queueLimit` throws before mutation. A matching dedupe key updates the existing visible or waiting record in place, returns its ID, preserves its queue position, and restarts a visible timer only when duration or announced text changed. Unknown or already terminal IDs return false. The first action, dismiss, or timeout to begin closing wins; later races are stale and do nothing.
 
@@ -208,9 +208,11 @@ If the anchor disconnects, Foundry issues one close request for that loss episod
 
 Trigger is a native button with the Control button profile. Enter/Space opens at the first enabled item; ArrowDown opens at first and ArrowUp at last. Content is a portaled `div` with `role="menu"`, `HTMLDivElement` ref, Collection container profile, exact placement props, and trigger labelling. Item is a `div` with `role="menuitem"`, `HTMLDivElement` ref, Collection item profile, non-empty content, optional `textValue`, `disabled`, and `onSelect(event: MenuSelectEvent)`. `MenuSelectEvent` exposes the originating `MouseEvent | PointerEvent | KeyboardEvent`, `preventDefault()`, and readonly `defaultPrevented`. Non-text item content requires a non-empty `textValue`.
 
-Arrow navigation wraps and may focus disabled items; activation of a disabled item is refused without selection or close. Home/End move to the first/last item. Typeahead uses case-insensitive Unicode prefix matching over `textValue` or plain text, a 500 ms buffer, repeated-character cycling, and includes disabled matches for focus while preserving activation refusal. An all-disabled menu opens with the first item focused; selection is unavailable. Empty menus are composition errors.
+Arrow navigation wraps and may focus disabled items; activation of a disabled item is refused without selection or close. Home/End move to the first/last item. Typeahead uses case-insensitive Unicode prefix matching over `textValue` or plain text, a 500 ms buffer, repeated-character cycling, and includes disabled matches for focus while preserving activation refusal. An all-disabled menu opens with the content itself focused; later navigation may focus a disabled item, but selection remains unavailable. Empty menus are composition errors.
 
 An unprevented enabled selection invokes `onSelect` once, then requests close once. Accepted close restores the trigger. Preventing selection keeps the menu open and focused on the item. Escape requests close and restores only after acceptance. Outside pointer and Tab request close while preserving the destination focus. If any controlled close is declined, the menu stays open: focus remains on the item for selection/Escape and remains on the outside destination for pointer/Tab. Only the topmost nested layer handles Escape; submenus themselves are outside Core v1. `MenuGroup` has an optional visible label; `MenuSeparator` is non-focusable and vertical.
+
+The selection event contains the native pointer, mouse, or Enter/Space keyboard event that caused that item activation, not Base UI's synthesized click. If the focused item or its group is removed, focus moves without a state callback to the remaining flat item at the same former index, then a later item, then earlier items in reverse; disabled items remain eligible focus targets. Reordering preserves focus by registered item identity. Removing the last item, trigger declaration, or content declaration is a composition error after recovery and listener cleanup; composition errors emit no state callback. If the declared trigger remains but its element disconnects, Foundry requests close once for that loss episode. Accepted close has no restoration target; a declined controlled close hides and inerts the positioner until reconnection, which emits no callback.
 
 ## Tabs
 
@@ -224,11 +226,13 @@ Only the selected panel is mounted. It receives `tabIndex=0` when it has no focu
 
 ## Migration and validation
 
-1. Introduce the provider, explicit root exports, and internalize accidental foundation exports without changing consumer-visible control behavior.
-2. Correct native fields/actions and names, including Button content, `NativeSelect`, `SearchField`, state unions, reset recovery, and system labels.
-3. Replace static Toast with the queue boundary and correct feedback heading/live semantics.
-4. Rebase complex families on Base UI through the reviewed production integration contract; remove `MenuClose` and add the approved structure.
-5. Rebuild the gallery against packed public exports. Compatibility aliases may exist only inside one migration branch; none ship in Core v1.
+1. Add the exact Base UI dependency, private adapter boundary, state bridge, direction resolver, provider, portal lifecycle, and explicit public exports.
+2. Correct native fields, actions, and names, including Button content, `NativeSelect`, `SearchField`, state unions, reset recovery, and system labels; do not route them through Base UI.
+3. Rebase Dialog and Drawer on the shared modal adapter.
+4. Add the shared positioner policy, then rebase Popover and Menu; remove `MenuClose` and add the approved structure.
+5. Rebase Tabs with the private composition and recovery registry.
+6. Replace static Toast with the Foundry queue over Base UI Toast parts and correct feedback heading/live semantics.
+7. Build the packed package, move the gallery to packed public imports, and run the complete cross-family release evidence. Compatibility aliases may exist only inside one migration branch; none ship in Core v1.
 
 Each packet cites its contract section, searches every current consumer, and maps its assertions to the following gates. A path without an executed gate is `UNTESTED`.
 

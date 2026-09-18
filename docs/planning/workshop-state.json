@@ -16,10 +16,11 @@
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
     "last_verified_document_revision": "aeb50d0c49118df6b6b454b73fc6816caefd5c23",
-    "status": "Base UI production integration drafted locally; independent review and publication pending",
+    "status": "Draft checkpoint published; first-pass review complete and bounded corrections pending recheck",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
     "pending_paths": [
+      "PRODUCT.md",
       "PROJECT_STATUS.md",
       "ROADMAP.md",
       "ai/handoffs/current.md",
@@ -71,7 +72,7 @@
     "controlled request bridge and complete family journeys",
     "production sequence, required evidence, and escalation boundary"
   ],
-  "next_action": "Run independent decision-fidelity, architectural-completeness, and cross-document-consistency reviews of the Base UI production integration contract.",
+  "next_action": "Run targeted fidelity, architectural-completeness, and cross-document-consistency rechecks of the corrected Base UI production integration contract.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",

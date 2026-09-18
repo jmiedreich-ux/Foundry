@@ -28,7 +28,7 @@ Dialog and Drawer are foundation-backed modal interactions with semantic `HTMLEl
 
 Popover and Menu are non-modal. They document their own native or pointer dismissal behavior, do not trap focus, and do not steal focus from an outside interaction or Tab navigation. Menu provides labelled command semantics, roving item focus, disabled-item refusal, and ordered selection.
 
-Tabs have one labelled list, one selected enabled tab, and one visible associated panel. Pointer activation moves focus and requests selection. Arrow navigation always moves roving focus; it requests selection only in automatic activation mode, while manual mode waits for Enter or Space. Card is a non-interactive labelled article that accepts optional description and any number of children.
+Tabs have one labelled list and, in the normal valid-selection state, one selected enabled tab with one visible associated panel. An authoritative controlled value that is missing or disabled has no selected panel; a collection with no enabled trigger has `null` selection and no panel. Neither exception fabricates a selection request. Pointer activation moves focus and requests selection. Arrow navigation always moves roving focus; it requests selection only in automatic activation mode, while manual mode waits for Enter or Space. Card is a non-interactive labelled article that accepts optional description and any number of children.
 
 ## Skin and catalog
 
@@ -66,8 +66,8 @@ Foundry owns the public contract and Base UI owns only internal mechanics:
 
 | Area | Foundry owns | Base UI owns |
 | --- | --- | --- |
-| State and events | Controlled/uncontrolled exclusivity, required callbacks, request-once semantics, parent decline, stale-request cancellation, public callback shape | Internal state for uncontrolled controls and typed reason/cancel details for interaction requests |
-| Semantics and composition | Allowed parts, visible titles, localized system labels, public refs, safe forwarded props, refusal messages | Required roles, relationships, generated IDs, collection registration, and internal part refs |
+| State and events | Controlled and uncontrolled public state, effective values, required callbacks, request-once semantics, parent decline, stale-request cancellation, and public callback shape | Ephemeral interaction state after a Foundry-approved effective-state render, plus typed reason/cancel details for requests |
+| Semantics and composition | Allowed parts, required public elements, roles, relationships, stable IDs, visible titles, localized system labels, public refs, safe forwarded props, and refusal messages | Primitive role and ARIA mechanics, collection registration, private internal IDs, and internal part refs |
 | Overlays | Portal destination and skin propagation, product defaults, documented modal/non-modal behavior | Portal mechanics, focus scope, inert/outside interaction, scroll lock, nested Escape handling, presence, and restoration mechanics |
 | Floating controls | Public placement choices and Foundry token hooks | Anchoring, flipping, shifting, collision boundaries, available size, and scroll/resize updates |
 | Visual system | Every class, token, part alias, state recipe, motion value, and z-layer policy | No consumer-visible styling; Base UI state is translated to stable Foundry hooks |
