@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "The functional gallery baseline is complete through Popover. The library quality foundation is now in architecture review; overlay and navigation implementation remains paused.",
-  "next": "Complete targeted review of the corrected Core v1 control contracts, then prepare the bounded Base UI 1.8.0 evaluation for Maestro before production implementation resumes.",
+  "position": "The functional gallery baseline is complete through Popover. The control contract passed fidelity and consistency review but remains paused on two completeness findings at the review bound; overlay and navigation implementation remains paused.",
+  "next": "Resolve the review-budget disposition for the two retained control-contract completeness findings before the Base UI 1.8.0 Maestro evaluation or production implementation.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery architecture decisions", "where": "docs/features/control-gallery/decisions.md" },

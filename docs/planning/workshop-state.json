@@ -2,7 +2,7 @@
   "schema_version": 1,
   "repository": "jmiedreich-ux/Foundry",
   "source_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
-  "status": "reviewing",
+  "status": "paused",
   "paths": {
     "overview": "PRODUCT.md",
     "architecture": "docs/features/control-gallery/decisions.md",
@@ -14,15 +14,13 @@
   "publication": {
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
-    "last_verified_document_revision": "715364e1e4b3aa5ddc333eb07bcfc640b30406aa",
-    "status": "complete first contract-review round published; one bounded correction is pending targeted second review on draft pull request #59",
+    "last_verified_document_revision": "db7cf5afa10f79998e6465027c733da1e3356d82",
+    "status": "bounded contract correction published; fidelity and consistency passed targeted review, completeness still has material findings after the final allowed round",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
     "pending_paths": [
       "PROJECT_STATUS.md",
       "ai/handoffs/current.md",
-      "docs/features/control-gallery/decisions.md",
-      "docs/features/control-gallery/control-contracts.md",
       "docs/features/control-gallery/workstream.json",
       "docs/planning/workshop-state.json"
     ],
@@ -54,9 +52,11 @@
     "plain reader-facing delivery stages",
     "Base UI interaction-foundation selection and responsibility boundary",
     "draft Core v1 public export and migration matrix",
-    "complete first-round control-contract fidelity, completeness, and consistency review"
+    "complete first-round control-contract fidelity, completeness, and consistency review",
+    "targeted second-round fidelity and consistency approval",
+    "exhausted second-round completeness review with forwarding and native-control prop gaps retained"
   ],
-  "next_action": "Commit the bounded control-contract correction, obtain targeted second review at its exact head, and only then prepare the Maestro evaluation contract for Base UI 1.8.0 while production implementation remains paused.",
+  "next_action": "Obtain the owner's review-budget disposition for the two retained completeness findings before changing the contract or preparing the Maestro evaluation.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -138,7 +138,7 @@
       "selection_point": "After the interaction foundation is selected and before correction packets are issued.",
       "required_evidence": "Reviewed control and part matrix with migration disposition.",
       "draft_ref": "docs/features/control-gallery/control-contracts.md",
-      "status": "reviewing"
+      "status": "paused"
     },
     {
       "id": "CG-ARQ-004",
@@ -158,6 +158,16 @@
       "owner": "delegated chief software architect",
       "selection_point": "Before package or workflow implementation packets are issued.",
       "required_evidence": "Reviewed manifest matrix and command-to-gate table.",
+      "status": "open"
+    },
+    {
+      "id": "CG-ARQ-006",
+      "subject": "Control-contract completeness review disposition",
+      "missing_decision": "Authorize one exceptional targeted completeness recheck after correcting the unmapped forwarding profiles and omitted native-control props, or explicitly accept those unresolved material limitations.",
+      "affected_outcome": "Approval of the Core v1 control contract and eligibility of the Base UI Maestro proof packet.",
+      "owner": "Foundry owner",
+      "selection_point": "Before another control-contract edit or the Base UI proof packet.",
+      "required_evidence": "Recorded owner direction; if another round is authorized, a passing independent targeted completeness result at the corrected exact commit.",
       "status": "open"
     }
   ],
@@ -404,6 +414,85 @@
       "round_consumed": true,
       "correction_refs": ["docs/features/control-gallery/decisions.md", "docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/workstream.json", "PROJECT_STATUS.md"],
       "invalidated_by": "The bounded correction after this review."
+    },
+    {
+      "id": "CG-CONTRACT-FIDELITY-R2",
+      "subject": "Core v1 control contract",
+      "pass_type": "decision_fidelity",
+      "mode": "targeted",
+      "parent_review_id": "CG-CONTRACT-FIDELITY-R1",
+      "scope": "DF-01 through DF-06 and directly affected authority/status dependencies.",
+      "budget_key": "core-v1-contract-fidelity",
+      "round": 2,
+      "reviewer": { "agent": "/root/contract_fidelity_review", "session": "separate resumed reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "db7cf5afa10f79998e6465027c733da1e3356d82", "document_hashes": { "docs/features/control-gallery/decisions.md": "b7ca88e81c64b600c327452ebc8f62d78d9c9d4a", "docs/features/control-gallery/control-contracts.md": "e39136b1bfd2890a00e0d41b279bc25b30828d87" }, "filtered_passages": ["Workshop state, handoff, PR discussion, and other reviewers' findings excluded."], "original_decision_evidence": ["Parent review findings DF-01 through DF-06 supplied under the targeted-check exception."] },
+      "sources_examined": ["decisions.md affected headings", "control-contracts.md affected headings", "PRODUCT.md", "PROJECT_STATUS.md", "ROADMAP.md", "feature README", "milestone index and library-quality declaration", "question register", "workstream.json"],
+      "journeys": [{ "name": "targeted correction chain", "trace": "Each prior fidelity finding was followed from owner/architect authority through corrected architecture and contract text to status and delivery dependencies; no directly introduced contradiction was found." }],
+      "not_assessed": ["Findings outside DF-01 through DF-06, runtime behavior, proof results, token/skin and package/gate detail."],
+      "missing_evidence": ["Executable foundation proof remains later work."],
+      "findings": [
+        { "id": "DF-01", "disposition": "closed" }, { "id": "DF-02", "disposition": "closed" }, { "id": "DF-03", "disposition": "closed" }, { "id": "DF-04", "disposition": "closed" }, { "id": "DF-05", "disposition": "closed" }, { "id": "DF-06", "disposition": "closed" }
+      ],
+      "result": "pass",
+      "conclusion": "All six fidelity findings are closed at the corrected exact commit; no directly introduced regression was found within targeted coverage.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/decisions.md", "docs/features/control-gallery/control-contracts.md"],
+      "invalidated_by": null
+    },
+    {
+      "id": "CG-CONTRACT-CONSISTENCY-R2",
+      "subject": "Core v1 control contract",
+      "pass_type": "cross_document_consistency",
+      "mode": "targeted",
+      "parent_review_id": "CG-CONTRACT-CONSISTENCY-R1",
+      "scope": "CCR-1 through CCR-6 and stable delivery identity/lifecycle dependencies.",
+      "budget_key": "core-v1-contract-consistency",
+      "round": 2,
+      "reviewer": { "agent": "/root/contract_consistency_review", "session": "separate resumed reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "db7cf5afa10f79998e6465027c733da1e3356d82", "document_hashes": { "docs/features/control-gallery/decisions.md": "b7ca88e81c64b600c327452ebc8f62d78d9c9d4a", "docs/features/control-gallery/control-contracts.md": "e39136b1bfd2890a00e0d41b279bc25b30828d87" }, "filtered_passages": ["Workshop state, handoff, PR discussion, and other reviewers' findings excluded."], "original_decision_evidence": ["Parent review findings CCR-1 through CCR-6 supplied under the targeted-check exception."] },
+      "sources_examined": ["decisions.md affected headings", "control-contracts.md affected headings", "PRODUCT.md", "feature README", "library-quality and overlay declarations", "PROJECT_STATUS.md", "ROADMAP.md", "workstream.json", "current root/foundation/modal exports"],
+      "journeys": [{ "name": "targeted representation chain", "trace": "Each prior inconsistency was compared across reader authorities, Atlas links and stable IDs, lifecycle/status records, and the current export boundary; all six now agree without identity regression." }],
+      "not_assessed": ["Workshop state, handoff, runtime behavior, package artifacts, proof results, and Atlas status-schema semantics beyond structural consistency."],
+      "missing_evidence": ["Operational validation remains later work."],
+      "findings": [
+        { "id": "CCR-1", "disposition": "closed" }, { "id": "CCR-2", "disposition": "closed" }, { "id": "CCR-3", "disposition": "closed" }, { "id": "CCR-4", "disposition": "closed" }, { "id": "CCR-5", "disposition": "closed" }, { "id": "CCR-6", "disposition": "closed" }
+      ],
+      "result": "pass",
+      "conclusion": "All six consistency findings are closed; stage order, stable IDs, and pause state remain intact.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/decisions.md", "docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/workstream.json", "PROJECT_STATUS.md"],
+      "invalidated_by": null
+    },
+    {
+      "id": "CG-CONTRACT-COMPLETENESS-R2",
+      "subject": "Core v1 control contract",
+      "pass_type": "architectural_completeness",
+      "mode": "targeted",
+      "parent_review_id": "CG-CONTRACT-COMPLETENESS-R1",
+      "scope": "F1 through F10 and directly affected contract dependencies.",
+      "budget_key": "core-v1-contract-completeness",
+      "round": 2,
+      "reviewer": { "agent": "/root/contract_completeness_review", "session": "separate resumed reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "db7cf5afa10f79998e6465027c733da1e3356d82", "document_hashes": { "docs/features/control-gallery/decisions.md": "b7ca88e81c64b600c327452ebc8f62d78d9c9d4a", "docs/features/control-gallery/control-contracts.md": "e39136b1bfd2890a00e0d41b279bc25b30828d87" }, "filtered_passages": ["Workshop state, handoff, PR discussion, and other reviewers' findings excluded."], "original_decision_evidence": ["Parent review findings F1 through F10 supplied under the targeted-check exception."] },
+      "sources_examined": ["all control-contract headings", "affected decisions headings", "exact current root/foundation/TextField/Select exports"],
+      "journeys": [{ "name": "targeted implementation boundary", "trace": "Each prior gap was traced through exports, provider/portal, forwarding, native controls, feedback/Toast, compounds, modal, Popover/Menu, Tabs, SSR/hydration, and validation; eight closed, while forwarding/profile mapping and native state/form/size props remain incomplete." }],
+      "not_assessed": ["Scope outside F1 through F10, live proof/implementation, token recipes, package gates, license, other pass types, workshop state, handoff, and PR discussion."],
+      "missing_evidence": ["An exact profile assignment for every export, a checkable-input profile, exact compound children props and modal content tag, and full native-control state/form/size props."],
+      "findings": [
+        { "id": "F1", "disposition": "closed" },
+        { "id": "F2", "disposition": "closed" },
+        { "id": "F3", "classification": "blocking", "disposition": "open_at_review_bound", "summary": "Every public export is not mapped to an exact forwarding profile; checkable inputs, compound children, and the modal content element remain unspecified.", "canonical_reference": "CG-ARQ-006" },
+        { "id": "F4", "classification": "blocking", "disposition": "open_at_review_bound", "summary": "Button and native field/choice/search controls do not all enumerate their complete state, form, invalid, and size props after the correction rewrite.", "canonical_reference": "CG-ARQ-006" },
+        { "id": "F5", "disposition": "closed" }, { "id": "F6", "disposition": "closed" }, { "id": "F7", "disposition": "closed" }, { "id": "F8", "disposition": "closed" }, { "id": "F9", "disposition": "closed" }, { "id": "F10", "disposition": "closed" }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "Eight findings are closed, but F3 and F4 still require public API choices; the final allowed completeness round is consumed and the affected contract/proof work is paused.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": [],
+      "invalidated_by": null
     }
   ]
 }
