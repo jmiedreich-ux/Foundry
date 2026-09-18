@@ -29,7 +29,7 @@
     "project-milestone naming",
     "reader-facing delivery-stage structure"
   ],
-  "next_action": "Rewrite the legacy architecture decisions and question register into reader-facing current sources, then obtain the owner's decision on the Core v1 distribution boundary.",
+  "next_action": "Obtain the owner's decision on whether Core v1 ships an installable Foundry package, then assign every open architecture question to a delivery stage and verification gate.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
