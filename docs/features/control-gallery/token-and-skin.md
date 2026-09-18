@@ -1,6 +1,6 @@
 # Token and skin contract
 
-This is the visual authority for Core v1. It defines the values a skin must supply, the parts Foundry may style, the recipes Foundry owns, and the rendered evidence required before any skin or styling packet enters Maestro. It does not approve token values or implement CSS.
+This is the visual authority for Core v1. It defines the values a skin must supply, the parts Foundry may style, the recipes Foundry owns, and the rendered evidence required before any skin or styling packet enters Maestro. It fixes non-aesthetic infrastructure values but does not approve default-skin aesthetic values or implement CSS.
 
 ## Outcome and boundary
 
@@ -14,7 +14,7 @@ Base UI has no public styling role. Its attributes, variables, classes, and DOM 
 
 | Layer | Owner | Contract |
 | --- | --- | --- |
-| Skin values | An approved Foundry skin | Supplies every required custom property for one exact skin name. It may use private palette values internally, but publishes only the schema below. |
+| Skin values | An approved Foundry skin | Supplies every required custom property for one exact skin name. Private authoring helpers may exist, but generated output contains only the semantic schema below. |
 | Shared recipes | Foundry | Applies layout and visual treatment only to exact owned-part hooks. Recipes consume required tokens and private runtime measurements; they contain no unexplained visual constants. |
 | Control markup | `@foundry/react` | Emits the owned part, skin, size, value, and state hooks that recipes require, including equivalent hooks on portaled parts. |
 
@@ -28,6 +28,51 @@ Each entry has exactly `{ name, cssProperty, type, constraints, description }`. 
 
 Names use lower-case dot segments. Their CSS form prefixes `--foundry-` and replaces dots with hyphens; for example, `color.text.default` becomes `--foundry-color-text-default`. Renaming or removing a token is a breaking change. Adding one is also breaking for skin authors until every approved skin supplies it.
 
+The source and generator boundary is exact:
+
+```ts
+type SkinName = string; // runtime value must match /^[a-z][a-z0-9-]{0,63}$/
+
+type TokenConstraints =
+  | { type: 'color'; alpha: 'forbid' | 'allow' }
+  | { type: 'length'; unit: 'rem' | 'px' | 'zero'; min: number; max?: number }
+  | { type: 'number'; min: number; max: number }
+  | { type: 'time'; minMs: 0; integer: true }
+  | { type: 'easing'; keywords: readonly ['linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out']; cubicBezier: true }
+  | { type: 'font-family'; genericFallback: true }
+  | { type: 'font-weight'; min: 400; max: 700; integer: true }
+  | { type: 'shadow'; maxLayers: 4; inset: false }
+  | { type: 'layer'; min: 0; max: 2147483391; integer: true };
+
+interface FoundryTokenDefinition {
+  name: FoundryTokenName;
+  cssProperty: `--foundry-${string}`;
+  type: TokenConstraints['type'];
+  constraints: TokenConstraints;
+  description: string;
+}
+
+interface FoundrySkinTokenSource { name: string; value: string | number }
+interface FoundrySkinSource {
+  schemaVersion: 1;
+  name: SkinName;
+  tokens: readonly FoundrySkinTokenSource[];
+}
+
+type SkinIssueCode =
+  | 'INVALID_SKIN_NAME' | 'MISSING_TOKEN' | 'DUPLICATE_TOKEN' | 'UNKNOWN_TOKEN'
+  | 'INVALID_TOKEN_TYPE' | 'INVALID_TOKEN_VALUE' | 'TOKEN_CONSTRAINT'
+  | 'CROSS_TOKEN_CONSTRAINT' | 'GENERATION_ERROR';
+interface SkinIssue { code: SkinIssueCode; path: string; message: string }
+type SkinBuildResult =
+  | { ok: true; name: SkinName; css: string; sourceHash: string }
+  | { ok: false; issues: readonly SkinIssue[] };
+```
+
+The array form deliberately preserves duplicate entries for validation. Input order has no output meaning. Generation orders declarations by `foundryTokenNames`, uses LF line endings and one terminal newline, emits the exact quoted skin selector, and reports the lower-case hexadecimal SHA-256 of UTF-8 JSON for normalized `{ schemaVersion, name, ordered tokens }`. The restricted `SkinName` grammar needs no CSS escaping and is enforced by provider runtime validation, the source validator, and the generator. A definition's `type` must equal `constraints.type`, and `cssProperty` must equal the mechanical name mapping; mismatches are generation errors.
+
+The `@foundry/tokens` runtime-safe surface exports `defaultSkinName`, `foundryTokenNames`, `foundryTokenDefinitions`, and their exact public types. Build-only tooling accepts `FoundrySkinSource` and returns `SkinBuildResult`; its final package subpath and command belong to the package/gate contract. It throws only for programmer misuse of the tooling itself; candidate errors are returned together in deterministic token/path order.
+
 ### Value types
 
 | Type | Accepted form | Additional rule |
@@ -39,7 +84,7 @@ Names use lower-case dot segments. Their CSS form prefixes `--foundry-` and repl
 | `easing` | `linear`, a standard easing keyword, or one `cubic-bezier()` | Spring or JavaScript timing is outside Core v1. |
 | `font-family` | A non-empty CSS font-family list | The final family must be a generic fallback. |
 | `font-weight` | An integer from 400 through 700 | Variable-font ranges are not accepted. |
-| `shadow` | One or more valid box-shadow layers | Every color inside the shadow must be a private skin palette reference resolved during generation. |
+| `shadow` | One through four valid non-inset box-shadow layers | Colors are concrete parseable CSS colors; alpha is allowed. Private palette helpers must resolve before this source boundary. |
 | `layer` | A non-negative integer | Layer ordering must satisfy the inequalities below. |
 
 ### Required keys
@@ -48,7 +93,7 @@ Braced sets expand to every listed key. All keys are required; there are no opti
 
 | Category | Exact keys |
 | --- | --- |
-| Canvas and surfaces | `color.canvas`; `color.surface.{default,raised,sunken,overlay}` |
+| Surfaces | `color.surface.{default,raised,sunken,overlay}` |
 | Text and borders | `color.text.{default,muted,subtle,inverse,disabled}`; `color.border.{default,strong,disabled}` |
 | Primary action | `color.action.primary.{background,backgroundHover,backgroundActive,foreground,border}` |
 | Secondary action | `color.action.secondary.{background,backgroundHover,backgroundActive,foreground,border}` |
@@ -70,14 +115,23 @@ Braced sets expand to every listed key. All keys are required; there are no opti
 
 Type assignment is exact: every `color.*` key is `color`; `font.family.*` is `font-family`; `font.size.*`, `font.letterSpacing.*`, every spacing/density/target/stroke/radius/distance/geometry key are `length`; `font.lineHeight.*` is `number`; `font.weight.*` is `font-weight`; `elevation.*` is `shadow`; `motion.duration.*` is `time`; `motion.easing.*` is `easing`; and `layer.*` is `layer`.
 
+Unit and range assignment is also exact:
+
+- font sizes, letter spacing, nonzero spacing, density, radii, motion distance, and overlay geometry use `rem`; `space.0` alone has type `length`, unit `zero`, and value `0`;
+- target minimum and all border widths use `px`; compared source groups therefore never mix units;
+- `font.lineHeight.tight`, `.default`, and `.relaxed` respectively use inclusive ranges `1–1.4`, `1.3–1.7`, and `1.5–2` and must be strictly increasing;
+- regular, medium, and semibold weights are integers in `400–500`, `500–600`, and `600–700` and must be non-decreasing;
+- alpha is allowed only for `color.backdrop` and `color.selection.background`; every other `color` token forbids alpha;
+- all nonzero lengths have `min: 0` with strict positivity checked cross-token; shadow, easing, family, time, and layer values use the type rules above.
+
 The manifest enforces these cross-token constraints:
 
-- `target.minimum` is at least 24 CSS pixels; `control.height.sm < control.height.md < control.height.lg`, while every height and interactive hit area is at least `target.minimum`;
-- text-entry `font.size` is at least 16 CSS pixels at every size;
-- spacing, padding, gap, icon size, surface padding, radius, and motion distance are non-decreasing within their declared scales;
+- `target.minimum` is at least 24px; `control.height.sm < control.height.md < control.height.lg`; rendered hit-area comparison with the px target belongs to the geometry gate, not source validation;
+- `font.size.xs < font.size.sm <= font.size.md < font.size.lg` and `font.size.md >= 1rem`; all text-entry recipes use at least `font.size.md` even at control size `sm`;
+- `space.0` equals zero; the remaining spacing keys are strictly increasing; padding, gap, icon size, surface padding, radius, and motion distance are non-decreasing within their declared rem scales;
 - `border.width.focusInner + border.width.focusOuter` is at least two CSS pixels;
-- `layer.popup < layer.modal < layer.toast`, adjacent values differ by at least 256, and a private layer index is an integer from 0 through 255;
-- overlay dimensions cannot exceed the available block or inline size after twice the viewport margin; and
+- infrastructure values are exactly `layer.popup=1000`, `layer.modal=2000`, and `layer.toast=3000` in every skin;
+- overlay token dimensions are positive; comparison with live available width/height after viewport margin belongs to the rendered geometry gate; and
 - the default-skin candidate must meet the contrast and focus requirements in rendered evidence. A parser-valid color is not an approved color.
 
 ## Scope and cascade
@@ -92,7 +146,7 @@ The skin value sheet defines variables only on `[data-foundry-skin="<exact name>
 
 The nearest provider supplies the resolved skin. Updating it changes every still-mounted owned part, including portals and Toast viewports, without remounting, state callbacks, focus movement, timer reset, or announcement. A nested provider affects only its own React subtree and portal boundary.
 
-No library selector may contain `:root`, `html`, `body`, `*`, an element name, a role, an ID, a class, a consumer attribute, a descendant/child/sibling combinator, or `:has()`. A recipe selector consists of one owned target compound, optional approved value/state hooks on that same target, and only the applicable `:hover`, `:active`, `:focus-visible`, `:autofill`, `::placeholder`, `::selection`, `::before`, or `::after`. Grouping exact target compounds is allowed. Reduced-motion, forced-color, pointer-capability, and responsive media queries do not relax this rule.
+No library selector may contain `:root`, `html`, `body`, `*`, an element name, a role, an ID, a class, a consumer attribute, a descendant/child/sibling combinator, or `:has()`. A recipe selector consists of one owned target compound, optional approved value/state hooks on that same target, and only the applicable `:hover`, `:active`, `:focus-visible`, `:autofill`, `::placeholder`, or `::selection`. Grouping exact target compounds is allowed. Required visual marks use declared parts rather than generated pseudo-element content. Reduced-motion, forced-color, pointer-capability, and responsive media queries do not relax this rule.
 
 Consumer children, native `option`/`optgroup` children, and consumer-supplied action content are never given Foundry identity and are never selected by a recipe. Foundry may style an owned wrapper around that content, but not the content itself.
 
@@ -102,32 +156,34 @@ Shared recipes live in named cascade layers in this order: `foundry.structure`, 
 
 Part names are public styling and test contracts. DOM-free roots emit no part. Each listed part is required when its corresponding content exists; conditional parts are marked.
 
-| Control | Exact recipe-bearing parts |
-| --- | --- |
-| Field | `root`, `label`, `required-marker` (required only), `description` (conditional), `error` (conditional) |
-| Group | `root`, `legend` |
-| Button | `root`, `loading-indicator` (loading only and hidden from assistive technology), `loading-announcer` (transient and visually hidden) |
-| TextField | `root` |
-| NativeSelect | `root`, `input`, `indicator` |
-| Checkbox | `root`, `input`, `indicator` |
-| Switch | `root`, `input`, `track`, `thumb` |
-| RadioGroup | `root`, `legend`, `option`, `input`, `indicator`, `label`, `description` (conditional per option) |
-| SearchField | `root`, `input`, `clear` (non-empty editable value only) |
-| StatusChip | `root` |
-| Banner | `root`, `title`, `description`, `action` (conditional), `dismiss` (conditional), `announcer` (transient when announcement is requested) |
-| EmptyState | `root`, `title`, `description`, `action` (conditional) |
-| LoadingSkeleton | `root`, `line` (one through six) |
-| Card | `root`, `title`, `description` (conditional), `content` (conditional) |
-| Dialog | `trigger` (conditional), `backdrop`, `viewport`, `content`, `title`, `description` (conditional), `close` (one system action plus any declared close parts) |
-| Drawer | `trigger` (conditional), `backdrop`, `viewport`, `content`, `title`, `description` (conditional), `close` (one system action plus any declared close parts) |
-| Popover | `trigger`, `positioner`, `content`, `title`, `description` (conditional), `close` (zero or more) |
-| Menu | `trigger`, `positioner`, `content`, `group` (conditional), `group-label` (conditional), `item`, `separator` (conditional) |
-| Tabs | `list`, `trigger`, `panel` |
-| Toast | `viewport`, `announcer`, `root`, `content`, `title`, `description` (conditional), `action` (conditional), `close` |
+| Control | Exact `data-control` | Exact recipe-bearing parts |
+| --- | --- | --- |
+| Field | `field` | `root`, `label`, `required-marker` (required only), `description` (conditional), `error` (conditional) |
+| Group | `group` | `root`, `legend` |
+| Button | `button` | `root`, `loading-indicator` (loading only and hidden from assistive technology), `loading-announcer` (transient and visually hidden) |
+| TextField | `text-field` | `root` |
+| NativeSelect | `native-select` | `root`, `input`, `indicator` |
+| Checkbox | `checkbox` | `root`, `input`, `indicator` |
+| Switch | `switch` | `root`, `input`, `track`, `thumb` |
+| RadioGroup | `radio-group` | `root`, `legend`, `option`, `input`, `indicator`, `label`, `description` (conditional per option) |
+| SearchField | `search-field` | `root`, `input`, `clear` (non-empty editable value only) |
+| StatusChip | `status-chip` | `root` |
+| Banner | `banner` | `root`, `title`, `description`, `action` (conditional), `dismiss` (conditional), `announcer` (transient when announcement is requested) |
+| EmptyState | `empty-state` | `root`, `title`, `description`, `action` (conditional) |
+| LoadingSkeleton | `loading-skeleton` | `root`, `line` (one through six) |
+| Card | `card` | `root`, `title`, `description` (conditional), `content` (conditional) |
+| Dialog | `dialog` | `trigger` (conditional), `backdrop`, `viewport`, `content`, `title`, `description` (conditional), `close` (one system action plus any declared close parts) |
+| Drawer | `drawer` | `trigger` (conditional), `backdrop`, `viewport`, `content`, `title`, `description` (conditional), `close` (one system action plus any declared close parts) |
+| Popover | `popover` | `trigger`, `positioner`, `content`, `title`, `description` (conditional), `close` (zero or more) |
+| Menu | `menu` | `trigger`, `positioner`, `content`, `group` (conditional), `group-label` (conditional), `item`, `separator` (conditional) |
+| Tabs | `tabs` | `list`, `trigger`, `panel` |
+| Toast | `toast` | `viewport`, `announcer`, `root`, `content`, `title`, `description` (conditional), `action` (conditional), `close` |
 
 An internal portal node used only for mounting and an internal positioning node with no box or visual behavior are not parts. A node becomes a declared part as soon as a recipe gives it layout, size, paint, typography, motion, or hit-area behavior.
 
 Native semantics and public refs do not move to the visual wrapper. `NativeSelect`, Checkbox, Switch, and SearchField forward their public props and refs to the documented native `select` or `input`; RadioGroup still forwards its ref to the `fieldset`. Their `root`, `indicator`, `track`, and `thumb` parts are private non-semantic presentation nodes, are hidden from the accessibility tree where appropriate, and cannot receive focus or events independently. The native input covers the hit area and remains the form, autofill, validation, reset, keyboard, focus, and accessibility authority. Button's visual loading indicator does not replace or hide its accessible name.
+
+Current `data-control="search"` migrates to `search-field`; current `Select` gains `native-select`; current root-only and ad hoc bar/clear hooks are replaced by this table. No compatibility selector ships in Core v1.
 
 ## Value and state hooks
 
@@ -146,6 +202,146 @@ The root part carries every applicable hook. A non-root part repeats each value 
 ## Recipe contract
 
 Structure values such as `display`, `position`, `overflow`, `auto`, `none`, `transparent`, `0`, `100%`, grid/flex keywords, `currentColor`, transforms needed to draw simple marks, and visually-hidden geometry are reviewed recipe constants. Check, mixed, chevron, spinner, and switch-thumb marks are drawn only on their declared owned parts from tokenized stroke, size, and color; no font glyph, external image, data URL, or consumer asset is part of a recipe. All color, typography, spacing, size, stroke, radius, elevation, motion, and layer values come from the manifest. Runtime positioning may set only documented `--foundry-private-*` measurements; those variables are neither public tokens nor skin inputs.
+
+The recipe manifest is data and is the sole source of generated CSS. Its exact record is:
+
+```ts
+type RecipeLayer = 'structure' | 'recipe' | 'state' | 'accessibility';
+type RecipeCondition =
+  | { kind: 'value'; hook: 'size'; value: 'sm' | 'md' | 'lg' }
+  | { kind: 'value'; hook: 'variant'; value: 'primary' | 'secondary' | 'destructive' | 'link' }
+  | { kind: 'value'; hook: 'tone'; value: 'neutral' | 'success' | 'warning' | 'danger' }
+  | { kind: 'value'; hook: 'orientation'; value: 'horizontal' | 'vertical' }
+  | { kind: 'value'; hook: 'side'; value: 'top' | 'bottom' | 'left' | 'right' }
+  | { kind: 'value'; hook: 'align'; value: 'start' | 'center' | 'end' }
+  | { kind: 'presence'; hook: 'disabled' | 'readonly' | 'invalid' | 'loading' | 'checked' | 'indeterminate' | 'selected' | 'open' | 'focus-visible' | 'highlighted' | 'entering' | 'exiting' }
+  | { kind: 'pseudo'; value: 'hover' | 'active' | 'focus-visible' | 'autofill' | 'placeholder' | 'selection' }
+  | { kind: 'media'; value: 'reduced-motion' | 'forced-colors' | 'fine-pointer' | 'narrow' };
+type RecipeValue =
+  | { kind: 'token'; name: FoundryTokenName }
+  | { kind: 'private'; name: FoundryPrivateVariable }
+  | { kind: 'constant'; value: ApprovedRecipeConstant }
+  | { kind: 'accessibility-constant'; value: ForcedColorConstant }
+  | { kind: 'function'; name: 'calc' | 'min' | 'max' | 'translateX' | 'translateY' | 'scale' | 'rotate'; args: readonly RecipeValue[] }
+  | { kind: 'list'; separator: 'space' | 'comma'; values: readonly RecipeValue[] };
+interface CssRecipeRecord {
+  id: string;
+  control: FoundryControlName;
+  part: FoundryPartName;
+  conditions: readonly RecipeCondition[];
+  layer: RecipeLayer;
+  priority: number;
+  property: RecipeProperty;
+  value: RecipeValue;
+}
+interface NaRecipeRecord {
+  id: string;
+  control: FoundryControlName;
+  part: FoundryPartName;
+  conditions: readonly RecipeCondition[];
+  naReason: string;
+}
+type RecipeRecord = CssRecipeRecord | NaRecipeRecord;
+
+type ApprovedRecipeConstant =
+  | 'none' | 'auto' | 'normal' | 'hidden' | 'visible' | 'transparent' | 'currentColor'
+  | '0' | '100%' | 'border-box' | 'absolute' | 'fixed' | 'relative'
+  | 'block' | 'inline-block' | 'flex' | 'inline-flex' | 'grid'
+  | 'center' | 'start' | 'end' | 'stretch' | 'pointer' | 'not-allowed'
+  | 'solid' | 'nowrap' | 'break-word' | 'isolate'
+  | 'opacity' | 'transform' | 'background-color' | 'border-color' | 'box-shadow'
+  | '0s' | '1px' | '-1px' | 'rect(0 0 0 0)' | 'inset(50%)';
+type ForcedColorConstant =
+  | 'Canvas' | 'CanvasText' | 'ButtonFace' | 'ButtonText'
+  | 'Highlight' | 'HighlightText' | 'GrayText';
+type FoundryPrivateVariable =
+  | '--foundry-private-anchor-width' | '--foundry-private-anchor-height'
+  | '--foundry-private-available-width' | '--foundry-private-available-height'
+  | '--foundry-private-popup-width' | '--foundry-private-popup-height'
+  | '--foundry-private-positioner-width' | '--foundry-private-positioner-height'
+  | '--foundry-private-transform-origin'
+  | '--foundry-private-layer-backdrop' | '--foundry-private-layer-content';
+
+type RecipeIssueCode =
+  | 'UNKNOWN_CONTROL' | 'UNKNOWN_PART' | 'UNKNOWN_HOOK' | 'UNKNOWN_PRIVATE_VARIABLE'
+  | 'FORBIDDEN_PROPERTY' | 'FORBIDDEN_VALUE' | 'FORBIDDEN_SELECTOR'
+  | 'INVALID_PRIORITY' | 'CONFLICTING_RECORD' | 'MISSING_COVERAGE'
+  | 'INVALID_NA' | 'UNUSED_PART' | 'GENERATION_ERROR';
+interface RecipeIssue { code: RecipeIssueCode; recordId?: string; path: string; message: string }
+type RecipeBuildResult =
+  | { ok: true; css: string; manifestHash: string }
+  | { ok: false; issues: readonly RecipeIssue[] };
+```
+
+`FoundryControlName` and each control-specific `FoundryPartName` come from the owned-parts table. `RecipeProperty` is the literal union of `display`, `position`, `inset`, `inset-block`, `inset-block-start`, `inset-block-end`, `inset-inline`, `inset-inline-start`, `inset-inline-end`, `box-sizing`, `inline-size`, `block-size`, `min-inline-size`, `max-inline-size`, `min-block-size`, `max-block-size`, `padding`, `padding-block`, `padding-inline`, `margin`, `gap`, `grid-area`, `grid-template-columns`, `grid-template-rows`, `grid-auto-flow`, `flex-direction`, `flex-wrap`, `align-items`, `align-self`, `justify-content`, `justify-self`, `overflow`, `overflow-x`, `overflow-y`, `overflow-wrap`, `pointer-events`, `cursor`, `appearance`, `opacity`, `visibility`, `color`, `background-color`, every border and outline longhand, `border-radius`, `box-shadow`, every font longhand, `text-align`, `text-decoration`, `white-space`, `z-index`, `transform`, `transform-origin`, every transition and animation longhand, `clip`, `clip-path`, and `forced-color-adjust`. Shorthands are expanded before validation. A reviewed `N/A` record has no CSS property/value and names the otherwise required coverage cell.
+
+Recipe generation returns `RecipeBuildResult`, orders issues by record ID/path/code, orders successful CSS by layer then priority then control/part/property/condition, uses the same LF policy, and hashes normalized recipe records with SHA-256. It never emits partial CSS on failure.
+
+The architecture declaration set below is authoritative. Each named bundle expands into records using the stated properties and sources; no extra visual property is permitted without architecture review.
+
+| Bundle | Exact declaration responsibility |
+| --- | --- |
+| `hidden` | Absolute one-pixel clipped box, zero margin/padding/border, hidden overflow, and nowrap; no paint or hit area. |
+| `stack` | Grid or flex flow, `gap` from the matching `control.gap.*` or `space.*`, zero external margin, `min-inline-size: 0`, and logical alignment only. |
+| `text` | Body family; declared size/line-height/weight/letter-spacing and text color; titles use `font.size.lg`/tight/semibold, labels `font.size.sm`/default/semibold, descriptions default/muted, errors default/danger. |
+| `button` | Inline-flex center alignment; size-matched height, padding, gap, and icon size; body font, default line height, semibold weight; control radius; default border width; variant color group; pointer cursor; tokenized color/border/shadow transitions. Control triggers, close/action buttons use secondary colors; clear uses link colors. |
+| `field-control` | Border-box full inline size; size-matched height and padding; at least `font.size.md`; field foreground/background/border, control radius, default border width, placeholder/selection/autofill recipes, and color/border/shadow transitions. |
+| `choice` | Relative inline-grid root at the size-matched target; native input absolutely covers the root with zero opacity and pointer cursor; indicator/track/thumb use size-matched geometry, tokenized border/radius/color, and current-color marks. Checked/indeterminate changes mark or thumb position, never semantics. |
+| `surface` | Border-box, surface padding by size, surface radius, default border, default text/surface colors, min inline size zero, wrapped overflow text; raised variants consume the declared elevation token. |
+| `overlay-frame` | Fixed backdrop/viewport or anchored positioner, viewport-margin padding, private layer z values, hidden pre-measure state, available-size caps, and no page-level overflow. |
+| `popup-surface` | Raised/overlay surface, popup/modal elevation as applicable, control-family max inline size, private available width/height cap, auto overflow, transform origin, and enter/exit opacity/transform only. |
+| `collection` | Menu/Tabs flex or grid flow from orientation, logical gap/padding, min inline size zero; item/trigger hit areas use target and density tokens; separator uses strong border width/color. |
+| `feedback` | Tone background/border/foreground, surface padding/radius, text stack, action alignment, and surface or toast elevation. Skeleton line uses base/highlight colors and tokenized motion only. |
+
+Every part has one base assignment:
+
+| Controls and parts | Required bundles or exact role |
+| --- | --- |
+| Field `root`; Group `root` | `stack`; Group also `surface`. |
+| All `label`, `legend`, `title`, `description`, `error`, `group-label` parts | `text` with the role mapping above; required marker uses danger text; announcers use `hidden`. |
+| Button `root`; every trigger, close, dismiss, action, and clear part | `button`; loading indicator is a size-matched current-color spinner, and loading announcer is `hidden`. |
+| TextField `root`; NativeSelect `input`; SearchField `input` | `field-control`. NativeSelect/Search roots are relative grid stacks; NativeSelect input uses `appearance:none`; its size-matched current-color chevron and Search clear share the input grid area at inline end without reducing either native hit area. |
+| Checkbox `root/input/indicator`; Switch `root/input/track/thumb`; Radio option/input/indicator | `choice`; RadioGroup root/legend/options also use `stack`. |
+| StatusChip, Banner, EmptyState, LoadingSkeleton, Card roots | `surface` plus `feedback` where tone/loading applies; their content/action parts use `stack` or `text`. |
+| Dialog/Drawer backdrop and viewport; Popover/Menu positioner | `overlay-frame`. Backdrop uses backdrop color; viewport centers Dialog and anchors Drawer to its physical side. |
+| Dialog/Drawer/Popover/Menu content | `surface` plus `popup-surface`; Menu also uses `collection`. |
+| Tabs list/trigger/panel | list uses `collection`; trigger uses `button` with selected indicator; panel uses `surface` without elevation. |
+| Toast viewport/root/content | viewport uses fixed logical block-end/inline-end `overlay-frame` and stack; root uses `surface` + `feedback` with toast elevation; content uses `stack`. |
+
+Variant and tone mapping is exact: Button selects the same-named `color.action.*` group; every other button-shaped part uses secondary except Search clear uses link. Tone-bearing controls map the same-named tone to `color.status.<tone>.*`. Untoned surfaces use `color.surface.default`, default text, and default border; raised/popup/modal/Toast surfaces use their named elevation token.
+
+Typography by control size is exact: ordinary button-shaped parts use `font.size.sm/md/lg`; StatusChip uses `font.size.xs/sm/md`; text-entry and select inputs use `font.size.md/md/lg`; surface body content uses `font.size.sm/md/lg`; titles always use `font.size.lg`; labels use `font.size.sm` with `font.letterSpacing.label`. Menu group labels use subtle text; descriptions use muted text.
+
+State paint mapping is exact: action hover/active use their group's `backgroundHover`/`backgroundActive`; field hover uses `color.field.backgroundHover` and `borderHover`; read-only uses `backgroundReadOnly`; invalid uses `borderInvalid`; disabled fields use the three field disabled tokens and other disabled parts use `color.surface.sunken`, `color.text.disabled`, and `color.border.disabled`. Checked/indeterminate choices use primary background/foreground/border; selected Tabs use primary foreground plus a strong-width primary-border indicator; highlighted Menu items use sunken surface plus a strong non-color outline; open triggers use raised surface and strong border. Focus uses concentric `focusInner`/`focusOuter` colors with their exact width tokens and no layout shift. Enter/exit use the family elevation, opacity, `motion.distance.short`, matching enter/exit easing, and medium duration; ordinary hover/active transitions use fast/standard. Skeleton uses base/highlight colors with slow/standard motion.
+
+State records follow this increasing priority: base `100`; size/orientation/side/align/variant/tone `200`; hover/autofill `300`; active/open/checked/indeterminate/selected/highlighted `400`; entering `410`; exiting `420`; read-only `500`; invalid `550`; loading `600`; disabled `700`; focus-visible `800`; reduced-motion `900`; forced-colors `1000`. Equal priority is a validation error for the same control/part/property/condition specificity.
+
+Compound states resolve as follows:
+
+- disabled suppresses hover/active paint and wins foreground/background/border/cursor, while checked/indeterminate/selected geometry remains visible; a highlighted disabled Menu item retains a non-color discovery outline;
+- loading suppresses hover/active and uses disabled paint without adding native `disabled`; focus-visible remains visible because loading Button stays focusable;
+- invalid wins the ordinary and read-only border; disabled paint wins an invalid control's boundary while its invalid semantics and error content remain;
+- selected, checked, indeterminate, highlighted, and open geometry survives tone/variant paint; focus-visible always wins focus properties only;
+- entering and exiting are mutually exclusive; if an adapter violation presents both, exiting wins and reports an internal contract error;
+- autofill replaces ordinary field foreground/background, then invalid, disabled, and focus rules apply; and
+- reduced motion overrides only motion declarations, while forced colors replaces color, border, shadow, mark, and focus paint without changing geometry, state, or timing.
+
+### Private runtime variables
+
+Only these private variables may cross from a Base UI renderer or layer registry into a recipe:
+
+| Foundry variable | Type | Writer and source | Consumer and clearing rule |
+| --- | --- | --- | --- |
+| `--foundry-private-anchor-width` / `-height` | CSS length | Floating adapter aliases Base `--anchor-width` / `--anchor-height`. | Positioner/content sizing; unset on close, anchor loss, portal move, or unmount. |
+| `--foundry-private-available-width` / `-height` | CSS length | Floating adapter aliases Base `--available-width` / `--available-height`. | Popup max size; content remains hidden until both are current, then unset on the same stale paths. |
+| `--foundry-private-popup-width` / `-height` | CSS length | Floating adapter aliases Base `--popup-width` / `--popup-height`. | Collision/motion evidence only; unset with the positioner. |
+| `--foundry-private-positioner-width` / `-height` | CSS length | Floating adapter aliases Base `--positioner-width` / `--positioner-height`. | Collision/motion evidence only; unset with the positioner. |
+| `--foundry-private-transform-origin` | CSS position | Floating adapter aliases Base `--transform-origin`. | Popup transform origin; unset with the positioner. |
+| `--foundry-private-layer-backdrop` / `-content` | integer | Document layer registry writes final z-index values. | Backdrop/viewport/content/positioner/Toast viewport; removed only after exit or unmount. |
+
+The adapter creates aliases on the exact owned positioner/content element; a recipe never reads Base UI's variable directly. Values are refreshed on placement, resize, scroll, portal migration, and anchor reconnection. A connected floating surface remains `visibility:hidden` and inert until current available size and placement exist. Disconnection clears the aliases before the documented hide/close path, so last coordinates or measurements are never presented as current.
+
+Rendered geometry has exact formulas. Every interactive public element's `getBoundingClientRect()` must be at least `target.minimum` in both axes; for visual-host controls the absolute native input must equal the root rectangle. Dialog/Drawer viewport inline and block availability is the viewport minus twice `overlay.viewportMargin`. Popover/Menu content uses `min(<family>.maxInlineSize, availableWidth - 2*overlay.viewportMargin)` and `min(overlay.maxBlockSize, availableHeight - 2*overlay.viewportMargin)`; a non-positive result keeps content hidden and reports a placement failure. Toast viewport inline size is `min(toast.inlineSize, 100vw - 2*overlay.viewportMargin)`. These are live browser assertions, not source-token comparisons.
 
 Every recipe must cover the applicable cells below. `N/A` is recorded in the generated recipe manifest with a reason; absence is not an implicit `N/A`.
 
@@ -175,15 +371,21 @@ Normal text meets 4.5:1; large text and essential boundaries, icons, marks, and 
 
 Under `forced-colors: active`, recipes use system colors such as `Canvas`, `CanvasText`, `ButtonFace`, `ButtonText`, `Highlight`, `HighlightText`, and `GrayText`. `forced-color-adjust: none` is allowed only on an exact owned part whose custom mark would otherwise disappear, and that exception requires a browser assertion. Focus, checked, selected, invalid, disabled, and open boundaries remain visible.
 
+System colors are accessibility constants, not skin tokens or raw values. They are valid only in `foundry.accessibility` records with `media=forced-colors`: backgrounds use `Canvas`, `ButtonFace`, or `Highlight`; foregrounds use `CanvasText`, `ButtonText`, `HighlightText`, or `GrayText`; borders/marks use `ButtonText`, `Highlight`, or `GrayText`; and the two focus edges use `Canvas` plus `Highlight`. `transparent` and `currentColor` remain the general approved constants above. `forced-color-adjust:none` is limited to Checkbox indicator, RadioGroup indicator, and Switch track/thumb records and requires a matching browser assertion. Any system color elsewhere fails recipe validation.
+
 ### Motion and layering
 
 Only opacity and transform may animate for entry, exit, and lightweight feedback. Layout, focus, scroll position, and anchor coordinates never animate. Exit presence remains mounted until its recipe completes. In `prefers-reduced-motion: reduce`, animation and transition are removed, movement is zero, exit completes immediately, and state, focus, queue, and announcement timing remain unchanged.
 
-Dialog/Drawer use the modal layer, Popover/Menu normally use the popup layer, and Toast uses the toast layer. A Popover or Menu opened from inside a modal is promoted to that modal's band. The internal recipe sets a private layer-base variable to the applicable public token and adds a private provider-local index from 0 through 255. Exhausting a band is a composition error rather than permission to overlap unpredictably. Backdrop and content share one logical layer record; the backdrop is immediately below its content. A nested provider inherits the containing layer band for its boundary. No recipe uses `z-index` outside the layer base plus private index.
+Layer tokens are infrastructure, not aesthetic choices: every valid skin supplies `layer.popup=1000`, `layer.modal=2000`, and `layer.toast=3000`. The source validator refuses any other values. This keeps layers comparable across different skins and nested providers.
+
+Each document owns one private allocator per band. Provider boundaries retain independent ownership namespaces for cleanup, but parent and nested providers in the same document share the allocator and therefore one total order. A logical layer record appends to its band's open order and receives ordinal `0–127`; the backdrop value is `base + 2*ordinal` and content is `base + 2*ordinal + 1`. Popup records use the content value and leave the paired backdrop value unused. Removal occurs after exit or unmount, compacts later ordinals without changing their relative order, and then makes capacity available. Portal migration within the document retains the record and ordinal.
+
+Dialog/Drawer allocate in the modal band, ordinary Popover/Menu in popup, and Toast viewports in toast. Popover/Menu opened from a modal subtree allocate in modal after the owning modal record. Nested providers inherit that contextual promotion. The 129th simultaneous record in one band reports `FOUNDRY_LAYER_CAPACITY`; parent-driven open renders no portal content and user-driven preflight refuses before an open callback. Closing or unmounting a record and retrying is recovery. Backdrop and content always share one record, and no recipe uses `z-index` outside the two private layer variables.
 
 ## Skin lifecycle and failure behavior
 
-- `SkinName` must equal its trimmed form and be non-empty. The resolved value is written literally to every owned part; CSS selector escaping is the skin author's responsibility at authoring time.
+- `SkinName` must match `/^[a-z][a-z0-9-]{0,63}$/`. Invalid provider input throws `FOUNDRY_SKIN_NAME_INVALID` during render before owned markup or listeners exist. The restricted value is written literally to every owned part and safely serialized by the generator as a quoted attribute-selector string.
 - A skin value sheet includes `--foundry-skin-ready: 1` beside every required token. After mount, development builds check a connected owned part on the next animation frame. A missing sentinel reports `FOUNDRY_SKIN_MISSING` with the skin name and import remedy. Production does not inject or fall back to another skin.
 - Build validation rejects a missing, duplicate, unknown, malformed, or constraint-breaking token. It also rejects a value sheet that emits recipes or selectors outside its exact skin target.
 - Recipe validation rejects an undeclared control, part, state, value, private measurement, raw visual value, forbidden selector, missing matrix cell, or unused declared part.
@@ -206,17 +408,21 @@ Token values advance only through a candidate manifest and a gallery generated f
 
 Required evidence names the browser/OS, viewport, zoom, color mode, forced-colors and motion settings, font load result, package tarball hashes, candidate manifest hash, screenshot or trace paths, contrast output, reviewer decision, and every `UNTESTED` path.
 
-## Implementation sequence
+## Production sequence
 
-1. Generate the exact manifest API and validators without changing current control appearance.
-2. Add owned identity/value/state hooks and private measurement translation to native controls and Base UI adapters; assert the part manifest in server and live-renderer tests.
-3. Build shared structural and accessibility recipes, including visually hidden, focus, forced-color, reduced-motion, layer, and overlay constraints.
-4. Propose default-skin values and render the full catalog boards; do not treat unreviewed numbers or colors as accepted architecture.
-5. Correct the candidate within the visual-review budget, approve it, and produce the deterministic value sheet and default bundle.
-6. Move the gallery to the packed CSS assets and run isolation, responsive, accessibility, multi-browser, server-render, hydration, and packed-consumer gates.
-7. Delete the current implicit import, provider wrapper, `:root` values, generic tag/role/descendant selectors, raw visual literals, old classes used as recipes, and obsolete focus/style mechanisms. Prove the forbidden patterns are absent from built artifacts.
+This is the same canonical production order used by the control and Base UI contracts:
 
-These steps are architecture order, not authorization to implement. Maestro packets remain bounded by the approved control contract, Base UI integration contract, this contract, and the package/gate contract.
+1. Generate the exact token, part, recipe, and skin schemas plus validators without changing control appearance.
+2. Add the exact Base UI dependency, private adapter boundary, state bridge, direction resolver, provider, portal lifecycle, document layer allocator, owned-hook infrastructure, and explicit public exports.
+3. Correct native fields, actions, names, visual hosts, and hooks, including Button content, `NativeSelect`, `SearchField`, state unions, reset recovery, and system labels; do not route them through Base UI.
+4. Rebase Dialog and Drawer on the shared modal adapter and emit their exact owned parts, hooks, and layer variables.
+5. Add the shared positioner/measurement policy, then rebase Popover and Menu; remove `MenuClose` and add the approved structure and translated private variables.
+6. Rebase Tabs with the private composition and recovery registry plus its owned parts and hooks.
+7. Replace static Toast with the Foundry queue over Base UI Toast parts, correct feedback heading/live semantics, and emit its owned parts and hooks.
+8. Generate shared recipes, propose and render default-skin values, correct the candidate through independent visual review, and approve the deterministic value sheet and default bundle.
+9. Build the packed package, move the gallery to packed public and CSS imports, delete every superseded styling mechanism, and run the complete cross-family release evidence. Compatibility aliases may exist only inside one migration branch; none ship in Core v1.
+
+Step 9 deletes the current implicit import, provider wrapper, `:root` values, generic tag/role/descendant selectors, raw visual literals, old classes used as recipes, and obsolete focus/style mechanisms, then proves those forbidden patterns absent from built artifacts. The sequence is architecture order, not authorization to implement. Maestro packets remain bounded by all four approved contracts.
 
 ## Primary comparison evidence
 

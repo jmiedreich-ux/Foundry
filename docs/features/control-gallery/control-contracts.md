@@ -41,7 +41,7 @@ The exact type exports are:
 - overlays: `DialogRootProps`, `DialogTriggerProps`, `DialogContentProps`, `DialogCloseProps`, `DrawerRootProps`, `DrawerTriggerProps`, `DrawerContentProps`, `DrawerCloseProps`, `PopoverRootProps`, `PopoverTriggerProps`, `PopoverContentProps`, `PopoverCloseProps`, `MenuRootProps`, `MenuTriggerProps`, `MenuContentProps`, `MenuItemProps`, `MenuGroupProps`, `MenuSeparatorProps`, `FocusTarget`, `PlacementSide`, `PlacementAlign`, and `MenuSelectEvent`; and
 - navigation: `TabsRootProps`, `TabsListProps`, `TabsTriggerProps`, `TabsPanelProps`, `TabsOrientation`, and `TabsActivationMode`.
 
-`SkinName` is a non-empty string, `Direction` is `"ltr" | "rtl"`, and `LabelCatalog` is `Record<LabelCategory, string>`; partial label inputs are `Partial<LabelCatalog>`. Component prop types consist only of the fields stated in this document plus their named forwarding profile.
+`SkinName` is a string matching `/^[a-z][a-z0-9-]{0,63}$/`, `Direction` is `"ltr" | "rtl"`, and `LabelCatalog` is `Record<LabelCategory, string>`; partial label inputs are `Partial<LabelCatalog>`. Invalid skin names throw `FOUNDRY_SKIN_NAME_INVALID` during render before owned markup or listeners exist. Component prop types consist only of the fields stated in this document plus their named forwarding profile.
 
 The exact current-name dispositions are:
 
@@ -60,7 +60,7 @@ Every controlled/uncontrolled root uses this exact public union: controlled `{ o
 
 A portal target is resolved after mount. It must belong to the control's document. A null, disconnected, or cross-document target falls back to that document's body; cross-document input also reports a contract error. Replacing or removing a live target migrates Foundry-managed content after the current event, preserves logical open state, generated relationships, and layer order, emits no state callback, and keeps focus when the focused node remains connected. Otherwise modal content takes its focus fallback; non-modal content leaves the document's current focus unchanged.
 
-Native controls and non-portaled surfaces render fully on the server with stable IDs. Portaled content and Toast viewports are deliberately absent from server output and the first hydration render. An initially open root renders its trigger with `aria-expanded="true"` but omits `aria-controls` until the client content exists. After hydration, the target resolves, content mounts once, relationships attach, and initial-focus behavior runs; this is not an open-state request and emits no callback. Nested providers retain independent generated-ID and layer namespaces.
+Native controls and non-portaled surfaces render fully on the server with stable IDs. Portaled content and Toast viewports are deliberately absent from server output and the first hydration render. An initially open root renders its trigger with `aria-expanded="true"` but omits `aria-controls` until the client content exists. After hydration, the target resolves, content mounts once, relationships attach, and initial-focus behavior runs; this is not an open-state request and emits no callback. Nested providers retain independent generated-ID and layer-ownership namespaces; all providers in one document share the token contract's ordered document allocator so their final z-order cannot collide.
 
 Server and client provider inputs must agree. A mismatch is a consumer error: development reports it; production preserves the hydrated state, applies client provider values as an ordinary provider update, and emits no control-state callback. The proof gate must verify closed and initially open server output, hydration without mismatch warnings, delayed portal attachment, missing and replaced targets, and nested providers.
 
@@ -226,13 +226,15 @@ Only the selected panel is mounted. It receives `tabIndex=0` when it has no focu
 
 ## Migration and validation
 
-1. Add the exact Base UI dependency, private adapter boundary, state bridge, direction resolver, provider, portal lifecycle, and explicit public exports.
-2. Correct native fields, actions, and names, including Button content, `NativeSelect`, `SearchField`, state unions, reset recovery, and system labels; do not route them through Base UI.
-3. Rebase Dialog and Drawer on the shared modal adapter.
-4. Add the shared positioner policy, then rebase Popover and Menu; remove `MenuClose` and add the approved structure.
-5. Rebase Tabs with the private composition and recovery registry.
-6. Replace static Toast with the Foundry queue over Base UI Toast parts and correct feedback heading/live semantics.
-7. Build the packed package, move the gallery to packed public imports, and run the complete cross-family release evidence. Compatibility aliases may exist only inside one migration branch; none ship in Core v1.
+1. Generate the exact token, part, recipe, and skin schemas plus validators without changing control appearance.
+2. Add the exact Base UI dependency, private adapter boundary, state bridge, direction resolver, provider, portal lifecycle, document layer allocator, owned-hook infrastructure, and explicit public exports.
+3. Correct native fields, actions, names, visual hosts, and hooks, including Button content, `NativeSelect`, `SearchField`, state unions, reset recovery, and system labels; do not route them through Base UI.
+4. Rebase Dialog and Drawer on the shared modal adapter and emit their exact owned parts, hooks, and layer variables.
+5. Add the shared positioner/measurement policy, then rebase Popover and Menu; remove `MenuClose` and add the approved structure and translated private variables.
+6. Rebase Tabs with the private composition and recovery registry plus its owned parts and hooks.
+7. Replace static Toast with the Foundry queue over Base UI Toast parts, correct feedback heading/live semantics, and emit its owned parts and hooks.
+8. Generate shared recipes, propose and render default-skin values, correct the candidate through independent visual review, and approve the deterministic value sheet and default bundle.
+9. Build the packed package, move the gallery to packed public and CSS imports, delete every superseded styling mechanism, and run the complete cross-family release evidence. Compatibility aliases may exist only inside one migration branch; none ship in Core v1.
 
 Each packet cites its contract section, searches every current consumer, and maps its assertions to the following gates. A path without an executed gate is `UNTESTED`.
 

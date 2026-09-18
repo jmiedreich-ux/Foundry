@@ -58,7 +58,7 @@ Each public ref is merged with the applicable Base UI part and resolves to the e
 
 Base UI parts use their default semantic element unless the mapping below names a Foundry renderer. Private renderers must forward the Base UI props and ref. They may remove or translate dependency state attributes, but they may not change the public element or role.
 
-Only Foundry attributes are stable: `data-control`, `data-part`, `data-size`, and the approved presence-only state hooks. Base UI attributes and CSS variables may be consumed inside a private adapter or skin recipe, but they are not declaration, test, or consumer contracts.
+Only the attributes delegated to [Token and skin contract](token-and-skin.md#value-and-state-hooks) are stable: skin identity, exact control/part values, approved value hooks, logical state, and visual interaction/presence hooks. Base UI attributes and CSS variables may be consumed only inside a private adapter. The adapter translates them into approved Foundry hooks or the contract's exact private measurement variables; a skin recipe never selects or reads a Base UI attribute, class, or variable.
 
 ### Topology
 
@@ -78,7 +78,7 @@ Dialog, Drawer, Popover, Menu, and Toast pass the resolved element to their Base
 
 Portals and Toast viewports are absent from server output and the first hydration render. Private trigger renderers omit `aria-controls` until their controlled content exists. After the boundary becomes ready, an initially open control mounts once, attaches its relationships, and runs its focus rule without emitting an open request.
 
-Nested `FoundryProvider` instances have independent portal, direction-fallback, layer, ID, and Toast boundaries.
+Nested `FoundryProvider` instances have independent portal, direction-fallback, layer-ownership, ID, and Toast boundaries. Layer ownership is independent for cleanup, while records in the same document use the one ordered document allocator defined by the token and skin contract.
 
 ## Exact primitive mappings
 
@@ -169,15 +169,17 @@ Toast configuration is validated and captured when its provider mounts. Changing
 
 ## Production sequence
 
-The following is the one canonical production order after the remaining token, skin, package, and command contracts are approved. It is repeated in the public migration contract and governs Maestro packets:
+The following is the one canonical production order after the remaining package and command contract is approved. It is repeated in the public migration and token contracts and governs Maestro packets:
 
-1. Add the exact Base UI dependency, private adapter boundary, state bridge, direction resolver, provider, portal lifecycle, and explicit public exports.
-2. Correct native fields, actions, and names, including Button content, `NativeSelect`, `SearchField`, state unions, reset recovery, and system labels; do not route them through Base UI.
-3. Rebase Dialog and Drawer on the shared modal adapter.
-4. Add the shared positioner policy, then rebase Popover and Menu; remove `MenuClose` and add the approved structure.
-5. Rebase Tabs with the private composition and recovery registry.
-6. Replace static Toast with the Foundry queue over Base UI Toast parts and correct feedback heading/live semantics.
-7. Build the packed package, move the gallery to packed public imports, and run the complete cross-family release evidence. Compatibility aliases may exist only inside one migration branch; none ship in Core v1.
+1. Generate the exact token, part, recipe, and skin schemas plus validators without changing control appearance.
+2. Add the exact Base UI dependency, private adapter boundary, state bridge, direction resolver, provider, portal lifecycle, document layer allocator, owned-hook infrastructure, and explicit public exports.
+3. Correct native fields, actions, names, visual hosts, and hooks, including Button content, `NativeSelect`, `SearchField`, state unions, reset recovery, and system labels; do not route them through Base UI.
+4. Rebase Dialog and Drawer on the shared modal adapter and emit their exact owned parts, hooks, and layer variables.
+5. Add the shared positioner/measurement policy, then rebase Popover and Menu; remove `MenuClose` and add the approved structure and translated private variables.
+6. Rebase Tabs with the private composition and recovery registry plus its owned parts and hooks.
+7. Replace static Toast with the Foundry queue over Base UI Toast parts, correct feedback heading/live semantics, and emit its owned parts and hooks.
+8. Generate shared recipes, propose and render default-skin values, correct the candidate through independent visual review, and approve the deterministic value sheet and default bundle.
+9. Build the packed package, move the gallery to packed public and CSS imports, delete every superseded styling mechanism, and run the complete cross-family release evidence. Compatibility aliases may exist only inside one migration branch; none ship in Core v1.
 
 Each step is independently mergeable and independently reviewed. A later step cannot bypass a failed shared dependency. Existing hand-built focus, dismissal, collection, or positioning mechanisms are removed when their replacement is accepted; they do not run beside Base UI.
 

@@ -2,8 +2,8 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "The functional gallery baseline is complete through Popover. The Core v1 public contract and Base UI 1.8.0 production integration are independently approved. The token and skin contract is drafted for review. Overlay and navigation implementation remains paused.",
-  "next": "Complete independent decision-fidelity, architectural-completeness, and cross-document-consistency review of the token and skin contract.",
+  "position": "The functional gallery baseline is complete through Popover. The Core v1 public contract and Base UI 1.8.0 production integration are independently approved. First-pass token and skin findings are corrected for targeted review. Overlay and navigation implementation remains paused.",
+  "next": "Complete targeted decision-fidelity, architectural-completeness, and cross-document-consistency rechecks of the token and skin contract.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery architecture decisions", "where": "docs/features/control-gallery/decisions.md" },

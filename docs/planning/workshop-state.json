@@ -17,7 +17,7 @@
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
     "last_verified_document_revision": "0a476cb4c654ee192746ef683a69b8df663c3a06",
-    "status": "Token and skin contract drafted for independent review",
+    "status": "Token and skin first-pass findings corrected for targeted recheck",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
     "pending_paths": [
@@ -74,7 +74,7 @@
     "production sequence, required evidence, and escalation boundary",
     "independently approved Base UI production integration contract"
   ],
-  "next_action": "Run independent decision-fidelity, architectural-completeness, and cross-document-consistency reviews of the token and skin contract at its exact draft commit.",
+  "next_action": "Publish the corrected token and skin checkpoint, then run targeted decision-fidelity, architectural-completeness, and cross-document-consistency rechecks of the recorded findings.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -894,6 +894,85 @@
       "round_consumed": true,
       "correction_refs": ["PRODUCT.md", "docs/features/control-gallery/decisions.md", "docs/features/control-gallery/base-ui-integration.md", "docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/workstream.json"],
       "invalidated_by": null
+    },
+    {
+      "id": "CG-TOKEN-SKIN-FIDELITY-R1",
+      "subject": "Core v1 token and skin contract",
+      "pass_type": "decision_fidelity",
+      "mode": "full",
+      "scope": "Owner quality, autonomy, library boundary, design-before-implementation, publication, preservation, failure, and reserved decisions.",
+      "budget_key": "token-skin-fidelity",
+      "round": 1,
+      "reviewer": { "agent": "/root/contract_fidelity_review", "session": "separate resumed reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "d829218afbcc79e00f703a8937b0488dc99ac2e7", "filtered_passages": ["Workshop state, handoff, PR discussion, prior conclusions, and agent messages excluded."], "original_decision_evidence": ["Owner quality target, delegated architecture authority, GitHub documentation rule, Maestro implementation boundary, and Menu pause supplied directly."] },
+      "sources_examined": ["PRODUCT.md", "PROJECT_STATUS.md", "ROADMAP.md", "feature README", "decisions.md", "directly affected control and Base UI contracts", "token-and-skin.md", "milestones and question register", "workstream.json", "quality milestone"],
+      "journeys": [{ "name": "owner quality and autonomy", "trace": "Exceptional catalog quality enters the visual contract, is resolved under delegated architecture, requires measured independent rendered approval, and retains final owner release acceptance without authorizing implementation." }],
+      "not_assessed": ["Architectural completeness, broad consistency, runtime behavior, final aesthetic values, package commands, and license."],
+      "missing_evidence": ["Rendered candidates and all executable visual gates remain UNTESTED by design."],
+      "findings": [],
+      "result": "pass",
+      "conclusion": "The draft faithfully preserves the owner quality target, complete-library boundary, delegated judgment, GitHub authority, implementation pause, and owner-reserved choices.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": [],
+      "invalidated_by": "The bounded completeness and consistency correction after this review."
+    },
+    {
+      "id": "CG-TOKEN-SKIN-COMPLETENESS-R1",
+      "subject": "Core v1 token and skin contract",
+      "pass_type": "architectural_completeness",
+      "mode": "full",
+      "scope": "Manifest, candidate skin, recipes, parts/states, private measurements, layers, accessibility, validation, rendering, and migration readiness.",
+      "budget_key": "token-skin-completeness",
+      "round": 1,
+      "reviewer": { "agent": "/root/contract_completeness_review", "session": "separate resumed reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "d829218afbcc79e00f703a8937b0488dc99ac2e7", "filtered_passages": ["Workshop state, handoff, PR discussion, prior conclusions, and agent messages excluded."], "original_decision_evidence": ["Approved control and Base UI contracts plus the token/skin implementation-readiness question."] },
+      "sources_examined": ["token-and-skin.md", "affected decisions/control/Base UI/quality contracts", "current token package and representative component markup"],
+      "journeys": [{ "name": "complete visual implementation boundary", "trace": "Manifest input through generation, owned hooks, recipes, runtime measurements, layer allocation, failure/recovery, rendered approval, and legacy deletion were traced for every control family." }],
+      "not_assessed": ["Actual aesthetic values, package export paths/commands, release license, and live runtime results."],
+      "missing_evidence": ["Six specification gaps required one bounded correction; executable outcomes remain UNTESTED."],
+      "findings": [
+        { "id": "TS-I1", "classification": "blocking", "disposition": "corrected_pending_recheck", "summary": "The coverage matrix lacked an exact recipe-record schema, declaration source, and compound-state precedence.", "correction_ref": "docs/features/control-gallery/token-and-skin.md#recipe-contract" },
+        { "id": "TS-I2", "classification": "blocking", "disposition": "corrected_pending_recheck", "summary": "Token-definition, candidate-skin, generation, validation, ordering, and error interfaces were incomplete.", "correction_ref": "docs/features/control-gallery/token-and-skin.md#token-schema" },
+        { "id": "TS-I3", "classification": "blocking", "disposition": "corrected_pending_recheck", "summary": "Several source constraints had no range, unit normalization, or separation from rendered geometry checks.", "correction_ref": "docs/features/control-gallery/token-and-skin.md#required-keys" },
+        { "id": "TS-I4", "classification": "blocking", "disposition": "corrected_pending_recheck", "summary": "Private measurement names and deterministic cross-provider layer allocation/release were absent.", "correction_ref": "docs/features/control-gallery/token-and-skin.md#private-runtime-variables" },
+        { "id": "TS-I5", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "Required forced-color system values conflicted with raw-value rejection.", "correction_ref": "docs/features/control-gallery/token-and-skin.md#focus-contrast-and-high-contrast" },
+        { "id": "TS-I6", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "Arbitrary skin names had no deterministic CSS serialization rule.", "correction_ref": "docs/features/control-gallery/token-and-skin.md#skin-lifecycle-and-failure-behavior" }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "The visual direction and coverage were strong, but six machine and runtime boundaries still required invention.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/token-and-skin.md", "docs/features/control-gallery/base-ui-integration.md", "docs/features/control-gallery/control-contracts.md"],
+      "invalidated_by": "The bounded correction after this review."
+    },
+    {
+      "id": "CG-TOKEN-SKIN-CONSISTENCY-R1",
+      "subject": "Core v1 token and skin contract",
+      "pass_type": "cross_document_consistency",
+      "mode": "full",
+      "scope": "Authority, hooks, native structures, provider/portal/layers, Base UI isolation, production order, lifecycle, status, and publication.",
+      "budget_key": "token-skin-consistency",
+      "round": 1,
+      "reviewer": { "agent": "/root/integration_consistency_fresh", "session": "fresh separate reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "d829218afbcc79e00f703a8937b0488dc99ac2e7", "filtered_passages": ["Workshop state, handoff, PR discussion, prior conclusions, and agent messages excluded."] },
+      "sources_examined": ["PRODUCT.md", "PROJECT_STATUS.md", "ROADMAP.md", "feature authorities", "milestones/question register/workstream", "manifests and relevant current source"],
+      "journeys": [{ "name": "cross-document visual authority", "trace": "Reader, implementer, provider, custom-skin, portal, validation, publication, lifecycle, and failure/recovery representations were compared." }],
+      "not_assessed": ["Runtime and rendered gates, final package/gate contract, live PR discussion, and external comparison links."],
+      "missing_evidence": ["Five representation conflicts required one bounded correction."],
+      "findings": [
+        { "id": "TS-C1", "classification": "blocking", "disposition": "corrected_pending_recheck", "summary": "The Base UI contract allowed recipes to consume dependency attributes/variables and omitted the complete Foundry hook registry.", "correction_ref": "docs/features/control-gallery/base-ui-integration.md#elements-refs-and-state-hooks" },
+        { "id": "TS-C2", "classification": "blocking", "disposition": "corrected_pending_recheck", "summary": "The token document introduced a second unmapped implementation sequence.", "correction_ref": "docs/features/control-gallery/token-and-skin.md#production-sequence" },
+        { "id": "TS-C3", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "SkinName validation differed between the public and visual contracts.", "correction_ref": "docs/features/control-gallery/control-contracts.md#exact-core-v1-exports" },
+        { "id": "TS-C4", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "Exact data-control values and migration dispositions were missing.", "correction_ref": "docs/features/control-gallery/token-and-skin.md#owned-parts" },
+        { "id": "TS-C5", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "Independent nested-provider layer namespaces had no collision-free total order.", "correction_ref": "docs/features/control-gallery/token-and-skin.md#motion-and-layering" }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "Authority and lifecycle were sound, but five hook, order, name, control-value, and layer representations conflicted.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/token-and-skin.md", "docs/features/control-gallery/base-ui-integration.md", "docs/features/control-gallery/control-contracts.md"],
+      "invalidated_by": "The bounded correction after this review."
     }
   ]
 }
