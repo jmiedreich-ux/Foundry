@@ -11,6 +11,7 @@ The functional gallery baseline is complete through Popover. The library quality
 - [Architecture decisions](decisions.md)
 - [Core v1 control contracts](control-contracts.md)
 - [Base UI production integration](base-ui-integration.md)
+- [Token and skin contract](token-and-skin.md)
 - [Delivery stages](milestones.md)
 - [Open questions](question-register.md)
 - [Coverage expectations](path-coverage.md)

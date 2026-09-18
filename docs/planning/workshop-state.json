@@ -8,6 +8,7 @@
     "architecture": "docs/features/control-gallery/decisions.md",
     "control_contracts": "docs/features/control-gallery/control-contracts.md",
     "base_ui_integration": "docs/features/control-gallery/base-ui-integration.md",
+    "token_and_skin": "docs/features/control-gallery/token-and-skin.md",
     "milestones": "docs/features/control-gallery/milestones.md",
     "guide": "docs/features/control-gallery/README.md",
     "state": "docs/planning/workshop-state.json"
@@ -16,10 +17,21 @@
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
     "last_verified_document_revision": "0a476cb4c654ee192746ef683a69b8df663c3a06",
-    "status": "Base UI production integration independently approved and published",
+    "status": "Token and skin contract drafted for independent review",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
-    "pending_paths": [],
+    "pending_paths": [
+      "PRODUCT.md",
+      "PROJECT_STATUS.md",
+      "ROADMAP.md",
+      "ai/handoffs/current.md",
+      "docs/features/control-gallery/README.md",
+      "docs/features/control-gallery/control-contracts.md",
+      "docs/features/control-gallery/decisions.md",
+      "docs/features/control-gallery/token-and-skin.md",
+      "docs/features/control-gallery/workstream.json",
+      "docs/features/control-gallery/milestones/library-quality-foundation.md"
+    ],
     "expected_base": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
     "delivery_level": "github_branch",
     "verified_local_files": [
@@ -62,7 +74,7 @@
     "production sequence, required evidence, and escalation boundary",
     "independently approved Base UI production integration contract"
   ],
-  "next_action": "Define the token and skin schema: keys and types, owned parts, recipes, scoping, portal propagation, validation, and rendered approval evidence.",
+  "next_action": "Run independent decision-fidelity, architectural-completeness, and cross-document-consistency reviews of the token and skin contract at its exact draft commit.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -129,6 +141,14 @@
       "supersedes": null
     },
     {
+      "id": "CG-ARCH-008",
+      "subject": "Core v1 token and skin boundary",
+      "authority": "delegated chief software architect",
+      "evidence": "Current source, approved control and Base UI contracts, mature-library token models, and W3C visual accessibility requirements inspected on 2026-09-18.",
+      "canonical_ref": "docs/features/control-gallery/token-and-skin.md",
+      "supersedes": null
+    },
+    {
       "id": "CG-REVIEW-EXCEPTION-001",
       "subject": "One exceptional Core v1 completeness recheck",
       "authority": "owner",
@@ -179,7 +199,8 @@
       "owner": "delegated chief software architect",
       "selection_point": "Before skin implementation packets are issued.",
       "required_evidence": "Reviewed schema, recipe matrix, and rendered-approval protocol.",
-      "status": "open"
+      "draft_ref": "docs/features/control-gallery/token-and-skin.md",
+      "status": "in_review"
     },
     {
       "id": "CG-ARQ-005",
@@ -251,6 +272,30 @@
         "The repository does not yet expose a release package or one canonical product gate set."
       ],
       "canonical_evidence": "docs/features/control-gallery/decisions.md#current-architecture-disposition"
+    },
+    {
+      "source_revision": "e2ef7b993326bb2d7f5802115a779bb6d30c2ad7",
+      "paths": [
+        "packages/tokens/package.json",
+        "packages/tokens/src/index.ts",
+        "packages/tokens/src/skins/default.css",
+        "packages/react/src/foundation/control-base.ts",
+        "packages/react/src/foundation/field.tsx",
+        "packages/react/src/foundation/providers.tsx",
+        "packages/react/src",
+        "apps/lab/src/styles.css",
+        "docs/features/control-gallery/decisions.md",
+        "docs/features/control-gallery/control-contracts.md",
+        "docs/features/control-gallery/base-ui-integration.md"
+      ],
+      "evidence_level": "source-and-primary-reference-supported",
+      "findings": [
+        "The current skin imports through React JavaScript, renders a provider wrapper, declares values at :root, and selects generic tags, roles, descendants, and raw literals; each conflicts with the approved isolation direction.",
+        "Current controls expose only partial control and state hooks and do not provide a complete owned-part surface for fields, feedback, overlays, navigation, or portaled content.",
+        "A DOM-free provider requires resolved skin identity on each recipe-bearing owned element; that same-element identity also makes nested providers and portals independent of DOM ancestry.",
+        "Mature token systems and Base UI's unstyled state surface support generated semantic tokens plus one Foundry-owned recipe layer; W3C criteria require rendered focus, contrast, forced-color, zoom, and non-color evidence rather than token-table inspection alone."
+      ],
+      "canonical_evidence": "docs/features/control-gallery/token-and-skin.md"
     }
   ],
   "review_policy": {

@@ -8,7 +8,7 @@ Foundry has one reviewed control contract, an approved internal interaction foun
 
 - define the Base UI primitive mappings, adapter boundaries, production sequence, and representative verification journeys in [Base UI production integration](../base-ui-integration.md);
 - establish the per-export public and migration boundary in [Core v1 control contracts](../control-contracts.md), including owned hooks, controlled state, focus, localization, heading composition, and safe native props;
-- remove implicit and consumer-wide CSS effects;
+- define the exact token schema, owned parts, shared recipes, portal-safe scope, validators, and rendered approval in [Token and skin contract](../token-and-skin.md), replacing implicit and consumer-wide CSS effects;
 - define package output, peer dependencies, supported runtimes, canonical commands, and pull-request checks; and
 - turn each accepted correction into a small Maestro-ready implementation outcome with observable assertions and gates.
 
