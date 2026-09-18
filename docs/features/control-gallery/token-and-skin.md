@@ -222,7 +222,11 @@ type RecipeValue =
   | { kind: 'private'; name: FoundryPrivateVariable }
   | { kind: 'constant'; value: ApprovedRecipeConstant }
   | { kind: 'accessibility-constant'; value: ForcedColorConstant }
-  | { kind: 'function'; name: 'calc' | 'min' | 'max' | 'translateX' | 'translateY' | 'scale' | 'rotate'; args: readonly RecipeValue[] }
+  | { kind: 'number'; value: -2 | -1 | 0 | 0.6 | 1 | 2 }
+  | { kind: 'arithmetic'; operator: 'add' | 'subtract'; left: RecipeValue; right: RecipeValue }
+  | { kind: 'multiply'; factor: -2 | -1 | 1 | 2; value: RecipeValue }
+  | { kind: 'function'; name: 'min' | 'max' | 'translateX' | 'translateY' | 'scale' | 'rotate'; args: readonly RecipeValue[] }
+  | { kind: 'keyframes'; name: FoundryKeyframeName }
   | { kind: 'list'; separator: 'space' | 'comma'; values: readonly RecipeValue[] };
 interface CssRecipeRecord {
   id: string;
@@ -243,14 +247,64 @@ interface NaRecipeRecord {
 }
 type RecipeRecord = CssRecipeRecord | NaRecipeRecord;
 
+type RecipeBundleName =
+  | 'hidden' | 'stack' | 'text' | 'button' | 'field-control'
+  | 'choice-root' | 'choice-input' | 'choice-indicator' | 'switch-track' | 'switch-thumb'
+  | 'surface' | 'overlay-backdrop' | 'overlay-viewport' | 'floating-positioner'
+  | 'modal-surface' | 'popup-surface' | 'collection' | 'feedback' | 'skeleton-line' | 'spinner';
+type RecipeTemplateValue = RecipeValue | { kind: 'parameter'; name: string };
+interface RecipeTemplateRecord {
+  id: string;
+  layer: RecipeLayer;
+  priority: number;
+  property: RecipeProperty;
+  value: RecipeTemplateValue;
+}
+interface RecipeBundleDefinition {
+  name: RecipeBundleName;
+  parameters: readonly { name: string; allowed: readonly RecipeValue[] }[];
+  declarations: readonly RecipeTemplateRecord[];
+}
+interface RecipeBundleApplication {
+  id: string;
+  bundle: RecipeBundleName;
+  control: FoundryControlName;
+  part: FoundryPartName;
+  conditions: readonly RecipeCondition[];
+  parameters: readonly { name: string; value: RecipeValue }[];
+}
+
+type FoundryKeyframeName =
+  | 'foundry-enter-top' | 'foundry-enter-right' | 'foundry-enter-bottom' | 'foundry-enter-left'
+  | 'foundry-exit-top' | 'foundry-exit-right' | 'foundry-exit-bottom' | 'foundry-exit-left'
+  | 'foundry-spin' | 'foundry-skeleton-pulse';
+interface FoundryKeyframeRecord {
+  name: FoundryKeyframeName;
+  frames: readonly {
+    offset: 0 | 1;
+    declarations: readonly {
+      property: 'opacity' | 'transform';
+      value: RecipeValue;
+    }[];
+  }[];
+}
+interface FoundryRecipeManifest {
+  schemaVersion: 1;
+  bundleDefinitions: readonly RecipeBundleDefinition[];
+  bundleApplications: readonly RecipeBundleApplication[];
+  keyframes: readonly FoundryKeyframeRecord[];
+  records: readonly RecipeRecord[];
+}
+
 type ApprovedRecipeConstant =
   | 'none' | 'auto' | 'normal' | 'hidden' | 'visible' | 'transparent' | 'currentColor'
   | '0' | '100%' | 'border-box' | 'absolute' | 'fixed' | 'relative'
   | 'block' | 'inline-block' | 'flex' | 'inline-flex' | 'grid'
-  | 'center' | 'start' | 'end' | 'stretch' | 'pointer' | 'not-allowed'
-  | 'solid' | 'nowrap' | 'break-word' | 'isolate'
-  | 'opacity' | 'transform' | 'background-color' | 'border-color' | 'box-shadow'
-  | '0s' | '1px' | '-1px' | 'rect(0 0 0 0)' | 'inset(50%)';
+  | 'center' | 'start' | 'end' | 'stretch' | 'row' | 'column' | 'pointer' | 'not-allowed'
+  | 'solid' | 'nowrap' | 'break-word' | 'isolate' | 'linear' | 'infinite'
+  | 'color' | 'opacity' | 'transform' | 'background-color' | 'border-color' | 'box-shadow'
+  | '0s' | '1px' | '-1px' | '16px' | '0deg' | '45deg' | '90deg' | '180deg' | '360deg'
+  | 'rect(0 0 0 0)' | 'inset(50%)';
 type ForcedColorConstant =
   | 'Canvas' | 'CanvasText' | 'ButtonFace' | 'ButtonText'
   | 'Highlight' | 'HighlightText' | 'GrayText';
@@ -264,6 +318,8 @@ type FoundryPrivateVariable =
 
 type RecipeIssueCode =
   | 'UNKNOWN_CONTROL' | 'UNKNOWN_PART' | 'UNKNOWN_HOOK' | 'UNKNOWN_PRIVATE_VARIABLE'
+  | 'UNKNOWN_BUNDLE' | 'UNKNOWN_BUNDLE_PARAMETER' | 'MISSING_BUNDLE_PARAMETER'
+  | 'DUPLICATE_BUNDLE_PARAMETER' | 'INVALID_KEYFRAME'
   | 'FORBIDDEN_PROPERTY' | 'FORBIDDEN_VALUE' | 'FORBIDDEN_SELECTOR'
   | 'INVALID_PRIORITY' | 'CONFLICTING_RECORD' | 'MISSING_COVERAGE'
   | 'INVALID_NA' | 'UNUSED_PART' | 'GENERATION_ERROR';
@@ -271,46 +327,87 @@ interface RecipeIssue { code: RecipeIssueCode; recordId?: string; path: string; 
 type RecipeBuildResult =
   | { ok: true; css: string; manifestHash: string }
   | { ok: false; issues: readonly RecipeIssue[] };
+declare function buildFoundryRecipes(source: FoundryRecipeManifest): RecipeBuildResult;
 ```
 
-`FoundryControlName` and each control-specific `FoundryPartName` come from the owned-parts table. `RecipeProperty` is the literal union of `display`, `position`, `inset`, `inset-block`, `inset-block-start`, `inset-block-end`, `inset-inline`, `inset-inline-start`, `inset-inline-end`, `box-sizing`, `inline-size`, `block-size`, `min-inline-size`, `max-inline-size`, `min-block-size`, `max-block-size`, `padding`, `padding-block`, `padding-inline`, `margin`, `gap`, `grid-area`, `grid-template-columns`, `grid-template-rows`, `grid-auto-flow`, `flex-direction`, `flex-wrap`, `align-items`, `align-self`, `justify-content`, `justify-self`, `overflow`, `overflow-x`, `overflow-y`, `overflow-wrap`, `pointer-events`, `cursor`, `appearance`, `opacity`, `visibility`, `color`, `background-color`, every border and outline longhand, `border-radius`, `box-shadow`, every font longhand, `text-align`, `text-decoration`, `white-space`, `z-index`, `transform`, `transform-origin`, every transition and animation longhand, `clip`, `clip-path`, and `forced-color-adjust`. Shorthands are expanded before validation. A reviewed `N/A` record has no CSS property/value and names the otherwise required coverage cell.
+`FoundryControlName` and each control-specific `FoundryPartName` come from the owned-parts table. `RecipeProperty` is the literal union of `display`, `position`, `inset`, `inset-block`, `inset-block-start`, `inset-block-end`, `inset-inline`, `inset-inline-start`, `inset-inline-end`, `box-sizing`, `inline-size`, `block-size`, `min-inline-size`, `max-inline-size`, `min-block-size`, `max-block-size`, `padding`, `padding-block`, `padding-inline`, `margin`, `gap`, `grid-area`, `grid-template-columns`, `grid-template-rows`, `grid-auto-flow`, `flex-direction`, `flex-wrap`, `align-items`, `align-self`, `justify-content`, `justify-self`, `overflow`, `overflow-x`, `overflow-y`, `overflow-wrap`, `pointer-events`, `cursor`, `appearance`, `opacity`, `visibility`, `color`, `background-color`, every border and outline longhand, `border-radius`, `box-shadow`, every font longhand, `letter-spacing`, `text-align`, `text-decoration`, `white-space`, `z-index`, `transform`, `transform-origin`, every transition and animation longhand, `clip`, `clip-path`, and `forced-color-adjust`. Shorthands are expanded before validation. A reviewed `N/A` record has no CSS property/value and names the otherwise required coverage cell.
 
-Recipe generation returns `RecipeBuildResult`, orders issues by record ID/path/code, orders successful CSS by layer then priority then control/part/property/condition, uses the same LF policy, and hashes normalized recipe records with SHA-256. It never emits partial CSS on failure.
+Arithmetic is a typed AST, not an arbitrary CSS string. `add` and `subtract` require compatible lengths; `multiply` requires a length and one declared unitless factor. The serializer emits one outer `calc()` with explicit parentheses and canonical spaces. This expresses, for example, `availableWidth - 2*overlay.viewportMargin` and a signed motion distance without accepting raw `calc()` text. `min` and `max` require two or more compatible values; `translateX`/`translateY` require one length, `scale` one number, and `rotate` one declared angle constant. A `keyframes` value is valid only for `animation-name`. Direction uses the final physical `data-side`, so no logical-direction inference occurs in CSS.
 
-The architecture declaration set below is authoritative. Each named bundle expands into records using the stated properties and sources; no extra visual property is permitted without architecture review.
+Bundles are source data, not prose macros. `foundryRecipeBundleDefinitions`, `foundryRecipeBundleApplications`, `foundryKeyframes`, and direct `RecipeRecord` entries together form the one recipe manifest. Parameter arrays preserve duplicates for validation. Each application must supply every declared parameter exactly once with one of its definition's allowed values. The generator substitutes parameters and emits one `CssRecipeRecord` per template declaration with ID `<application id>.<template id>`; an unknown, missing, duplicate, unused, or out-of-domain parameter fails the whole build. No unexpanded bundle reaches CSS.
 
-| Bundle | Exact declaration responsibility |
+The following notation is normative: `S<n>` means `foundry.structure` priority `<n>` and `R<n>` means `foundry.recipe` priority `<n>`; semicolon-separated `property=value` pairs are separate template declarations. `$name` is a required typed application parameter. `token(name)` and `private(name)` are the corresponding `RecipeValue` nodes. These are the complete base declarations; a bundle emits no unlisted property.
+
+| Bundle | Required parameters | Exact emitted declarations |
+| --- | --- | --- |
+| `hidden` | none | S100 `position=absolute; inline-size=1px; block-size=1px; padding=0; margin=-1px; overflow=hidden; white-space=nowrap; border-width=0; clip=rect(0 0 0 0); clip-path=inset(50%)` |
+| `stack` | `$gap`, `$align`, `$justify` | S100 `display=grid; gap=$gap; margin=0; min-inline-size=0; align-items=$align; justify-content=$justify` |
+| `text` | `$size`, `$lineHeight`, `$weight`, `$letterSpacing`, `$color` | R100 `font-family=token(font.family.body); font-size=$size; line-height=$lineHeight; font-weight=$weight; letter-spacing=$letterSpacing; color=$color; min-inline-size=0; overflow-wrap=break-word` |
+| `button` | `$height`, `$paddingInline`, `$paddingBlock`, `$gap`, `$fontSize`, `$foreground`, `$background`, `$border`, `$cursor` | S100 `display=inline-flex; box-sizing=border-box; align-items=center; justify-content=center; min-block-size=token(target.minimum); block-size=$height; padding-inline=$paddingInline; padding-block=$paddingBlock; gap=$gap`; R100 `font-family=token(font.family.body); font-size=$fontSize; line-height=token(font.lineHeight.default); font-weight=token(font.weight.semibold); color=$foreground; background-color=$background; border-style=solid; border-width=token(border.width.default); border-color=$border; border-radius=token(radius.control); cursor=$cursor; transition-property=color, background-color, border-color, box-shadow; transition-duration=token(motion.duration.fast); transition-timing-function=token(motion.easing.standard)` |
+| `field-control` | `$height`, `$paddingInline`, `$paddingBlock`, `$fontSize` | S100 `box-sizing=border-box; inline-size=100%; min-block-size=token(target.minimum); block-size=$height; padding-inline=$paddingInline; padding-block=$paddingBlock`; R100 `font-family=token(font.family.body); font-size=$fontSize; line-height=token(font.lineHeight.default); color=token(color.field.foreground); background-color=token(color.field.background); border-style=solid; border-width=token(border.width.default); border-color=token(color.field.border); border-radius=token(radius.control); transition-property=color, background-color, border-color, box-shadow; transition-duration=token(motion.duration.fast); transition-timing-function=token(motion.easing.standard)` |
+| `choice-root` | `$size` | S100 `display=inline-grid; position=relative; box-sizing=border-box; inline-size=$size; block-size=$size; min-inline-size=token(target.minimum); min-block-size=token(target.minimum); align-items=center; justify-content=center` |
+| `choice-input` | none | S100 `position=absolute; inset=0; inline-size=100%; block-size=100%; margin=0; appearance=none; opacity=0; cursor=pointer` |
+| `choice-indicator` | `$size`, `$radius` | S100 `display=grid; box-sizing=border-box; inline-size=$size; block-size=$size; align-items=center; justify-content=center; pointer-events=none`; R100 `color=token(color.field.foreground); background-color=token(color.field.background); border-style=solid; border-width=token(border.width.default); border-color=token(color.field.border); border-radius=$radius` |
+| `switch-track` | `$inlineSize`, `$blockSize` | S100 `display=grid; position=relative; box-sizing=border-box; inline-size=$inlineSize; block-size=$blockSize; align-items=center; pointer-events=none`; R100 `background-color=token(color.field.background); border-style=solid; border-width=token(border.width.default); border-color=token(color.field.border); border-radius=token(radius.round)` |
+| `switch-thumb` | `$size` | S100 `inline-size=$size; block-size=$size; pointer-events=none`; R100 `background-color=currentColor; border-radius=token(radius.round); transition-property=transform; transition-duration=token(motion.duration.fast); transition-timing-function=token(motion.easing.standard)` |
+| `surface` | `$padding`, `$background`, `$foreground`, `$border`, `$elevation` | S100 `box-sizing=border-box; min-inline-size=0; padding=$padding; overflow-wrap=break-word`; R100 `color=$foreground; background-color=$background; border-style=solid; border-width=token(border.width.default); border-color=$border; border-radius=token(radius.surface); box-shadow=$elevation` |
+| `overlay-backdrop` | none | S100 `position=fixed; inset=0; z-index=private(--foundry-private-layer-backdrop)`; R100 `background-color=token(color.backdrop)` |
+| `overlay-viewport` | none | S100 `position=fixed; inset=0; display=grid; box-sizing=border-box; padding=token(overlay.viewportMargin); overflow=auto; z-index=private(--foundry-private-layer-content)` |
+| `floating-positioner` | `$maxInlineSize`, `$maxBlockSize` | S100 `position=fixed; box-sizing=border-box; max-inline-size=$maxInlineSize; max-block-size=$maxBlockSize; visibility=hidden; z-index=private(--foundry-private-layer-content)` |
+| `modal-surface` | `$padding`, `$maxInlineSize`, `$elevation` | S100 `box-sizing=border-box; max-inline-size=$maxInlineSize; max-block-size=100%; padding=$padding; overflow=auto`; R100 `color=token(color.text.default); background-color=token(color.surface.overlay); border-style=solid; border-width=token(border.width.default); border-color=token(color.border.default); border-radius=token(radius.surface); box-shadow=$elevation` |
+| `popup-surface` | `$padding`, `$maxInlineSize`, `$maxBlockSize`, `$elevation` | S100 `box-sizing=border-box; max-inline-size=$maxInlineSize; max-block-size=$maxBlockSize; padding=$padding; overflow=auto; transform-origin=private(--foundry-private-transform-origin)`; R100 `color=token(color.text.default); background-color=token(color.surface.overlay); border-style=solid; border-width=token(border.width.default); border-color=token(color.border.default); border-radius=token(radius.surface); box-shadow=$elevation` |
+| `collection` | `$gap`, `$padding`, `$flow` | S100 `display=flex; flex-direction=$flow; gap=$gap; min-inline-size=0; padding=$padding` |
+| `feedback` | `$background`, `$foreground`, `$border`, `$elevation` | R200 `color=$foreground; background-color=$background; border-color=$border; box-shadow=$elevation` |
+| `skeleton-line` | none | R100 `color=transparent; background-color=token(color.skeleton.base); animation-name=foundry-skeleton-pulse; animation-duration=token(motion.duration.slow); animation-timing-function=token(motion.easing.standard); animation-iteration-count=infinite` |
+| `spinner` | `$size` | S100 `box-sizing=border-box; inline-size=$size; block-size=$size`; R100 `color=currentColor; border-style=solid; border-width=token(border.width.strong); border-color=currentColor; border-inline-end-color=transparent; border-radius=token(radius.round); animation-name=foundry-spin; animation-duration=token(motion.duration.medium); animation-timing-function=linear; animation-iteration-count=infinite` |
+
+For constrained floating applications, `$maxInlineSize` and `$maxBlockSize` use `{ kind: 'function', name: 'min', args: [limit, { kind: 'arithmetic', operator: 'subtract', left: available, right: { kind: 'multiply', factor: 2, value: margin } }] }`; `limit`, `available`, and `margin` are the exact family token, matching private available-size variable, and `overlay.viewportMargin` token named in the application table below. The compact table text is not a raw-string exception. `infinite` and `linear` are permitted only as the exact animation constants shown. The validator rejects them in any other property.
+
+The keyframe records are also exact. Every record contains offsets `0` and `1` once, in that order, and no other declaration:
+
+| Keyframe | Offset 0 | Offset 1 |
+| --- | --- | --- |
+| `foundry-enter-top` | `opacity=0; transform=translateY(+motion.distance.short)` | `opacity=1; transform=translateY(0)` |
+| `foundry-enter-right` | `opacity=0; transform=translateX(-motion.distance.short)` | `opacity=1; transform=translateX(0)` |
+| `foundry-enter-bottom` | `opacity=0; transform=translateY(-motion.distance.short)` | `opacity=1; transform=translateY(0)` |
+| `foundry-enter-left` | `opacity=0; transform=translateX(+motion.distance.short)` | `opacity=1; transform=translateX(0)` |
+| `foundry-exit-top` | `opacity=1; transform=translateY(0)` | `opacity=0; transform=translateY(+motion.distance.short)` |
+| `foundry-exit-right` | `opacity=1; transform=translateX(0)` | `opacity=0; transform=translateX(-motion.distance.short)` |
+| `foundry-exit-bottom` | `opacity=1; transform=translateY(0)` | `opacity=0; transform=translateY(-motion.distance.short)` |
+| `foundry-exit-left` | `opacity=1; transform=translateX(0)` | `opacity=0; transform=translateX(+motion.distance.short)` |
+| `foundry-spin` | `transform=rotate(0deg)` | `transform=rotate(360deg)` |
+| `foundry-skeleton-pulse` | `opacity=0.6` | `opacity=1` |
+
+Popover/Menu select enter/exit keyframes from final physical `data-side`; Drawer uses its final physical side; Dialog and Toast use bottom; Banner uses top. Reduced motion replaces `animation-name` and `transition-property` with `none`, duration with `0s`, and emits no keyframe reference.
+
+Recipe generation returns `RecipeBuildResult`, expands and validates bundles before direct records, validates every keyframe reference, orders issues by record ID/path/code, orders successful CSS by layer then priority then control/part/property/condition, orders keyframes by `FoundryKeyframeName`, uses the same LF policy, and hashes the normalized definitions, applications, keyframes, and direct records with SHA-256. It never emits partial CSS on failure.
+
+Every part has the following bundle applications. Parts named in the owned-parts table but not listed separately inherit the row that names their role; no application is inferred from an HTML element or descendant.
+
+| Controls and parts | Exact base applications |
 | --- | --- |
-| `hidden` | Absolute one-pixel clipped box, zero margin/padding/border, hidden overflow, and nowrap; no paint or hit area. |
-| `stack` | Grid or flex flow, `gap` from the matching `control.gap.*` or `space.*`, zero external margin, `min-inline-size: 0`, and logical alignment only. |
-| `text` | Body family; declared size/line-height/weight/letter-spacing and text color; titles use `font.size.lg`/tight/semibold, labels `font.size.sm`/default/semibold, descriptions default/muted, errors default/danger. |
-| `button` | Inline-flex center alignment; size-matched height, padding, gap, and icon size; body font, default line height, semibold weight; control radius; default border width; variant color group; pointer cursor; tokenized color/border/shadow transitions. Control triggers, close/action buttons use secondary colors; clear uses link colors. |
-| `field-control` | Border-box full inline size; size-matched height and padding; at least `font.size.md`; field foreground/background/border, control radius, default border width, placeholder/selection/autofill recipes, and color/border/shadow transitions. |
-| `choice` | Relative inline-grid root at the size-matched target; native input absolutely covers the root with zero opacity and pointer cursor; indicator/track/thumb use size-matched geometry, tokenized border/radius/color, and current-color marks. Checked/indeterminate changes mark or thumb position, never semantics. |
-| `surface` | Border-box, surface padding by size, surface radius, default border, default text/surface colors, min inline size zero, wrapped overflow text; raised variants consume the declared elevation token. |
-| `overlay-frame` | Fixed backdrop/viewport or anchored positioner, viewport-margin padding, private layer z values, hidden pre-measure state, available-size caps, and no page-level overflow. |
-| `popup-surface` | Raised/overlay surface, popup/modal elevation as applicable, control-family max inline size, private available width/height cap, auto overflow, transform origin, and enter/exit opacity/transform only. |
-| `collection` | Menu/Tabs flex or grid flow from orientation, logical gap/padding, min inline size zero; item/trigger hit areas use target and density tokens; separator uses strong border width/color. |
-| `feedback` | Tone background/border/foreground, surface padding/radius, text stack, action alignment, and surface or toast elevation. Skeleton line uses base/highlight colors and tokenized motion only. |
+| Field `root`; Group `root` | `stack(gap=size gap, align=stretch, justify=start)`; Group also `surface(default)`. |
+| `label`, `legend`, `title`, `description`, `error`, `group-label`, `required-marker` | One `text(role)` application from the role table below. Announcers use `hidden`. |
+| Button `root`; overlay triggers and closes; feedback actions and dismisses | `button(action=variant for Button, secondary otherwise, size)`. Search clear alone uses `button(action=link, size)`. Button loading indicator uses `spinner(size=control.iconSize.<size>)`; loading announcer uses `hidden`. |
+| TextField `root`; NativeSelect `input`; SearchField `input` | `field-control(size)`. NativeSelect/Search roots use `stack(gap=space.0, align=stretch, justify=stretch)` plus direct `position=relative`; NativeSelect input adds direct `appearance=none`. NativeSelect indicator uses `choice-indicator(size=control.iconSize.<size>, radius=radius.round)` plus direct chevron-mark records. |
+| Checkbox | root `choice-root`; input `choice-input`; indicator `choice-indicator(radius=radius.control)`. |
+| Switch | root `choice-root`; input `choice-input`; track `switch-track`; thumb `switch-thumb`. |
+| RadioGroup | root and each option `stack`; input `choice-input`; indicator `choice-indicator(radius=radius.round)`; option label/description use their text roles. |
+| StatusChip | root `surface(default)` plus `feedback(tone)`; content uses the body text role. |
+| Banner | root `surface(default)` plus `feedback(tone)` and `stack`; title/description use text roles; action/dismiss use secondary button. |
+| EmptyState | root `surface(default)` plus `stack`; title/description use text roles; action uses secondary button. |
+| LoadingSkeleton | root `surface(sunken)` plus `stack`; each line uses `skeleton-line`. |
+| Card | root `surface(default)` plus `stack`; title/description use text roles; content uses `stack`. |
+| Dialog/Drawer | backdrop `overlay-backdrop`; viewport `overlay-viewport`; Dialog content `modal-surface(padding=surface.padding.md, maxInlineSize=dialog.maxInlineSize, elevation=elevation.modal)`; Drawer content uses the same bundle with `maxInlineSize=drawer.inlineSize`; title/description text; close secondary button. Dialog viewport adds direct `align-items=center; justify-content=center`; Drawer viewport adds the physical-side alignment record selected by `data-side`. |
+| Popover/Menu | Positioner and content receive the same width expression `min(token(<family>.maxInlineSize), private(--foundry-private-available-width) - 2*token(overlay.viewportMargin))` and height expression `min(token(overlay.maxBlockSize), private(--foundry-private-available-height) - 2*token(overlay.viewportMargin))`. Positioner uses `floating-positioner`; content uses `popup-surface(padding=surface.padding.md, elevation=elevation.popup)`. Each final `data-side` record sets positioner `visibility=visible`; absence of a current side keeps it hidden. Menu content/group also use `collection`; group label text; item uses a secondary button application with direct full-width and logical-justify records; separator uses direct strong border records. |
+| Tabs | list `collection`; trigger secondary `button`; panel `surface(default, elevation=none)`. Selected indicator is a direct state record on trigger. |
+| Toast | viewport direct fixed logical block-end/inline-end records plus `stack` and private toast-layer content value; root `surface(overlay, elevation.toast)` plus `feedback(tone)`; content `stack`; title/description text; action/close secondary button; announcer `hidden`. |
 
-Every part has one base assignment:
+Size parameter expansion is mechanical. For `sm`, `md`, or `lg`, `$height`, `$paddingInline`, `$paddingBlock`, `$gap`, `$fontSize`, `$padding`, and `$size` respectively resolve to `control.height.<size>`, `control.paddingInline.<size>`, `control.paddingBlock.<size>`, `control.gap.<size>`, `font.size.<size>`, `surface.padding.<size>`, and `control.iconSize.<size>`. Text-entry and NativeSelect `$fontSize` is instead `max(token(font.size.md/md/lg), 16px)`; `16px` is permitted only as the second `max` argument for those native font-size records. StatusChip text is `font.size.xs/sm/md`. Switch `$blockSize` is `control.iconSize.<size>`, `$inlineSize` is exactly twice that token through `multiply`, and thumb `$size` is that token minus twice `border.width.default` through `subtract` plus `multiply`. Every three-size application expands to three records conditioned on the matching `data-size`; there is no runtime lookup or string construction.
 
-| Controls and parts | Required bundles or exact role |
-| --- | --- |
-| Field `root`; Group `root` | `stack`; Group also `surface`. |
-| All `label`, `legend`, `title`, `description`, `error`, `group-label` parts | `text` with the role mapping above; required marker uses danger text; announcers use `hidden`. |
-| Button `root`; every trigger, close, dismiss, action, and clear part | `button`; loading indicator is a size-matched current-color spinner, and loading announcer is `hidden`. |
-| TextField `root`; NativeSelect `input`; SearchField `input` | `field-control`. NativeSelect/Search roots are relative grid stacks; NativeSelect input uses `appearance:none`; its size-matched current-color chevron and Search clear share the input grid area at inline end without reducing either native hit area. |
-| Checkbox `root/input/indicator`; Switch `root/input/track/thumb`; Radio option/input/indicator | `choice`; RadioGroup root/legend/options also use `stack`. |
-| StatusChip, Banner, EmptyState, LoadingSkeleton, Card roots | `surface` plus `feedback` where tone/loading applies; their content/action parts use `stack` or `text`. |
-| Dialog/Drawer backdrop and viewport; Popover/Menu positioner | `overlay-frame`. Backdrop uses backdrop color; viewport centers Dialog and anchors Drawer to its physical side. |
-| Dialog/Drawer/Popover/Menu content | `surface` plus `popup-surface`; Menu also uses `collection`. |
-| Tabs list/trigger/panel | list uses `collection`; trigger uses `button` with selected indicator; panel uses `surface` without elevation. |
-| Toast viewport/root/content | viewport uses fixed logical block-end/inline-end `overlay-frame` and stack; root uses `surface` + `feedback` with toast elevation; content uses `stack`. |
+Text roles are exact: title is `lg/tight/semibold/normal/default text`; label and legend are `sm/default/semibold/label/default text`; description is `md/default/regular/normal/muted text`; error and required marker are `md/default/medium/normal/danger foreground`; group label is `sm/default/semibold/label/subtle text`; ordinary content is the size-resolved body size with `default/regular/normal/default text`.
 
-Variant and tone mapping is exact: Button selects the same-named `color.action.*` group; every other button-shaped part uses secondary except Search clear uses link. Tone-bearing controls map the same-named tone to `color.status.<tone>.*`. Untoned surfaces use `color.surface.default`, default text, and default border; raised/popup/modal/Toast surfaces use their named elevation token.
-
-Typography by control size is exact: ordinary button-shaped parts use `font.size.sm/md/lg`; StatusChip uses `font.size.xs/sm/md`; text-entry and select inputs use `font.size.md/md/lg`; surface body content uses `font.size.sm/md/lg`; titles always use `font.size.lg`; labels use `font.size.sm` with `font.letterSpacing.label`. Menu group labels use subtle text; descriptions use muted text.
+Action and surface parameters are exact. Primary, secondary, and destructive Button variants select the same-named `color.action.*` foreground/background/border group; Link and Search clear use link foreground with transparent background and border. All other button-shaped parts use secondary. Every base button cursor is `pointer`; disabled direct records replace it with `not-allowed`. Tone-bearing controls map to `color.status.<tone>.{background,foreground,border}` with `box-shadow=none`, except Toast uses `elevation.toast`. `surface(default)` uses default surface/text/border and `box-shadow=none`; `surface(sunken)` substitutes the sunken surface; `surface(overlay)` uses overlay surface/default text/default border. Popup and modal applications use `elevation.popup` and `.modal`; ordinary raised Card use is not part of Core v1 unless a later public variant adds it.
 
 State paint mapping is exact: action hover/active use their group's `backgroundHover`/`backgroundActive`; field hover uses `color.field.backgroundHover` and `borderHover`; read-only uses `backgroundReadOnly`; invalid uses `borderInvalid`; disabled fields use the three field disabled tokens and other disabled parts use `color.surface.sunken`, `color.text.disabled`, and `color.border.disabled`. Checked/indeterminate choices use primary background/foreground/border; selected Tabs use primary foreground plus a strong-width primary-border indicator; highlighted Menu items use sunken surface plus a strong non-color outline; open triggers use raised surface and strong border. Focus uses concentric `focusInner`/`focusOuter` colors with their exact width tokens and no layout shift. Enter/exit use the family elevation, opacity, `motion.distance.short`, matching enter/exit easing, and medium duration; ordinary hover/active transitions use fast/standard. Skeleton uses base/highlight colors with slow/standard motion.
 
@@ -341,7 +438,9 @@ Only these private variables may cross from a Base UI renderer or layer registry
 
 The adapter creates aliases on the exact owned positioner/content element; a recipe never reads Base UI's variable directly. Values are refreshed on placement, resize, scroll, portal migration, and anchor reconnection. A connected floating surface remains `visibility:hidden` and inert until current available size and placement exist. Disconnection clears the aliases before the documented hide/close path, so last coordinates or measurements are never presented as current.
 
-Rendered geometry has exact formulas. Every interactive public element's `getBoundingClientRect()` must be at least `target.minimum` in both axes; for visual-host controls the absolute native input must equal the root rectangle. Dialog/Drawer viewport inline and block availability is the viewport minus twice `overlay.viewportMargin`. Popover/Menu content uses `min(<family>.maxInlineSize, availableWidth - 2*overlay.viewportMargin)` and `min(overlay.maxBlockSize, availableHeight - 2*overlay.viewportMargin)`; a non-positive result keeps content hidden and reports a placement failure. Toast viewport inline size is `min(toast.inlineSize, 100vw - 2*overlay.viewportMargin)`. These are live browser assertions, not source-token comparisons.
+Rendered geometry has exact formulas. Every interactive public element's `getBoundingClientRect()` must be at least `target.minimum` in both axes; for visual-host controls the absolute native input must equal the root rectangle. Dialog/Drawer viewport inline and block availability is the viewport minus twice `overlay.viewportMargin`. Popover/Menu content uses `min(<family>.maxInlineSize, availableWidth - 2*overlay.viewportMargin)` and `min(overlay.maxBlockSize, availableHeight - 2*overlay.viewportMargin)`; a non-positive result keeps content hidden and reports a placement failure. Toast viewport inline size is `min(toast.inlineSize, 100vw - 2*overlay.viewportMargin)`.
+
+Every packed browser board asserts `parseFloat(getComputedStyle(element).fontSize) >= 16` for the native `input` in TextField and SearchField and the native `select` in NativeSelect at `sm`, `md`, and `lg`. The assertion runs once under the normal application root and once inside an isolated fixture with root `font-size: 12px`; it covers default, disabled, invalid, and read-only where supported. A value below 16px fails the board even when the source token satisfies `font.size.md >= 1rem`. These are live browser assertions, not source-token comparisons.
 
 Every recipe must cover the applicable cells below. `N/A` is recorded in the generated recipe manifest with a reason; absence is not an implicit `N/A`.
 
@@ -379,9 +478,15 @@ Only opacity and transform may animate for entry, exit, and lightweight feedback
 
 Layer tokens are infrastructure, not aesthetic choices: every valid skin supplies `layer.popup=1000`, `layer.modal=2000`, and `layer.toast=3000`. The source validator refuses any other values. This keeps layers comparable across different skins and nested providers.
 
-Each document owns one private allocator per band. Provider boundaries retain independent ownership namespaces for cleanup, but parent and nested providers in the same document share the allocator and therefore one total order. A logical layer record appends to its band's open order and receives ordinal `0–127`; the backdrop value is `base + 2*ordinal` and content is `base + 2*ordinal + 1`. Popup records use the content value and leave the paired backdrop value unused. Removal occurs after exit or unmount, compacts later ordinals without changing their relative order, and then makes capacity available. Portal migration within the document retains the record and ordinal.
+Each document owns one private allocator per band. Provider boundaries retain independent ownership namespaces for cleanup, but parent and nested providers in the same document share the allocator and therefore one total order. Every record stores immutable `recordId`, provider owner, band, monotonic `createdSequence`, and optional `owningModalRecordId`. Backdrop and content share one record. Popup records use only the content value and leave their paired backdrop value unused.
 
-Dialog/Drawer allocate in the modal band, ordinary Popover/Menu in popup, and Toast viewports in toast. Popover/Menu opened from a modal subtree allocate in modal after the owning modal record. Nested providers inherit that contextual promotion. The 129th simultaneous record in one band reports `FOUNDRY_LAYER_CAPACITY`; parent-driven open renders no portal content and user-driven preflight refuses before an open callback. Closing or unmounting a record and retrying is recovery. Backdrop and content always share one record, and no recipe uses `z-index` outside the two private layer variables.
+Popup and toast bands are ordered by `createdSequence`. The modal band is an ordered forest: top-level Dialog/Drawer records are roots ordered by `createdSequence`; a promoted Popover/Menu is a child of the nearest owning modal record; siblings are ordered by `createdSequence`. Preorder traversal assigns ordinals `0–127`, visiting a modal record before all of its promoted descendants and visiting the next modal root only after the previous root's complete subtree. The backdrop value is `base + 2*ordinal`; content is `base + 2*ordinal + 1`.
+
+This traversal defines the non-top-modal path exactly. A Popover/Menu opened by parent-controlled state while its owning modal is below a later modal is inserted at the end of its owner's subtree, which shifts later modal-root ordinals upward while preserving their relative order. The promoted surface therefore stays above its owner and below the later modal's backdrop. The modal manager marks that promoted portal subtree inert and hidden from the accessibility tree while its owner is not topmost; its logical open state, record, and callbacks are unchanged. User activation cannot originate from the inactive modal. When later modals close, the existing promoted surface is remeasured and becomes interactive after current placement exists, without remount, open callback, focus theft, or a new record. If its owner closes first, the promoted child follows its normal accepted close/exit path and both records are released after exit.
+
+Removal after exit or unmount recomputes preorder ordinals and compacts holes without changing record identity or relative order. Inserting a promoted descendant may likewise change later numeric ordinals; adapters update both private layer variables in one layout commit before paint. Portal migration within the same document retains record identity, owner, parent relation, and `createdSequence`; migration to another document releases the old record and preflights a new document allocation before moving content.
+
+Dialog/Drawer allocate as modal roots, ordinary Popover/Menu in popup, modal-owned Popover/Menu as promoted modal descendants, and Toast viewports in toast. Nested providers inherit the nearest modal ownership context. The 129th simultaneous record in one band reports `FOUNDRY_LAYER_CAPACITY`; parent-driven open renders no portal content and user-driven preflight refuses before an open callback. Closing or unmounting a record and retrying is recovery. No recipe uses `z-index` outside the two private layer variables.
 
 ## Skin lifecycle and failure behavior
 

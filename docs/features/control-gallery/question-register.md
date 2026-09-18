@@ -4,7 +4,6 @@ This register contains only decisions that require owner authority. Technical de
 
 | Question | Why it matters |
 | --- | --- |
-| May the token and skin contract receive one exceptional bounded correction and targeted recheck? | The normal two-round review limit has been reached with three material completeness gaps; no further contract edit or implementation is authorized without this process decision. |
 | Which release license does Foundry use? | The distributable package needs an owner-approved grant before publication. |
 
 ## Deferred work

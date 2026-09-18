@@ -17,7 +17,7 @@
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
     "last_verified_document_revision": "3ee13ee4f76df5be85f28cab01f4d3d81a3071be",
-    "status": "Token and skin review stopped at its two-round limit; owner process decision required",
+    "status": "Owner-authorized exceptional token and skin correction in progress",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
     "pending_paths": [
@@ -77,9 +77,10 @@
     "token and skin decision-fidelity approval at corrected checkpoint",
     "closed token and skin source API, forced-color, serialization, and all five cross-document findings",
     "exhausted second-round token and skin completeness review with recipe expressiveness, rendered font-size, and owned floating-layer gaps retained",
-    "corrected the status-only consistency finding returned at the second-round checkpoint"
+    "corrected the status-only consistency finding returned at the second-round checkpoint",
+    "owner-authorized exceptional token and skin correction limited to TS-I1, TS-I3, TS-I4, and TS-R2-1"
   ],
-  "next_action": "Obtain the owner's process decision on one exceptional bounded correction and targeted recheck limited to TS-I1, TS-I3, TS-I4, and the corrected status-only TS-R2-1 representation.",
+  "next_action": "Publish the bounded token and skin correction, then run the owner-authorized targeted completeness and status-consistency rechecks limited to TS-I1, TS-I3, TS-I4, and TS-R2-1.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -160,6 +161,14 @@
       "evidence": "Owner replied 'yes do it' after being asked to authorize one additional targeted completeness review for F3 and F4.",
       "canonical_ref": "docs/planning/workshop-state.json#review-policy",
       "supersedes": null
+    },
+    {
+      "id": "CG-REVIEW-EXCEPTION-002",
+      "subject": "One exceptional token and skin correction and targeted recheck",
+      "authority": "owner",
+      "evidence": "Owner replied 'yes' after being asked to authorize one additional bounded correction and targeted recheck for TS-I1, TS-I3, TS-I4, and corrected status representation TS-R2-1.",
+      "canonical_ref": "docs/planning/workshop-state.json#review-policy",
+      "supersedes": null
     }
   ],
   "open_questions": [
@@ -237,7 +246,9 @@
       "owner": "Foundry owner",
       "selection_point": "Before another token-contract edit or any token, skin, provider, or recipe implementation packet.",
       "required_evidence": "Recorded owner direction; if another round is authorized, passing targeted completeness and consistency results at the exact corrected commit.",
-      "status": "open"
+      "status": "resolved",
+      "resolution": "Owner authorized one exceptional bounded correction and targeted completeness and status-consistency recheck limited to TS-I1, TS-I3, TS-I4, and TS-R2-1.",
+      "resolution_ref": "CG-REVIEW-EXCEPTION-002"
     }
   ],
   "inspections": [
@@ -322,6 +333,20 @@
         "scope": "One targeted recheck of F3 and F4 only.",
         "authority": "Foundry owner",
         "evidence": "Owner authorization in conversation after the round-two completeness result."
+      },
+      {
+        "budget_key": "token-skin-completeness",
+        "maximum_rounds": 3,
+        "scope": "One targeted recheck of TS-I1, TS-I3, and TS-I4 only.",
+        "authority": "Foundry owner",
+        "evidence": "Owner authorization in conversation after the round-two token and skin completeness result."
+      },
+      {
+        "budget_key": "token-skin-consistency",
+        "maximum_rounds": 3,
+        "scope": "One targeted recheck of corrected status representation TS-R2-1 and directly affected status records only.",
+        "authority": "Foundry owner",
+        "evidence": "Owner authorization in conversation after the round-two token and skin consistency result."
       }
     ]
   },
