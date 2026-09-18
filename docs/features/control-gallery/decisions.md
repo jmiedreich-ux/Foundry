@@ -20,15 +20,15 @@ Controls that support controlled and uncontrolled state reject conflicting modes
 
 Buttons have Primary, Secondary, Destructive, and Link variants. The English label catalog is owned by `LocaleProvider`; locked control labels come from that catalog.
 
-Search is a native search field with controlled or uncontrolled query state, reset support, a clear action, and a consumer-owned results view. Feedback controls use neutral, success, warning, and danger tones. Status text is advisory; Banner is persistent and dismissible; Toast is polite, manual, and singular; EmptyState offers recovery content; LoadingSkeleton is indeterminate and respects reduced motion.
+Search is a native search field with controlled or uncontrolled query state, reset support, a clear action, and a consumer-owned results view. Feedback controls use neutral, success, warning, and danger tones. Status text is advisory; Banner is persistent and optionally dismissible; Toast is a polite provider-owned queue with timed or persistent records; EmptyState offers recovery content; LoadingSkeleton is indeterminate and respects reduced motion.
 
 ## Overlay and navigation behavior
 
-Dialog and Drawer are named native modal interactions. They contain focus, close through Escape and an explicit close action, reject outside dismissal, and restore focus to a valid trigger.
+Dialog and Drawer are foundation-backed modal interactions with semantic `HTMLElement` content refs rather than native `HTMLDialogElement` refs. They contain focus, close through Escape and an explicit close action, reject outside dismissal, and restore focus to a valid logical target.
 
 Popover and Menu are non-modal. They document their own native or pointer dismissal behavior, do not trap focus, and do not steal focus from an outside interaction or Tab navigation. Menu provides labelled command semantics, roving item focus, disabled-item refusal, and ordered selection.
 
-Tabs have one labelled list, one selected enabled tab, and one visible associated panel. Pointer and keyboard selection move focus and selection together. Card is a non-interactive labelled article that accepts optional description and any number of children.
+Tabs have one labelled list, one selected enabled tab, and one visible associated panel. Pointer activation moves focus and requests selection. Arrow navigation always moves roving focus; it requests selection only in automatic activation mode, while manual mode waits for Enter or Space. Card is a non-interactive labelled article that accepts optional description and any number of children.
 
 ## Skin and catalog
 
@@ -54,11 +54,11 @@ No new custom overlay, collection-navigation, focus-scope, or floating-positioni
 
 ### Selected interaction foundation
 
-Base UI is the internal foundation, beginning with an exact `@base-ui/react` 1.8.0 evaluation. It best fits Foundry's boundary because one maintained package covers the representative Dialog, Menu, Tabs, Field, and Toast journeys; provides subpath exports with no package side effects; builds positioning on Floating UI; and reports change reasons through cancellable event details. Those event details let a Foundry adapter distinguish trigger, Escape, outside, focus, and imperative requests without exposing Base UI's API.
+Base UI 1.8.0 is Foundry's first internal proof candidate. A reviewed successful disposable evaluation authorizes its production use; failure routes the unchanged proof to React Aria Components. Base UI best fits the boundary because one maintained package covers the representative Dialog, Menu, Tabs, Field, and Toast journeys; provides subpath exports with no package side effects; builds positioning on Floating UI; and reports change reasons through cancellable event details. Those details let a Foundry adapter distinguish trigger, Escape, outside, focus, and imperative requests without exposing Base UI's API.
 
 | Candidate | Strongest evidence | Reason not selected |
 | --- | --- | --- |
-| Base UI | Complete representative catalog, reasoned/cancellable change events, stable part data, direct Drawer and floating-control depth, subpath packaging | Selected; its younger stable line requires the proof gate below. |
+| Base UI | Complete representative catalog, reasoned/cancellable change events, stable part data, direct Drawer and floating-control depth, subpath packaging | First proof candidate; production retention is conditional on the gate below. |
 | React Aria Components | Deep accessibility, internationalization, collection, testing, and future input coverage | Its interaction and collection model would exert more pressure on Foundry's existing public event and composition contracts. It remains the first fallback if Base UI fails the proof. |
 | Radix Primitives | Long-lived compound primitives with strong focus, dismissal, and composition behavior | Change causality is distributed across part handlers, Drawer is not a direct primitive, and the umbrella package pulls a broader primitive graph. |
 
@@ -72,11 +72,11 @@ Foundry owns the public contract and Base UI owns only internal mechanics:
 | Floating controls | Public placement choices and Foundry token hooks | Anchoring, flipping, shifting, collision boundaries, available size, and scroll/resize updates |
 | Visual system | Every class, token, part alias, state recipe, motion value, and z-layer policy | No consumer-visible styling; Base UI state is translated to stable Foundry hooks |
 
-Ordinary Button, Link, TextField, native Select, Checkbox, and Radio controls continue to use native elements. Foundry's current side panel uses Base UI Dialog mechanics with a Foundry placement recipe; Base UI Drawer is reserved for a future gesture or snap-point contract. Popover, Menu, Tabs, Toast, Dialog, and the side panel use the selected internal foundation. `OverlayRoot` becomes the Foundry portal, direction, locale, and skin boundary rather than a second focus or dismissal engine.
+Ordinary Button, TextField, native Select, Checkbox, and Radio controls continue to use native elements. Navigation Link is an essential future addition, not a Core v1 export. Foundry's current side panel conditionally uses the accepted foundation's Dialog mechanics with a Foundry placement recipe; a gesture/snap-point Drawer primitive is reserved for a future contract. Popover, Menu, Tabs, Toast, Dialog, and the side panel use the accepted internal foundation. New `FoundryProvider` owns the portal, direction, locale, skin, and default Toast boundary; the current `OverlayRoot` is internalized and removed rather than becoming a second engine.
 
 The selection advances only after a disposable Maestro evaluation proves the same public Foundry adapters in Chromium, Firefox, WebKit, server render, and hydrate paths. The proof covers controlled acceptance and decline; stale requests; nested and missing-trigger recovery; no-focusable fallback; Escape, outside, Tab, and explicit dismissal; scroll lock and inertness; collision and resize updates; Menu typeahead and disabled items; Tabs orientation, direction, activation, removal, nesting, and panel fallback; native Field labeling, validation, reset, and autofill interoperation; and Toast queue, timer pause, action, dismissal, and keyboard access. Evidence is published with the architecture; evaluation source is discarded rather than merged. The delegated architect accepts the result after independent review. A failed Base UI proof is followed by the same proof against React Aria Components, not by mixing foundations or extending the custom internals.
 
-The quality stage advances in this order: approve this selection and proof contract; complete the disposable proof through Maestro; record the retain/replace result; finish the per-control contract and migration matrix; approve the token/skin and package/gate contracts; then issue production packets. No proof code becomes production code and no production packet starts from an unreviewed proof result.
+The quality stage advances in this order: review the per-control contract and proof contract; complete the disposable Base UI proof through Maestro; record the retain/fallback result; approve the token/skin and package/gate contracts; then issue production packets. No proof code becomes production code and no production packet starts from an unreviewed proof result.
 
 The canonical per-export public boundary and migration dispositions are maintained in [Core v1 control contracts](control-contracts.md). That matrix governs control packets; this document governs the cross-control architecture.
 
@@ -123,11 +123,11 @@ The canonical per-export public boundary and migration dispositions are maintain
 | --- | --- |
 | Gallery and native semantics | Retain the working journeys and tests as evidence; make the gallery a packed-package consumer. |
 | Control Base, fields, choices, Search, and feedback | Amend for one state model, owned hooks, label composition, heading composition, focus behavior, and complete size recipes. |
-| Dialog, Drawer, Popover, Menu, and Tabs | Preserve accepted observable behavior, then rebase the internals on the selected headless foundation instead of extending duplicated custom mechanisms. |
+| Dialog, Drawer, Popover, Menu, and Tabs | Preserve the reviewed observable contract, then conditionally rebase internals on the foundation that passes the proof instead of extending duplicated custom mechanisms. |
 | Default skin | Rebuild as an explicitly imported, fully scoped token skin with complete recipes for every Core v1 control. |
 | Packaging and verification | Add canonical commands, product CI, multi-browser release gates, declarations, peer dependencies, and packed-consumer proof. |
 
-The internal headless foundation will be selected by architecture evaluation of Radix Primitives, React Aria Components, and Base UI. The evaluation uses the same Dialog, Menu, Tabs, Field, and Toast journeys and compares accessibility behavior, controlled-state fidelity, positioning, SSR/hydration, React support, bundle boundaries, maintenance, and the ability to keep Foundry's public API stable. This is an architect decision and does not require an owner preference unless the result changes product scope.
+Candidate comparison selected Base UI 1.8.0 for the first disposable proof. Production retention remains conditional on the Dialog, Menu, Tabs, Field, Toast, SSR/hydration, controlled-state, positioning, React-support, and package-boundary evidence above. A failed proof advances React Aria Components through the same protocol; it does not authorize mixed foundations or more custom interaction machinery. The delegated architect accepts the result after independent review unless it changes product scope.
 
 ## Capability path
 

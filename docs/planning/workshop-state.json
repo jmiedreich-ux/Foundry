@@ -14,19 +14,16 @@
   "publication": {
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
-    "last_verified_document_revision": "9925fe70a58d38de823de11bde4ca9e00d9fe08f",
-    "status": "interaction-foundation decision published; control-contract draft pending review and publication to draft pull request #59",
+    "last_verified_document_revision": "715364e1e4b3aa5ddc333eb07bcfc640b30406aa",
+    "status": "complete first contract-review round published; one bounded correction is pending targeted second review on draft pull request #59",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
     "pending_paths": [
-      "PRODUCT.md",
       "PROJECT_STATUS.md",
-      "ROADMAP.md",
-      "docs/features/control-gallery/README.md",
+      "ai/handoffs/current.md",
       "docs/features/control-gallery/decisions.md",
       "docs/features/control-gallery/control-contracts.md",
       "docs/features/control-gallery/workstream.json",
-      "docs/features/control-gallery/milestones/library-quality-foundation.md",
       "docs/planning/workshop-state.json"
     ],
     "expected_base": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
@@ -56,9 +53,10 @@
     "support, package, browser, and assistive-technology direction",
     "plain reader-facing delivery stages",
     "Base UI interaction-foundation selection and responsibility boundary",
-    "draft Core v1 public export and migration matrix"
+    "draft Core v1 public export and migration matrix",
+    "complete first-round control-contract fidelity, completeness, and consistency review"
   ],
-  "next_action": "Independently review the drafted Core v1 control contracts, reconcile valid findings, and prepare the bounded Maestro evaluation contract for Base UI 1.8.0 while production implementation remains paused.",
+  "next_action": "Commit the bounded control-contract correction, obtain targeted second review at its exact head, and only then prepare the Maestro evaluation contract for Base UI 1.8.0 while production implementation remains paused.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -102,7 +100,7 @@
     },
     {
       "id": "CG-ARCH-005",
-      "subject": "Base UI is the hidden interaction foundation",
+      "subject": "Base UI 1.8.0 is the first hidden interaction-foundation proof candidate",
       "authority": "delegated chief software architect",
       "evidence": "Official library documentation and current package metadata were compared against Foundry's Dialog, Menu, Tabs, Field, Toast, SSR, packaging, and controlled-request needs on 2026-09-17.",
       "canonical_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation",
@@ -140,7 +138,7 @@
       "selection_point": "After the interaction foundation is selected and before correction packets are issued.",
       "required_evidence": "Reviewed control and part matrix with migration disposition.",
       "draft_ref": "docs/features/control-gallery/control-contracts.md",
-      "status": "open"
+      "status": "reviewing"
     },
     {
       "id": "CG-ARQ-004",
@@ -289,6 +287,123 @@
       "round_consumed": false,
       "correction_refs": ["PRODUCT.md", "docs/features/control-gallery/workstream.json", "docs/planning/workshop-state.json"],
       "invalidated_by": "The reviewed working-tree snapshot changed after the findings."
+    },
+    {
+      "id": "CG-CONTRACT-FIDELITY-R1",
+      "subject": "Core v1 control contract",
+      "pass_type": "decision_fidelity",
+      "mode": "full",
+      "parent_review_id": null,
+      "scope": "Owner requirements and delegated architecture decisions against the exact published contract checkpoint.",
+      "budget_key": "core-v1-contract-fidelity",
+      "round": 1,
+      "reviewer": { "agent": "/root/contract_fidelity_review", "session": "separate", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "715364e1e4b3aa5ddc333eb07bcfc640b30406aa", "base_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121", "filtered_passages": ["Prior findings, workshop state, handoff, PR discussion, and unrelated history excluded."], "original_decision_evidence": ["Owner requirements and delegated authority supplied in the filtered packet."] },
+      "sources_examined": ["PRODUCT.md", "PROJECT_STATUS.md", "ROADMAP.md", "docs/features/control-gallery/README.md", "docs/features/control-gallery/decisions.md", "docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/milestones.md", "docs/features/control-gallery/question-register.md", "docs/features/control-gallery/workstream.json", "docs/features/control-gallery/milestones/library-quality-foundation.md"],
+      "journeys": [
+        { "name": "quality and autonomy", "trace": "Owner quality target enters the product and architecture authorities; delegated architect chooses technical detail; contracts, gates, and gallery evidence carry the result; scope or license changes return to the owner." },
+        { "name": "design before Maestro", "trace": "Existing source and mature-library evidence enter reviewed architecture; a disposable proof follows only after contract review; accepted proof selects production internals; failed proof follows the declared fallback; no proof source is retained." },
+        { "name": "clean GitHub documentation", "trace": "Plain active documents and machine state are versioned through branch and PR; Git history is the archive; local working copies are not publication authority; stale or conflicting statements require correction before approval." },
+        { "name": "current work preservation", "trace": "Accepted observable behavior and tests remain evidence while internals may change; paused Menu work remains paused; unsupported compatibility and future catalog work do not enter Core v1." }
+      ],
+      "not_assessed": ["Runtime correctness, implementation quality, and proof results."],
+      "missing_evidence": ["The foundation proof, token/skin contract, and package/gate contract remain later architecture work."],
+      "findings": [
+        { "id": "DF-01", "classification": "blocking", "summary": "Base UI was both conditional and unconditionally selected.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation" },
+        { "id": "DF-02", "classification": "blocking", "summary": "OverlayRoot and FoundryProvider both claimed the root boundary.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation" },
+        { "id": "DF-03", "classification": "blocking", "summary": "Toast was both singular/manual and provider-queued.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#toast-queue" },
+        { "id": "DF-04", "classification": "blocking", "summary": "Native dialog wording conflicted with semantic HTMLElement content.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#dialog-and-drawer" },
+        { "id": "DF-05", "classification": "blocking", "summary": "Tabs always-together wording conflicted with manual activation.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#tabs" },
+        { "id": "DF-06", "classification": "material", "summary": "Future Link was implied to be a current native Core v1 control.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation" }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "Owner direction is otherwise preserved, but six contradictions required one bounded correction.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/decisions.md", "docs/features/control-gallery/control-contracts.md"],
+      "invalidated_by": "The bounded correction after this review."
+    },
+    {
+      "id": "CG-CONTRACT-COMPLETENESS-R1",
+      "subject": "Core v1 control contract",
+      "pass_type": "architectural_completeness",
+      "mode": "full",
+      "parent_review_id": null,
+      "scope": "Whether a Maestro packet can implement every public boundary and recovery path without inventing behavior.",
+      "budget_key": "core-v1-contract-completeness",
+      "round": 1,
+      "reviewer": { "agent": "/root/contract_completeness_review", "session": "separate", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "715364e1e4b3aa5ddc333eb07bcfc640b30406aa", "base_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121", "filtered_passages": ["Prior findings, workshop state, handoff, PR discussion, and unrelated history excluded."], "original_decision_evidence": ["The canonical contract and current exact exports were supplied."] },
+      "sources_examined": ["docs/features/control-gallery/decisions.md", "docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/milestones/library-quality-foundation.md", "packages/react/src/index.ts", "directly exported declarations"],
+      "journeys": [
+        { "name": "export migration", "trace": "Current wildcard and named runtime/type exports enter the matrix; every name needs retain, rename, remove, or internal disposition; declarations and packed imports validate completion; an omitted name blocks the packet." },
+        { "name": "provider and portal", "trace": "Skin, locale, labels, direction, target, and Toast config enter the nearest provider; nested boundaries own independent queues and portals; missing/replaced targets and unmount require deterministic recovery without fabricated callbacks." },
+        { "name": "native controls and surfaces", "trace": "Props enter Field, Group, Button, native inputs, Banner, and surfaces; controlled, uncontrolled, reset, loading, disabled, label, action, and announcement paths reach exact elements/refs; conflicts refuse explicitly." },
+        { "name": "Toast lifecycle", "trace": "Show, dedupe, queue, promote, update, action, pause, timeout, dismiss, stale ID, F6, and provider-unmount paths reach one polite viewport; queue and focus recovery determine completion." },
+        { "name": "modal lifecycle", "trace": "Trigger, parent, Escape, close, outside pointer, nested layer, missing target, and controlled decline paths reach Dialog/Drawer state and focus; restoration occurs only after accepted close." },
+        { "name": "Popover and Menu", "trace": "Trigger, placement, anchor loss, arrows, typeahead, disabled/all-disabled, selection prevention, outside pointer, Tab, Escape, and controlled decline reach non-modal state and reason-specific focus recovery." },
+        { "name": "Tabs", "trace": "Initial value, arrows, activation mode, pointer, disabled/missing selection, removal, no-enabled state, panel focus fallback, nesting, and parent decline reach deterministic selection/focus outcomes." },
+        { "name": "SSR and hydration", "trace": "Server rendering, initially open content, hydration, delayed portal target, nested providers, target replacement, and config mismatch reach stable IDs and deterministic post-mount behavior without state callbacks." }
+      ],
+      "not_assessed": ["Implementation feasibility beyond source/API inspection and live runtime proof."],
+      "missing_evidence": ["Executable Base UI proof remains required before production retention."],
+      "findings": [
+        { "id": "F1", "classification": "blocking", "summary": "Runtime/type exports and new supporting shapes were not exact.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#exact-core-v1-exports" },
+        { "id": "F2", "classification": "blocking", "summary": "Provider, portal, nested queue, and F6 ownership were incomplete.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#provider-portals-server-rendering-and-hydration" },
+        { "id": "F3", "classification": "blocking", "summary": "Compound part topology and forwarding were incomplete.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#compound-topology" },
+        { "id": "F4", "classification": "blocking", "summary": "Field, Group, loading announcement, Banner, and action contracts were incomplete.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#foundation-fields-and-actions" },
+        { "id": "F5", "classification": "blocking", "summary": "Toast live, queue, timing, race, stale-ID, and focus recovery were incomplete.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#toast-queue" },
+        { "id": "F6", "classification": "blocking", "summary": "Modal resolver, nesting, decline, and restoration paths were incomplete.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#dialog-and-drawer" },
+        { "id": "F7", "classification": "blocking", "summary": "Popover/Menu placement, anchor, event, typeahead, and decline paths were incomplete.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#popover" },
+        { "id": "F8", "classification": "blocking", "summary": "Tabs defaults and invalid, disabled, removal, no-enabled, and missing-panel recovery were incomplete.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#tabs" },
+        { "id": "F9", "classification": "blocking", "summary": "Initially open SSR, target recovery, nested identity, and mismatch behavior were incomplete.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#provider-portals-server-rendering-and-hydration" },
+        { "id": "F10", "classification": "blocking", "summary": "Stale architecture statements contradicted the detailed matrix.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/decisions.md" }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "All required journeys were traced, and ten blocking specification gaps required the one permitted correction.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/decisions.md"],
+      "invalidated_by": "The bounded correction after this review."
+    },
+    {
+      "id": "CG-CONTRACT-CONSISTENCY-R1",
+      "subject": "Core v1 control contract",
+      "pass_type": "cross_document_consistency",
+      "mode": "full",
+      "parent_review_id": null,
+      "scope": "All applicable reader, machine, source-export, lifecycle, and publication representations.",
+      "budget_key": "core-v1-contract-consistency",
+      "round": 1,
+      "reviewer": { "agent": "/root/contract_consistency_review", "session": "separate", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "715364e1e4b3aa5ddc333eb07bcfc640b30406aa", "base_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121", "filtered_passages": ["Prior findings, workshop state, handoff, PR discussion, and unrelated history excluded."], "original_decision_evidence": ["Stable machine identities and publication route were supplied."] },
+      "sources_examined": ["PRODUCT.md", "PROJECT_STATUS.md", "ROADMAP.md", "feature README", "decisions.md", "control-contracts.md", "delivery-stage records", "workstream.json", "packages/react/src/index.ts", "directly exported declarations"],
+      "journeys": [
+        { "name": "authority navigation", "trace": "Product, README, roadmap, and Atlas links lead readers to current design authority; all local targets resolve; omission of the canonical matrix from Atlas prevents complete discovery." },
+        { "name": "export migration", "trace": "Root exports map to dispositions and future names; state/ref/refusal changes reach the canonical matrix; omitted LabelDefinition and generic future type names leave the boundary incomplete." },
+        { "name": "provider setup", "trace": "Provider inputs reach locale, direction, skin, portal, and Toast boundaries; contracts name FoundryProvider while architecture still named OverlayRoot." },
+        { "name": "controlled state", "trace": "Controlled/uncontrolled entry, requests, decline, reset, remount, disabled, and stale paths agree across shared and control-specific rules." },
+        { "name": "overlay and navigation", "trace": "Dismissal, focus, selection, and recovery reach detailed contracts; native-modal and always-together Tabs wording conflict with them." },
+        { "name": "lifecycle", "trace": "Current architecture review leads to Base UI proof then later production; stale candidate-selection prose makes the route ambiguous." },
+        { "name": "reader order and machine identity", "trace": "Plain stages map to stable M1, M2, M3, M6, M4, M5 identities and depths without collision." },
+        { "name": "publication authority", "trace": "Reviewed architecture is versioned through draft PR 59; implementation remains unstarted; owner retains license authority and paused Menu work remains paused." }
+      ],
+      "not_assessed": ["Actual remote credentials, runtime behavior, proof results, token schema, and package gates."],
+      "missing_evidence": ["Targeted recheck of the correction and the later foundation proof."],
+      "findings": [
+        { "id": "CCR-1", "classification": "blocking", "summary": "Portal owner conflicted between OverlayRoot and FoundryProvider.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation" },
+        { "id": "CCR-2", "classification": "blocking", "summary": "Tabs keyboard wording conflicted with activation modes.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/decisions.md#overlay-and-navigation-behavior" },
+        { "id": "CCR-3", "classification": "blocking", "summary": "Foundation lifecycle prose was stale.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/decisions.md#current-architecture-disposition" },
+        { "id": "CCR-4", "classification": "blocking", "summary": "Native dialog wording conflicted with the HTMLElement migration.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/decisions.md#overlay-and-navigation-behavior" },
+        { "id": "CCR-5", "classification": "blocking", "summary": "Per-export migration omitted LabelDefinition and literal supporting type names.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/control-contracts.md#exact-core-v1-exports" },
+        { "id": "CCR-6", "classification": "non_blocking", "summary": "Atlas design links omitted the canonical contract.", "disposition": "corrected_pending_recheck", "correction_ref": "docs/features/control-gallery/workstream.json" }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "Stable stage identity and lifecycle status agree, but five blocking and one discovery inconsistency required correction.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/decisions.md", "docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/workstream.json", "PROJECT_STATUS.md"],
+      "invalidated_by": "The bounded correction after this review."
     }
   ]
 }

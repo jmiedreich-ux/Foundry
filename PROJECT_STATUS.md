@@ -10,4 +10,4 @@ The functional gallery baseline is complete through Popover. Source and referenc
 
 ## Next action
 
-Independently review the drafted Core v1 control contracts and prepare the bounded Maestro evaluation for the selected Base UI foundation. Do not resume Menu browser checks while the owner pause remains active.
+Complete the targeted second review of the corrected Core v1 control contracts, then prepare the bounded Maestro evaluation for Base UI 1.8.0. Do not resume Menu browser checks while the owner pause remains active.
