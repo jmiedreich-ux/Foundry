@@ -15,7 +15,7 @@ to its own records under `docs/features/<feature>/`; the detail lives there.
 
 | Codename | What it is | Position | Gate |
 |---|---|---|---|
-| **Control Gallery** | Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control (React/TypeScript), so a developer or reviewer can exercise the contract before a product adopts it | The functional baseline is complete through Popover. The Core v1 contract and Base UI production integration are approved; first-pass token and skin findings are corrected; overlay and navigation implementation remains paused. | Complete targeted rechecks of the token and skin contract. |
+| **Control Gallery** | Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control (React/TypeScript), so a developer or reviewer can exercise the contract before a product adopts it | The functional baseline is complete through Popover. The Core v1 contract and Base UI production integration are approved; token and skin review is stopped at its two-round limit with three completeness gaps; overlay and navigation implementation remains paused. | Obtain the owner's decision on one exceptional bounded correction and recheck. |
 
 Design authority for a feature is approved and recorded directly under
 `docs/features/<feature>/` (see `AGENTS.md`); Control Gallery's own `decisions.md` is that

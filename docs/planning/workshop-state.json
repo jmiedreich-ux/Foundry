@@ -16,8 +16,8 @@
   "publication": {
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
-    "last_verified_document_revision": "0a476cb4c654ee192746ef683a69b8df663c3a06",
-    "status": "Token and skin first-pass findings corrected for targeted recheck",
+    "last_verified_document_revision": "3ee13ee4f76df5be85f28cab01f4d3d81a3071be",
+    "status": "Token and skin review stopped at its two-round limit; owner process decision required",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
     "pending_paths": [
@@ -35,17 +35,18 @@
     "expected_base": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
     "delivery_level": "github_branch",
     "verified_local_files": [
-      { "path": "PRODUCT.md", "sha256": "0fb3fcb0750e6ac814c1db156af606e9a643920d5b6f2af2494682d71c4e0633" },
-      { "path": "PROJECT_STATUS.md", "sha256": "f87f2231bc3b184b9776992f4151996d159e17b2ee2e34fa6bc85bee123a9b5d" },
-      { "path": "ROADMAP.md", "sha256": "f95aba283c6faae3d8ac6bc7f9dec7a4a78254ff6e2d778229e8d049f3bc9b86" },
-      { "path": "docs/features/control-gallery/README.md", "sha256": "e14f35aeba5d179ba0000850eeb996bbbd461bc8a8c875be0ac86a0e03326600" },
-      { "path": "docs/features/control-gallery/decisions.md", "sha256": "5bb0ea8dca6047cb22aebc66fb8766c612a07abb828c767fa5e7be06e3003ba1" },
-      { "path": "docs/features/control-gallery/control-contracts.md", "sha256": "fc6ad9e29d65ae8357ae04dceeebe1669fcd7d245f9f5f08e82b711d6dafdf46" },
-      { "path": "docs/features/control-gallery/base-ui-integration.md", "sha256": "3eae2c5f3b45b03998e0ef3bbdeaf71f7c74e28aee076162ee94aa112dd7221c" },
+      { "path": "PRODUCT.md", "sha256": "bdcbd267b4579196b51be8a0c2ff526002b9a7b7fe94bbcebac3368ed02d411f" },
+      { "path": "PROJECT_STATUS.md", "sha256": "e3dfbdfdd6db155a38f6846022014de2d03723777d289bb939fb004de86934c7" },
+      { "path": "ROADMAP.md", "sha256": "b05347b2e888bd7bbddbd7155dab97e788216094acd96f78f8e450a265f6984a" },
+      { "path": "docs/features/control-gallery/README.md", "sha256": "50567ec430e006e191887b76badd50d971351ac4862af75a399d52ccf8969869" },
+      { "path": "docs/features/control-gallery/decisions.md", "sha256": "a23612152d1aa7e7cf539631912247c19b595dac22f1af18634ff4e2588ab28e" },
+      { "path": "docs/features/control-gallery/control-contracts.md", "sha256": "384f07b1dc27b1d9debf40b90672aa6143992dc92b287d1b92fccf94af81d9a6" },
+      { "path": "docs/features/control-gallery/base-ui-integration.md", "sha256": "fcbf38b175a33ab7bb3ed3c282d0d48d560c5eba36a0e758bf4bd7609a9a1ba5" },
+      { "path": "docs/features/control-gallery/token-and-skin.md", "sha256": "6e69c8158339ee3a34c8377c2c91891b03ded3c2d56bf0090d051eee77025709" },
       { "path": "docs/features/control-gallery/milestones.md", "sha256": "b4a3adf5cbd53914f68ed5e2aebca92aacf838e2d8e1d2dcb2eb8438ab6399b4" },
       { "path": "docs/features/control-gallery/question-register.md", "sha256": "3265c3d25174fe294b69839c0dbad97a49a3f91d720a6f9094191d73afcc39a3" },
-      { "path": "docs/features/control-gallery/workstream.json", "sha256": "63306d6c8aab2ff6bccf3f4407699fb06fa4162ccec4337a644dd936e9945a09" },
-      { "path": "docs/features/control-gallery/milestones/library-quality-foundation.md", "sha256": "f423452899c8f8dbd1d3442fd1f1f8c9f4ffc74f3ad070eef79adce15391953e" },
+      { "path": "docs/features/control-gallery/workstream.json", "sha256": "03db4b6df466682668e5cada7e6f9a5e660cf2dcec91d1bc13291cef931e6768" },
+      { "path": "docs/features/control-gallery/milestones/library-quality-foundation.md", "sha256": "3ef7c6538bdaa49c1c4c0908540aa4fd17960231eb2e30ffa09ecd7ac13bc6b4" },
       { "path": "docs/features/control-gallery/milestones/overlays-and-navigation.md", "sha256": "4aa38ccd5e754008d9ce452d9f7407aa10e97465c4c70b907ae59ba622200ad1" },
       { "path": "docs/features/control-gallery/milestones/acceptance-and-release.md", "sha256": "4d623debbebd93abf4cb3e6190aee453d251982c650e2432fcf3a6abfa011dcd" }
     ]
@@ -72,9 +73,13 @@
     "provider, direction, portal, server-rendering, and hydration lifecycle",
     "controlled request bridge and complete family journeys",
     "production sequence, required evidence, and escalation boundary",
-    "independently approved Base UI production integration contract"
+    "independently approved Base UI production integration contract",
+    "token and skin decision-fidelity approval at corrected checkpoint",
+    "closed token and skin source API, forced-color, serialization, and all five cross-document findings",
+    "exhausted second-round token and skin completeness review with recipe expressiveness, rendered font-size, and owned floating-layer gaps retained",
+    "corrected the status-only consistency finding returned at the second-round checkpoint"
   ],
-  "next_action": "Publish the corrected token and skin checkpoint, then run targeted decision-fidelity, architectural-completeness, and cross-document-consistency rechecks of the recorded findings.",
+  "next_action": "Obtain the owner's process decision on one exceptional bounded correction and targeted recheck limited to TS-I1, TS-I3, TS-I4, and the corrected status-only TS-R2-1 representation.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -223,6 +228,16 @@
       "status": "resolved",
       "resolution": "Owner authorized one exceptional targeted completeness recheck limited to F3 and F4.",
       "resolution_ref": "CG-REVIEW-EXCEPTION-001"
+    },
+    {
+      "id": "CG-ARQ-007",
+      "subject": "Token and skin review-bound disposition",
+      "missing_decision": "Authorize one exceptional bounded correction and targeted recheck for TS-I1, TS-I3, TS-I4, and the corrected status-only TS-R2-1 representation, or explicitly accept the three material completeness limitations.",
+      "affected_outcome": "Approval of the token and skin contract and eligibility to define implementation packets.",
+      "owner": "Foundry owner",
+      "selection_point": "Before another token-contract edit or any token, skin, provider, or recipe implementation packet.",
+      "required_evidence": "Recorded owner direction; if another round is authorized, passing targeted completeness and consistency results at the exact corrected commit.",
+      "status": "open"
     }
   ],
   "inspections": [
@@ -973,6 +988,89 @@
       "round_consumed": true,
       "correction_refs": ["docs/features/control-gallery/token-and-skin.md", "docs/features/control-gallery/base-ui-integration.md", "docs/features/control-gallery/control-contracts.md"],
       "invalidated_by": "The bounded correction after this review."
+    },
+    {
+      "id": "CG-TOKEN-SKIN-FIDELITY-R2",
+      "subject": "Core v1 token and skin contract",
+      "pass_type": "decision_fidelity",
+      "mode": "targeted",
+      "parent_review_id": "CG-TOKEN-SKIN-FIDELITY-R1",
+      "scope": "Owner-facing effects of the bounded token, recipe, hook, measurement, layer, validation, and production-order correction.",
+      "budget_key": "token-skin-fidelity",
+      "round": 2,
+      "reviewer": { "agent": "/root/contract_fidelity_review", "session": "separate resumed reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "3ee13ee4f76df5be85f28cab01f4d3d81a3071be", "document_hashes": { "docs/features/control-gallery/token-and-skin.md": "6e69c8158339ee3a34c8377c2c91891b03ded3c2d56bf0090d051eee77025709", "docs/features/control-gallery/base-ui-integration.md": "fcbf38b175a33ab7bb3ed3c282d0d48d560c5eba36a0e758bf4bd7609a9a1ba5", "docs/features/control-gallery/control-contracts.md": "384f07b1dc27b1d9debf40b90672aa6143992dc92b287d1b92fccf94af81d9a6", "docs/features/control-gallery/decisions.md": "a23612152d1aa7e7cf539631912247c19b595dac22f1af18634ff4e2588ab28e" }, "filtered_passages": ["Workshop state, handoff, prior conclusions, and agent messages excluded."], "original_decision_evidence": ["Original owner requirements and the exact correction delta were supplied."] },
+      "sources_examined": ["corrected token and skin contract", "directly affected Base UI, public control, decisions, status, roadmap, workstream, and milestone records"],
+      "journeys": [{ "name": "corrected owner boundary", "trace": "The correction was followed through visual quality, stable Foundry ownership, private Base UI adaptation, GitHub publication, implementation pause, and owner-reserved aesthetic acceptance." }],
+      "not_assessed": ["Architectural completeness, broad consistency, runtime gates, final aesthetic values, package commands, and license."],
+      "missing_evidence": ["Rendered candidates and executable visual gates remain UNTESTED by design."],
+      "findings": [],
+      "result": "pass",
+      "conclusion": "The correction preserves the owner's quality target, Foundry's complete-library boundary, delegated architecture authority, GitHub documentation authority, and the implementation and Menu pauses.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/token-and-skin.md", "docs/features/control-gallery/base-ui-integration.md", "docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/decisions.md"],
+      "invalidated_by": null
+    },
+    {
+      "id": "CG-TOKEN-SKIN-COMPLETENESS-R2",
+      "subject": "Core v1 token and skin contract",
+      "pass_type": "architectural_completeness",
+      "mode": "targeted",
+      "parent_review_id": "CG-TOKEN-SKIN-COMPLETENESS-R1",
+      "scope": "TS-I1 through TS-I6 and directly affected token, recipe, measurement, layer, validation, and generation dependencies.",
+      "budget_key": "token-skin-completeness",
+      "round": 2,
+      "reviewer": { "agent": "/root/contract_completeness_review", "session": "separate resumed reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "3ee13ee4f76df5be85f28cab01f4d3d81a3071be", "document_hashes": { "docs/features/control-gallery/token-and-skin.md": "6e69c8158339ee3a34c8377c2c91891b03ded3c2d56bf0090d051eee77025709", "docs/features/control-gallery/base-ui-integration.md": "fcbf38b175a33ab7bb3ed3c282d0d48d560c5eba36a0e758bf4bd7609a9a1ba5", "docs/features/control-gallery/control-contracts.md": "384f07b1dc27b1d9debf40b90672aa6143992dc92b287d1b92fccf94af81d9a6", "docs/features/control-gallery/decisions.md": "a23612152d1aa7e7cf539631912247c19b595dac22f1af18634ff4e2588ab28e" }, "filtered_passages": ["Workshop state, handoff, prior conclusions, and agent messages excluded."], "original_decision_evidence": ["Parent findings TS-I1 through TS-I6 supplied under the targeted-check exception."] },
+      "sources_examined": ["corrected token and skin contract", "directly affected public control and Base UI contracts", "current provider, control, and skin source"],
+      "journeys": [{ "name": "targeted visual implementation boundary", "trace": "Token and skin source validation, recipe expansion, control/state rendering, geometry, Base UI measurements, document layer allocation, forced colors, naming, and recovery were retraced." }],
+      "not_assessed": ["Actual runtime, browser, hydration, rendered visual, assistive-technology, packed-consumer, package-command, and license outcomes."],
+      "missing_evidence": ["Three blocking specification gaps remain after the permitted second review round."],
+      "findings": [
+        { "id": "TS-I1", "classification": "blocking", "disposition": "open_at_review_bound", "summary": "Recipe bundle responsibilities are not mechanically exact, and RecipeValue cannot express required arithmetic, signed transforms, or keyframe and animation-name values.", "minimum_correction": "Define exact normalized records or mechanically expandable bundles plus arithmetic, directional, keyframe, and animation-name value forms." },
+        { "id": "TS-I2", "disposition": "closed" },
+        { "id": "TS-I3", "classification": "blocking", "disposition": "open_at_review_bound", "summary": "A rem source minimum does not prove the required rendered 16px text-entry and select size when the application root font size is smaller.", "minimum_correction": "Require rendered getComputedStyle font-size assertions of at least 16px on text-entry and select browser boards." },
+        { "id": "TS-I4", "classification": "blocking", "disposition": "open_at_review_bound", "summary": "Append-only document allocation conflicts with promoting a non-top modal's owned floating child directly after that modal.", "minimum_correction": "Define one deterministic behavior for an owned floating child opened from a non-top modal, including refusal or insertion, hiding, close, and recovery." },
+        { "id": "TS-I5", "disposition": "closed" },
+        { "id": "TS-I6", "disposition": "closed" }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "Token sources, validation, forced colors, serialization, and much of the runtime boundary are exact, but recipe expressiveness, rendered font sizing, and non-top-modal child layering still require implementation-time invention.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": [],
+      "invalidated_by": null
+    },
+    {
+      "id": "CG-TOKEN-SKIN-CONSISTENCY-R2",
+      "subject": "Core v1 token and skin contract",
+      "pass_type": "cross_document_consistency",
+      "mode": "targeted",
+      "parent_review_id": "CG-TOKEN-SKIN-CONSISTENCY-R1",
+      "scope": "TS-C1 through TS-C5 and directly affected styling isolation, production order, SkinName, control hooks, provider/layer, publication, and pause representations.",
+      "budget_key": "token-skin-consistency",
+      "round": 2,
+      "reviewer": { "agent": "/root/integration_consistency_fresh", "session": "fresh separate reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": "3ee13ee4f76df5be85f28cab01f4d3d81a3071be", "document_hashes": { "docs/features/control-gallery/token-and-skin.md": "6e69c8158339ee3a34c8377c2c91891b03ded3c2d56bf0090d051eee77025709", "docs/features/control-gallery/base-ui-integration.md": "fcbf38b175a33ab7bb3ed3c282d0d48d560c5eba36a0e758bf4bd7609a9a1ba5", "docs/features/control-gallery/control-contracts.md": "384f07b1dc27b1d9debf40b90672aa6143992dc92b287d1b92fccf94af81d9a6", "docs/features/control-gallery/decisions.md": "a23612152d1aa7e7cf539631912247c19b595dac22f1af18634ff4e2588ab28e", "PROJECT_STATUS.md": "e3dfbdfdd6db155a38f6846022014de2d03723777d289bb939fb004de86934c7", "ROADMAP.md": "b05347b2e888bd7bbddbd7155dab97e788216094acd96f78f8e450a265f6984a", "docs/features/control-gallery/workstream.json": "03db4b6df466682668e5cada7e6f9a5e660cf2dcec91d1bc13291cef931e6768" }, "filtered_passages": ["Workshop state, handoff, prior conclusions, and agent messages excluded."], "original_decision_evidence": ["Parent findings TS-C1 through TS-C5 supplied under the targeted-check exception."] },
+      "sources_examined": ["PRODUCT.md", "PROJECT_STATUS.md", "ROADMAP.md", "feature README", "decisions.md", "control-contracts.md", "base-ui-integration.md", "token-and-skin.md", "workstream and milestone records", "relevant package manifests and current source"],
+      "journeys": [{ "name": "targeted representation chain", "trace": "Private adapter translation, production order, SkinName refusal, stable control identity, nested-provider layers, publication, and pause state were compared across their authorities." }],
+      "not_assessed": ["Runtime, build, browser, hydration, rendered visual, assistive-technology, packed-consumer, live PR, package-gate, and unrelated architecture outcomes."],
+      "missing_evidence": ["One status-only contradiction required correction; runtime evidence remains UNTESTED."],
+      "findings": [
+        { "id": "TS-C1", "disposition": "closed" },
+        { "id": "TS-C2", "disposition": "closed" },
+        { "id": "TS-C3", "disposition": "closed" },
+        { "id": "TS-C4", "disposition": "closed" },
+        { "id": "TS-C5", "disposition": "closed" },
+        { "id": "TS-R2-1", "classification": "material", "disposition": "corrected_at_review_bound", "summary": "PROJECT_STATUS.md still instructed publication even though the correction was already published.", "correction_ref": "PROJECT_STATUS.md#next-action" }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "All five targeted architecture inconsistencies are closed; the only direct regression was a stale publication instruction in the controlled status record, corrected after this review.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["PROJECT_STATUS.md", "ROADMAP.md", "docs/features/control-gallery/workstream.json", "ai/handoffs/current.md"],
+      "invalidated_by": "Status synchronization after the exact reviewed checkpoint."
     }
   ]
 }
