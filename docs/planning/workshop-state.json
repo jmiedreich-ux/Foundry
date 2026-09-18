@@ -25,7 +25,7 @@
   "covered_topics": [
     "authoritative source inventory",
     "PR #57 review-intake boundary",
-    "M5 coverage versus FCR remediation coverage",
+    "cross-control acceptance versus remediation coverage",
     "project-milestone naming",
     "reader-facing delivery-stage structure"
   ],
@@ -33,7 +33,7 @@
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
-      "subject": "CG-M4-19 remains paused",
+      "subject": "Menu browser checks remain paused",
       "authority": "owner",
       "evidence": "ai/handoffs/current.md#exact-next-action",
       "canonical_ref": "ai/handoffs/current.md#exact-next-action",
@@ -43,7 +43,7 @@
       "id": "CG-ARCH-001",
       "subject": "Project-milestone naming",
       "authority": "owner",
-      "evidence": "Owner direction: reorder milestone numbers, use plain titles, and do not call work simply M4, 2026-09-17.",
+      "evidence": "Owner direction: use plain titles rather than stage shorthand, 2026-09-17.",
       "canonical_ref": "docs/features/control-gallery/milestones.md",
       "supersedes": null
     }
@@ -52,7 +52,7 @@
     {
       "id": "CG-ARQ-001",
       "subject": "Core v1 distribution boundary",
-      "missing_decision": "Whether Core v1 must ship @foundry/react as a distributable package at M5, rather than remaining an internal gallery and source workspace.",
+      "missing_decision": "Whether Core v1 must ship @foundry/react as a distributable package at the acceptance-and-release stage, rather than remaining an internal gallery and source workspace.",
       "affected_outcome": "FCR release-readiness finding; package-output, CI, consumer-smoke, README, and license planning.",
       "owner": "Foundry owner",
       "status": "open"
@@ -77,7 +77,7 @@
       ],
       "evidence_level": "source-supported",
       "findings": [
-        "M5 defines cross-control acceptance but not ownership or sequencing for the ten confirmed FCR corrections, CI, or package-release readiness.",
+        "The cross-control acceptance stage does not yet assign ownership or sequencing for the ten confirmed review findings, CI, or package-release readiness.",
         "No repository workshop-state record or single architecture-disposition register existed before this workshop.",
         "PR #57 is a draft with no recorded independent GitHub review; its reviewed snapshot is 5e01f5a0d02c78ced41a915042b49dd8ffd666c9."
       ],
