@@ -29,7 +29,7 @@
     "project-milestone naming",
     "reader-facing delivery-stage structure"
   ],
-  "next_action": "Obtain the owner's decision on whether Core v1 ships an installable Foundry package, then assign every open architecture question to a delivery stage and verification gate.",
+  "next_action": "Define the release-gate contract and assign the cross-control correction sequence before implementation resumes.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -46,15 +46,23 @@
       "evidence": "Owner direction: use plain titles rather than stage shorthand, 2026-09-17.",
       "canonical_ref": "docs/features/control-gallery/milestones.md",
       "supersedes": null
+    },
+    {
+      "id": "CG-ARCH-002",
+      "subject": "Core v1 distribution boundary",
+      "authority": "delegated chief software architect",
+      "evidence": "Owner delegated architecture decisions and asked to begin the architecture path, 2026-09-17.",
+      "canonical_ref": "docs/features/control-gallery/decisions.md#quality-baseline-and-delivery-direction",
+      "supersedes": null
     }
   ],
   "open_questions": [
     {
       "id": "CG-ARQ-001",
-      "subject": "Core v1 distribution boundary",
-      "missing_decision": "Whether Core v1 must ship @foundry/react as a distributable package at the acceptance-and-release stage, rather than remaining an internal gallery and source workspace.",
-      "affected_outcome": "FCR release-readiness finding; package-output, CI, consumer-smoke, README, and license planning.",
-      "owner": "Foundry owner",
+      "subject": "Release license",
+      "missing_decision": "Which license grants the rights for the Foundry package to be published and adopted.",
+      "affected_outcome": "Package publication and consumer adoption.",
+      "owner": "Foundry owner or delegated chief software architect",
       "status": "open"
     }
   ],

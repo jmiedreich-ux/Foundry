@@ -2,11 +2,11 @@
 
 ## Outcome
 
-The complete gallery has cross-control accessibility, responsive, keyboard, focus, name, motion, and overflow evidence. Risks and untested boundaries are explicit, and an owner can review the outcome without beginning product adoption work.
+The complete gallery has cross-control accessibility, responsive, keyboard, focus, name, motion, and overflow evidence. Foundry is packaged for installation with public exports, declarations, a consumer smoke check, onboarding documentation, and a release license. Risks and untested boundaries are explicit, and an owner can review the outcome without beginning product adoption work.
 
 ## Dependencies
 
-All preceding delivery stages are complete. Architecture dispositions identify any correction work, release gates, and package boundary required before acceptance.
+All preceding delivery stages are complete. Architecture dispositions identify any correction work and release gates required before acceptance.
 
 ## Completion evidence
 

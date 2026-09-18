@@ -38,6 +38,21 @@ The repository default skin is the single source of token values. A skin change 
 
 Work is divided into bounded, non-overlapping changes. Shared contracts, package configuration, integration, and final review remain coordinator-owned. A change is accepted only with scoped verification and independent review. Browser evidence runs against the real gallery.
 
+## Quality baseline and delivery direction
+
+Core v1 ships an installable Foundry package. It includes compiled JavaScript, type declarations, public export maps, React peer-dependency guidance, a packed-consumer smoke check, onboarding documentation, and a license before release.
+
+Foundry follows the outcome standards of mature control libraries without copying their APIs or visual systems: accessible defaults, native semantics where available, predictable keyboard and focus behavior, stable public contracts, and a token-based visual system. The default skin must make size, state, density, typography, spacing, motion, and focus visibly coherent at narrow and wide widths.
+
+The next architecture work is ordered as follows:
+
+1. Establish release gates: canonical unit and browser commands, supported Node and browser versions, pull-request checks, package output, and a packed-consumer check.
+2. Repair cross-control contract failures: size output, focus contrast, controlled callbacks, Tabs focus recovery, overlay titles, localization, close-label ownership, and trigger-property ownership.
+3. Complete remaining overlay and navigation browser coverage, then run cross-control acceptance against the real gallery.
+4. Compare planned controls against mature-library outcomes and add only the missing capabilities that serve Foundry’s documented users.
+
+This direction is informed by the accessibility and focus-management approach documented by [Radix Primitives](https://www.radix-ui.com/primitives/docs/overview/accessibility) and the token, theme, and package-consumer patterns documented by [Material UI](https://mui.com/material-ui/customization/theming/). These sources are reference evidence, not design authority.
+
 ## Decisions still required
 
 The independent repository review identified unresolved architecture decisions. No correction is authorized until these are decided and assigned:
@@ -51,4 +66,4 @@ The independent repository review identified unresolved architecture decisions. 
 - ownership of localized Search clear text;
 - whether close controls use a fixed catalog label or a bounded consumer label API;
 - one trigger-prop ownership policy for overlays; and
-- whether Core v1 ships a distributable package, with package output, consumer smoke coverage, onboarding documentation, and a license.
+- the release license for the distributable package.

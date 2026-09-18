@@ -4,7 +4,7 @@ These questions are active decisions, not a history of resolved work. Each needs
 
 | Question | Why it matters |
 | --- | --- |
-| Does Core v1 ship an installable Foundry package? | Determines package output, export maps, consumer smoke coverage, onboarding documentation, license, and release gates. |
+| Which release license does Foundry use? | The distributable package needs a clear grant before it can be published. |
 | What visible differences do small, medium, and large controls guarantee? | The public size contract needs an observable skin and token outcome. |
 | What focus treatment meets contrast requirements everywhere it appears? | Keyboard focus must remain perceivable on canvas, controls, and actions. |
 | What callback is required for controlled state? | A controlled control must not become impossible to dismiss or change. |
