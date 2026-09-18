@@ -1,6 +1,6 @@
 # Core v1 control contracts
 
-This is the canonical public and migration boundary for Core v1. It defines observable Foundry behavior. `@base-ui/react` 1.8.0 is the first internal proof candidate; a reviewed successful proof authorizes its production use. If it fails, the same proof runs against React Aria Components. No dependency part, prop, event, ref, or data attribute is public Foundry API.
+This is the canonical public and migration boundary for Core v1. It defines observable Foundry behavior. `@base-ui/react` 1.8.0 is the selected internal interaction foundation. No dependency part, prop, event, ref, or data attribute is public Foundry API.
 
 ## Shared invariants
 
@@ -227,7 +227,7 @@ Only the selected panel is mounted. It receives `tabIndex=0` when it has no focu
 1. Introduce the provider, explicit root exports, and internalize accidental foundation exports without changing consumer-visible control behavior.
 2. Correct native fields/actions and names, including Button content, `NativeSelect`, `SearchField`, state unions, reset recovery, and system labels.
 3. Replace static Toast with the queue boundary and correct feedback heading/live semantics.
-4. Rebase complex families only after the disposable foundation proof is reviewed and accepted; remove `MenuClose` and add the approved structure.
+4. Rebase complex families on Base UI through the reviewed production integration contract; remove `MenuClose` and add the approved structure.
 5. Rebuild the gallery against packed public exports. Compatibility aliases may exist only inside one migration branch; none ship in Core v1.
 
 Each packet cites its contract section, searches every current consumer, and maps its assertions to the following gates. A path without an executed gate is `UNTESTED`.

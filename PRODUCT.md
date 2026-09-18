@@ -50,7 +50,7 @@ The supplied Foundry architecture, design-to-skin, and usage-guide documents def
 
 ## Current State
 
-The gallery and the initial control catalog exist, but Core v1 is not release-ready. Source inspection found cross-control API, styling, accessibility, packaging, and browser-support gaps. Implementation is paused while the architecture defines the quality foundation and selects the proven headless foundation on which complex interaction internals will be rebased behind the Foundry API.
+The gallery and the initial control catalog exist, but Core v1 is not release-ready. Source inspection found cross-control API, styling, accessibility, packaging, and browser-support gaps. Implementation is paused while the architecture completes the quality foundation for rebasing complex interaction internals on Base UI behind the Foundry API.
 
 ## Authoritative Sources
 

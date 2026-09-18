@@ -14,13 +14,18 @@
   "publication": {
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
-    "last_verified_document_revision": "db7cf5afa10f79998e6465027c733da1e3356d82",
-    "status": "Core v1 control contract approved after the owner-authorized exceptional completeness recheck; status synchronization pending",
+    "last_verified_document_revision": "2199974211784fb34c396b41f8071b714bd4cf1e",
+    "status": "Owner selection of Base UI 1.8.0 as the production interaction foundation recorded locally; independent review and publication pending",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
     "pending_paths": [
       "PROJECT_STATUS.md",
+      "PRODUCT.md",
+      "ROADMAP.md",
       "ai/handoffs/current.md",
+      "docs/features/control-gallery/decisions.md",
+      "docs/features/control-gallery/control-contracts.md",
+      "docs/features/control-gallery/milestones/library-quality-foundation.md",
       "docs/features/control-gallery/workstream.json",
       "docs/planning/workshop-state.json"
     ],
@@ -56,9 +61,10 @@
     "targeted second-round fidelity and consistency approval",
     "exhausted second-round completeness review with forwarding and native-control prop gaps retained",
     "owner-authorized exceptional completeness recheck limited to F3 and F4",
-    "approved Core v1 public control and migration contract"
+    "approved Core v1 public control and migration contract",
+    "owner-selected Base UI 1.8.0 production interaction foundation"
   ],
-  "next_action": "Define the bounded disposable Maestro evaluation contract for Base UI 1.8.0, including exact journeys, gates, retained evidence, rejection rules, and React Aria fallback trigger.",
+  "next_action": "Define the production Base UI integration contract, including exact primitive mappings, adapter boundaries, implementation sequence, and browser and server-rendering gates.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -107,6 +113,14 @@
       "evidence": "Official library documentation and current package metadata were compared against Foundry's Dialog, Menu, Tabs, Field, Toast, SSR, packaging, and controlled-request needs on 2026-09-17.",
       "canonical_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation",
       "supersedes": null
+    },
+    {
+      "id": "CG-ARCH-006",
+      "subject": "Base UI 1.8.0 is the production interaction foundation",
+      "authority": "owner",
+      "evidence": "Owner direction on 2026-09-17: ‘let's go with the base-ui.’",
+      "canonical_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation",
+      "supersedes": "CG-ARCH-005"
     },
     {
       "id": "CG-REVIEW-EXCEPTION-001",
