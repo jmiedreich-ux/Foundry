@@ -15,7 +15,7 @@ to its own records under `docs/features/<feature>/`; the detail lives there.
 
 | Codename | What it is | Position | Gate |
 |---|---|---|---|
-| **Control Gallery** | Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control (React/TypeScript), so a developer or reviewer can exercise the contract before a product adopts it | **M1 and M2 are accepted and closed.** M3's Button contract and default-skin treatment are accepted on its branch. Checkbox is active with Qwen (local). | Complete `CG-M3-02` (Checkbox semantics, controlled/uncontrolled state, and reset behavior). |
+| **Control Gallery** | Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control (React/TypeScript), so a developer or reviewer can exercise the contract before a product adopts it | Gallery foundation, field controls, and actions/selection/search/feedback are accepted and closed. Overlay and navigation work is paused after Popover browser checks. | Resolve architecture dispositions from PR #57; keep Menu browser checks paused until the owner resumes them. |
 
 Design authority for a feature is approved and recorded directly under
 `docs/features/<feature>/` (see `AGENTS.md`); Control Gallery's own `decisions.md` is that

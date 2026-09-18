@@ -123,7 +123,7 @@
     {
       "packet": "CG-M3-04.1",
       "owner": "Codex coordinator (cloud)",
-      "paths": ["docs/features/control-gallery/decisions.md", "docs/features/control-gallery/milestones/m3.md", "docs/features/control-gallery/question-register.md", "docs/features/control-gallery/assignments.md", "docs/features/control-gallery/performance-reports.md"],
+      "paths": ["docs/features/control-gallery/decisions.md", "docs/features/control-gallery/milestones/interactions-and-feedback.md", "docs/features/control-gallery/question-register.md", "docs/features/control-gallery/assignments.md", "docs/features/control-gallery/performance-reports.md"],
       "status": "completed"
     },
     {
@@ -303,7 +303,7 @@
     {
       "packet": "CG-M3-V01",
       "owner": "Codex coordinator (cloud)",
-      "paths": ["docs/features/control-gallery/milestones/m3.md", "docs/features/control-gallery/decisions.md", "docs/features/control-gallery/question-register.md", "docs/features/control-gallery/assignments.md", "docs/features/control-gallery/performance-reports.md"],
+      "paths": ["docs/features/control-gallery/milestones/interactions-and-feedback.md", "docs/features/control-gallery/decisions.md", "docs/features/control-gallery/question-register.md", "docs/features/control-gallery/assignments.md", "docs/features/control-gallery/performance-reports.md"],
       "status": "completed"
     },
     {

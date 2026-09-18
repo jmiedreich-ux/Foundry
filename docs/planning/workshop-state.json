@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "repository": "jmiedreich-ux/Foundry",
-  "source_revision": "78495ed6b16eb52aec5a283f86f0842651cae59e",
+  "source_revision": "809dc11cbed024d2768339f6a34d24aee2c1138c",
   "status": "discussing",
   "paths": {
     "overview": "PRODUCT.md",
@@ -21,20 +21,30 @@
     "delivery_level": "local",
     "verified_local_files": []
   },
-  "current_topic": "Control Gallery architecture-disposition review for the independent repository review in PR #57",
+  "current_topic": "Control Gallery planning structure and architecture-disposition review",
   "covered_topics": [
     "authoritative source inventory",
     "PR #57 review-intake boundary",
-    "M5 coverage versus FCR remediation coverage"
+    "M5 coverage versus FCR remediation coverage",
+    "project-milestone naming",
+    "reader-facing delivery-stage structure"
   ],
-  "next_action": "Obtain the owner's decision on whether Core v1 includes a distributable @foundry/react package, then create the disposition register for FCR-001 through FCR-010 and release readiness.",
+  "next_action": "Rewrite the legacy architecture decisions and question register into reader-facing current sources, then obtain the owner's decision on the Core v1 distribution boundary.",
   "decisions": [
     {
-      "id": "CG-PAUSE-M4-19",
+      "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
       "subject": "CG-M4-19 remains paused",
       "authority": "owner",
       "evidence": "ai/handoffs/current.md#exact-next-action",
       "canonical_ref": "ai/handoffs/current.md#exact-next-action",
+      "supersedes": null
+    },
+    {
+      "id": "CG-ARCH-001",
+      "subject": "Project-milestone naming",
+      "authority": "owner",
+      "evidence": "Owner direction: reorder milestone numbers, use plain titles, and do not call work simply M4, 2026-09-17.",
+      "canonical_ref": "docs/features/control-gallery/milestones.md",
       "supersedes": null
     }
   ],
@@ -61,8 +71,8 @@
         "docs/features/control-gallery/README.md",
         "docs/features/control-gallery/decisions.md",
         "docs/features/control-gallery/milestones.md",
-        "docs/features/control-gallery/milestones/m4.md",
-        "docs/features/control-gallery/milestones/m5.md",
+        "docs/features/control-gallery/milestones/overlays-and-navigation.md",
+        "docs/features/control-gallery/milestones/acceptance-and-release.md",
         "docs/features/control-gallery/workstream.json"
       ],
       "evidence_level": "source-supported",
