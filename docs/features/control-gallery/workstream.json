@@ -2,12 +2,13 @@
   "codename": "Control Gallery",
   "what": "Foundry's living acceptance surface — demonstrates real behavior for every Core v1 control, so a developer or reviewer can exercise the contract before a product adopts it",
   "stage": "development",
-  "position": "The functional gallery baseline is complete through Popover. The Core v1 public control and migration contract is independently approved, and the owner selected Base UI 1.8.0 as the internal interaction foundation. Overlay and navigation implementation remains paused.",
-  "next": "Define the production Base UI integration contract, including primitive mappings, adapter boundaries, implementation sequence, and browser and server-rendering gates.",
+  "position": "The functional gallery baseline is complete through Popover. The Core v1 public contract is approved, Base UI 1.8.0 is selected, and the production integration contract is drafted for independent review. Overlay and navigation implementation remains paused.",
+  "next": "Complete decision-fidelity, architectural-completeness, and cross-document-consistency review of the Base UI production integration contract.",
   "label": "workstream:control-gallery",
   "design": [
     { "name": "Control Gallery architecture decisions", "where": "docs/features/control-gallery/decisions.md" },
-    { "name": "Core v1 control contracts", "where": "docs/features/control-gallery/control-contracts.md" }
+    { "name": "Core v1 control contracts", "where": "docs/features/control-gallery/control-contracts.md" },
+    { "name": "Base UI production integration", "where": "docs/features/control-gallery/base-ui-integration.md" }
   ],
   "milestones": [
     {

@@ -54,7 +54,7 @@ No new custom overlay, collection-navigation, focus-scope, or floating-positioni
 
 ### Selected interaction foundation
 
-Base UI 1.8.0 is Foundry's selected internal interaction foundation. The owner accepted it for production use on 2026-09-17. One maintained package covers the representative Dialog, Menu, Tabs, Field, and Toast journeys; provides subpath exports with no package side effects; builds positioning on Floating UI; and reports change reasons through cancellable event details. Those details let a Foundry adapter distinguish trigger, Escape, outside, focus, and imperative requests without exposing Base UI's API.
+Base UI 1.8.0 is Foundry's selected internal interaction foundation. The owner accepted it for production use on 2026-09-17. One maintained package covers the representative Dialog, Popover, Menu, Tabs, and Toast journeys; provides subpath exports with no package side effects; builds positioning on Floating UI; and reports change reasons through cancellable event details. Those details let a Foundry adapter distinguish trigger, Escape, outside, focus, selection, and imperative requests without exposing Base UI's API.
 
 | Option | Strongest evidence | Decision |
 | --- | --- | --- |
@@ -72,11 +72,13 @@ Foundry owns the public contract and Base UI owns only internal mechanics:
 | Floating controls | Public placement choices and Foundry token hooks | Anchoring, flipping, shifting, collision boundaries, available size, and scroll/resize updates |
 | Visual system | Every class, token, part alias, state recipe, motion value, and z-layer policy | No consumer-visible styling; Base UI state is translated to stable Foundry hooks |
 
+This division applies to Base-backed families. Field, Group, Button, TextField, NativeSelect, Checkbox, Switch, RadioGroup, and SearchField remain native Foundry controls and do not import Base UI.
+
 Ordinary Button, TextField, native Select, Checkbox, and Radio controls continue to use native elements. Navigation Link is an essential future addition, not a Core v1 export. Foundry's side panel uses Base UI Dialog mechanics with a Foundry placement recipe; a gesture/snap-point Drawer primitive is reserved for a future contract. Popover, Menu, Tabs, Toast, Dialog, and the side panel use Base UI. New `FoundryProvider` owns the portal, direction, locale, skin, and default Toast boundary; the current `OverlayRoot` is internalized and removed rather than becoming a second engine.
 
 Production integration must prove Foundry's Base UI adapters in Chromium, Firefox, WebKit, server-render, and hydration paths. The gates cover controlled acceptance and decline; stale requests; nested and missing-trigger recovery; no-focusable fallback; Escape, outside, Tab, and explicit dismissal; scroll lock and inertness; collision and resize updates; Menu typeahead and disabled items; Tabs orientation, direction, activation, removal, nesting, and panel fallback; native Field labeling, validation, reset, and autofill interoperation; and Toast queue, timer pause, action, dismissal, and keyboard access. A material Base UI limitation requires an explicit architecture decision; implementation does not mix foundations, patch private internals, or silently extend the custom interaction machinery.
 
-The quality stage advances in this order: review the per-control contract; define the Base UI production integration contract; approve the token/skin and package/gate contracts; then issue bounded Maestro production packets. No production packet starts from an unreviewed architecture contract.
+The exact Base UI mappings and production gates are maintained in [Base UI production integration](base-ui-integration.md). The quality stage advances in this order: review the per-control and Base UI integration contracts; approve the token/skin and package/gate contracts; then issue bounded Maestro production packets. No production packet starts from an unreviewed architecture contract.
 
 The canonical per-export public boundary and migration dispositions are maintained in [Core v1 control contracts](control-contracts.md). That matrix governs control packets; this document governs the cross-control architecture.
 
@@ -127,7 +129,7 @@ The canonical per-export public boundary and migration dispositions are maintain
 | Default skin | Rebuild as an explicitly imported, fully scoped token skin with complete recipes for every Core v1 control. |
 | Packaging and verification | Add canonical commands, product CI, multi-browser release gates, declarations, peer dependencies, and packed-consumer proof. |
 
-The owner selected Base UI 1.8.0 for production. Its Dialog, Menu, Tabs, Field, Toast, SSR/hydration, controlled-state, positioning, React-support, and package-boundary behavior remains subject to the required implementation gates above. A material limitation returns to architecture review; it does not authorize mixed foundations or more custom interaction machinery.
+The owner selected Base UI 1.8.0 for production. Its Dialog, Drawer, Popover, Menu, Tabs, Toast, server-rendering/hydration, controlled-state, positioning, React-support, and package-boundary behavior remains subject to the required implementation gates above. Native fields and actions remain subject to their Foundry regression gates. A material limitation returns to architecture review; it does not authorize mixed foundations or more custom interaction machinery.
 
 ## Capability path
 

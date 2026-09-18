@@ -7,6 +7,7 @@
     "overview": "PRODUCT.md",
     "architecture": "docs/features/control-gallery/decisions.md",
     "control_contracts": "docs/features/control-gallery/control-contracts.md",
+    "base_ui_integration": "docs/features/control-gallery/base-ui-integration.md",
     "milestones": "docs/features/control-gallery/milestones.md",
     "guide": "docs/features/control-gallery/README.md",
     "state": "docs/planning/workshop-state.json"
@@ -14,11 +15,22 @@
   "publication": {
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
-    "last_verified_document_revision": "1dc5ce7f239b58af9319ca6ca484ca82567ccca2",
-    "status": "Base UI 1.8.0 production selection independently reviewed and published",
+    "last_verified_document_revision": "aeb50d0c49118df6b6b454b73fc6816caefd5c23",
+    "status": "Base UI production integration drafted locally; independent review and publication pending",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
-    "pending_paths": [],
+    "pending_paths": [
+      "PROJECT_STATUS.md",
+      "ROADMAP.md",
+      "ai/handoffs/current.md",
+      "docs/features/control-gallery/README.md",
+      "docs/features/control-gallery/base-ui-integration.md",
+      "docs/features/control-gallery/control-contracts.md",
+      "docs/features/control-gallery/decisions.md",
+      "docs/features/control-gallery/milestones/library-quality-foundation.md",
+      "docs/features/control-gallery/workstream.json",
+      "docs/planning/workshop-state.json"
+    ],
     "expected_base": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
     "delivery_level": "github_branch",
     "verified_local_files": [
@@ -36,7 +48,7 @@
       { "path": "docs/features/control-gallery/milestones/acceptance-and-release.md", "sha256": "4d623debbebd93abf4cb3e6190aee453d251982c650e2432fcf3a6abfa011dcd" }
     ]
   },
-  "current_topic": "Core v1 library quality foundation",
+  "current_topic": "Base UI production integration",
   "covered_topics": [
     "complete production-source and test inventory",
     "mature-library and WAI-ARIA reference review",
@@ -52,9 +64,14 @@
     "exhausted second-round completeness review with forwarding and native-control prop gaps retained",
     "owner-authorized exceptional completeness recheck limited to F3 and F4",
     "approved Core v1 public control and migration contract",
-    "owner-selected Base UI 1.8.0 production interaction foundation"
+    "owner-selected Base UI 1.8.0 production interaction foundation",
+    "exact Base UI 1.8.0 artifact, declaration, source, and public-API inspection",
+    "production primitive mappings and private adapter boundaries",
+    "provider, direction, portal, server-rendering, and hydration lifecycle",
+    "controlled request bridge and complete family journeys",
+    "production sequence, required evidence, and escalation boundary"
   ],
-  "next_action": "Define the production Base UI integration contract, including exact primitive mappings, adapter boundaries, implementation sequence, and browser and server-rendering gates.",
+  "next_action": "Run independent decision-fidelity, architectural-completeness, and cross-document-consistency reviews of the Base UI production integration contract.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -100,7 +117,7 @@
       "id": "CG-ARCH-005",
       "subject": "Base UI 1.8.0 is the first hidden interaction-foundation proof candidate",
       "authority": "delegated chief software architect",
-      "evidence": "Official library documentation and current package metadata were compared against Foundry's Dialog, Menu, Tabs, Field, Toast, SSR, packaging, and controlled-request needs on 2026-09-17.",
+      "evidence": "Official library documentation and current package metadata were compared against Foundry's Dialog, Drawer, Popover, Menu, Tabs, Toast, server-rendering, packaging, and controlled-request needs on 2026-09-17.",
       "canonical_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation",
       "supersedes": null
     },
@@ -111,6 +128,14 @@
       "evidence": "Owner direction on 2026-09-17: ‘let's go with the base-ui.’",
       "canonical_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation",
       "supersedes": "CG-ARCH-005"
+    },
+    {
+      "id": "CG-ARCH-007",
+      "subject": "Base UI production integration boundary",
+      "authority": "delegated chief software architect",
+      "evidence": "Exact Base UI 1.8.0 artifact, declaration, source, and official-documentation inspection against Foundry's approved Core v1 public contract on 2026-09-17.",
+      "canonical_ref": "docs/features/control-gallery/base-ui-integration.md",
+      "supersedes": null
     },
     {
       "id": "CG-REVIEW-EXCEPTION-001",
@@ -139,7 +164,7 @@
       "affected_outcome": "All complex-control migration contracts.",
       "owner": "delegated chief software architect",
       "selection_point": "Before any complex-control Maestro packet is prepared.",
-      "required_evidence": "Decision matrix and representative Dialog, Menu, Tabs, Field, and Toast proof protocol.",
+      "required_evidence": "Decision matrix and representative Dialog, Drawer, Popover, Menu, Tabs, and Toast integration protocol.",
       "status": "resolved",
       "resolution_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation"
     },
@@ -179,9 +204,9 @@
       "id": "CG-ARQ-006",
       "subject": "Control-contract completeness review disposition",
       "missing_decision": "Authorize one exceptional targeted completeness recheck after correcting the unmapped forwarding profiles and omitted native-control props, or explicitly accept those unresolved material limitations.",
-      "affected_outcome": "Approval of the Core v1 control contract and eligibility of the Base UI Maestro proof packet.",
+      "affected_outcome": "Approval of the Core v1 control contract and eligibility to define the Base UI production integration contract.",
       "owner": "Foundry owner",
-      "selection_point": "Before another control-contract edit or the Base UI proof packet.",
+      "selection_point": "Before another control-contract edit or the Base UI production integration contract.",
       "required_evidence": "Recorded owner direction; if another round is authorized, a passing independent targeted completeness result at the corrected exact commit.",
       "status": "resolved",
       "resolution": "Owner authorized one exceptional targeted completeness recheck limited to F3 and F4.",
@@ -189,6 +214,31 @@
     }
   ],
   "inspections": [
+    {
+      "source_revision": "aeb50d0c49118df6b6b454b73fc6816caefd5c23",
+      "paths": [
+        "package.json",
+        "packages/react/package.json",
+        "packages/react/src/foundation/field.tsx",
+        "packages/react/src/foundation/providers.tsx",
+        "packages/react/src/feedback/toast/toast.tsx",
+        "packages/react/src/overlays/dialog/dialog.tsx",
+        "packages/react/src/overlays/drawer/drawer.tsx",
+        "packages/react/src/overlays/popover/popover.tsx",
+        "packages/react/src/overlays/menu/menu.tsx",
+        "packages/react/src/navigation/tabs/tabs.tsx",
+        "docs/features/control-gallery"
+      ],
+      "evidence_level": "source-supported",
+      "findings": [
+        "Base UI 1.8.0 exposes the public parts, controlled callbacks, event details, rendering hooks, positioning controls, and React support needed for Foundry's selected complex-control families.",
+        "Foundry must keep public state, validation, topology, refs, localization, styling, recovery, queueing, announcements, and package declarations behind private adapters.",
+        "Base UI Menu and Tabs intentionally keep disabled collection items focusable; the approved Foundry public contract was aligned to that accessible discovery behavior.",
+        "Base UI Toast parts are usable, but Foundry requires a private queue, timer, announcer, and multi-viewport focus coordinator to preserve its public contract.",
+        "Native field and action controls do not require Base UI and remain fully Foundry-owned."
+      ],
+      "canonical_evidence": "docs/features/control-gallery/base-ui-integration.md"
+    },
     {
       "source_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
       "paths": [
