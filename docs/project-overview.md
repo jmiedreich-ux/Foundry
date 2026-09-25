@@ -37,7 +37,6 @@ The default branch and draft pull request `#59` describe different architecture 
 
 | Source type | Subject or designation | Repository-relative location |
 |---|---|---|
-| Product definition | Foundry purpose, users, scope, and principles | `PRODUCT.md` |
 | Architecture | Control Gallery architecture and current quality direction | `docs/features/control-gallery/decisions.md` |
 | Milestone declaration | M1 — Gallery foundation and test harness | `docs/features/control-gallery/milestones/gallery-foundation.md` |
 | Milestone declaration | M2 — Foundations and field controls | `docs/features/control-gallery/milestones/field-controls.md` |
