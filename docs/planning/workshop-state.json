@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "repository": "jmiedreich-ux/Foundry",
-  "source_revision": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
+  "source_revision": "8be36fb19fa547759b8c08695b161bb9cee680a7",
   "status": "drafting",
   "paths": {
     "overview": "PRODUCT.md",
@@ -17,41 +17,43 @@
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
     "last_verified_document_revision": "a2eaec3023be247806699cf28dd4f8cdb7e46cc9",
-    "status": "Exceptional token and skin review bound reached with recipe inventory incomplete; owner process decision required",
+    "status": "All-control Base UI correction drafted; named consistency findings closed, final fidelity, completeness, and status checks pending",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
     "pending_paths": [
-      "PRODUCT.md",
       "PROJECT_STATUS.md",
       "ROADMAP.md",
       "ai/handoffs/current.md",
-      "docs/features/control-gallery/README.md",
+      "docs/features/control-gallery/base-ui-integration.md",
       "docs/features/control-gallery/control-contracts.md",
       "docs/features/control-gallery/decisions.md",
+      "docs/features/control-gallery/question-register.md",
+      "docs/features/control-gallery/README.md",
       "docs/features/control-gallery/token-and-skin.md",
       "docs/features/control-gallery/workstream.json",
-      "docs/features/control-gallery/milestones/library-quality-foundation.md"
+      "docs/features/control-gallery/milestones/library-quality-foundation.md",
+      "docs/features/control-gallery/milestones/field-controls.md"
     ],
-    "expected_base": "8808b7d423d107e4bc7e62e2ab5feb34411fa121",
+    "expected_base": "8be36fb19fa547759b8c08695b161bb9cee680a7",
     "delivery_level": "github_branch",
     "verified_local_files": [
       { "path": "PRODUCT.md", "sha256": "bdcbd267b4579196b51be8a0c2ff526002b9a7b7fe94bbcebac3368ed02d411f" },
-      { "path": "PROJECT_STATUS.md", "sha256": "dcc81ecd2b0c81b6de5d2d9291319770e0900c8048628933e91b3908bb4767b9" },
-      { "path": "ROADMAP.md", "sha256": "cf4e7716287cb6dc1224e2de88e68b50ad3e4910b70a85367cc970f2a4244d5c" },
-      { "path": "docs/features/control-gallery/README.md", "sha256": "50567ec430e006e191887b76badd50d971351ac4862af75a399d52ccf8969869" },
-      { "path": "docs/features/control-gallery/decisions.md", "sha256": "a23612152d1aa7e7cf539631912247c19b595dac22f1af18634ff4e2588ab28e" },
-      { "path": "docs/features/control-gallery/control-contracts.md", "sha256": "384f07b1dc27b1d9debf40b90672aa6143992dc92b287d1b92fccf94af81d9a6" },
-      { "path": "docs/features/control-gallery/base-ui-integration.md", "sha256": "fcbf38b175a33ab7bb3ed3c282d0d48d560c5eba36a0e758bf4bd7609a9a1ba5" },
-      { "path": "docs/features/control-gallery/token-and-skin.md", "sha256": "dc9c82092d5815b043a296ab7b9a1c58def8094414a7ca625fd36676ce9b2961" },
+      { "path": "PROJECT_STATUS.md", "sha256": "1914de9fbe16dd745016ce9023c19a4f1af358513cf18226c6ea674bb5e5525c" },
+      { "path": "ROADMAP.md", "sha256": "2c4c28342b4fe4f95cb2bd9ddc44161c7c100152fecdbcc0824ab7cdabbc3f11" },
+      { "path": "docs/features/control-gallery/README.md", "sha256": "67684140e3cdfcd35db2f8a323241b13c6d72e23af3056b9aa962a2a77838883" },
+      { "path": "docs/features/control-gallery/decisions.md", "sha256": "4a1442c81c493884c215c99460ce635d4f9a055f447a336e8c93f9abad2dc0cb" },
+      { "path": "docs/features/control-gallery/control-contracts.md", "sha256": "11efd82af896b5e3382a36639e0cc2fd5ff6ba296273cf9ae9fce9984e634553" },
+      { "path": "docs/features/control-gallery/base-ui-integration.md", "sha256": "439407652ce6a293a0f37f469cb30f04037ab88d90fe9a8cd5864c880cad0666" },
+      { "path": "docs/features/control-gallery/token-and-skin.md", "sha256": "b34260523d818eead7bfdeb64536bce42cf6fcd80f39f80d68bbe05c91e23d46" },
       { "path": "docs/features/control-gallery/milestones.md", "sha256": "b4a3adf5cbd53914f68ed5e2aebca92aacf838e2d8e1d2dcb2eb8438ab6399b4" },
-      { "path": "docs/features/control-gallery/question-register.md", "sha256": "3265c3d25174fe294b69839c0dbad97a49a3f91d720a6f9094191d73afcc39a3" },
-      { "path": "docs/features/control-gallery/workstream.json", "sha256": "14fe9f26ff7cc910f89d158da4ec55ff13c0b9d5095b5d284124f91e243cee28" },
-      { "path": "docs/features/control-gallery/milestones/library-quality-foundation.md", "sha256": "3ef7c6538bdaa49c1c4c0908540aa4fd17960231eb2e30ffa09ecd7ac13bc6b4" },
+      { "path": "docs/features/control-gallery/question-register.md", "sha256": "3e3729d699cd57714915f321f24b77618a4e6f063bd3183f8be0712a053c1e78" },
+      { "path": "docs/features/control-gallery/workstream.json", "sha256": "2977b5f4b0c432b70d2b9d173752073e30ab60b48758306f10a15fb30033f6bb" },
+      { "path": "docs/features/control-gallery/milestones/library-quality-foundation.md", "sha256": "eaa0b475a453f1ab21e6d49863f5699af16382dbcb54d60ed4bc65fd3e590beb" },
       { "path": "docs/features/control-gallery/milestones/overlays-and-navigation.md", "sha256": "4aa38ccd5e754008d9ce452d9f7407aa10e97465c4c70b907ae59ba622200ad1" },
       { "path": "docs/features/control-gallery/milestones/acceptance-and-release.md", "sha256": "4d623debbebd93abf4cb3e6190aee453d251982c650e2432fcf3a6abfa011dcd" }
     ]
   },
-  "current_topic": "Token and skin schema",
+  "current_topic": "Base UI foundation for every Core v1 control",
   "covered_topics": [
     "complete production-source and test inventory",
     "mature-library and WAI-ARIA reference review",
@@ -80,9 +82,14 @@
     "corrected the status-only consistency finding returned at the second-round checkpoint",
     "owner-authorized exceptional token and skin correction limited to TS-I1, TS-I3, TS-I4, and TS-R2-1",
     "exceptional token and skin recheck closed rendered font sizing and modal-owned layering but retained incomplete recipe applications and direct state records",
-    "corrected stale publication wording found by the exceptional status-consistency recheck"
+    "corrected stale publication wording found by the exceptional status-consistency recheck",
+    "owner-expanded Base UI 1.8.0 from complex interactions to every Core v1 control",
+    "retained the Core v1 catalog and current Select name while canceling the planned NativeSelect rename and replacing the native implementation",
+    "retained a fixed non-swipeable Drawer and excluded snap points",
+    "mapped every Core v1 control to a Base UI public primitive or useRender",
+    "classified the remaining Base UI 1.8.0 capabilities for future consideration"
   ],
-  "next_action": "Obtain the owner's process decision on one further bounded recipe-inventory correction and targeted completeness recheck, plus a status-only consistency recheck of the synchronized records.",
+  "next_action": "Complete fresh decision-fidelity review, independent targeted recheck of the final Select reset/layer synchronizations, and a narrow consistency check of synchronized status records; then begin CG-ARQ-005 package and executable-gate architecture.",
   "decisions": [
     {
       "id": "CG-PAUSE-MENU-BROWSER-CHECKS",
@@ -157,6 +164,30 @@
       "supersedes": null
     },
     {
+      "id": "CG-ARCH-009",
+      "subject": "Base UI 1.8.0 is the private foundation for every Core v1 control",
+      "authority": "owner",
+      "evidence": "Owner direction on 2026-09-26: 'base UI is for all controls' and 'everything that base UI can provide we should use.'",
+      "canonical_ref": "docs/features/control-gallery/decisions.md#architecture-layers",
+      "supersedes": "CG-ARCH-006"
+    },
+    {
+      "id": "CG-ARCH-010",
+      "subject": "Core v1 catalog, Select, and fixed Drawer boundary",
+      "authority": "owner",
+      "evidence": "Owner retained the existing Core v1 catalog and current Select name, approved replacing its native implementation with Base UI Select, retained Drawer, and rejected swipe and snap-point behavior on 2026-09-26.",
+      "canonical_ref": "docs/features/control-gallery/base-ui-integration.md#base-ui-capability-coverage",
+      "supersedes": null
+    },
+    {
+      "id": "CG-ARCH-011",
+      "subject": "Routine control-foundation choices are delegated to the architecture workshop",
+      "authority": "owner",
+      "evidence": "Owner direction on 2026-09-26: 'you don't need me to answer these questions, I just want functional controls set.'",
+      "canonical_ref": "docs/features/control-gallery/base-ui-integration.md",
+      "supersedes": null
+    },
+    {
       "id": "CG-REVIEW-EXCEPTION-001",
       "subject": "One exceptional Core v1 completeness recheck",
       "authority": "owner",
@@ -182,18 +213,19 @@
       "owner": "Foundry owner",
       "selection_point": "Before Core v1 release packaging is accepted.",
       "required_evidence": "Published license file and matching package metadata.",
-      "status": "open"
+      "status": "resolved",
+      "resolution_ref": "CG-ARCH-011"
     },
     {
       "id": "CG-ARQ-002",
       "subject": "Internal interaction foundation selection",
       "missing_decision": "Select Radix Primitives, React Aria Components, or Base UI and fix the native, adapter, portal, focus, dismissal, positioning, and collection responsibility boundary.",
-      "affected_outcome": "All complex-control migration contracts.",
+      "affected_outcome": "All Core v1 control migration contracts.",
       "owner": "delegated chief software architect",
       "selection_point": "Before any complex-control Maestro packet is prepared.",
       "required_evidence": "Decision matrix and representative Dialog, Drawer, Popover, Menu, Tabs, and Toast integration protocol.",
       "status": "resolved",
-      "resolution_ref": "docs/features/control-gallery/decisions.md#selected-interaction-foundation"
+      "resolution_ref": "CG-ARCH-009"
     },
     {
       "id": "CG-ARQ-003",
@@ -334,6 +366,32 @@
         "Mature token systems and Base UI's unstyled state surface support generated semantic tokens plus one Foundry-owned recipe layer; W3C criteria require rendered focus, contrast, forced-color, zoom, and non-color evidence rather than token-table inspection alone."
       ],
       "canonical_evidence": "docs/features/control-gallery/token-and-skin.md"
+    },
+    {
+      "source_revision": "47b40521eab921c2756bf9bdb0b0f07fbfdb8c8c",
+      "paths": [
+        "@base-ui/react@1.8.0/package.json",
+        "@base-ui/react@1.8.0/button",
+        "@base-ui/react@1.8.0/field",
+        "@base-ui/react@1.8.0/fieldset",
+        "@base-ui/react@1.8.0/input",
+        "@base-ui/react@1.8.0/checkbox",
+        "@base-ui/react@1.8.0/radio",
+        "@base-ui/react@1.8.0/radio-group",
+        "@base-ui/react@1.8.0/select",
+        "@base-ui/react@1.8.0/switch",
+        "@base-ui/react@1.8.0/drawer",
+        "@base-ui/react@1.8.0/use-render"
+      ],
+      "evidence_level": "exact-artifact-source-supported",
+      "findings": [
+        "Base UI 1.8.0 provides public primitives for every interactive Core v1 field and action family plus a public useRender foundation for static surfaces.",
+        "Base UI Select can replace the current native Select with a Foundry-owned single-value listbox while keeping dependency types and event details private.",
+        "Base UI Checkbox, Switch, and Radio provide hidden native form inputs whose refs can remain the Foundry public form-control refs.",
+        "Base UI Drawer installs swipe handling through its required viewport and exposes no supported disable switch, so Foundry's fixed non-swipeable side panel continues to use Base UI Dialog mechanics.",
+        "Base UI capabilities outside the approved catalog require explicit Foundry journeys and do not expand Core v1 merely because the dependency exports them."
+      ],
+      "canonical_evidence": "docs/features/control-gallery/base-ui-integration.md#base-ui-capability-coverage"
     }
   ],
   "review_policy": {
@@ -602,7 +660,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": ["docs/features/control-gallery/decisions.md", "docs/features/control-gallery/control-contracts.md"],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009 and Select boundary CG-ARCH-010."
     },
     {
       "id": "CG-CONTRACT-CONSISTENCY-R2",
@@ -627,7 +685,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": ["docs/features/control-gallery/decisions.md", "docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/workstream.json", "PROJECT_STATUS.md"],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009 and Select boundary CG-ARCH-010."
     },
     {
       "id": "CG-CONTRACT-COMPLETENESS-R2",
@@ -656,7 +714,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": [],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009 and Select boundary CG-ARCH-010."
     },
     {
       "id": "CG-CONTRACT-COMPLETENESS-R3",
@@ -682,7 +740,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": ["docs/features/control-gallery/control-contracts.md"],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009 and Select boundary CG-ARCH-010."
     },
     {
       "id": "CG-BASE-UI-SELECTION-FIDELITY-R1",
@@ -703,7 +761,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": [],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009."
     },
     {
       "id": "CG-BASE-UI-SELECTION-COMPLETENESS-R1",
@@ -724,7 +782,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": [],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009."
     },
     {
       "id": "CG-BASE-UI-SELECTION-CONSISTENCY-R1",
@@ -745,7 +803,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": ["docs/features/control-gallery/milestones/overlays-and-navigation.md"],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009."
     },
     {
       "id": "CG-BASE-UI-SELECTION-CONSISTENCY-R2",
@@ -767,7 +825,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": ["docs/features/control-gallery/milestones/overlays-and-navigation.md"],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009."
     },
     {
       "id": "CG-BASE-UI-INTEGRATION-FIDELITY-R1",
@@ -895,7 +953,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": ["PRODUCT.md", "docs/features/control-gallery/decisions.md", "docs/features/control-gallery/base-ui-integration.md", "docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/workstream.json"],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009 and Select boundary CG-ARCH-010."
     },
     {
       "id": "CG-BASE-UI-INTEGRATION-COMPLETENESS-R2",
@@ -920,7 +978,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": ["docs/features/control-gallery/base-ui-integration.md", "docs/features/control-gallery/control-contracts.md"],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009 and Select boundary CG-ARCH-010."
     },
     {
       "id": "CG-BASE-UI-INTEGRATION-CONSISTENCY-R2",
@@ -945,7 +1003,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": ["PRODUCT.md", "docs/features/control-gallery/decisions.md", "docs/features/control-gallery/base-ui-integration.md", "docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/workstream.json"],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009 and Select boundary CG-ARCH-010."
     },
     {
       "id": "CG-TOKEN-SKIN-FIDELITY-R1",
@@ -1047,7 +1105,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": ["docs/features/control-gallery/token-and-skin.md", "docs/features/control-gallery/base-ui-integration.md", "docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/decisions.md"],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009 and Select recipe boundary CG-ARCH-010."
     },
     {
       "id": "CG-TOKEN-SKIN-COMPLETENESS-R2",
@@ -1077,7 +1135,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": [],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009 and Select recipe boundary CG-ARCH-010."
     },
     {
       "id": "CG-TOKEN-SKIN-CONSISTENCY-R2",
@@ -1134,7 +1192,7 @@
       "coverage_complete": true,
       "round_consumed": true,
       "correction_refs": [],
-      "invalidated_by": null
+      "invalidated_by": "Owner-expanded all-control Base UI decision CG-ARCH-009 and Select recipe boundary CG-ARCH-010."
     },
     {
       "id": "CG-TOKEN-SKIN-CONSISTENCY-R3",
@@ -1160,6 +1218,160 @@
       "round_consumed": true,
       "correction_refs": ["PROJECT_STATUS.md", "ROADMAP.md", "docs/features/control-gallery/workstream.json", "ai/handoffs/current.md"],
       "invalidated_by": "Status synchronization after the exact reviewed checkpoint."
+    },
+    {
+      "id": "CG-ALL-CONTROL-FIDELITY-X1",
+      "subject": "All-control Base UI correction",
+      "pass_type": "decision_fidelity",
+      "mode": "full",
+      "budget_key": "all-control-base-ui-fidelity",
+      "round": 1,
+      "reviewer": { "agent": "/root/all_control_fidelity", "session": "fresh separate reviewer", "independence": "invalid_input_packet", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": null, "document_hashes": { "docs/features/control-gallery/decisions.md": "376e75cece601934c67d798579e80a52e0367edbf00ebfbb45f9f35b5c572e8f", "docs/features/control-gallery/control-contracts.md": "a29c499240ea2e5b68ff541dde25ec017d7cea63696c7a843e3f146867c9803d", "docs/features/control-gallery/base-ui-integration.md": "28159fbf04c06a83e756d42a84fd55a523aac4272a5ef8e746a9e13f6f505c97", "docs/features/control-gallery/token-and-skin.md": "924a598caea0bed9940bd6e604e30d0840a259ca83dbb8a1d248e2c68a938826" }, "filtered_passages": ["Workshop state, handoff, prior reviews, Git history, and PR discussion excluded."], "original_decision_evidence": ["Packet incorrectly described the settled Select naming boundary."] },
+      "sources_examined": ["four active architecture authorities", "milestones", "guide", "question register", "status", "roadmap", "workstream"],
+      "journeys": [{ "name": "owner decision chain", "trace": "All-control foundation, private API boundary, Select, Drawer, delegated technical choices, implementation pause, Menu pause, and license authority were traced." }],
+      "not_assessed": ["Completeness, broad consistency, implementation, runtime, package evidence."],
+      "missing_evidence": ["Correct original Select naming evidence."],
+      "findings": [],
+      "result": "ineligible",
+      "conclusion": "The packet misstated the controlling Select naming decision, so this otherwise complete review cannot establish fidelity.",
+      "coverage_complete": false,
+      "round_consumed": false,
+      "correction_refs": [],
+      "invalidated_by": "Incorrect decision evidence in the review packet."
+    },
+    {
+      "id": "CG-ALL-CONTROL-FIDELITY-X2",
+      "subject": "All-control Base UI correction",
+      "pass_type": "decision_fidelity",
+      "mode": "full",
+      "budget_key": "all-control-base-ui-fidelity",
+      "round": 1,
+      "reviewer": { "agent": "/root/all_control_fidelity_rerun", "session": "fresh replacement reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": null, "document_hashes": { "docs/features/control-gallery/decisions.md": "4a1442c81c493884c215c99460ce635d4f9a055f447a336e8c93f9abad2dc0cb", "docs/features/control-gallery/control-contracts.md": "a054cf5aa404cbe5454945a13236c29d06457634d67e492dcd380602aa001adb", "docs/features/control-gallery/base-ui-integration.md": "439407652ce6a293a0f37f469cb30f04037ab88d90fe9a8cd5864c880cad0666", "docs/features/control-gallery/token-and-skin.md": "30b6fb62f600581dee3754b5ce8c34eb93a9f5265424630c700ea8d400d078d3" }, "filtered_passages": ["Workshop state, handoff, prior reviews, Git history, and PR discussion excluded."], "original_decision_evidence": ["Correct owner evidence supplied, including retaining Foundry Select and canceling the planned NativeSelect rename."] },
+      "sources_examined": [],
+      "journeys": [],
+      "not_assessed": ["All review coverage."],
+      "missing_evidence": ["Reviewer output was unavailable because the agent service reached its usage limit."],
+      "findings": [],
+      "result": "incomplete_attempt",
+      "conclusion": "No review coverage was returned; fresh fidelity review remains pending.",
+      "coverage_complete": false,
+      "round_consumed": false,
+      "correction_refs": [],
+      "invalidated_by": null
+    },
+    {
+      "id": "CG-ALL-CONTROL-COMPLETENESS-R1",
+      "subject": "All-control Base UI correction",
+      "pass_type": "architectural_completeness",
+      "mode": "full",
+      "budget_key": "all-control-base-ui-completeness",
+      "round": 1,
+      "reviewer": { "agent": "/root/all_control_completeness", "session": "fresh separate reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": null, "document_hashes": { "docs/features/control-gallery/decisions.md": "376e75cece601934c67d798579e80a52e0367edbf00ebfbb45f9f35b5c572e8f", "docs/features/control-gallery/control-contracts.md": "a29c499240ea2e5b68ff541dde25ec017d7cea63696c7a843e3f146867c9803d", "docs/features/control-gallery/base-ui-integration.md": "28159fbf04c06a83e756d42a84fd55a523aac4272a5ef8e746a9e13f6f505c97", "docs/features/control-gallery/token-and-skin.md": "924a598caea0bed9940bd6e604e30d0840a259ca83dbb8a1d248e2c68a938826" }, "filtered_passages": ["Workshop state, handoff, prior conclusions, Git history, and PR discussion excluded."], "original_decision_evidence": ["All-control private Base UI foundation, Foundry-only API, Foundry Select, fixed Drawer, and delegated technical choices."] },
+      "sources_examined": ["four active architecture authorities", "library-quality and field milestones", "exact Base UI 1.8.0 artifact where reuse claims depended on it"],
+      "journeys": [{ "name": "complete control and operation trace", "trace": "Field/Group, actions, text/search, choices, Select, surfaces, Drawer, provider/portal/SSR, recipes, capability scope, and packaging were traced across entry, configuration, authority, state, result, refusal, and recovery." }],
+      "not_assessed": ["Runtime execution, visual approval, release license, built package and browser evidence."],
+      "missing_evidence": ["Package/gate authority", "form reset bridge", "Select layering", "Select grouping", "RadioGroup recovery", "two public type semantics", "Field precedence", "Select trigger recipe", "Switch geometry", "milestone truth"],
+      "findings": [
+        { "id": "AC-F1", "classification": "blocking", "disposition": "accepted_deferral_pending_targeted_recheck", "summary": "Package and executable-gate authority is absent.", "correction_ref": "docs/features/control-gallery/milestones/library-quality-foundation.md#status" },
+        { "id": "AC-F2", "classification": "blocking", "disposition": "corrected_pending_recheck", "summary": "Native form reset had no Foundry transaction.", "correction_ref": "docs/features/control-gallery/base-ui-integration.md#native-form-reset-bridge" },
+        { "id": "AC-F3", "classification": "blocking", "disposition": "corrected_pending_recheck", "summary": "Select had no layer allocation.", "correction_ref": "docs/features/control-gallery/base-ui-integration.md#select" },
+        { "id": "AC-F4", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "Select separator had no data rule.", "correction_ref": "docs/features/control-gallery/base-ui-integration.md#select" },
+        { "id": "AC-F5", "classification": "blocking", "disposition": "corrected_pending_recheck", "summary": "RadioGroup dynamic collection behavior was incomplete.", "correction_ref": "docs/features/control-gallery/control-contracts.md#foundation-fields-and-actions" },
+        { "id": "AC-F6", "classification": "blocking", "disposition": "corrected_pending_recheck", "summary": "CheckboxState and string invalid semantics were undefined.", "correction_ref": "docs/features/control-gallery/control-contracts.md#exact-core-v1-exports" },
+        { "id": "AC-F7", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "Field child eligibility and precedence were open.", "correction_ref": "docs/features/control-gallery/control-contracts.md#foundation-fields-and-actions" },
+        { "id": "AC-F8", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "Select trigger recipe conflicted.", "correction_ref": "docs/features/control-gallery/token-and-skin.md#recipe-contract" },
+        { "id": "AC-F9", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "Switch visual and hit-area geometry disagreed.", "correction_ref": "docs/features/control-gallery/token-and-skin.md#recipe-contract" },
+        { "id": "AC-F10", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "Completed field milestone claimed future Base-backed work.", "correction_ref": "docs/features/control-gallery/milestones/field-controls.md" }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "Ten named gaps required one bounded correction; runtime remained UNTESTED.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/base-ui-integration.md", "docs/features/control-gallery/token-and-skin.md", "docs/features/control-gallery/milestones/field-controls.md", "docs/features/control-gallery/milestones/library-quality-foundation.md"],
+      "invalidated_by": "The bounded all-control correction after this review."
+    },
+    {
+      "id": "CG-ALL-CONTROL-COMPLETENESS-R2",
+      "subject": "All-control Base UI correction",
+      "pass_type": "architectural_completeness",
+      "mode": "targeted",
+      "parent_review_id": "CG-ALL-CONTROL-COMPLETENESS-R1",
+      "scope": "AC-F1 through AC-F10 and directly affected corrections.",
+      "budget_key": "all-control-base-ui-completeness",
+      "round": 2,
+      "reviewer": { "agent": "/root/all_control_completeness", "session": "separate resumed reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": null, "document_hashes": { "docs/features/control-gallery/control-contracts.md": "a054cf5aa404cbe5454945a13236c29d06457634d67e492dcd380602aa001adb", "docs/features/control-gallery/base-ui-integration.md": "439407652ce6a293a0f37f469cb30f04037ab88d90fe9a8cd5864c880cad0666", "docs/features/control-gallery/token-and-skin.md": "30b6fb62f600581dee3754b5ce8c34eb93a9f5265424630c700ea8d400d078d3" }, "filtered_passages": ["Only prior findings AC-F1 through AC-F10 and directly affected corrections supplied under the targeted-check exception."], "original_decision_evidence": ["Parent findings AC-F1 through AC-F10."] },
+      "sources_examined": ["corrected control, integration, token/skin, and milestone passages"],
+      "journeys": [{ "name": "targeted all-control correction", "trace": "Each named finding was retraced through its corrected public state, adapter, form, layer, recipe, or status dependency." }],
+      "not_assessed": ["Unrelated architecture, runtime, visual approval, package implementation, release license."],
+      "missing_evidence": ["Independent recheck of the final Select reset and promoted-layer synchronization edits.", "CG-ARQ-005 package/gate contract remains open overall."],
+      "findings": [
+        { "id": "AC-F1", "disposition": "closed_for_checkpoint_open_overall" },
+        { "id": "AC-F2", "classification": "material", "disposition": "corrected_after_round_pending_recheck", "summary": "Control contract omitted the missing/disabled mounted-default-to-null reset rule." },
+        { "id": "AC-F3", "classification": "material", "disposition": "corrected_after_round_pending_recheck", "summary": "Token forest enumerations omitted promoted Select." },
+        { "id": "AC-F4", "disposition": "closed" }, { "id": "AC-F5", "disposition": "closed" }, { "id": "AC-F6", "disposition": "closed" }, { "id": "AC-F7", "disposition": "closed" }, { "id": "AC-F8", "disposition": "closed" }, { "id": "AC-F9", "disposition": "closed" }, { "id": "AC-F10", "disposition": "closed" }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "F4-F10 closed and F1 is an accepted checkpoint deferral; F2 and F3 were substantively corrected but required two final synchronization edits, now applied and awaiting independent recheck.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/token-and-skin.md"],
+      "invalidated_by": "Final Select reset and promoted-layer synchronization edits after this review."
+    },
+    {
+      "id": "CG-ALL-CONTROL-CONSISTENCY-R1",
+      "subject": "All-control Base UI correction",
+      "pass_type": "cross_document_consistency",
+      "mode": "full",
+      "budget_key": "all-control-base-ui-consistency",
+      "round": 1,
+      "reviewer": { "agent": "/root/all_control_consistency", "session": "fresh separate reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": null, "document_hashes": { "docs/features/control-gallery/decisions.md": "376e75cece601934c67d798579e80a52e0367edbf00ebfbb45f9f35b5c572e8f", "docs/features/control-gallery/control-contracts.md": "a29c499240ea2e5b68ff541dde25ec017d7cea63696c7a843e3f146867c9803d", "docs/features/control-gallery/base-ui-integration.md": "28159fbf04c06a83e756d42a84fd55a523aac4272a5ef8e746a9e13f6f505c97", "docs/features/control-gallery/token-and-skin.md": "924a598caea0bed9940bd6e604e30d0840a259ca83dbb8a1d248e2c68a938826" }, "filtered_passages": ["Workshop state, full handoff, prior reviews, Git history, and PR discussion excluded; current handoff facts supplied separately."], "original_decision_evidence": ["Current all-control owner decisions and filtered handoff representation."] },
+      "sources_examined": ["architecture authorities", "milestones", "guide", "question register", "status", "roadmap", "workstream", "filtered handoff"],
+      "journeys": [{ "name": "cross-document control lifecycle", "trace": "Provider, every control family, tokens/recipes, production order, and lifecycle/status representations were compared." }],
+      "not_assessed": ["Workshop state, full handoff history, implementation, package artifacts, runtime evidence."],
+      "missing_evidence": ["Seven representation corrections."],
+      "findings": [
+        { "id": "AC-C1", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "Floating coordinate methods conflicted." },
+        { "id": "AC-C2", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "Tabs and Toast sizes were unreachable." },
+        { "id": "AC-C3", "classification": "material", "disposition": "corrected_pending_recheck", "summary": "Banner close lifecycle conflicted with exit presence." },
+        { "id": "AC-C4", "classification": "localized", "disposition": "corrected_pending_recheck", "summary": "StatusChip named an undeclared content part." },
+        { "id": "AC-C5", "classification": "localized", "disposition": "corrected_pending_recheck", "summary": "Select migration naming disagreed." },
+        { "id": "AC-C6", "classification": "localized", "disposition": "corrected_pending_recheck", "summary": "Production order omitted useRender." },
+        { "id": "AC-C7", "classification": "localized", "disposition": "corrected_pending_recheck", "summary": "Completed field milestone claimed unstarted renewal." }
+      ],
+      "result": "material_changes_required",
+      "conclusion": "Seven named cross-document contradictions required correction.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/base-ui-integration.md", "docs/features/control-gallery/token-and-skin.md", "docs/features/control-gallery/milestones/field-controls.md", "PROJECT_STATUS.md", "ROADMAP.md", "docs/features/control-gallery/workstream.json"],
+      "invalidated_by": "The bounded all-control correction after this review."
+    },
+    {
+      "id": "CG-ALL-CONTROL-CONSISTENCY-R2",
+      "subject": "All-control Base UI correction",
+      "pass_type": "cross_document_consistency",
+      "mode": "targeted",
+      "parent_review_id": "CG-ALL-CONTROL-CONSISTENCY-R1",
+      "scope": "AC-C1 through AC-C7 and directly affected dependencies.",
+      "budget_key": "all-control-base-ui-consistency",
+      "round": 2,
+      "reviewer": { "agent": "/root/all_control_consistency", "session": "separate resumed reviewer", "independence": "independent", "authorship_eligible": true, "prohibited_input_exposure": false },
+      "snapshot": { "repository": "jmiedreich-ux/Foundry", "commit": null, "document_hashes": { "docs/features/control-gallery/decisions.md": "4a1442c81c493884c215c99460ce635d4f9a055f447a336e8c93f9abad2dc0cb", "docs/features/control-gallery/control-contracts.md": "a054cf5aa404cbe5454945a13236c29d06457634d67e492dcd380602aa001adb", "docs/features/control-gallery/base-ui-integration.md": "439407652ce6a293a0f37f469cb30f04037ab88d90fe9a8cd5864c880cad0666", "docs/features/control-gallery/token-and-skin.md": "30b6fb62f600581dee3754b5ce8c34eb93a9f5265424630c700ea8d400d078d3" }, "filtered_passages": ["Only AC-C1 through AC-C7 and directly affected dependencies supplied under the targeted-check exception."], "original_decision_evidence": ["Parent findings AC-C1 through AC-C7."] },
+      "sources_examined": ["corrected architecture, contract, token, milestone, guide, status, roadmap, and workstream passages"],
+      "journeys": [{ "name": "targeted representation chain", "trace": "Coordinate, size, presence, part, naming, production-order, and milestone representations were compared." }],
+      "not_assessed": ["Runtime and package evidence, unrelated architecture, workshop state, full handoff."],
+      "missing_evidence": ["Runtime and package outcomes remain UNTESTED."],
+      "findings": [{ "id": "AC-C1", "disposition": "closed" }, { "id": "AC-C2", "disposition": "closed" }, { "id": "AC-C3", "disposition": "closed" }, { "id": "AC-C4", "disposition": "closed" }, { "id": "AC-C5", "disposition": "closed" }, { "id": "AC-C6", "disposition": "closed" }, { "id": "AC-C7", "disposition": "closed" }],
+      "result": "pass",
+      "conclusion": "All seven cross-document corrections are closed with no direct contradiction found.",
+      "coverage_complete": true,
+      "round_consumed": true,
+      "correction_refs": ["docs/features/control-gallery/control-contracts.md", "docs/features/control-gallery/base-ui-integration.md", "docs/features/control-gallery/token-and-skin.md", "docs/features/control-gallery/milestones/field-controls.md", "PROJECT_STATUS.md", "ROADMAP.md", "docs/features/control-gallery/workstream.json"],
+      "invalidated_by": "Final Select reset/layer synchronization and review-status record changes after this exact snapshot; a narrow consistency check remains pending."
     }
   ]
 }

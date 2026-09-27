@@ -2,7 +2,7 @@
 
 ## Outcome
 
-Consumers can compose labelled text and selection fields with predictable controlled and uncontrolled behavior, validation, reset, state hooks, and a governed default skin.
+The completed functional baseline lets consumers compose labelled native text and selection fields through Foundry APIs with predictable controlled and uncontrolled behavior, validation, and reset. Rebasing these controls on private Base UI foundations while retaining Foundry's public `Select` name is renewal work owned by the library quality foundation, not completed work in this stage.
 
 ## Completion evidence
 

@@ -4,7 +4,7 @@ The Control Gallery is Foundry’s living acceptance surface. It lets developers
 
 ## Current state
 
-The functional gallery baseline is complete through Popover. The library quality foundation is now in architecture review so Core v1 has a coherent interaction, accessibility, skin, package, and release contract before more control implementation. Overlay and navigation work remains paused; Menu browser checks must not resume until the owner lifts the pause and the quality foundation is complete.
+The functional gallery baseline is complete through Popover. The library quality foundation is in architecture review after Base UI 1.8.0 was expanded into the private foundation for every Core v1 control. Foundry retains its public API and current `Select` name while replacing the native implementation; Drawer remains fixed and non-swipeable. Overlay and navigation work remains paused; Menu browser checks must not resume until the owner lifts the pause and the quality foundation is complete.
 
 ## Planning sources
 

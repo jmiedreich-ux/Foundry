@@ -2,9 +2,9 @@
 
 ## Purpose
 
-This document defines how Foundry uses `@base-ui/react` 1.8.0 without exposing Base UI to an application. It is the production integration authority for the controls named below. The public API and behavior remain governed by [Core v1 control contracts](control-contracts.md).
+This document defines how every Foundry Core v1 control uses `@base-ui/react` 1.8.0 without exposing Base UI to an application. It is the production integration and capability-coverage authority. The public API and behavior remain governed by [Core v1 control contracts](control-contracts.md).
 
-Base UI supplies tested interaction mechanics. Foundry supplies the public components, state rules, validation, localization, visual system, recovery behavior, package, and evidence. An application imports only `@foundry/react`.
+Base UI supplies public primitives, semantic and interaction mechanics, and the public rendering foundation used by static surfaces. Foundry supplies the public components, state rules, validation boundary, localization, visual system, recovery behavior, package, and evidence. An application imports only `@foundry/react`.
 
 ## Dependency boundary
 
@@ -12,7 +12,7 @@ The initial production dependency is exactly `@base-ui/react` 1.8.0. The reviewe
 
 - `@base-ui/react` is an exact direct runtime dependency of `@foundry/react`, not a peer dependency.
 - React and React DOM remain Foundry peer dependencies. Base UI types never appear in Foundry declarations.
-- Production code imports only the public subpaths named here: `dialog`, `direction-provider`, `menu`, `popover`, `tabs`, and `toast`.
+- Production code imports only reviewed public subpaths. Core v1 permits `button`, `checkbox`, `dialog`, `direction-provider`, `field`, `fieldset`, `input`, `menu`, `popover`, `radio`, `radio-group`, `select`, `switch`, `tabs`, `toast`, and `use-render`.
 - Root-package imports, Base UI internal paths, direct Floating UI imports, vendored source, runtime monkey-patches, and dependency patching are prohibited.
 - Base UI supplies no CSS. Foundry state hooks and skin recipes are the only consumer-visible styling contract.
 - An upgrade is a reviewed shared-foundation change. It must update the exact version and lockfile, inspect the release notes and affected declarations, and rerun every shared-foundation gate.
@@ -26,6 +26,7 @@ The Base UI imports live behind private Foundry adapters. Public family modules 
 | Public API | Export names, props, callback shapes, refs, errors, and declarations | Nothing public |
 | State | Controlled and uncontrolled public state, effective values, request count, decline, stale requests, reset, dynamic recovery, and disabled refusal | Ephemeral interaction state after a Foundry-approved effective-state render |
 | Semantics | Required topology, visible names, headings, system labels, stable Foundry IDs and relationships | Primitive roles, focus guards, collection registration, and generated internal IDs used only within a Base-backed adapter |
+| Fields and forms | Public labels, errors, value types, callback shapes, validation ownership, reset outcome, and form contract | Field relationships, hidden/native form controls, and primitive state after Foundry validation |
 | Overlays | Modal or non-modal policy, portal destination, restoration order, dismissal policy, and layer result | Focus containment, inertness, scroll lock, outside-interaction detection, nested Escape handling, and presence |
 | Floating controls | Public placement fields, defaults, anchor-loss result, and Foundry sizing hooks | Measurement, flip, shift, collision data, and scroll, resize, and layout tracking |
 | Collections | Allowed parts, values, disabled policy, selection requests, dynamic fallback, and public events | Roving focus, item registration, arrow movement, typeahead mechanics, and ARIA wiring |
@@ -48,6 +49,12 @@ For each Base UI change request the adapter:
 
 An accepted request reaches Base UI through the next effective-state render. A declined controlled request leaves Base UI and the DOM at the prior state. A parent prop update is synchronization, not a request, and emits no callback.
 
+### Native form reset bridge
+
+Each form-associated uncontrolled TextField, SearchField, Checkbox, Switch, RadioGroup, or Select adapter resolves its owner from the native element's `form` property, including an external `form` attribute, and registers one private `reset` listener per mounted control. The listener is attached and removed in a layout effect whenever the resolved form changes. At the end of an unprevented reset dispatch it queues one microtask, then restores the adapter's mounted default as one synchronous Foundry state transaction, supplies that effective value back to Base UI, closes an open Select without restoration or value/open callbacks, and reconciles the hidden/native input. A prevented reset does nothing. Controlled controls perform no state transaction and are reconciled to the parent value in the same post-reset turn. No reset path emits a public value or open callback or moves focus.
+
+If a mounted RadioGroup or Select default no longer names an enabled current option, reset uses `null`; it never selects a replacement. For TextField and SearchField the mounted string default is restored; Checkbox and Switch restore their mounted checked default. A listener observes only the final associated form, is removed on reassociation or unmount, and a reset arriving after cleanup is stale and ignored.
+
 Consumer click handlers run before Foundry behavior. When `preventDefault()` cancels a Foundry action, the adapter calls Base UI's documented `preventBaseUIHandler()` method so the dependency cannot perform the canceled action.
 
 Base UI change reasons and event-detail objects stay private. An unknown reason is an internal contract error, not a new public behavior.
@@ -56,7 +63,7 @@ Base UI change reasons and event-detail objects stay private. An unknown reason 
 
 Each public ref is merged with the applicable Base UI part and resolves to the element named in the public contract. No handle, store, action object, or dependency instance is returned.
 
-Base UI parts use their default semantic element unless the mapping below names a Foundry renderer. Private renderers must forward the Base UI props and ref. They may remove or translate dependency state attributes, but they may not change the public element or role.
+Base UI parts use their default semantic element unless the mapping below names a Foundry renderer. Private renderers must forward the Base UI props and ref. Base UI `useRender` is called only inside a Foundry component after its public props have been filtered; its class/style/event merging behavior never creates a public styling or handler escape. Private renderers may remove or translate dependency state attributes, but they may not change the documented Foundry element or role.
 
 Only the attributes delegated to [Token and skin contract](token-and-skin.md#value-and-state-hooks) are stable: skin identity, exact control/part values, approved value hooks, logical state, and visual interaction/presence hooks. Base UI attributes and CSS variables may be consumed only inside a private adapter. The adapter translates them into approved Foundry hooks or the contract's exact private measurement variables; a skin recipe never selects or reads a Base UI attribute, class, or variable.
 
@@ -74,7 +81,7 @@ Direction is resolved from the nearest mounted `dir` attribute, then the nearest
 
 The portal boundary resolves `portalContainer` only after mount. It accepts a same-document connected element; a function is called after mount and again when its returned target becomes invalid. Null or disconnected results fall back to that document's body. A cross-document result reports a Foundry contract error and also falls back to the control's document body.
 
-Dialog, Drawer, Popover, Menu, and Toast pass the resolved element to their Base UI `Portal`. A target change preserves Foundry state and IDs and emits no state callback. Modal focus uses the documented fallback when the old focused node disconnects; non-modal controls do not move the document's new focus.
+Select, Dialog, Drawer, Popover, Menu, and Toast pass the resolved element to their Base UI `Portal`. A target change preserves Foundry state and IDs and emits no state callback. Modal focus uses the documented fallback when the old focused node disconnects; non-modal controls do not move the document's new focus.
 
 Portals and Toast viewports are absent from server output and the first hydration render. Private trigger renderers omit `aria-controls` until their controlled content exists. After the boundary becomes ready, an initially open control mounts once, attaches its relationships, and runs its focus rule without emitting an open request.
 
@@ -85,17 +92,38 @@ Nested `FoundryProvider` instances have independent portal, direction-fallback, 
 | Foundry area | Base UI public parts | Foundry adaptation |
 | --- | --- | --- |
 | `FoundryProvider` | `DirectionProvider`; Toast boundary below | Resolves direction, portals, labels, skin, and nested ownership. |
-| `Field`, `Group`, and native controls | None | Native labels, descriptions, errors, `fieldset`, `legend`, `button`, `input`, and `select` behavior remains Foundry-owned. |
+| `Field` | `Field.Root`, `Label`, `Description`, `Error` | Preserves Foundry's explicit-label/error API; application validation remains authoritative. |
+| `Group` | `Fieldset.Root`, `Legend` | Uses a private `legend` renderer and preserves the public `fieldset` ref and disabled dominance. |
+| `Button` | `Button` | Preserves Foundry variants, loading refusal, labels, form props, and public button ref. |
+| `TextField` | `Input`; nearest `Field` integration | Preserves the Foundry value union, native input, autofill, form reset, and input ref. |
+| `Select` | `Select.Root`, `Trigger`, `Value`, `Icon`, `Portal`, `Positioner`, `Popup`, `List`, `Item`, `ItemIndicator`, `ItemText`, `Group`, `GroupLabel`, scroll arrows | Keeps the current Foundry `Select` export while replacing its native implementation with a single-value Base-backed listbox; owns string values, public options, placement defaults, labels, hooks, and callbacks. |
+| `Checkbox` | `Checkbox.Root`, `Indicator` | Uses Base UI's hidden native input and exposes that input through the Foundry ref; preserves mixed state and reset. |
+| `Switch` | `Switch.Root`, `Thumb` | Uses Base UI's hidden native input and exposes that input through the Foundry ref; preserves boolean state and reset. |
+| `RadioGroup` | `RadioGroup`; `Radio.Root`, `Indicator` | Preserves the Foundry data API, fieldset/legend public root, string values, form behavior, and recovery rules. |
+| `SearchField` | `useRender`, `Input`, `Button`; nearest `Field` integration | Uses the rendering foundation for its non-semantic root plus Base UI input and button mechanics while Foundry owns clear visibility, callback order, focus preservation, and labels. |
+| `StatusChip`, `Banner`, `EmptyState`, `LoadingSkeleton`, `Card` | `useRender` | Renders the documented semantic host and Foundry-owned parts after refusing public styling, polymorphism, and root-interaction escapes. |
 | Dialog | `Dialog.Root`, `Trigger`, `Portal`, `Backdrop`, `Viewport`, `Popup`, `Title`, `Description`, `Close` | Enforces modal policy, visible heading, system close, focus targets, and Foundry hooks. |
-| Drawer | The same Dialog parts | Adds logical side placement and motion; Base UI Drawer gestures and snap points are not used. |
+| Drawer | The same Dialog parts | Adds logical side placement and motion. Base UI Drawer is not suitable because version 1.8.0 always installs swipe handling and has no supported disable switch; the Foundry side panel is explicitly non-swipeable. |
 | Popover | `Popover.Root`, `Trigger`, `Portal`, `Positioner`, `Popup`, `Title`, `Description`, `Close` | Forces non-modal focus policy and exact placement and anchor-loss behavior. |
 | Menu | `Menu.Root`, `Trigger`, `Portal`, `Positioner`, `Popup`, `Group`, `GroupLabel`, `Item`, `Separator` | Forces non-modal behavior, Foundry selection events, exact composition, and placement defaults. |
 | Tabs | `Tabs.Root`, `List`, `Tab`, `Panel` | Keeps the public root DOM-free, owns value recovery, and uses Base UI collection focus and relationships. |
 | Toast | `Toast.Provider`, `Portal`, `Viewport`, `Root`, `Content`, `Title`, `Description`, `Action`, `Close`, `useToastManager` | Adds Foundry queueing, timers, deduplication, announcements, action rules, and multi-viewport F6 routing. |
 
-## Native fields and actions
+## Fields, actions, and static surfaces
 
-Field, Group, Button, TextField, NativeSelect, Checkbox, Switch, RadioGroup, and SearchField do not use Base UI. Their native elements, relationships, values, form behavior, autofill, and reset behavior remain Foundry-owned. Shared-provider and portal changes must still run their existing regression evidence because provider nesting, direction, and public export changes can affect them.
+Every Core v1 control is Base-backed. Field uses Base UI's relationships but does not expose Base UI `validate`, validation timing, dirty, or touched APIs; business validation remains application-owned and enters Foundry through `error` or `invalid`. TextField and SearchField retain native input behavior through Base UI Input. Checkbox, Switch, and RadioGroup use Base UI's hidden native form inputs, with Foundry public refs merged to those inputs rather than the visual roots.
+
+Button uses Base UI Button but Foundry remains authoritative for loading, variant, localized progress announcement, and callback refusal. Group renders the documented `fieldset` and `legend` through Base UI Fieldset. Static feedback and content surfaces use Base UI `useRender`; Foundry supplies their semantic tag, relationships, state mapping, and filtered props.
+
+### Select
+
+The current Foundry `Select` export is retained, its planned `NativeSelect` rename is canceled, and its native implementation is replaced. It is a Foundry-owned single-value listbox composed from Base UI Select parts. The public values are non-empty strings, options have unique values, and the public callback receives only the next string or `null`; Base UI event details and object-valued items remain private. Groups, disabled options, placeholder state, typeahead, trigger keyboard entry, collision handling, scroll arrows, form participation, and reset are supported through the mapped Base UI parts. Groups render consecutively without a public or generated separator; visual separation comes from group spacing and labels.
+
+Foundry owns the option data shape, accessible name, required/invalid/read-only/disabled behavior, public trigger ref, empty and stale-value recovery, portal destination, final placement hooks, and skin. Multiple selection, externally controlled popup state, imperative handles, custom value equality, and consumer-selected positioning internals are outside Core v1. They remain recorded capability candidates rather than silently inherited public API.
+
+The trigger is the public interactive element and public ref target. A Base UI hidden input supplies form submission and reset. The popup is non-modal, follows the shared floating policy, closes on accepted option selection, Escape, outside interaction, or focus-out, and restores or preserves focus according to the originating request. Controlled value decline leaves the prior selection authoritative without closing and reopening the popup to fabricate acceptance.
+
+Select allocates an ordinary popup record when opened outside a modal and a promoted modal-descendant record when opened inside one. It follows the same ordered-forest, inactive-owner, capacity-refusal, portal-migration, exit, and cleanup rules as Popover and Menu. Allocation failure refuses a user-driven open before callback; a parent-driven open reports `FOUNDRY_LAYER_CAPACITY` and renders no popup until capacity exists.
 
 ## Dialog and Drawer
 
@@ -136,7 +164,7 @@ The internal structure is Root → Trigger + Portal → Positioner → Popup con
 - Escape restores focus only after an accepted close. Outside press and Tab/focus-out preserve destination focus. Controlled decline preserves the Base UI focus result and does not force focus back.
 - If the focused item is removed, a private flat-item registry moves focus without a state callback to the remaining item at the same former index, then a later item, then earlier items in reverse; disabled items remain eligible discovery targets. Reordering preserves focus by item identity. Removing the last item, the trigger declaration, or the content declaration is a composition error after recovery and cleanup.
 - If the declared trigger remains but its element disconnects, the adapter issues one close request for that loss episode. Accepted close has no restoration target. A declined controlled close hides and inerts the positioner until reconnection; reconnection restores positioning without another callback.
-- Placement uses the same fixed positioner policy as Popover.
+- Placement uses the same absolute positioner policy as Popover.
 
 ## Tabs
 
@@ -167,13 +195,34 @@ Toast configuration is validated and captured when its provider mounts. Changing
 - One document-level capture listener owned by Foundry intercepts `F6` and `Shift+F6` before Base UI's per-viewport listener. It cycles registered mounted Foundry viewports in document order and records the valid return target. Leaving the viewport restores that target once.
 - Provider unmount clears its queue and timers without public callbacks, unregisters its viewport, invalidates its IDs, and restores focus only when focus was inside that queue.
 
+## Base UI capability coverage
+
+This table prevents capabilities in the pinned Base UI artifact from being forgotten or accidentally exposed. “Future candidate” means that the capability needs its own Foundry journey, public contract, skin recipe, gallery evidence, and delivery outcome before it can enter the catalog.
+
+| Base UI 1.8.0 capability | Foundry disposition | Reason |
+| --- | --- | --- |
+| `button`, `field`, `fieldset`, `input`, `checkbox`, `radio`, `radio-group`, `switch` | Core v1 foundation | Directly supports the existing Foundry field, action, and choice catalog behind Foundry adapters. |
+| `select` | Core v1 foundation | Retains Foundry `Select` while replacing its native implementation; single string values, groups, disabled options, typeahead, placement, and form behavior are adopted. Multiple/object values and public popup control are future candidates. |
+| `dialog`, `popover`, `menu`, `tabs`, `toast` | Core v1 foundation | Supplies the approved modal, floating, collection, and notification mechanics. |
+| `use-render` | Core v1 foundation | Gives static Foundry surfaces one Base UI rendering foundation without changing their semantic elements or widening their props. |
+| `direction-provider` | Core v1 foundation | Supplies private direction context under `FoundryProvider`. |
+| `drawer` | Not used for Core v1 Drawer | Its required viewport installs swipe handling and it has no supported disable switch. Foundry's settled fixed side panel uses Base UI Dialog mechanics; swipe and snap points are excluded. |
+| `form` and Field validation modes | Future candidate | Core v1 keeps business validation application-owned; a form orchestration outcome would need error aggregation, submission, async, and recovery journeys. |
+| `accordion`, `collapsible`, `separator`, `tooltip`, `alert-dialog` | Future candidate: essential composition | These correspond to the post-Core capability path but do not expand the approved Core v1 catalog. |
+| `autocomplete`, `combobox`, `number-field`, `slider`, `toggle`, `toggle-group` | Future candidate: input depth | These require separate value, validation, keyboard, form, and recovery contracts. |
+| `avatar`, `meter`, `progress` | Future candidate: data and status | These require Foundry-specific semantics, labeling, value boundaries, and skin outcomes. |
+| `checkbox-group`, `context-menu`, `menubar`, `navigation-menu`, `otp-field`, `preview-card`, `scroll-area`, `toolbar` | Unscheduled candidate | Present in the dependency but unsupported until a Foundry user journey and catalog decision exist. |
+| `csp-provider`, `merge-props`, media/query and other public utilities | Internal candidate only | May support an approved Foundry mechanism after focused review; never becomes a public Foundry re-export. |
+
+An upgrade compares the new artifact's public exports with this table. Removed or changed adopted capabilities block the upgrade until their Foundry paths pass review and evidence. New capabilities enter this table as Core use, future candidate, internal candidate, or intentional rejection; their mere presence never expands Foundry's public API.
+
 ## Production sequence
 
 The following is the one canonical production order after the remaining package and command contract is approved. It is repeated in the public migration and token contracts and governs Maestro packets:
 
 1. Generate the exact token, part, recipe, and skin schemas plus validators without changing control appearance.
-2. Add the exact Base UI dependency, private adapter boundary, state bridge, direction resolver, provider, portal lifecycle, document layer allocator, owned-hook infrastructure, and explicit public exports.
-3. Correct native fields, actions, names, visual hosts, and hooks, including Button content, `NativeSelect`, `SearchField`, state unions, reset recovery, and system labels; do not route them through Base UI.
+2. Add the exact Base UI dependency, private adapter and `useRender` boundaries, state bridge, direction resolver, provider, portal lifecycle, document layer allocator, owned-hook infrastructure, and explicit public exports.
+3. Rebase Field, Group, Button, TextField, Checkbox, Switch, RadioGroup, SearchField, and static surfaces on their mapped Base UI public foundations; retain the current Foundry `Select` export while replacing its native implementation with Base UI Select; preserve Foundry state, form, ref, refusal, label, and system-label contracts.
 4. Rebase Dialog and Drawer on the shared modal adapter and emit their exact owned parts, hooks, and layer variables.
 5. Add the shared positioner/measurement policy, then rebase Popover and Menu; remove `MenuClose` and add the approved structure and translated private variables.
 6. Rebase Tabs with the private composition and recovery registry plus its owned parts and hooks.
@@ -185,7 +234,7 @@ Each step is independently mergeable and independently reviewed. A later step ca
 
 ## Required evidence
 
-The package and executable-gate contract will bind these outcomes to canonical commands. Until those commands exist and run, operational results are `UNTESTED`.
+The package and executable-gate contract will bind these outcomes to canonical commands. It remains the explicit deferred architecture subject `CG-ARQ-005`, not an implementation detail and not part of this all-control mapping correction. Until that authority exists and its commands run, this document makes no package-readiness or implementation-readiness claim and operational results are `UNTESTED`.
 
 | Gate | Required evidence and pass boundary |
 | --- | --- |
@@ -194,7 +243,8 @@ The package and executable-gate contract will bind these outcomes to canonical c
 | React support | The packed package passes the same component and hydration fixtures with React/React DOM 18.3.1 and 19.3.0 in Strict Mode, with no console or hydration warnings. |
 | Provider and portal lifecycle | Closed and initially open server renders, first hydration render, delayed body attachment, custom/missing/replaced/cross-document targets, live direction changes, nested providers, and cleanup all match the public contract. |
 | State bridge | Controlled and uncontrolled entry, accepted and declined requests, parent synchronization, duplicate and stale requests, keyed remount, disabled refusal, and callback counts pass for every Base-backed root. |
-| Native-control regression | Text, search, select, checkbox, switch, and radio prove labels, descriptions, errors, required/disabled state, autofill observation, native form reset, and unchanged value callback counts after provider and package changes. |
+| Field, action, choice, and surface adapters | Field, Group, Button, text, search, Select, checkbox, switch, radio, and static surfaces prove exact public refs and props, labels/descriptions/errors, required/disabled/read-only/invalid state, Foundry-only hooks, autofill where applicable, form submission/reset, callback counts, and absence of Base UI leakage. |
+| Select | All three browsers prove trigger naming, single string values, groups, disabled and all-disabled options, placeholder, typeahead, keyboard/pointer selection, controlled decline, reset, form submission, popup dismissal/focus results, collision/resize, long lists, and cleanup. |
 | Dialog and Drawer | Chromium, Firefox, and WebKit prove focus fallback, Tab containment, explicit and Escape close, outside refusal, controlled decline, nested Escape, trigger removal, restoration order, inertness, scroll lock, side/direction, and listener cleanup. |
 | Popover | All three browsers prove no open-time focus move, Tab/outside/Escape/explicit close policies, controlled decline, collision flip/shift, scroll and resize tracking, clipping caps, target migration, anchor disconnect/reconnect, and cleanup. |
 | Menu | All three browsers prove keyboard entry, arrows/Home/End, direction, wrapping, disabled and all-disabled popup fallback, text and non-text typeahead, 500 ms reset and repeated-character cycling, pointer/mouse/keyboard event provenance, selection prevention, controlled decline, focused-item and trigger removal, outside/Tab/Escape focus results, placement, reconnection, and cleanup. |
@@ -215,4 +265,4 @@ Unexecuted evidence remains `UNTESTED`; package inspection and documentation rev
 
 ## Primary evidence
 
-This contract was prepared from the exact 1.8.0 npm artifact and the official Base UI documentation for [Dialog](https://base-ui.com/react/components/dialog), [Popover](https://base-ui.com/react/components/popover), [Menu](https://base-ui.com/react/components/menu), [Tabs](https://base-ui.com/react/components/tabs), [Toast](https://base-ui.com/react/components/toast), and [customization](https://base-ui.com/react/handbook/customization). Foundry's approved public contract remains controlling where Base UI offers additional behavior.
+This contract was prepared from the exact 1.8.0 npm artifact, its public declarations and implementation, and the official Base UI documentation for fields, actions, choices, Select, Dialog, Drawer, Popover, Menu, Tabs, Toast, and customization. Foundry's approved public contract remains controlling where Base UI offers additional behavior.

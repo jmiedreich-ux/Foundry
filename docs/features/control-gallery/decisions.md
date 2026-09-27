@@ -44,9 +44,9 @@ Core v1 is a styled, installable library, not a gallery-only collection of sourc
 
 ### Architecture layers
 
-1. Native elements provide the base semantics for ordinary fields and actions.
-2. A proven headless interaction foundation provides focus, dismissal, collection navigation, and positioning for complex controls. Foundry keeps its own public API and does not expose the dependency's API.
-3. Foundry adapters own public types, state transitions, localized labels, refs, and stable `data-*` hooks.
+1. Base UI 1.8.0 is the private implementation foundation for every Core v1 control. A control uses its matching public primitive; controls with no matching primitive use Base UI's public rendering foundation.
+2. Foundry adapters own the complete public contract: names, types, state transitions, semantic elements, localized labels, refs, errors, and stable `data-*` hooks. No Base UI API or styling surface is public.
+3. Native elements rendered by Base UI remain the semantic and form authority where the Foundry contract requires native behavior.
 4. The token package defines semantic values and component recipes. A skin supplies all visual values.
 5. The gallery consumes the packed public package and skin in the same way as an application.
 
@@ -54,7 +54,7 @@ No new custom overlay, collection-navigation, focus-scope, or floating-positioni
 
 ### Selected interaction foundation
 
-Base UI 1.8.0 is Foundry's selected internal interaction foundation. The owner accepted it for production use on 2026-09-17. One maintained package covers the representative Dialog, Popover, Menu, Tabs, and Toast journeys; provides subpath exports with no package side effects; builds positioning on Floating UI; and reports change reasons through cancellable event details. Those details let a Foundry adapter distinguish trigger, Escape, outside, focus, selection, and imperative requests without exposing Base UI's API.
+Base UI 1.8.0 is Foundry's selected internal control foundation. The owner accepted it for production use on 2026-09-17 and broadened that decision on 2026-09-26 to every Core v1 control. One maintained package provides public primitives for fields, fieldsets, buttons, inputs, choices, Select, overlays, collections, and Toast plus a public rendering foundation for Foundry surfaces that have no matching primitive. Its change details let a Foundry adapter distinguish user requests without exposing Base UI's API.
 
 | Option | Strongest evidence | Decision |
 | --- | --- | --- |
@@ -68,15 +68,16 @@ Foundry owns the public contract and Base UI owns only internal mechanics:
 | --- | --- | --- |
 | State and events | Controlled and uncontrolled public state, effective values, required callbacks, request-once semantics, parent decline, stale-request cancellation, and public callback shape | Ephemeral interaction state after a Foundry-approved effective-state render, plus typed reason/cancel details for requests |
 | Semantics and composition | Allowed parts, required public elements, roles, relationships, stable IDs, visible titles, localized system labels, public refs, safe forwarded props, and refusal messages | Primitive role and ARIA mechanics, collection registration, private internal IDs, and internal part refs |
+| Fields and forms | Public value shape, labels, errors, required/invalid presentation, form contract, reset result, and validation ownership | Field relationships, native form integration, and primitive state used through private adapters |
 | Overlays | Portal destination and skin propagation, product defaults, documented modal/non-modal behavior | Portal mechanics, focus scope, inert/outside interaction, scroll lock, nested Escape handling, presence, and restoration mechanics |
 | Floating controls | Public placement choices and Foundry token hooks | Anchoring, flipping, shifting, collision boundaries, available size, and scroll/resize updates |
 | Visual system | Every class, token, part alias, state recipe, motion value, and z-layer policy | No consumer-visible styling; Base UI state is translated to stable Foundry hooks |
 
-This division applies to Base-backed families. Field, Group, Button, TextField, NativeSelect, Checkbox, Switch, RadioGroup, and SearchField remain native Foundry controls and do not import Base UI.
+This division applies to every Core v1 control. Applications import and program only Foundry. Base UI types, props, events, refs, state attributes, CSS variables, classes, package paths, and optional behaviors never become Foundry API by implication.
 
-Ordinary Button, TextField, native Select, Checkbox, and Radio controls continue to use native elements. Navigation Link is an essential future addition, not a Core v1 export. Foundry's side panel uses Base UI Dialog mechanics with a Foundry placement recipe; a gesture/snap-point Drawer primitive is reserved for a future contract. Popover, Menu, Tabs, Toast, Dialog, and the side panel use Base UI. New `FoundryProvider` owns the portal, direction, locale, skin, and default Toast boundary; the current `OverlayRoot` is internalized and removed rather than becoming a second engine.
+Field, Group, Button, TextField, Checkbox, Switch, RadioGroup, and SearchField use their matching Base UI public primitives while preserving the Foundry contract. The current native Select contract is replaced by a Foundry `Select` built on Base UI Select. Static surfaces use Base UI's public `useRender` foundation. Foundry's fixed, non-swipeable side panel uses Base UI Dialog mechanics because Base UI Drawer 1.8.0 always installs swipe handling and exposes no supported disable switch; swipe gestures and snap points are not Core v1 behavior. New `FoundryProvider` owns the portal, direction, locale, skin, and default Toast boundary; the current `OverlayRoot` is internalized and removed rather than becoming a second engine.
 
-Production integration must prove Foundry's Base UI adapters in Chromium, Firefox, WebKit, server-render, and hydration paths. The gates cover controlled acceptance and decline; stale requests; nested and missing-trigger recovery; no-focusable fallback; Escape, outside, Tab, and explicit dismissal; scroll lock and inertness; collision and resize updates; Menu typeahead and disabled items; Tabs orientation, direction, activation, removal, nesting, and panel fallback; native Field labeling, validation, reset, and autofill interoperation; and Toast queue, timer pause, action, dismissal, and keyboard access. A material Base UI limitation requires an explicit architecture decision; implementation does not mix foundations, patch private internals, or silently extend the custom interaction machinery.
+Production integration must prove Foundry's Base UI adapters in Chromium, Firefox, WebKit, server-render, and hydration paths. The gates cover fields, native form participation, reset and autofill; controlled acceptance and decline; stale requests; Select keyboard, typeahead, placement, and recovery; nested and missing-trigger recovery; no-focusable fallback; Escape, outside, Tab, and explicit dismissal; scroll lock and inertness; collision and resize updates; Menu typeahead and disabled items; Tabs orientation, direction, activation, removal, nesting, and panel fallback; static-surface rendering; and Toast queue, timer pause, action, dismissal, and keyboard access. A material Base UI limitation requires an explicit architecture decision; implementation does not mix foundations, patch private internals, or silently extend custom interaction machinery.
 
 The exact Base UI mappings and production gates are maintained in [Base UI production integration](base-ui-integration.md). The exact visual schema, owned parts, recipes, scoping, and rendered-approval protocol are maintained in [Token and skin contract](token-and-skin.md). The quality stage advances in this order: review the per-control and Base UI integration contracts; approve the token/skin and package/gate contracts; then issue bounded Maestro production packets. No production packet starts from an unreviewed architecture contract.
 
@@ -123,20 +124,20 @@ The canonical per-export public boundary and migration dispositions are maintain
 
 | Area | Direction |
 | --- | --- |
-| Gallery and native semantics | Retain the working journeys and tests as evidence; make the gallery a packed-package consumer. |
-| Control Base, fields, choices, Search, and feedback | Amend for one state model, owned hooks, label composition, heading composition, focus behavior, and complete size recipes. |
-| Dialog, Drawer, Popover, Menu, and Tabs | Preserve the reviewed observable contract, then rebase internals on Base UI instead of extending duplicated custom mechanisms. |
+| Gallery and semantics | Retain the working journeys and tests as evidence; make the gallery a packed-package consumer. |
+| All Core v1 controls | Preserve Foundry ownership while replacing each implementation with its applicable Base UI 1.8.0 public primitive or public rendering foundation. |
+| Select | Retain the current Foundry `Select` name, cancel the planned `NativeSelect` rename, and replace its native implementation with Base UI Select; no `NativeSelect` compatibility export ships. |
 | Default skin | Rebuild as an explicitly imported, fully scoped token skin with complete recipes for every Core v1 control. |
 | Packaging and verification | Add canonical commands, product CI, multi-browser release gates, declarations, peer dependencies, and packed-consumer proof. |
 
-The owner selected Base UI 1.8.0 for production. Its Dialog, Drawer, Popover, Menu, Tabs, Toast, server-rendering/hydration, controlled-state, positioning, React-support, and package-boundary behavior remains subject to the required implementation gates above. Native fields and actions remain subject to their Foundry regression gates. A material limitation returns to architecture review; it does not authorize mixed foundations or more custom interaction machinery.
+The owner selected Base UI 1.8.0 as the production foundation for all Core v1 controls. Every mapped primitive, rendering-foundation use, server-rendering/hydration path, controlled-state bridge, form path, positioning behavior, React boundary, and package boundary remains subject to the required implementation gates above. A material limitation returns to architecture review; it does not authorize a second foundation, private dependency imports, or duplicated mechanics.
 
 ## Capability path
 
 Core v1 remains limited to the existing catalog until its quality contract passes. Outcome comparison with mature libraries identifies the next coherent additions, without promising exact catalog parity:
 
 1. Essential composition: Link, TextArea, Tooltip, Disclosure/Accordion, Separator, Progress/Meter, and AlertDialog.
-2. Input depth: NumberField, styled Select/Listbox, Combobox/Autocomplete, Slider, Toggle, and ToggleGroup.
+2. Input depth: NumberField, Combobox/Autocomplete, Slider, Toggle, and ToggleGroup.
 3. Application navigation and data display: Breadcrumbs, Pagination, Avatar/Badge, and Table foundations.
 
 Each addition needs a documented user journey, accessibility pattern, skin recipe, package export, and gallery acceptance evidence before it enters the delivery plan.

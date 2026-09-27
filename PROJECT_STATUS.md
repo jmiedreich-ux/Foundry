@@ -6,8 +6,8 @@ Control Gallery — Library quality foundation, architecture in progress.
 
 ## Current state
 
-The functional gallery baseline is complete through Popover. The Core v1 public contract and Base UI 1.8.0 production integration are independently approved. The exceptional token and skin correction is published; its final completeness recheck closed font sizing and modal-owned layering but retained an incomplete recipe inventory. The final consistency recheck found stale publication wording, which this status synchronization corrects. Overlay and navigation implementation remains paused.
+The functional gallery baseline is complete through Popover. The all-control Base UI correction now defines the private foundation, retains Foundry's public API and current `Select` name, and keeps Drawer fixed and non-swipeable. The first completeness and consistency passes returned named corrections; consistency approved the corrected snapshot, and the completeness corrections are applied with only their final two synchronization edits awaiting recheck. A replacement fidelity reviewer could not run because the agent service reached its usage limit. Earlier approvals remain stale for this expanded scope. Overlay and navigation implementation remains paused.
 
 ## Next action
 
-Obtain the owner's process decision on one further bounded recipe-inventory correction and targeted completeness recheck, plus a status-only consistency recheck of this synchronization. Do not authorize implementation or resume Menu browser checks.
+Complete fresh decision-fidelity review, independent targeted recheck of the final Select reset/layer synchronizations, and a narrow consistency check of the synchronized review-status records. Then begin the deferred package and executable-gate contract under `CG-ARQ-005`. Do not authorize implementation or resume Menu browser checks.
