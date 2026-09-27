@@ -6,8 +6,8 @@ The complete gallery has cross-control accessibility, responsive, keyboard, focu
 
 ## Dependencies
 
-All preceding delivery stages are complete. Architecture dispositions identify any correction work and release gates required before acceptance.
+All preceding delivery stages are complete, including the library quality foundation and the renewed overlay/navigation work.
 
 ## Completion evidence
 
-Every planned path is evidenced or explicitly untested with a reason. Independent review is complete and the owner has an acceptance-ready summary.
+Every planned path is evidenced or explicitly untested with a reason. Canonical CI is green; Chromium, Firefox, and WebKit release suites pass; assistive-technology smoke results are recorded; the packed consumer proves browser and server use; package contents are inspected; the license is present; independent review is complete; and the owner has an acceptance-ready summary. A first-use review confirms that installation, imports, composition, theming, errors, and control discovery are clear without reading implementation source, and rendered family review confirms coherent visual quality across states and supported widths.
