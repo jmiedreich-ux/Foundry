@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "repository": "jmiedreich-ux/Foundry",
-  "source_revision": "8be36fb19fa547759b8c08695b161bb9cee680a7",
+  "source_revision": "bc4cee5357ff1dc61171313926123336d01a39d7",
   "status": "drafting",
   "paths": {
     "overview": "PRODUCT.md",
@@ -16,25 +16,12 @@
   "publication": {
     "route": "GitHub branch and pull request",
     "authorization_source": "Owner direction on 2026-09-17: documentation is kept on GitHub; source may be local and on GitHub.",
-    "last_verified_document_revision": "a2eaec3023be247806699cf28dd4f8cdb7e46cc9",
-    "status": "All-control Base UI correction drafted; named consistency findings closed, final fidelity, completeness, and status checks pending",
+    "last_verified_document_revision": "bc4cee5357ff1dc61171313926123336d01a39d7",
+    "status": "Review-pending all-control Base UI checkpoint published; named consistency findings closed, final fidelity, completeness, and status checks pending",
     "branch": "architecture/library-quality-foundation",
     "pull_request": "https://github.com/jmiedreich-ux/Foundry/pull/59",
-    "pending_paths": [
-      "PROJECT_STATUS.md",
-      "ROADMAP.md",
-      "ai/handoffs/current.md",
-      "docs/features/control-gallery/base-ui-integration.md",
-      "docs/features/control-gallery/control-contracts.md",
-      "docs/features/control-gallery/decisions.md",
-      "docs/features/control-gallery/question-register.md",
-      "docs/features/control-gallery/README.md",
-      "docs/features/control-gallery/token-and-skin.md",
-      "docs/features/control-gallery/workstream.json",
-      "docs/features/control-gallery/milestones/library-quality-foundation.md",
-      "docs/features/control-gallery/milestones/field-controls.md"
-    ],
-    "expected_base": "8be36fb19fa547759b8c08695b161bb9cee680a7",
+    "pending_paths": [],
+    "expected_base": "bc4cee5357ff1dc61171313926123336d01a39d7",
     "delivery_level": "github_branch",
     "verified_local_files": [
       { "path": "PRODUCT.md", "sha256": "bdcbd267b4579196b51be8a0c2ff526002b9a7b7fe94bbcebac3368ed02d411f" },
